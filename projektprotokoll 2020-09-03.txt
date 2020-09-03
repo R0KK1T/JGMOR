@@ -1,0 +1,58 @@
+# Meeting Agenda
+
+Group: JGMOR
+Date: 2020-09-03
+Chair: Johannes Mattsson
+Participants: Jonathan Stigson, Oliver Ljung, Robert Sahlqvist, Mhd Jamal, Georges Kayembe
+
+## Objectives (5 min) 
+
+Introduktion av handledare och gruppmedlemmar
+Redogörelse för ambitionsnivå och förståelse för kursen och dess utformning.
+Redogörelse för vad första mötet åstakom (introduktion och påbörjande av idéer).
+
+## Reports (15 min) from previous meeting
+
+- Each group member reports outcome of assigned issues, see also 'outcomes and
+  assignments'.
+
+
+## Discussion items (35 min)
+
+Johannes påpekade vikten av git och maven workshopen. Alla borde göra.
+Alla har satt upp IntelliJ som utvecklingsmiljö.
+Alla har inte samma operativsystem. Johannes påpekade att rätt filändelser 
+är viktiga för att det ska fungera för alla. Alla filer ska ha LF innan man commitar.
+Efter lite förvirring med IntelliJ beslutades låta det vara och se om det blir något problem.
+
+Diskussion av idéer. Kan vara smart att använda redan existerande bibliotek.
+
+databas + interface
+att ha något som fyller en funktion och går att använda.
+
+databas kan bli klurigt -> blir mer av ett databasprojekt och inte utvecklingsprojekt
+-> tekniskt svårt men featuresimpelt
+men man kan relativt lätt utöka det till objektorienterat projekt med reviewfunktioner och liknande
+
+domänmodell måste finnas
+
+features är viktiga så det blir tillräckligt komplex och inte för simpelt.
+
+Features är viktiga!
+
+RAD - måste göras
+User stories -> tasks måste göras
+
+## Outcomes and assignments (5 min)
+
+ - Alla ska läsa Projekt-PM.
+ - Välj idé/Göra RAD för idéer
+ - Lägg RAD för bestämd idé i Github-repot
+ - User stories -> tasks måste tas fram.
+ - Se till att ha gjort git/maven-workshopen inför nästa möte
+ - Påbörja kodning
+ - Påbörja domänmodell
+
+## Wrap up
+Nästa handledarmöte: 2020-10-09
+Nästa möte: 2020-10-04
