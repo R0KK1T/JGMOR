@@ -54,5 +54,5 @@ User stories -> tasks måste göras
  - Påbörja domänmodell
 
 ## Wrap up
-Nästa handledarmöte: 2020-10-09
-Nästa möte: 2020-10-04
+Nästa handledarmöte: 2020-09-10
+Nästa möte: 2020-09-04
