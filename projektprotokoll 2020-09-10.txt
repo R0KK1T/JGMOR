@@ -1,0 +1,29 @@
+# Meeting Agenda
+
+Group:JGMOR
+Date:2020-09-10
+Chair: Johannes Mattsson
+Participants: Jonathan Stigson, Robert Sahlqvist, Mhd Jamal Basal, Georges Kayembe, Oliver Ljung
+
+
+## Objectives (5 min) 
+
+- Resolve any issues preventing the team to continue.
+- Short clear descriptions.
+
+## Reports (15 min) from previous meeting
+
+ - Projektidé, Sketch, User stories, börjat RAD-dokument
+
+## Discussion items (35 min)
+
+ - Set-up repo. Finns ett repo på github men ingen start av kod.
+ - Domänmodell. Några idéer ex. State/strategy pattern.
+
+## Outcomes and assignments (5 min)
+
+ - Set-up repo (Jonathan Stigson)
+
+## Wrap up
+Nästa handledarmöte:2020-09-17
+Nästa möte: 2020-09-11
