@@ -1,7 +1,7 @@
 Group: JGMOR
 Date: 2020-09-08
 Chair: Jonathan Stigson
-Participants: Jonathan Stigson, Oliver Ljung, Robert Sahlqvist, Mhd Jamal.
+Participants: Georges Kayembe, Oliver Ljung, Robert Sahlqvist, Mhd Jamal.
 
 
 ## Objectives (5 min) 
