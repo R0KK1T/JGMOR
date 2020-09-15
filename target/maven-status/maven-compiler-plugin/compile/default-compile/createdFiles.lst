@@ -1,0 +1,6 @@
+edu/chalmers/projecttemplate/ProjectTemplate.class
+edu/chalmers/projecttemplate/ProjectTemplate$MenuButton.class
+edu/chalmers/projecttemplate/model/Project.class
+edu/chalmers/projecttemplate/view/ProjectView.class
+edu/chalmers/projecttemplate/ProjectTemplate$GameMenu.class
+edu/chalmers/projecttemplate/controller/ProjectController.class
