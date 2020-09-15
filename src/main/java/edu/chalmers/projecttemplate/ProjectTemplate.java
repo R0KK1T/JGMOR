@@ -31,9 +31,9 @@ public class ProjectTemplate extends Application {
 		//import image as background
 		Pane root = new Pane();
 		root.setPrefSize(800, 600);
-		InputStream is = Files.newInputStream(Paths.get("src/images/arcade1.jpg"));
-		Image img = new Image(is);
-		is.close();
+		InputStream inStream = Files.newInputStream(Paths.get("src/images/arcade1.jpg"));
+		Image img = new Image(inStream);
+		inStream.close();
 		//Create and resize imageView
 		ImageView imgView = new ImageView(img);
 		imgView.setFitWidth(800);
