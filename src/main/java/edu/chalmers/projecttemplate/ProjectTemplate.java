@@ -1,6 +1,5 @@
 package edu.chalmers.projecttemplate;
 
-import edu.chalmers.projecttemplate.model.Project;
 import edu.chalmers.projecttemplate.view.ProjectView;
 import javafx.application.Application;
 import javafx.stage.Stage;

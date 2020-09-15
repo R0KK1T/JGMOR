@@ -20,7 +20,7 @@ public class ProjectView  {
         //import image as background
         Pane root = new Pane();
         root.setPrefSize(800, 600);
-        InputStream inStream = Files.newInputStream(Paths.get("src/images/arcade1.jpg"));
+        InputStream inStream = Files.newInputStream(Paths.get("src/main/java/edu/chalmers/projecttemplate/model/resources/arcade1.jpg"));
         Image img = new Image(inStream);
         inStream.close();
         //Create and resize imageView
