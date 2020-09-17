@@ -7,4 +7,9 @@ public class PongModel {
     PongBall pongBall;
     PongPaddle pongPaddle;
 
+    void updateGame (){
+        pongBall.updatePosition();
+        pongPaddle.updatePosition();
+    }
+
 }

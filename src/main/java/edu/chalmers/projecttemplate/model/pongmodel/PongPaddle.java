@@ -1,9 +1,16 @@
 package edu.chalmers.projecttemplate.model.pongmodel;
 
-public class PongPaddle extends GameObject implements IMovable {
+public class PongPaddle extends PongObject implements IMovable {
+
+    public PongPaddle (double x, double y, double height, double width){
+        this.x = x;
+        this.y = y;
+        this.height = height;
+        this.width = width;
+    }
+
     @Override
-    public void move(double changeInX, double changeInY) {
-        x = x + changeInX;
-        y = y + changeInY;
+    public void updatePosition() {
+        y += velocity;
     }
 }
