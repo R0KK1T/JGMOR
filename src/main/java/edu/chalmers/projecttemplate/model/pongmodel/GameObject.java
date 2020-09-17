@@ -1,8 +1,8 @@
 package edu.chalmers.projecttemplate.model.pongmodel;
 
 public abstract class GameObject implements IPositionable {
-    private double x,y;
-    private double height,width;
+    protected double x,y;
+    protected double height,width;
 
     @Override
     public double getX() {
