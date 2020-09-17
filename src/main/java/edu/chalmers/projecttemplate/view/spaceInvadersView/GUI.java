@@ -1,24 +1,17 @@
-package edu.chalmers.projecttemplate.space_invaders;
-
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+package edu.chalmers.projecttemplate.view.spaceInvadersView;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class GUI extends Application {
-
+public class GUI{
+/*
     private static final int gameHeight = 900;
     private static final int gameWidth = 1000;
     ImageView player;
     ImageView background;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    /*public void start(Stage primaryStage) throws Exception {
         //import image as background
         Pane root = new Pane();
         root.setPrefSize(gameWidth, gameHeight);
@@ -54,5 +47,5 @@ public class GUI extends Application {
 
     public static void main(String[] args) {
         launch(args);
-    }
+    }*/
 }
