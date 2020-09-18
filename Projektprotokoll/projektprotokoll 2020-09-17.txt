@@ -1,0 +1,30 @@
+# Meeting Agenda
+
+Group:JGMOR
+Date:2020-09-17
+Chair: Mhd Jamal Basal
+Participants: Robert Sahlqvist, Jonathan Stigson, Georges Kayembe, Oliver Ljung
+
+
+## Objectives (5 min) 
+
+- Forsätta med kodning.
+
+## Reports (15 min) from previous meeting
+
+ - Git repo for projektet redo för att klona.
+ 
+
+## Discussion items (35 min)
+
+ - Några tekniska problem
+ 
+
+## Outcomes and assignments (5 min)
+
+ - Fortsätt skriva på RAD File
+ - Börja bygga första körbara version
+
+## Wrap up
+Nästa handledarmöte:2020-09-24
+Nästa möte: 2020-09-18(preliminärt)
