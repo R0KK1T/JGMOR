@@ -12,4 +12,11 @@ public class PongModel {
         pongPaddle.updatePosition();
     }
 
+    public PongBall getPongBall() {
+        return pongBall;
+    }
+
+    public PongPaddle getPongPaddle() {
+        return pongPaddle;
+    }
 }
