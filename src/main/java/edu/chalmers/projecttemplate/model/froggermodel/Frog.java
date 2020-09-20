@@ -9,4 +9,16 @@ public class Frog {
     public Rectangle getHitbox() {
         return hitbox;
     }
+    public void moveRight(){
+        hitbox.incX();
+    }
+    public void moveLeft(){
+        hitbox.decX();
+    }
+    public void moveUp(){
+        hitbox.decY();
+    }
+    public void moveDown(){
+        hitbox.incY();
+    }
 }

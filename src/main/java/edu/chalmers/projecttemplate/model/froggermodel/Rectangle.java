@@ -32,4 +32,20 @@ public class Rectangle {
     public int getY() {
         return y;
     }
+
+    public void incX() {
+        x++;
+    }
+
+    public void incY() {
+        y++;
+    }
+
+    public void decX() {
+        x--;
+    }
+
+    public void decY() {
+        y--;
+    }
 }
