@@ -1,6 +1,7 @@
 package edu.chalmers.projecttemplate.view.pongview;
 
 import edu.chalmers.projecttemplate.model.pongmodel.PongModel;
+import edu.chalmers.projecttemplate.view.ProjectView;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,15 +13,15 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class PongView {
-    private PongModel pongModel;
+    private ProjectView projectView;
     public void init (Stage primaryStage) throws Exception{
         //import image as background
         Pane root = new Pane();
         root.setPrefSize(800, 600);
         ImageView background = createImageView("src/main/java/edu/chalmers/projecttemplate/view/resources/pongresources/Background.png",800,600);
-        ImageView ball = createImageView("src/main/java/edu/chalmers/projecttemplate/view/resources/pongresources/Ball.png",pongModel.getPongBall().getWidth(),pongModel.getPongBall().getHeight());
-        ball.setX(pongModel.getPongBall().getX());
-        ball.setY(pongModel.getPongBall().getY());
+        ImageView ball = createImageView("src/main/java/edu/chalmers/projecttemplate/view/resources/pongresources/Ball.png",projectView.projectModel.pongModel.getPongBall().getWidth(),projectView.projectModel.pongModel.getPongBall().getHeight());
+        ball.setX(projectView.projectModel.pongModel.getPongBall().getX());
+        ball.setY(projectView.projectModel.pongModel.getPongBall().getY());
         //Create scene
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
