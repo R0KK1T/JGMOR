@@ -1,14 +1,12 @@
 package edu.chalmers.projecttemplate.view.pongview;
 
 import edu.chalmers.projecttemplate.model.pongmodel.PongModel;
-import edu.chalmers.projecttemplate.view.GameMenu;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
