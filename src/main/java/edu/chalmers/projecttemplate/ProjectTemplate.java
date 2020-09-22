@@ -16,7 +16,7 @@ public class ProjectTemplate extends Application {
 
 		Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("startMenu.fxml"));
 
-		Scene scene = new Scene(root, 800, 500);
+		Scene scene = new Scene(root, 800, 600);
 
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);

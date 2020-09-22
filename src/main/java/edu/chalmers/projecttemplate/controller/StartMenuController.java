@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
@@ -20,6 +21,8 @@ public class StartMenuController implements Initializable {
     private Button selectGameBtn;
     @FXML
     private AnchorPane anchorBack;
+    @FXML
+    private ImageView backgroundIMG;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
