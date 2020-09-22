@@ -1,0 +1,38 @@
+Group: JGMOR
+Date: 2020-09-22
+Chair: Jonathan Stigson
+Participants: Georges Kayembe, Oliver Ljung, Robert Sahlqvist, Mhd Jamal.
+
+
+## Objectives (5 min) 
+
+Medlemmar borde inte röra andras filer.
+Views implementerar senare
+
+## Reports (15 min) from previous meeting
+
+Jonathan har fixat så att .fxml fungerar, har också implementerat intersect logik i frogger och har lagt till user stories.
+Robert fortsatt koda.
+Oliver har fortsatt koda, tror att han snart är klar med modellen och kan börja med view.
+Georges har fått tid att börja utveckla Breakout.
+
+
+## Discussion items (35 min)
+
+Vi borde skriva mer DoD
+Behöver rita upp individuella domänmodeller.
+Diskuterade lite om MVC, underpaket borde ha en access point i det stora paketet, omdiskuteras.
+Vi borde skriva tester för vår kod innan vi pushar.
+Borde definiera user stories bättre så att folk kan arbeta lättare.
+
+## Outcomes and assignments (5 min)
+
+Ta upp punkten om packages och subpackages.
+User stories behöver vara bättre definierade, så att folk får mer specifika och mindre antal tasks att arbeta med.
+Borde försöka fixa ett renderat spel till handledarmötet.
+Försök bli klara med RAD ASAP
+
+## Wrap up
+Nästa handledarmöte: 2020-09-24 kl. 15
+Nästa möte: 2020-09-25 kl. 10 
+

@@ -1,9 +1,9 @@
 package edu.chalmers.projecttemplate.model.pongmodel;
 
-import edu.chalmers.projecttemplate.controller.pongcontroller.PongController;
+import edu.chalmers.projecttemplate.model.ProjectModel;
 
 public class PongModel {
-    private PongController pongController;
+    private ProjectModel projectModel;
     PongBall pongBall;
     PongPaddle pongPaddle;
 
