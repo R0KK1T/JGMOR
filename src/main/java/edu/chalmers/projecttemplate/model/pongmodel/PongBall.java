@@ -15,4 +15,5 @@ public class PongBall extends PongObject implements IMovable {
         x += xDirection;
         y += yDirection;
     }
+
 }

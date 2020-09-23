@@ -5,18 +5,29 @@ import edu.chalmers.projecttemplate.model.ProjectModel;
 public class PongModel {
     private ProjectModel projectModel;
     PongBall pongBall;
-    PongPaddle pongPaddle;
+    PongPaddle pongLeftPaddle;
+    PongPaddle pongRightPaddle;
+
+    private void initGame (){
+        pongBall = new PongBall(400, 300, 40, 40,0);
+        pongRightPaddle = new PongPaddle(750,300, 100,40);
+        pongLeftPaddle = new PongPaddle(50, 300, 100,40);
+    }
 
     void updateGame (){
         pongBall.updatePosition();
-        pongPaddle.updatePosition();
+        pongRightPaddle.updatePosition();
+        pongLeftPaddle.updatePosition();
     }
 
     public PongBall getPongBall() {
         return pongBall;
     }
 
-    public PongPaddle getPongPaddle() {
-        return pongPaddle;
+    public PongPaddle getPongRightPaddle() {
+        return pongRightPaddle;
+    }
+    public PongPaddle getPongLeftPaddle() {
+        return pongLeftPaddle;
     }
 }
