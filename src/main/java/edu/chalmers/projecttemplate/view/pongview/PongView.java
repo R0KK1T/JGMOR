@@ -1,7 +1,7 @@
 package edu.chalmers.projecttemplate.view.pongview;
 
-import edu.chalmers.projecttemplate.model.pongmodel.PongModel;
 import edu.chalmers.projecttemplate.view.ProjectView;
+import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,9 +12,9 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class PongView {
+public class PongView extends Application {
     private ProjectView projectView;
-    public void init (Stage primaryStage) throws Exception{
+    public void start (Stage primaryStage) throws Exception{
         //import image as background
         Pane root = new Pane();
         root.setPrefSize(800, 600);
@@ -34,5 +34,8 @@ public class PongView {
         tempImageView.setFitWidth(setWidth);
         tempImageView.setFitHeight(setHeight);
         return tempImageView;
+    }
+    public static void main(String[] args) {
+        launch(args);
     }
 }

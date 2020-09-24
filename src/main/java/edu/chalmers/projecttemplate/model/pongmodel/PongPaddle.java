@@ -1,6 +1,6 @@
 package edu.chalmers.projecttemplate.model.pongmodel;
 
-public class PongPaddle extends PongObject implements IMovable {
+public class PongPaddle extends GameObject implements IMovable {
 
     public PongPaddle (double x, double y, double height, double width){
         this.x = x;
