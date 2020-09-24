@@ -8,10 +8,9 @@ public class SpaceInvadersModel {
     private Spaceship player;
     private List<Alien> aliens;
     private List<Projectile> projectiles;
-    Movables hej = new Spaceship();
 
     public SpaceInvadersModel() {
-        player = new Spaceship();
+        player = new Spaceship(100, 100, 40, 20, 10);
         aliens = new ArrayList<>();
         projectiles = new ArrayList<>();
     }
@@ -26,8 +25,20 @@ public class SpaceInvadersModel {
         }
     }
 
-    public void setPlayerSpeed(int direction){
-        player.setSpeed(direction);
+    public void setPlayerDirection(int direction){
+        player.setDirection(direction);
+    }
+
+    public void aliensShoot(){
+
+    }
+
+    public void playerShoot(){
+
+    }
+
+    public MovableObject getPlayer(){
+        return player;
     }
 
 

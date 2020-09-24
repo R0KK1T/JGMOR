@@ -1,22 +1,19 @@
 package edu.chalmers.projecttemplate.model.spaceInvadersModel;
 
-import java.awt.*;
-
-public class Spaceship extends Movables{
-
-    private int moveSpeed;
-    private int currentSpeed;
+public class Spaceship extends MovableObject{
 
 
+    public Spaceship(int xPos, int yPos, int width, int height, int speed) {
+        super(xPos, yPos, width, height, speed, "Spaceship");
+    }
 
     @Override
     public void move() {
-        position.x += currentSpeed;
+        setX(getDirection() * getSpeed());
     }
 
-    public void setSpeed(int direction){
-        currentSpeed = moveSpeed * direction;
-    }
+    public void shoot(){
 
+    }
 
 }
