@@ -1,7 +1,9 @@
 package edu.chalmers.projecttemplate.model;
 
 import edu.chalmers.projecttemplate.model.froggermodel.Frog;
-import edu.chalmers.projecttemplate.model.froggermodel.Rectangle;
+import edu.chalmers.projecttemplate.model.common.Rectangle;
+import edu.chalmers.projecttemplate.model.spaceInvadersModel.MovableObject;
+import edu.chalmers.projecttemplate.model.spaceInvadersModel.SpaceInvadersModel;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -26,5 +28,31 @@ public class ProjectTest {
         Assert.assertTrue(frog.getHitbox().getX() == 10);
         frog.moveDown();
         Assert.assertTrue(frog.getHitbox().getY() == 10);
+    }
+
+    // SPACE INVADERS TESTS
+    @Test
+    public void moveSpaceshipTest(){
+        SpaceInvadersModel model = new SpaceInvadersModel();
+        MovableObject player = model.getPlayer();
+
+        //test for moving right (direction 1)
+        int newpos1 = player.getXpos() + player.getSpeed();
+        model.setPlayerDirection(1);
+        model.moveEntities();
+        Assert.assertTrue(player.getXpos() == newpos1);
+
+        //test for moving left (direction -1)
+        int newpos2 = player.getXpos() - player.getSpeed();
+        model.setPlayerDirection(-1);
+        model.moveEntities();
+        Assert.assertTrue(player.getXpos() == newpos2);
+
+        //test for standing still (direction 0)
+        int newpos3 = player.getXpos();
+        model.setPlayerDirection(0);
+        model.moveEntities();
+        Assert.assertTrue(player.getXpos() == newpos3);
+
     }
 }

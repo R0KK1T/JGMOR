@@ -1,4 +1,4 @@
-package edu.chalmers.projecttemplate.model.froggermodel;
+package edu.chalmers.projecttemplate.model.common;
 
 public class Rectangle {
     private int x;
