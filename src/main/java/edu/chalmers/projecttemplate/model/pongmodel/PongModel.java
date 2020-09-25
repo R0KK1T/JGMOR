@@ -8,7 +8,7 @@ public class PongModel {
     PongPaddle pongLeftPaddle;
     PongPaddle pongRightPaddle;
 
-    private void initGame (){
+    public PongModel (){
         pongBall = new PongBall(400, 300, 40, 40,0);
         pongRightPaddle = new PongPaddle(750,300, 100,40);
         pongLeftPaddle = new PongPaddle(50, 300, 100,40);
