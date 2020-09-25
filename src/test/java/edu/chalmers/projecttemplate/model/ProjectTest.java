@@ -1,10 +1,9 @@
 package edu.chalmers.projecttemplate.model;
 
 import edu.chalmers.projecttemplate.model.froggermodel.Frog;
-import edu.chalmers.projecttemplate.model.froggermodel.Rectangle;
+import edu.chalmers.projecttemplate.model.common.Rectangle;
 import edu.chalmers.projecttemplate.model.spaceInvadersModel.MovableObject;
 import edu.chalmers.projecttemplate.model.spaceInvadersModel.SpaceInvadersModel;
-import edu.chalmers.projecttemplate.model.spaceInvadersModel.Spaceship;
 import org.junit.Assert;
 import org.junit.Test;
 

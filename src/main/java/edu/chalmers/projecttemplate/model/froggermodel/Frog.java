@@ -1,5 +1,7 @@
 package edu.chalmers.projecttemplate.model.froggermodel;
 
+import edu.chalmers.projecttemplate.model.common.Rectangle;
+
 public class Frog {
     private Rectangle hitbox;
     public Frog(int x, int y, int width, int height){
