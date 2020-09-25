@@ -22,7 +22,7 @@ public class PongView extends Application implements Initializable {
     private ProjectView projectView;
     public void start(Stage primaryStage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("pong.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("pongresources/pong.fxml"));
 
         Scene scene = new Scene(root, 800, 600);
 
