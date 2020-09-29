@@ -33,16 +33,16 @@ public abstract class MovableObject{
         return hitbox.height;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public int getSpeed(){
         return speed;
     }
 
     public int getDirection(){
         return direction;
-    }
-
-    public String getType() {
-        return type;
     }
 
     protected void setDirection(int direction) {

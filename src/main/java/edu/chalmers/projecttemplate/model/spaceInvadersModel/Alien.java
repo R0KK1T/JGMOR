@@ -1,7 +1,5 @@
 package edu.chalmers.projecttemplate.model.spaceInvadersModel;
 
-import java.awt.*;
-
 public class Alien extends MovableObject {
 
     public Alien(int xPos, int yPos, int size, int spaceToNext) {
