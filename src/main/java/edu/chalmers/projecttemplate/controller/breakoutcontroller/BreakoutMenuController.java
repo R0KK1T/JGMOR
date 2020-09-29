@@ -5,8 +5,10 @@ import edu.chalmers.projecttemplate.model.breakoutmodel.BreakoutButtonModel;
 import edu.chalmers.projecttemplate.model.breakoutmodel.BreakoutSubsceneModel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,12 @@ public class BreakoutMenuController  {
     @FXML
     public Button btnExit;
     @FXML
-    public AnchorPane menuSubscene;
+    public AnchorPane subscenePlay;
+    @FXML
+    public AnchorPane subsceneScores;
+    @FXML
+    public AnchorPane subsceneHelp;
+    private AnchorPane subsceneToHide;
     BreakoutButtonModel breakoutButtonModel;
     BreakoutSubsceneModel breakoutSubsceneModel;
     List<Button> buttonList;
@@ -42,19 +49,28 @@ public class BreakoutMenuController  {
     }
     //1. Button play
     private void controlPlay() {
-        btnPlay.setOnMouseClicked(event ->
-                System.out.println("Play"));
+        btnPlay.setOnMouseClicked(mouseEvent -> {
+            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+                showSubscene(subscenePlay);
+            }
+        });
 
     }
     //2. Button score
     private void controlScores() {
-        btnScores.setOnMouseClicked(event ->
-                System.out.println("Scores"));
+        btnScores.setOnMouseClicked(mouseEvent -> {
+            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+                showSubscene(subsceneScores);
+            }
+        });
     }
     //3. Button score
     private void controlHelp() {
-        btnHelp.setOnMouseClicked(event ->
-                System.out.println("Help"));
+        btnHelp.setOnMouseClicked(mouseEvent -> {
+            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
+                showSubscene(subsceneHelp);
+            }
+        });
     }
     //4. Button exit
     private void controlExit() {
@@ -76,7 +92,14 @@ public class BreakoutMenuController  {
         }
     }
     private void menuSubsceneSettings() throws IOException {
-        breakoutSubsceneModel.subsceneBackgroundImage(menuSubscene);
+        breakoutSubsceneModel.subsceneBackgroundImage(subscenePlay);
+    }
+    private void showSubscene(AnchorPane thePane) {
+        if (subsceneToHide != null) {
+            breakoutSubsceneModel.moveSubsceneRightToLeft(subsceneToHide);
+        }
+        breakoutSubsceneModel.moveSubsceneRightToLeft(thePane);
+        subsceneToHide = thePane;
     }
 
 
