@@ -92,7 +92,10 @@ public class BreakoutMenuController  {
         }
     }
     private void menuSubsceneSettings() throws IOException {
+        //Add background-image grey_panel
         breakoutSubsceneModel.subsceneBackgroundImage(subscenePlay);
+        breakoutSubsceneModel.subsceneBackgroundImage(subsceneScores);
+        breakoutSubsceneModel.subsceneBackgroundImage(subsceneHelp);
     }
     private void showSubscene(AnchorPane thePane) {
         if (subsceneToHide != null) {

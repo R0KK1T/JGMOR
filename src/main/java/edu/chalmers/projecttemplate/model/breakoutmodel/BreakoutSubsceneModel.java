@@ -4,7 +4,6 @@ import javafx.animation.TranslateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -12,10 +11,8 @@ import java.nio.file.Paths;
 
 public class BreakoutSubsceneModel {
     private boolean isHidden;
-    private boolean isHidden1;
     public BreakoutSubsceneModel(){
         isHidden=true;
-        isHidden1=true;
     }
     public void subsceneBackgroundImage(AnchorPane thePane) throws IOException {
         InputStream inStream = Files.newInputStream(Paths.get("src/main/resources/breakoutresources/images/grey_panel.png"));
