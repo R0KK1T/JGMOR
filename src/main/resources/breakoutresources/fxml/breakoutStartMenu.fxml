@@ -20,5 +20,6 @@
             <Image url="@../images/breakoutLogo.png" />
          </image>
       </ImageView>
+      <AnchorPane fx:id="menuSubscene" prefHeight="500.0" prefWidth="575.0" AnchorPane.leftAnchor="375.0" AnchorPane.topAnchor="150.0" />
    </children>
 </AnchorPane>
