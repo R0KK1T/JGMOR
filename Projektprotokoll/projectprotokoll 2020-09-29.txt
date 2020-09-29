@@ -1,0 +1,40 @@
+# Meeting Agenda
+
+Group:JGMOR
+Date:2020-09-29
+Chair: Mhd Jamal Basal
+Participants: Robert Sahlqvist, Jonathan Stigson, Georges Kayembe, Oliver Ljung
+
+
+## Objectives (5 min) 
+
+- Göra klar domain model (Ny version)
+- Göra klar RAD/
+- Skriva om sina User Story
+- SDD/Introduction/Georges
+- SDD/System architecture/Jamal
+- SDD/Persistent data management/Jonathan
+- SDD/System design/Oliver
+
+
+## Reports (15 min) from previous meeting
+
+ - Sammanfattning om (User stories, DoD, RAD ect).
+ 
+
+## Discussion items (35 min)
+
+ - RAD
+ - SDD
+ - User story
+ 
+
+## Outcomes and assignments (5 min)
+
+ - Påbörja SDD
+ - Snygga till RAD (göra färdig)
+ - class responsibilities 
+
+## Wrap up
+Nästa handledarmöte:2020-10-01
+Nästa möte: 2020-10-02(preliminärt)
