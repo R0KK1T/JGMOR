@@ -137,6 +137,24 @@ public class GUI {
                 snakeGame.setMenuSelection("Exit game");
                 GUI.f1.repaint();
             }
+            //Enter
+        }else if(e.getKeyCode()==10) {
+            switch(snakeGame.getMenuSelection()) {
+                case "Restart game":
+                    snakeGame.restartGame();
+                    break;
+                case "Exit game":
+                    System.exit(0);
+                    break;
+                case "Back to main menu":
+                    snakeGame.setPause(false);
+                    snakeGame.setStarted(false);
+                    snakeGame.restartGame();
+                    snakeGame.setStartmenu(true);
+                    snakeGame.setMenuSelection("Start game");
+                    GUI.f1.repaint();
+                    break;
+            }
 
         }
     }

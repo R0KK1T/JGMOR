@@ -2,6 +2,8 @@ package edu.chalmers.projecttemplate.controller.snakecontroller;
 
 import edu.chalmers.projecttemplate.model.snakemodel.Snake;
 
+import java.awt.*;
+
 public class SnakeController {
 
 
@@ -18,6 +20,18 @@ public class SnakeController {
     private SnakeController snakeGame;
 
 
+    public void startGame(SnakeController snakeGame) {
+        started = true;
+        menuSelection = "Restart game";
+
+    }
+
+    public void restartGame() {
+
+    }
+
+
+
     public Snake getSnake() {
         return snake;
     }
@@ -29,6 +43,10 @@ public class SnakeController {
 
     public boolean isStarted() {
         return started;
+    }
+
+    public void setStarted(boolean started) {
+        this.started = started;
     }
 
     public boolean isFinished() {
@@ -78,5 +96,10 @@ public class SnakeController {
     public boolean isStartmenu() {
         return startMenu;
     }
+
+    public void setStartmenu(boolean startmenu) {
+        this.startMenu = startmenu;
+    }
+
 
 }
