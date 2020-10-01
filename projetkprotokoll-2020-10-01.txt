@@ -1,0 +1,38 @@
+# Meeting Agenda
+
+Group: JGMOR
+Date: 2020-10-01
+Chair: Johannes Mattsson
+Participants: Jonathan Stigson, Mhd Jamal Basal, Robert Sahlqvist, Oliver Ljung, Georges Kayembe
+
+
+## Objectives (5 min) 
+
+
+## Reports (15 min) from previous meeting
+
+RAD: User Stories updaterade.
+Jonathan: Skrivit interaktionslogik för intersect i Frogger.
+Oliver: Löst update-metod och scenbyte.
+Jamal: Initial kod för Snake.
+Georges: Formaterat RAD och SDD. Initial kod för Breakout, knappar osv.
+Robert: FXML för Pong. Kopplat Model och View.
+
+
+## Discussion items (35 min)
+
+Konsekvens i koden!
+Ta bort cirkulära beroenden.
+Använd inte ytterligare bibliotek, håll oss till javafx.
+Refaktorisera update-metod med MVC.
+
+
+## Outcomes and assignments (5 min)
+
+Fokusera på att skriva färdigt Model och dess funktionalitet och testa den med JUnit.
+MVC-beroenden och särskilt View kan vänta till det är färdigt.
+
+
+## Wrap up
+Nästa möte: 2020-10-02
+Nästa handledarmöte: 2020-10-08
