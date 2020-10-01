@@ -1,24 +1,20 @@
 package edu.chalmers.projecttemplate.view.spaceInvadersView;
 
+import edu.chalmers.projecttemplate.model.spaceInvadersModel.MovableObject;
 import edu.chalmers.projecttemplate.model.spaceInvadersModel.SpaceInvadersModel;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SpaceInvadersView{
-
-    private static final int gameHeight = 900;
-    private static final int gameWidth = 1000;
-
-    private double xpos = 100;
 
     SpaceInvadersModel model;
 
@@ -37,22 +33,22 @@ public class SpaceInvadersView{
     }
 
     public void initScene() throws Exception {
+        //create instance of model
+        model = new SpaceInvadersModel();
+
         //get all images
         initImages();
 
         //setup the 2 different layered canvases
-        Canvas backgroundCanvas = new Canvas(gameWidth, gameHeight);
+        Canvas backgroundCanvas = new Canvas(model.getSizeX(), model.getSizeY());
         backgroundLayer = backgroundCanvas.getGraphicsContext2D();
-        Canvas gameCanvas = new Canvas(gameWidth, gameHeight);
+        Canvas gameCanvas = new Canvas(model.getSizeX(), model.getSizeY());
         gameLayer = gameCanvas.getGraphicsContext2D();
 
         Pane rootPane = new Pane(backgroundCanvas, gameCanvas);
 
         //draw the background
-        backgroundLayer.drawImage(backgroundImg, 0, 0, gameWidth, gameHeight);
-
-        //draw the player "just a random thing for now"
-        gameLayer.drawImage(backgroundImg, xpos, 200, 100, 100);
+        backgroundLayer.drawImage(backgroundImg, 0, 0, model.getSizeX(), model.getSizeY());
 
         scene = new Scene(rootPane);
 
@@ -60,10 +56,8 @@ public class SpaceInvadersView{
             @Override
             public void handle(long now) {
                 //model.update(now);   // calls update function in model
-                // call a method in view that clears the gameLayer of any entities already drawn and then redraw all applicable
-                xpos++;
-                testdraw();
-
+                model.update();
+                draw();
             }
         };
 
@@ -71,14 +65,13 @@ public class SpaceInvadersView{
 
     private void initImages() throws FileNotFoundException {
         //get background image from path
-        backgroundImg = new Image(new FileInputStream("src/main/resources/arcade1.jpg"));
+        backgroundImg = new Image(new FileInputStream("src/main/resources/pongresources/Background.png"));
 
         //get player image from path
-        playerImg = new Image(new FileInputStream("src/main/resources/arcade1.jpg"));
+        playerImg = new Image(new FileInputStream("src/main/resources/pongresources/Ball.png"));
     }
 
     public Scene getScene() {
-        startGame();
         return scene;
     }
 
@@ -89,8 +82,14 @@ public class SpaceInvadersView{
         timer.start();
     }
 
-    private void testdraw(){
-        gameLayer.clearRect(0, 0,gameWidth ,gameHeight);
-        gameLayer.drawImage(backgroundImg, xpos, 200, 100, 100);
+    private void draw(){
+        gameLayer.clearRect(0, 0, model.getSizeX() ,model.getSizeY());
+        MovableObject player = model.getPlayer();
+        gameLayer.drawImage(playerImg, player.getXpos(), player.getYpos(), player.getWidth(), player.getHeight());
+        List<MovableObject> aliens = new ArrayList<>();
+        aliens = model.getAliens();
+        for (int i = 0; i < aliens.size(); i++) {
+            gameLayer.drawImage(playerImg, aliens.get(i).getXpos(), aliens.get(i).getYpos(), aliens.get(i).getWidth(), aliens.get(i).getHeight());
+        }
     }
 }

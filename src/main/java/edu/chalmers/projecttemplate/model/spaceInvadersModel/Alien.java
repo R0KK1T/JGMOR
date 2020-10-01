@@ -2,8 +2,8 @@ package edu.chalmers.projecttemplate.model.spaceInvadersModel;
 
 public class Alien extends MovableObject {
 
-    public Alien(int xPos, int yPos, int size, int spaceToNext) {
-        super(xPos, yPos, size, size, size + spaceToNext, "Alien");
+    public Alien(int xPos, int yPos, int size, int speed) {
+        super(xPos, yPos, size, size, speed, "Alien");
         setDirection(1);
     }
 
@@ -13,7 +13,9 @@ public class Alien extends MovableObject {
     }
 
     public void moveDown(){
-        setY(getSpeed());
+        setY(getSpeed() + getHeight());
         setDirection(getDirection() * -1);
     }
+
+
 }
