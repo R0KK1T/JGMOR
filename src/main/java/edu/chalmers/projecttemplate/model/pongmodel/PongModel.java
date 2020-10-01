@@ -14,7 +14,7 @@ public class PongModel {
         pongLeftPaddle = new PongPaddle(50, 300, 100,40);
     }
 
-    void updateGame (){
+    public void update (){
         pongBall.updatePosition();
         pongRightPaddle.updatePosition();
         pongLeftPaddle.updatePosition();
