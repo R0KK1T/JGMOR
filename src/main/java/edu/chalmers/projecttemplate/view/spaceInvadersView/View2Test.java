@@ -1,5 +1,6 @@
 package edu.chalmers.projecttemplate.view.spaceInvadersView;
 
+import edu.chalmers.projecttemplate.controller.spaceInvadersController.SpaceInvadersController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,11 +12,11 @@ public class View2Test extends Application {
 
     private static Stage stage;
     Scene scene1;
-    SpaceInvadersView SIView;
+    SpaceInvadersController SIController;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        SIView = new SpaceInvadersView();
+        SIController = new SpaceInvadersController();
         stage = primaryStage;
 
 
@@ -28,6 +29,7 @@ public class View2Test extends Application {
         layout1.getChildren().addAll(label1, button1);
         scene1 = new Scene(layout1, 500, 500);
 
+        stage.setResizable(false);
         stage.setScene(scene1);
         stage.setTitle("title here");
         stage.show();
@@ -40,8 +42,8 @@ public class View2Test extends Application {
     private void changeScene(){
         stage.setX(500);
         stage.setY(50);
-        stage.setScene(SIView.getScene());
-        SIView.startGame();
+        stage.setScene(SIController.getScene());
+        SIController.startGame();
     }
 }
 

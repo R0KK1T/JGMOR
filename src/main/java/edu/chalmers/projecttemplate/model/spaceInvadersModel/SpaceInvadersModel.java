@@ -18,7 +18,7 @@ public class SpaceInvadersModel {
     private int numberOfAlienRows = 5;
     private int alienTopRowPos = 100;
 
-    private int timeBetweenMove = 10;
+    private int timeBetweenMove = 30;
     private int currentTime = 0;
     private int alienRowToMove = -1;
 
