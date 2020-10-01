@@ -3,7 +3,6 @@ package edu.chalmers.projecttemplate.model.breakoutmodel;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.text.Font;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 

@@ -76,7 +76,7 @@
                   </CheckBox>
                </children>
             </GridPane>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="150.0" text="Start" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="400.0" />
+            <Button fx:id="btnStart" mnemonicParsing="false" onAction="#btnStartControl" prefHeight="49.0" prefWidth="150.0" text="Start" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="400.0" />
          </children></AnchorPane>
       <AnchorPane fx:id="subsceneScores" layoutX="1000.0" prefHeight="500.0" prefWidth="575.0" AnchorPane.topAnchor="150.0">
          <children>

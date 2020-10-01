@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.chalmers.projecttemplate.controller.breakoutcontroller.BreakoutGameController">
+   <children>
+      <ImageView fitHeight="100.0" fitWidth="50.0" layoutX="115.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/yellow_boxTick.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="btnGameExit" fitHeight="100.0" fitWidth="50.0" layoutX="50.0" layoutY="24.0" onMouseClicked="#btnExitGameControl" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/red_boxCross.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="gameArea" prefHeight="450.0" prefWidth="700.0" style="-fx-background-color: #f4f4f4; -fx-border-color: green;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0" />
+      <Label layoutX="577.0" layoutY="21.0" prefHeight="57.0" prefWidth="80.0" text="SCORE:" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="657.0" layoutY="26.0" prefHeight="57.0" prefWidth="92.0" style="-fx-background-color: #f4f4f4; -fx-border-color: yellow;" text="0" textAlignment="CENTER" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
