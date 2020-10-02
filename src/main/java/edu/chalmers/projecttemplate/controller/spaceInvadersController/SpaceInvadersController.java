@@ -11,9 +11,11 @@ public class SpaceInvadersController {
     AnimationTimer timer;
 
     public SpaceInvadersController() throws Exception {
+        //Create instance of view and model
         model = new SpaceInvadersModel();
         view = new SpaceInvadersView(model.getSizeX(), model.getSizeY());
 
+        //initialize the timer
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -39,10 +41,12 @@ public class SpaceInvadersController {
     }
 
     public void startGame(){
+        //start updating the game
         timer.start();
     }
 
     public Scene getScene(){
+        //returns the scene from SpaceInvadersView
         return view.getScene();
     }
 }

@@ -9,10 +9,12 @@ public class Alien extends MovableObject {
 
     @Override
     public void move() {
+        //move in direction according to speed
         setX(getDirection() * getSpeed());
     }
 
     public void moveDown(){
+        //move in direction according to speed
         setY(getSpeed() + getHeight());
         setDirection(getDirection() * -1);
     }

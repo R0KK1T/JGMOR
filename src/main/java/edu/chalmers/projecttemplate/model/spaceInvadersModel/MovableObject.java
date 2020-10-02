@@ -1,6 +1,6 @@
 package edu.chalmers.projecttemplate.model.spaceInvadersModel;
 
-import java.awt.*;
+import edu.chalmers.projecttemplate.model.common.Rectangle;
 
 public abstract class MovableObject{
 
@@ -18,19 +18,19 @@ public abstract class MovableObject{
     protected abstract void move();
 
     public int getXpos(){
-        return hitbox.x;
+        return hitbox.getX();
     }
 
     public int getYpos(){
-        return hitbox.y;
+        return hitbox.getY();
     }
 
     public int getWidth(){
-        return hitbox.width;
+        return hitbox.getWidth();
     }
 
     public int getHeight(){
-        return hitbox.height;
+        return hitbox.getHeight();
     }
 
     public String getType() {
@@ -50,11 +50,11 @@ public abstract class MovableObject{
     }
 
     protected void setX(int deltaX){
-        hitbox.x += deltaX;
+        hitbox.incX(deltaX);
     }
 
     protected void setY(int deltaY){
-        hitbox.y += deltaY;
+        hitbox.incY(deltaY);
     }
 
 }

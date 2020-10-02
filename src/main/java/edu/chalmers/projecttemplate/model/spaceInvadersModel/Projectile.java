@@ -9,6 +9,7 @@ public class Projectile extends MovableObject {
 
     @Override
     public void move() {
+        //move in direction according to speed
         setY(getDirection() * getSpeed());
     }
 }

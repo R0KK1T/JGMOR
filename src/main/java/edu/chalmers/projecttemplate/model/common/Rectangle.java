@@ -33,19 +33,19 @@ public class Rectangle {
         return y;
     }
 
-    public void incX() {
-        x++;
+    public void incX(int i) {
+        x += i;
     }
 
-    public void incY() {
-        y++;
+    public void incY(int i) {
+        y += i;
     }
 
-    public void decX() {
-        x--;
+    public void decX(int i) {
+        x -= i;
     }
 
-    public void decY() {
-        y--;
+    public void decY(int i) {
+        y -= i;
     }
 }
