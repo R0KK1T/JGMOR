@@ -9,6 +9,7 @@ public class Spaceship extends MovableObject{
 
     @Override
     public void move() {
+        //move in direction according to speed
         setX(getDirection() * getSpeed());
     }
 
