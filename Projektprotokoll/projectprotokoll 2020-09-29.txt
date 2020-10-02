@@ -2,8 +2,8 @@
 
 Group:JGMOR
 Date:2020-09-29
-Chair: Mhd Jamal Basal
-Participants: Robert Sahlqvist, Jonathan Stigson, Georges Kayembe, Oliver Ljung
+Chair: Georges Kayembe
+Participants: Robert Sahlqvist, Jonathan Stigson, Mhd Jamal Basal, Oliver Ljung
 
 
 ## Objectives (5 min) 

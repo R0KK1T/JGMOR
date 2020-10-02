@@ -8,12 +8,12 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.chalmers.projecttemplate.controller.breakoutcontroller.BreakoutGameController">
    <children>
-      <ImageView fitHeight="100.0" fitWidth="50.0" layoutX="115.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="100.0" fitWidth="50.0" layoutX="115.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="24.0">
          <image>
             <Image url="@../images/yellow_boxTick.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="btnGameExit" fitHeight="100.0" fitWidth="50.0" layoutX="50.0" layoutY="24.0" onMouseClicked="#btnExitGameControl" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="btnGameExit" fitHeight="100.0" fitWidth="50.0" layoutX="50.0" layoutY="24.0" onMouseClicked="#btnExitGameControl" pickOnBounds="true" preserveRatio="true" AnchorPane.topAnchor="24.0">
          <image>
             <Image url="@../images/red_boxCross.jpg" />
          </image>

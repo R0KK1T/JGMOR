@@ -1,0 +1,37 @@
+# Meeting Agenda
+
+Group:JGMOR
+Date:2020-09-29
+Chair: Jonathan Stigson
+Participants: Robert Sahlqvist, Jonathan Stigson, Georges Kayembe, Oliver Ljung, Mhd Jamal Basal
+
+
+## Objectives (5 min) 
+
+- Organisera Github repo (inför inlämningen idag)
+- Formaterat RAD (User stories)
+- Lämna in Github-repo inkl RAD och SDD (Peer review innan kl17 idag)
+ 
+
+## Reports (15 min) from previous meeting
+
+ - Sammanfattning om (User stories, DoD, RAD etc).
+ - MVC
+ 
+
+## Discussion items (35 min)
+
+ - RAD
+ - SDD
+ - User story
+ 
+
+## Outcomes and assignments (5 min)
+
+ - Fokusera på model och tester
+ - Vi kommer göra view tillsammans (för att undvika olika konfigurationer) 
+ 
+
+## Wrap up
+Nästa handledarmöte:2020-10-08
+Nästa möte: 2020-10-06(preliminärt)
