@@ -17,15 +17,15 @@ public class Frog {
     public int getHeight(){ return getHitbox().getHeight(); }
 
     public void moveRight(){
-        hitbox.incX();
+        hitbox.incX(1);
     }
     public void moveLeft(){
-        hitbox.decX();
+        hitbox.decX(1);
     }
     public void moveUp(){
-        hitbox.decY();
+        hitbox.decY(1);
     }
     public void moveDown(){
-        hitbox.incY();
+        hitbox.incY(1);
     }
 }

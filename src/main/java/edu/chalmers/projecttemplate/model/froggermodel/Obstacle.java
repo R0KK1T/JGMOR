@@ -8,7 +8,7 @@ public abstract class Obstacle {
     public Obstacle(int x, int y, int width, int height){
         hitbox = new Rectangle(x, y, width, height);
     }
-    
+
     //Very much alike Frog. Might be smart to refactor with superclass or other
     //In order to minimize duplication of code.
     public Rectangle getHitbox() {
@@ -20,15 +20,15 @@ public abstract class Obstacle {
     public int getHeight(){ return getHitbox().getHeight(); }
 
     public void moveRight(){
-        hitbox.incX();
+        hitbox.incX(1);
     }
     public void moveLeft(){
-        hitbox.decX();
+        hitbox.decX(1);
     }
     public void moveUp(){
-        hitbox.decY();
+        hitbox.decY(1);
     }
     public void moveDown(){
-        hitbox.incY();
+        hitbox.incY(1);
     }
 }
