@@ -8,7 +8,9 @@ public class PongPaddle extends GameObject implements IMovable {
         this.height = height;
         this.width = width;
     }
-
+    public void setVelocity(double velocity){
+        this.velocity = velocity;
+    }
     @Override
     public void updatePosition() {
         y += velocity;

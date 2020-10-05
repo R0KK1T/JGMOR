@@ -15,7 +15,7 @@ public class PongController {
     PongView view;
     public PongController() throws Exception {
         model = new PongModel();
-        //view = new SpaceInvadersView(model.getSizeX(), model.getSizeY());
+        view = new PongView(model.getSizeX(), model.getSizeY());
 
         timer = new AnimationTimer() {
             @Override
@@ -30,15 +30,15 @@ public class PongController {
         //clear
         view.clearDrawingArea();
 
-        /*//draw Player
-        view.draw(model.getPlayer().getXpos(), model.getPlayer().getYpos(),
-                model.getPlayer().getWidth(), model.getPlayer().getHeight(), model.getPlayer().getType());
+        //draw Ball
+        view.draw(model.getPongBall().getX(), model.getPongBall().getY(), model.getPongBall().getWidth(), model.getPongBall().getHeight());
 
-        //draw Aliens
-        for (int i = 0; i < model.getAliens().size(); i++) {
-            view.draw(model.getAliens().get(i).getXpos(), model.getAliens().get(i).getYpos(),
-                    model.getAliens().get(i).getWidth(), model.getAliens().get(i).getHeight(), model.getAliens().get(i).getType());
-        }*/
+        //draw Right Paddle
+        view.draw(model.getPongRightPaddle().getX(), model.getPongRightPaddle().getY(), model.getPongRightPaddle().getWidth(), model.getPongRightPaddle().getHeight());
+
+        //draw Left Paddle
+        view.draw(model.getPongLeftPaddle().getX(), model.getPongLeftPaddle().getY(), model.getPongLeftPaddle().getWidth(), model.getPongLeftPaddle().getHeight());
+
     }
 
     public void startGame(){
