@@ -4,9 +4,11 @@ import edu.chalmers.projecttemplate.model.common.Rectangle;
 
 public abstract class Obstacle {
     private Rectangle hitbox;
+    private int velocity;
 
-    public Obstacle(int x, int y, int width, int height){
+    public Obstacle(int x, int y, int width, int height, int velocity){
         hitbox = new Rectangle(x, y, width, height);
+        this.velocity = velocity;
     }
 
     //Very much alike Frog. Might be smart to refactor with superclass or other
@@ -18,17 +20,9 @@ public abstract class Obstacle {
     public int getY(){ return getHitbox().getY(); }
     public int getWidth(){ return getHitbox().getWidth(); }
     public int getHeight(){ return getHitbox().getHeight(); }
+    public int getVelocity(){ return velocity;}
 
-    public void moveRight(){
-        hitbox.incX(1);
-    }
-    public void moveLeft(){
-        hitbox.decX(1);
-    }
-    public void moveUp(){
-        hitbox.decY(1);
-    }
-    public void moveDown(){
-        hitbox.incY(1);
+    public void move(){
+        hitbox.incX(getVelocity());
     }
 }
