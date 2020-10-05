@@ -5,29 +5,32 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class MainMenuController {
+public class GameOverMenuController {
 
     @FXML
     Button newGameButton;
 
     @FXML
-    Button settingsButton;
+    Button mainMenuButton;
 
     @FXML
     Button quitButton;
 
     @FXML
-    public void startNewGame(ActionEvent event) {
+    public void newGame(ActionEvent event) {
+        SnakeView.gameOverMenuStage.close();
 
     }
 
     @FXML
-    public void settings(ActionEvent event){
-        SnakeView.mainStage.setScene(SnakeView.settingsMenuScene);
+    public void mainMenu(ActionEvent event){
+        SnakeView.gameOverMenuStage.close();
+        SnakeView.mainStage.setScene(SnakeView.mainMenuScene);
     }
 
     @FXML
     public void quit(ActionEvent event){
         SnakeView.mainStage.close();
     }
+
 }
