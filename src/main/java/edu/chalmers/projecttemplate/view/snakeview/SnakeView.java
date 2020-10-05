@@ -1,25 +1,42 @@
 package edu.chalmers.projecttemplate.view.snakeview;
 
-import edu.chalmers.projecttemplate.model.snakemodel.GUI;
 
-import java.awt.EventQueue;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
+import java.util.Objects;
 
-public class SnakeView {
+public class SnakeView extends Application {
 
-    public static GUI gui;
+    public static Stage mainStage;
+    public static Scene mainMenuScene;
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    gui = new GUI();
-                    gui.createGameWindow();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        // *** Initial set-up of the window ***
+
+        SnakeView.mainStage = stage;
+
+        stage.setTitle("SnakeFX");
+        stage.setResizable(false);
+
+
+        // loads main menu window
+        Parent mainMenu = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("snakeresources/mainMenu.fxml")));
+        mainMenuScene = new Scene(mainMenu, 320, 320);
+
+
+        stage.setScene(mainMenuScene);
+        stage.show();
 
     }
+
+
 }
