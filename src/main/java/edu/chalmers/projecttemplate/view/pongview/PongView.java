@@ -80,17 +80,10 @@ public class PongView {
         gameLayer.clearRect(0, 0, windowSizeX, windowSizeY);
     }
 
-    public void draw(int posX, int posY, int width, int height, String type){
+    public void draw(double posX, double posY, double width, double height){
         //draw object
-        /*if (type == "Spaceship"){
-            gameLayer.drawImage(playerImg, posX, posY, width, height);
-        }
-        else if (type == "Alien"){
-            gameLayer.drawImage(playerImg, posX, posY, width, height);
-        }
-        else if(type == "Projectile"){
-            gameLayer.drawImage(playerImg, posX, posY, width, height);
-        }*/
+        gameLayer.drawImage(playerImg, posX, posY, width, height);
+
     }
 }
 
