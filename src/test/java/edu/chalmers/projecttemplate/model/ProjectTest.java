@@ -19,7 +19,7 @@ public class ProjectTest {
     }
     @Test
     public void moveFrog(){
-        Frog frog = new Frog(10, 10, 10, 10);
+        Frog frog = new Frog(10, 10, 10, 10, 1);
         frog.moveRight();
         Assert.assertTrue(frog.getHitbox().getX() == 11);
         frog.moveUp();

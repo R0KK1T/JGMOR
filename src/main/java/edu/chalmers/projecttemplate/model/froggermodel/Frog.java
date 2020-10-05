@@ -4,8 +4,10 @@ import edu.chalmers.projecttemplate.model.common.Rectangle;
 
 public class Frog {
     private Rectangle hitbox;
-    public Frog(int x, int y, int width, int height){
+    private int velocity;
+    public Frog(int x, int y, int width, int height, int velocity){
         hitbox = new Rectangle(x, y, width, height);
+        this.velocity = velocity;
     }
 
     public Rectangle getHitbox() {
@@ -15,17 +17,18 @@ public class Frog {
     public int getY(){ return getHitbox().getY(); }
     public int getWidth(){ return getHitbox().getWidth(); }
     public int getHeight(){ return getHitbox().getHeight(); }
+    public int getVelocity(){ return velocity; }
 
     public void moveRight(){
-        hitbox.incX(1);
+        hitbox.incX(getVelocity());
     }
     public void moveLeft(){
-        hitbox.decX(1);
+        hitbox.decX(getVelocity());
     }
     public void moveUp(){
-        hitbox.decY(1);
+        hitbox.decY(getVelocity());
     }
     public void moveDown(){
-        hitbox.incY(1);
+        hitbox.incY(getVelocity());
     }
 }
