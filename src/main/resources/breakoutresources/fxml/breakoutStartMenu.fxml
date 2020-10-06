@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.chalmers.projecttemplate.controller.breakoutcontroller.BreakoutMenuController">
+<AnchorPane fx:id="mainPane" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.chalmers.projecttemplate.controller.breakoutcontroller.BreakoutMenuController">
    <children>
       <AnchorPane fx:id="menuPane" prefHeight="600.0" prefWidth="300.0" AnchorPane.topAnchor="100.0">
          <children>
@@ -52,7 +52,7 @@
                      </GridPane.margin>
                   </Label>
                   <Label text="Last Name" GridPane.rowIndex="1" />
-                  <Label text="Blocks" GridPane.rowIndex="2" />
+                  <Label text="Speed" GridPane.rowIndex="2" />
                   <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets bottom="10.0" />
@@ -63,13 +63,13 @@
                         <Insets bottom="10.0" />
                      </GridPane.margin>
                   </TextArea>
-                  <CheckBox mnemonicParsing="false" text="20" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <CheckBox mnemonicParsing="false" text="30" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <CheckBox mnemonicParsing="false" text="Slow" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <CheckBox mnemonicParsing="false" text="Normal" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="100.0" />
                      </GridPane.margin>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="50" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <CheckBox mnemonicParsing="false" text="Fast" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="200.0" />
                      </GridPane.margin>

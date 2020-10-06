@@ -8,8 +8,8 @@ import java.io.IOException;
 public class BreakoutGameView {
     private AnchorPane gamePane;
     private Scene gameScene;
-    private static final int GAME_WIDTH = 800;
-    private static final int GAME_HEIGHT = 600;
+    private static final int GAME_WIDTH = 1000;
+    private static final int GAME_HEIGHT = 700;
     private final String GAMEVIEW = "breakoutresources/fxml/breakoutGameView.fxml";
     //constructor
     public BreakoutGameView() throws IOException {

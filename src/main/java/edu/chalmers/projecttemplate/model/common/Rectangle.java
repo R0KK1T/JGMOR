@@ -48,4 +48,5 @@ public class Rectangle {
     public void decY(int i) {
         y -= i;
     }
+
 }
