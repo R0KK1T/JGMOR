@@ -10,9 +10,10 @@ public class PongModel {
     private final int windowSizeY = 900;
 
     public PongModel (){
-        pongBall = new PongBall(400, 300, 40, 40,0);
-        pongRightPaddle = new PongPaddle(750,300, 100,40);
-        pongLeftPaddle = new PongPaddle(50, 300, 100,40);
+        pongBall = new PongBall(windowSizeX/2, windowSizeY/2, 40, 40,1);
+        pongRightPaddle = new PongPaddle(windowSizeX - 50,windowSizeY/2, 200,40);
+        pongLeftPaddle = new PongPaddle(10, windowSizeY/2, 200,40);
+        pongBall.resetBall();
     }
 
     public void update (){

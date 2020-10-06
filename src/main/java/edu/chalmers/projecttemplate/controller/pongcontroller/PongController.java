@@ -42,6 +42,8 @@ public class PongController {
     }
 
     public void startGame(){
+        view.getScene().setOnKeyPressed(this::keyPressed);
+        view.getScene().setOnKeyReleased(this::keyReleased);
         timer.start();
     }
 
@@ -52,8 +54,10 @@ public class PongController {
         KeyCode kc = event.getCode();
         switch (kc) {
             case W:
+                model.getPongLeftPaddle().setVelocity(-1);
                 break;
             case S:
+                model.getPongLeftPaddle().setVelocity(1);
                 break;
             default:  // Nothing
         }
@@ -62,8 +66,11 @@ public class PongController {
     private void keyReleased(KeyEvent event) {
         KeyCode kc = event.getCode();
         switch (kc) {
-            case S:
             case W:
+                model.getPongLeftPaddle().setVelocity(0);
+                break;
+            case S:
+                model.getPongLeftPaddle().setVelocity(0);
                 break;
             default: // Nothing
         }
