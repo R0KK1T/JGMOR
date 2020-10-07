@@ -1,11 +1,13 @@
 package edu.chalmers.projecttemplate.controller.snakecontroller;
 
-
+import edu.chalmers.projecttemplate.model.snakemodel.MyLogger;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 import java.util.prefs.Preferences;
 
@@ -73,6 +75,41 @@ public class SettingsViewController extends GoBack {
         setContText();
 
         setCheckBox();
+    }
+
+    public void changeText(KeyEvent keyEvent) {
+        Node textField = (Node) keyEvent.getSource();
+        ((TextField) textField).setText(keyEvent.getCode().toString());
+
+        if (textField.getId().equals(upText.getId())) {
+            MyLogger.INFO("up stored " + keyEvent.getCode());
+            prefs.put(UP, keyEvent.getCode().toString());
+        } else {
+            if (textField.getId().equals(downText.getId())) {
+                MyLogger.INFO("down stored " + keyEvent.getCode());
+                prefs.put(DOWN, keyEvent.getCode().toString());
+            } else {
+                if (textField.getId().equals(rightText.getId())) {
+                    MyLogger.INFO("right stored " + keyEvent.getCode());
+                    prefs.put(RIGHT, keyEvent.getCode().toString());
+                } else {
+                    if (textField.getId().equals(leftText.getId())) {
+                        MyLogger.INFO("left stored: " + keyEvent.getCode());
+                        prefs.put(LEFT, keyEvent.getCode().toString());
+                    }
+                }
+            }
+        }
+    }
+
+    public void check() {
+        if (scoreCheckBox.isSelected()) {
+            MyLogger.INFO("is checked");
+            prefs.putBoolean("renderScore", true);
+        } else {
+            MyLogger.INFO("unchecked");
+            prefs.putBoolean("renderScore", false);
+        }
     }
 
 }

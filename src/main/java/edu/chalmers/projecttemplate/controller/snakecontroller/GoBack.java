@@ -1,6 +1,7 @@
 package edu.chalmers.projecttemplate.controller.snakecontroller;
 
 import edu.chalmers.projecttemplate.model.snakemodel.MyLogger;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,7 +20,7 @@ public abstract class GoBack {
         try {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("snakeresources/views/WelcomeView.fxml"));
         } catch (Exception ex) {
-            MyLogger.WARN("views/WelcomeView.fxml file not found");
+            MyLogger.WARN("snakeresources/views/WelcomeView.fxml file not found");
             System.exit(0);
         }
 

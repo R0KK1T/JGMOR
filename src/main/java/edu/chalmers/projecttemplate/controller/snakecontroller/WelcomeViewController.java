@@ -2,6 +2,7 @@ package edu.chalmers.projecttemplate.controller.snakecontroller;
 
 import edu.chalmers.projecttemplate.model.snakemodel.GameScene;
 import edu.chalmers.projecttemplate.model.snakemodel.MyLogger;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -39,14 +40,12 @@ public class WelcomeViewController {
     public void settingsBtnAction() {
 
         parentView = (Stage) settingsBtn.getScene().getWindow();
-
-        setView(parentView, "views/SettingsView.fxml");
+        setView(parentView, "snakeresources/views/SettingsView.fxml");
     }
 
     public void scoreBtnAction() {
         parentView = (Stage) scoreBtn.getScene().getWindow();
-
-        setView(parentView, "views/ScoreView.fxml");
+        setView(parentView, "snakeresources/views/ScoreView.fxml");
     }
 
     private void setView(Stage stage, String location) {
