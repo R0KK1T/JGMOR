@@ -1,10 +1,7 @@
 package edu.chalmers.projecttemplate.model;
 
-import edu.chalmers.projecttemplate.model.froggermodel.Car;
-import edu.chalmers.projecttemplate.model.froggermodel.Frog;
+import edu.chalmers.projecttemplate.model.froggermodel.*;
 import edu.chalmers.projecttemplate.model.common.Rectangle;
-import edu.chalmers.projecttemplate.model.froggermodel.Lane;
-import edu.chalmers.projecttemplate.model.froggermodel.LaneFactory;
 import edu.chalmers.projecttemplate.model.spaceInvadersModel.MovableObject;
 import edu.chalmers.projecttemplate.model.spaceInvadersModel.SpaceInvadersModel;
 import org.junit.Assert;
@@ -41,6 +38,13 @@ public class ProjectTest {
         Assert.assertTrue(roadLane.isRiver() == false);
         for (int i = 0; i < roadLane.getObstacles().size(); i++) {
             Assert.assertTrue(roadLane.getObstacles().get(i).getClass()==car.getClass());
+        }
+
+        Lane riverLane = factory.createRiverLane(3, 5, 150);
+        Log log = new Log(10, 10, 10, 10, 10);
+        Assert.assertTrue(riverLane.isRiver() == true);
+        for (int i = 0; i < riverLane.getObstacles().size(); i++) {
+            Assert.assertTrue(riverLane.getObstacles().get(i).getClass()==log.getClass());
         }
     }
 
