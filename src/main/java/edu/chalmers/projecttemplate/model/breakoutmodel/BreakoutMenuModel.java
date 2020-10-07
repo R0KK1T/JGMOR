@@ -26,7 +26,7 @@ public class BreakoutMenuModel extends Button {
     List<Button> buttonList;
     BreakoutConfig breakoutConfig;
     public BreakoutMenuModel(AnchorPane mainPane, AnchorPane subPanePlay, AnchorPane subPaneScore, AnchorPane subPaneHelp, Button play, Button score,
-    Button help, Button exit) throws IOException {
+                             Button help, Button exit) throws IOException {
         this.mainPane = mainPane;
         this.subPanePlay = subPanePlay;
         this.subPaneScore = subPaneScore;
@@ -43,10 +43,7 @@ public class BreakoutMenuModel extends Button {
     //Initalize menu model
     private void menuInit() throws IOException {
         setMainMenuStyle();
-        controlPlay();
-        controlHelp();
-        controlScore();
-        controlExit();
+
         addButtonToList();
         setButtonStyle();
         addSubPaneToList();
@@ -60,39 +57,7 @@ public class BreakoutMenuModel extends Button {
         breakoutConfig.setBackgroundImage(mainPane, "bc2.jpg");
     }
 
-    /*
-     * BUTTONS
-     */
 
-    //1. Button play
-    private void controlPlay() {
-        play.setOnMouseClicked(mouseEvent -> {
-            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-                showSubPane(subPanePlay);
-            }
-        });
-    }
-    //2. Button score
-    private void controlScore() {
-        score.setOnMouseClicked(mouseEvent -> {
-            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-                showSubPane(subPaneScore);
-            }
-        });
-    }
-    //3. Button help
-    private void controlHelp() {
-        help.setOnMouseClicked(mouseEvent -> {
-            if (mouseEvent.getButton().equals(MouseButton.PRIMARY)) {
-                showSubPane(subPaneHelp);
-            }
-        });
-    }
-    //4. Button exit
-    private void controlExit() {
-        exit.setOnMouseClicked(event -> System.exit(0));
-
-    }
     //Add button to list
     private void addButtonToList() {
         buttonList.add(play);
@@ -124,12 +89,6 @@ public class BreakoutMenuModel extends Button {
             breakoutConfig.setBackgroundImage(paneList.get(i), "pane.png");
 
     }
-    private void showSubPane(AnchorPane thePane) {
-        if (paneTohide != null) {
-            breakoutConfig.moveSubPaneRightToLeft(paneTohide);
-        }
-        breakoutConfig.moveSubPaneRightToLeft(thePane);
-        paneTohide = thePane;
-    }
+
 
 }
