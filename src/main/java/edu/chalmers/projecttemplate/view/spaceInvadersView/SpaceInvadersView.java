@@ -70,14 +70,20 @@ public class SpaceInvadersView{
 
     public void draw(int posX, int posY, int width, int height, String type){
         //draw object
-        if (type == "Spaceship"){
-            gameLayer.drawImage(playerImg, posX, posY, width, height);
-        }
-        else if (type == "Alien"){
-            gameLayer.drawImage(playerImg, posX, posY, width, height);
-        }
-        else if(type == "Projectile"){
-            gameLayer.drawImage(playerImg, posX, posY, width, height);
+        switch (type){
+            case "Spaceship":
+                gameLayer.drawImage(playerImg, posX, posY, width, height);
+                break;
+            case "Alien":
+                gameLayer.drawImage(playerImg, posX, posY, width, height);
+                break;
+            case "Projectile":
+                gameLayer.drawImage(playerImg, posX, posY, width, height);
+                break;
+            case "Barrier":
+                gameLayer.drawImage(playerImg, posX, posY, width, height);
+                break;
+            default:
         }
     }
 }

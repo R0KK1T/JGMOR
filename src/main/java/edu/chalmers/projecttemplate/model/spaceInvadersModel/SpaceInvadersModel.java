@@ -12,6 +12,8 @@ public class SpaceInvadersModel {
     private Spaceship player;
     private List<Alien> aliens;
     private List<Projectile> projectiles;
+    private List<Barrier> barriers;
+    private List<IPositionable> positionables;
 
     private int alienSize = 40;
     private int alienOffset = 20;
@@ -19,23 +21,35 @@ public class SpaceInvadersModel {
     private int numberOfAlienRows = 5;
     private int alienTopRowPos = 100;
 
-    private int timeBetweenMove = 30;
+    private int numberOfBarriers = 4;
+
+    private int timeBetweenPlayerShots = 150;
+    private int timeSinceLastPlayerShot = 10000;
+
+    private int timeBetweenMove = 40;
     private int currentTime = 0;
     private int alienRowToMove = -1;
 
     private boolean moveDown = false;
 
+
     public SpaceInvadersModel() {
         //create player, aliens and projectile
-        player = new Spaceship(100, 800, 40, 20, 10);
+        player = new Spaceship(100, 800, 40, 20, 2);
         aliens = new ArrayList<>();
         projectiles = new ArrayList<>();
+        barriers = new ArrayList<>();
 
         //populate list of aliens
         for (int i = 0; i < numberOfAlienCols; i++) {
             for (int j = 0; j < numberOfAlienRows; j++) {
                 aliens.add(new Alien(boundOffset + (alienSize+alienSize)*i, alienTopRowPos + (alienSize+alienOffset)*j, alienSize, 20));
             }
+        }
+
+        //create barriers
+        for (int i = 0; i < numberOfBarriers; i++) {
+            barriers.add(new Barrier(boundOffset + 200 * i, 650, 50, 50));
         }
     }
 
@@ -46,6 +60,12 @@ public class SpaceInvadersModel {
         }
         //move all movable entities
         moveEntities();
+
+        //All aliens shoot if its time for them to shoot
+        aliensShoot();
+
+        //increase time since last player shoot'
+        timeSinceLastPlayerShot++;
     }
 
     private void moveEntities(){
@@ -105,33 +125,62 @@ public class SpaceInvadersModel {
 
     private void aliensShoot(){
 
+        for (int i = 0; i < aliens.size(); i++) {
+            if(aliens.get(i).getTimeSinceLastShot() >= aliens.get(i).getTimeBetweenShots()){
+                aliens.get(i).resetTimeScinceLastShot();
+                projectiles.add(new Projectile(aliens.get(i).getXpos(), aliens.get(i).getYpos(), 1));
+            }
+            else{
+                aliens.get(i).incTimeScinceLastShot();
+            }
+        }
     }
 
     public void playerShoot(){
-
+        if (timeSinceLastPlayerShot >= timeBetweenPlayerShots){
+            projectiles.add(new Projectile(player.getXpos(), player.getYpos(), -1));
+            timeSinceLastPlayerShot = 0;
+        }
     }
 
+    public int getWindowSizeX() {
+        //return size x of playing field
+        return windowSizeX;
+    }
+
+    public int getWindowSizeY() {
+        //return size y of playing field
+        return windowSizeY;
+    }
+
+    //TODO remove get player because it's redundant code
     public MovableObject getPlayer(){
         //return the player
         return player;
     }
 
-    public int getSizeX() {
-        //return size x of playing field
-        return windowSizeX;
-    }
+    public List<IPositionable> getPositionables(){
+        positionables = new ArrayList<>();
 
-    public int getSizeY() {
-        //return size y of playing field
-        return windowSizeY;
-    }
+        //add player
+        positionables.add(player);
+        positionables.get(0);
 
-    public List<MovableObject> getAliens(){
-        //return a list of MovableObjects containing all aliens
-        List<MovableObject> alienRenderList = new ArrayList<>();
+        //add aliens
         for (int i = 0; i < aliens.size(); i++) {
-            alienRenderList.add(aliens.get(i));
+            positionables.add(aliens.get(i));
         }
-        return alienRenderList;
+
+        //add projectiles
+        for (int i = 0; i < projectiles.size(); i++) {
+            positionables.add(projectiles.get(i));
+        }
+
+        //add barriers
+        for (int i = 0; i < barriers.size(); i++) {
+            positionables.add(barriers.get(i));
+        }
+
+        return positionables;
     }
 }

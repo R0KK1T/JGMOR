@@ -13,8 +13,4 @@ public class Spaceship extends MovableObject{
         setX(getDirection() * getSpeed());
     }
 
-    public void shoot(){
-
-    }
-
 }

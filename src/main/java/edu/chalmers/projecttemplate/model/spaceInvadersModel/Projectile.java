@@ -2,9 +2,9 @@ package edu.chalmers.projecttemplate.model.spaceInvadersModel;
 
 public class Projectile extends MovableObject {
 
-
-    public Projectile(int xPos, int yPos, int width, int height, int speed) {
-        super(xPos, yPos, width, height, speed, "Projectile");
+    public Projectile(int xPos, int yPos,int direction) {
+        super(xPos, yPos, 10, 20, 2, "Projectile");
+        setDirection(direction);
     }
 
     @Override
