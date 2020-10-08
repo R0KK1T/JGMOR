@@ -1,20 +1,16 @@
 package edu.chalmers.projecttemplate.model.snakemodel;
 
-import java.util.List;
-import java.util.Random;
+import javafx.scene.canvas.GraphicsContext;
 
-public class Food {
+public class Food extends GameObject{
 
-    private int foodPositionX;
-    private int foodPositionY;
-
-    Random random = new Random();
-
-    public void  generatePosition(){
-        //Food can be generated on top of Snake's position.
+    public Food(double width, double height) {
+        super(width, height);
     }
 
-    public int getFoodPositionX(){return foodPositionX;}
 
-    public int getFoodPositionY(){return foodPositionY;}
+    @Override
+    public void render(GraphicsContext gc) {
+        gc.drawImage(Assets.apple.getImage(), position.getX(), position.getY());
+    }
 }

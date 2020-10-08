@@ -9,5 +9,4 @@ public class MovingGameObject extends GameObject{
         super(position, bodySize);
     }
 
-
 }

@@ -56,7 +56,6 @@
       <version>4.11</version>
       <scope>test</scope>
       </dependency>
-
       <dependency>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-controls</artifactId>
@@ -67,7 +66,6 @@
         <artifactId>javafx-fxml</artifactId>
         <version>11.0.2</version>
       </dependency>
-
     </dependencies>
     <reporting>
       <plugins>
