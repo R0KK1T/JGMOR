@@ -54,10 +54,10 @@ public class PongController {
         KeyCode kc = event.getCode();
         switch (kc) {
             case W:
-                model.getPongLeftPaddle().setVelocity(-1);
+                model.getPongLeftPaddle().setVelocity(-3);
                 break;
             case S:
-                model.getPongLeftPaddle().setVelocity(1);
+                model.getPongLeftPaddle().setVelocity(3);
                 break;
             default:  // Nothing
         }
