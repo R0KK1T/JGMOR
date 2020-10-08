@@ -1,6 +1,7 @@
 package edu.chalmers.projecttemplate.model.snakemodel;
 
 import edu.chalmers.projecttemplate.controller.snakecontroller.SettingsViewController;
+import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;

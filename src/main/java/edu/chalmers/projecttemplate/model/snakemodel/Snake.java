@@ -1,32 +1,31 @@
 package edu.chalmers.projecttemplate.model.snakemodel;
 
-import java.awt.Rectangle;
-import java.util.ArrayList;
+import com.sun.javafx.scene.traversal.Direction;
+import javafx.geometry.Point2D;
+
+import java.util.LinkedList;
 
 
 public class Snake {
+    private LinkedList<MovingGameObject> body = new LinkedList<>();
+    private int bodySize;
+    private MovingGameObject tail;
 
-    private int snakeX = 100;
-    private int snakeY = 100;
-    private boolean snakeUp = false;
-    private boolean snakeDown = false;
-    private boolean snakeLeft = false;
-    private boolean snakeRight = true;
-    private  ArrayList<Rectangle> list = new ArrayList<Rectangle>();
+    private Direction direction = Direction.RIGHT;
 
+    public Snake(Point2D head, Point2D tail, int bodySize) {
+        this.bodySize = bodySize;
+        body.add(new MovingGameObject(head, bodySize));
+        body.add(new MovingGameObject(tail, bodySize));
 
-    public  ArrayList<Rectangle> getList() {
-        return list;
-    }
-    public  void setList(ArrayList<Rectangle> list) {
-        this.list = list;
     }
 
-    public boolean isSnakeLeft() {
-        return snakeLeft;
+    public MovingGameObject getHead() {
+        return body.getFirst();
     }
-    public void setSnakeLeft(boolean snakeLeft) {
-        this.snakeLeft = snakeLeft;
+
+    public MovingGameObject getNeck() {
+        return body.get(1);
     }
 
 }
