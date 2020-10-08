@@ -1,6 +1,7 @@
 package edu.chalmers.projecttemplate.model.snakemodel;
 
 import edu.chalmers.projecttemplate.controller.snakecontroller.SettingsViewController;
+import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -22,11 +23,11 @@ public class GameScene extends Scene {
 
 
     private long time;
-    private Food food;
+
+    private Snake snake;
+    private final Food food;
 
     private Preferences prefs;
-
-    private Label inGameScoreLabel;
 
 
 
@@ -49,9 +50,11 @@ public class GameScene extends Scene {
         initScreen();
 
     }
+    public Snake getSnake() { return snake;}
 
     private void initScreen() {
         renderBackground();
+        initSnake();
         food.setRandomPosition(WIDTH, HEIGHT);
         renderGameElements();
 
@@ -61,6 +64,11 @@ public class GameScene extends Scene {
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, WIDTH, HEIGHT);
         renderGrid(gc);
+    }
+
+    private void initSnake(){
+        snake = new Snake(new Point2D(WIDTH / 2f, HEIGHT / 2f),
+                new Point2D(WIDTH / 2f - PIXELSIZE, HEIGHT / 2f), PIXELSIZE);
     }
 
     private void renderGrid(GraphicsContext gc) {
@@ -74,7 +82,9 @@ public class GameScene extends Scene {
     }
 
     private void renderGameElements(){
+        snake.render(gc);
         food.render(gc);
+        snake.render(gc);
     }
 
 }

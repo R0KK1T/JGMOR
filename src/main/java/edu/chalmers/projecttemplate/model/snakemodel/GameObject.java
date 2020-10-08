@@ -1,7 +1,6 @@
 package edu.chalmers.projecttemplate.model.snakemodel;
 
 import javafx.geometry.Point2D;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import java.util.Random;
 
@@ -44,6 +43,9 @@ public class GameObject implements Renderable{
         alive = true;
     }
 
+    public Point2D getPosition() {
+        return position;
+    }
     public void setPosition(Point2D position) {
         this.position = position;
     }
