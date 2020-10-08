@@ -31,10 +31,10 @@ public class ProjectTest {
     }
     @Test
     public void createLane(){
-        LaneFactory factory = new LaneFactory();
+        LaneFactory factory = new LaneFactory(10, 3, 10);
 
         //Roadlane
-        Lane roadLane = factory.createRoadLane(3, 10, 1);
+        Lane roadLane = factory.createRoadLane(3, 1);
         Car car = new Car(10,10,10,10,10);
 
         Assert.assertTrue(!roadLane.isRiver());
@@ -43,7 +43,7 @@ public class ProjectTest {
         }
 
         //Riverlane
-        Lane riverLane = factory.createRiverLane(3, 5, 150);
+        Lane riverLane = factory.createRiverLane(3, 150);
         Log log = new Log(10, 10, 10, 10, 10);
         Assert.assertTrue(riverLane.isRiver());
         for (int i = 0; i < riverLane.getObstacles().size(); i++) {
