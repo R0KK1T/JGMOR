@@ -32,20 +32,28 @@ public class ProjectTest {
     @Test
     public void createLane(){
         LaneFactory factory = new LaneFactory();
+
+        //Roadlane
         Lane roadLane = factory.createRoadLane(3, 10, 1);
         Car car = new Car(10,10,10,10,10);
 
-        Assert.assertTrue(roadLane.isRiver() == false);
+        Assert.assertTrue(!roadLane.isRiver());
         for (int i = 0; i < roadLane.getObstacles().size(); i++) {
             Assert.assertTrue(roadLane.getObstacles().get(i).getClass()==car.getClass());
         }
 
+        //Riverlane
         Lane riverLane = factory.createRiverLane(3, 5, 150);
         Log log = new Log(10, 10, 10, 10, 10);
-        Assert.assertTrue(riverLane.isRiver() == true);
+        Assert.assertTrue(riverLane.isRiver());
         for (int i = 0; i < riverLane.getObstacles().size(); i++) {
             Assert.assertTrue(riverLane.getObstacles().get(i).getClass()==log.getClass());
         }
+
+        //Empty/safe lane
+        Lane safeLane = factory.createEmptyLane(300);
+        Assert.assertTrue(safeLane.getObstacles().size() == 0);
+        Assert.assertTrue(!safeLane.isRiver());
     }
 
     // SPACE INVADERS TESTS

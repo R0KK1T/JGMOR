@@ -24,4 +24,10 @@ public class LaneFactory {
 
         return returnLane;
     }
+    public Lane createEmptyLane(int y){
+        ArrayList<Obstacle> obs = new ArrayList<>();
+        Lane returnLane = new Lane(obs, 0, y, false);
+
+        return returnLane;
+    }
 }
