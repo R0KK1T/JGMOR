@@ -12,6 +12,7 @@ import java.util.LinkedList;
 public class Snake implements Renderable {
     private LinkedList<MovingGameObject> body = new LinkedList<>();
     private int bodySize;
+    private MovingGameObject tail;
 
     private Direction direction = Direction.RIGHT;
 
@@ -24,11 +25,44 @@ public class Snake implements Renderable {
     public MovingGameObject getHead() {
         return body.getFirst();
     }
-
     public MovingGameObject getNeck() {
         return body.get(1);
     }
 
+    public Direction getDirection() {
+        return direction;
+    }
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
+
+
+    public void move() {
+        tail = body.pollLast();
+
+        switch (direction) {
+            case UP: {
+                Point2D newPos = getHead().getPosition().subtract(0, bodySize);
+                body.addFirst(new MovingGameObject(newPos, bodySize, direction));
+                break;
+            }
+            case DOWN: {
+                Point2D newPos = getHead().getPosition().add(0, bodySize);
+                body.addFirst(new MovingGameObject(newPos, bodySize, direction));
+                break;
+            }
+            case LEFT: {
+                Point2D newPos = getHead().getPosition().subtract(bodySize, 0);
+                body.addFirst(new MovingGameObject(newPos, bodySize, direction));
+                break;
+            }
+            case RIGHT: {
+                Point2D newPos = getHead().getPosition().add(bodySize, 0);
+                body.addFirst(new MovingGameObject(newPos, bodySize, direction));
+                break;
+            }
+        }
+    }
 
     @Override
     public void render(GraphicsContext gc) {
@@ -50,6 +84,7 @@ public class Snake implements Renderable {
                 break;
             }
         }
+
         gc.drawImage(Assets.snake_head.snapshot(new SnapshotParameters(), null),
                 getHead().getPosition().getX() + 1,
                 getHead().getPosition().getY() + 1,
@@ -60,6 +95,11 @@ public class Snake implements Renderable {
                 getNeck().getPosition().getY() + 1,
                 23,
                 23);
+
+        if (tail != null) {
+            gc.setFill(Color.BLACK);
+            tail.render(gc);
+        }
 
     }
 }

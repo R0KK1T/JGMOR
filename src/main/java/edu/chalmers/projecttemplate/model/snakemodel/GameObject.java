@@ -1,6 +1,7 @@
 package edu.chalmers.projecttemplate.model.snakemodel;
 
 import javafx.geometry.Point2D;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import java.util.Random;
 
@@ -63,6 +64,7 @@ public class GameObject implements Renderable{
     public void setHeight(double height) {
         this.height = height;
     }
+
 
 
     @Override
