@@ -1,8 +1,8 @@
 # Meeting Agenda
 
 Group: JGMOR
-Date: 2020-10-01
-Chair: Johannes Mattsson
+Date: 2020-10-07
+Chair: Jonathan Stigson
 Participants: Jonathan Stigson, Mhd Jamal Basal, Robert Sahlqvist, Oliver Ljung, Georges Kayembe
 
 
