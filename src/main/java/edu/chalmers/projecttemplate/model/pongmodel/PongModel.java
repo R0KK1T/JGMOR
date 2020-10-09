@@ -3,13 +3,16 @@ package edu.chalmers.projecttemplate.model.pongmodel;
 public class PongModel {
     PongBall pongBall;
     PongPaddle pongLeftPaddle,pongRightPaddle;
+    PongAI pongAI;
     private final int windowSizeX = 1920;
     private final int windowSizeY = 1080;
+    private final int paddleVelocity = 3;
 
     public PongModel (){
         pongBall = new PongBall(windowSizeX/2, windowSizeY/2, 40, 40,5);
         pongRightPaddle = new PongPaddle(windowSizeX - 50,windowSizeY/2, 200,40, windowSizeY,0);
         pongLeftPaddle = new PongPaddle(10, windowSizeY/2, 200,40, windowSizeY, 0);
+        pongAI = new PongAI(pongRightPaddle,pongBall);
         pongBall.resetBall();
     }
 
@@ -18,6 +21,7 @@ public class PongModel {
         ballHorizontalBounce();
         ballVerticalBounce();
         pongBall.updatePosition();
+        pongAI.movePaddle(paddleVelocity);
         pongRightPaddle.updatePosition();
         pongLeftPaddle.updatePosition();
         ballRespawn();
@@ -48,6 +52,7 @@ public class PongModel {
             pongBall.resetBall();
         }
     }
+
     public PongBall getPongBall() {
         //returns the ball object
         return pongBall;
@@ -71,5 +76,7 @@ public class PongModel {
         return windowSizeY;
     }
 
-
+    public int getPaddleVelocity() {
+        return paddleVelocity;
+    }
 }
