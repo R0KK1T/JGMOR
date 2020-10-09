@@ -42,6 +42,7 @@ public class ProjectTest {
             Assert.assertTrue(roadLane.getObstacles().get(i).getClass()==car.getClass());
         }
 
+
         //Riverlane
         Lane riverLane = factory.createRiverLane(3, 150);
         Log log = new Log(10, 10, 10, 10, 10);
@@ -56,7 +57,7 @@ public class ProjectTest {
         Assert.assertTrue(!safeLane.isRiver());
 
         //Finish line
-        Lane finishLine = factory.createFinishLane(450);
+        Lane finishLine = factory.createFinishLane(4,450);
         Grass grass = new Grass(10, 10, 10,10,10);
         Assert.assertTrue(finishLine.getObstacles().size() == 4);
         for (int i = 0; i < finishLine.getObstacles().size(); i++) {
@@ -64,7 +65,35 @@ public class ProjectTest {
         }
         Assert.assertTrue(!finishLine.isRiver());
     }
+    @Test
+    public void initFroggerModel(){
+        FroggerModel game = new FroggerModel();
+        Car car = new Car(10,10,10,10,10);
+        int amountOfRoads = 0;
+        int amountOfRivers = 0;
+        int amountOfEmpty = 0;
+        int amountOfFinish = 0;
 
+        for (int i = 0; i < game.getLanes().size(); i++) {
+            if(game.getLanes().get(i).isRiver()){
+                amountOfRivers++;
+            }
+            else if(game.getLanes().get(i).getObstacles().size() == 0){
+                amountOfEmpty++;
+            }
+            else if(game.getLanes().get(i).getObstacles().get(0).getClass() == car.getClass()){
+                amountOfRoads++;
+            }
+            else{
+                amountOfFinish++;
+            }
+        }
+        Assert.assertTrue(amountOfRivers == 5);
+        Assert.assertTrue(amountOfRoads == 5);
+        Assert.assertTrue(amountOfEmpty == 2);
+        Assert.assertTrue(amountOfFinish == 1);
+
+    }
     // SPACE INVADERS TESTS
     @Test
     public void moveSpaceshipTest(){
