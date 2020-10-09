@@ -1,0 +1,32 @@
+# Meeting Agenda
+
+Group: JGMOR
+Date: 2020-10-08
+Chair: Johannes Mattsson
+Participants: Jonathan Stigson, Mhd Jamal Basal, Robert Sahlqvist, Oliver Ljung, Georges Kayembe
+
+
+## Objectives (5 min) 
+
+
+## Reports (15 min) from previous meeting
+Jonathan: LaneFactory and Lane.
+Oliver: Movement with keypresses, shooting for aliens and player, barrier.
+Jamal: Code for controller and view.
+Robert: Made ball bounce on walls and paddles. Restricted paddles within the window.
+Geroges: Tests for breakout.
+
+## Discussion items (35 min)
+Questions around peer review.
+Questions around testing.
+
+Johannes showcased stan4j, and explained how it can be of help.
+
+## Outcomes and assignments (5 min)
+	
+	Finish peer review document next meeting.
+	Waiting for response from Johannes in regards to Wrapper pattern for libaries used i project.
+
+## Wrap up
+Nästa möte: 2020-10-09
+Nästa handledarmöte: 2020-10-15
