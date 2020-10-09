@@ -1,9 +1,6 @@
 package edu.chalmers.projecttemplate.model.pongmodel;
 
-import edu.chalmers.projecttemplate.model.ProjectModel;
-
 public class PongModel {
-    private ProjectModel projectModel;
     PongBall pongBall;
     PongPaddle pongLeftPaddle,pongRightPaddle;
     private final int windowSizeX = 1920;
@@ -17,7 +14,7 @@ public class PongModel {
     }
 
     public void update (){
-        //calls the update functions in the game objects
+        //calls the ball behaviour functions and the update functions in the game objects
         ballHorizontalBounce();
         ballVerticalBounce();
         pongBall.updatePosition();
