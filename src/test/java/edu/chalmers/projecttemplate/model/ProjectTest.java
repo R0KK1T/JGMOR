@@ -54,6 +54,15 @@ public class ProjectTest {
         Lane safeLane = factory.createEmptyLane(300);
         Assert.assertTrue(safeLane.getObstacles().size() == 0);
         Assert.assertTrue(!safeLane.isRiver());
+
+        //Finish line
+        Lane finishLine = factory.createFinishLane(450);
+        Grass grass = new Grass(10, 10, 10,10,10);
+        Assert.assertTrue(finishLine.getObstacles().size() == 4);
+        for (int i = 0; i < finishLine.getObstacles().size(); i++) {
+            Assert.assertTrue(finishLine.getObstacles().get(i).getClass()==grass.getClass());
+        }
+        Assert.assertTrue(!finishLine.isRiver());
     }
 
     // SPACE INVADERS TESTS

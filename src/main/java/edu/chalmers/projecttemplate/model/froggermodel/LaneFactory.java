@@ -41,4 +41,14 @@ public class LaneFactory {
 
         return returnLane;
     }
+    public Lane createFinishLane(int y){
+        ArrayList<Obstacle> obs = new ArrayList<>();
+        int velocity = 0;
+        for (int i = 0; i < 4; i++) {
+            obs.add(new Grass(obsWidth*i*2, y, obsWidth, obsWidth, velocity));
+        }
+        Lane returnLane = new Lane(obs, velocity, y, false);
+
+        return returnLane;
+    }
 }
