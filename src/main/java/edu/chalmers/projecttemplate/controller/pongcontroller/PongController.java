@@ -54,10 +54,10 @@ public class PongController {
         KeyCode kc = event.getCode();
         switch (kc) {
             case W:
-                model.getPongLeftPaddle().setVelocity(-3);
+                model.getPongLeftPaddle().moveUp(model.getPaddleVelocity());
                 break;
             case S:
-                model.getPongLeftPaddle().setVelocity(3);
+                model.getPongLeftPaddle().moveDown(model.getPaddleVelocity());
                 break;
             default:  // Nothing
         }
@@ -67,10 +67,10 @@ public class PongController {
         KeyCode kc = event.getCode();
         switch (kc) {
             case W:
-                model.getPongLeftPaddle().setVelocity(0);
+                model.getPongLeftPaddle().stopMoving();;
                 break;
             case S:
-                model.getPongLeftPaddle().setVelocity(0);
+                model.getPongLeftPaddle().stopMoving();;;
                 break;
             default: // Nothing
         }

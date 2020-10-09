@@ -11,9 +11,7 @@ public class PongPaddle extends GameObject implements IMovable {
         this.maxY = maxY;
         this.minY = minY;
     }
-    public void setVelocity(double velocity){
-        this.velocity = velocity;
-    }
+
     @Override
     public void updatePosition() {
         y += velocity;
@@ -23,6 +21,21 @@ public class PongPaddle extends GameObject implements IMovable {
         if ((y + height) > maxY){
             y = maxY - height;
         }
+    }
+    public void moveUp (double paddleVelocity){
+        setVelocity(-paddleVelocity);
+    }
+
+    public void moveDown (double paddleVelocity){
+        setVelocity(paddleVelocity);
+    }
+
+    public void stopMoving(){
+        setVelocity(0);
+    }
+
+    public void setVelocity(double velocity){
+        this.velocity = velocity;
     }
 
     public void setMaxY(double maxY) {
