@@ -29,6 +29,10 @@ public class Snake implements Renderable {
         return body.get(1);
     }
 
+    public int getLength() {
+        return body.size();
+    }
+
     public Direction getDirection() {
         return direction;
     }
@@ -62,6 +66,19 @@ public class Snake implements Renderable {
                 break;
             }
         }
+    }
+
+    public void grow() {
+        body.add(new MovingGameObject());
+    }
+
+    boolean intersect(GameObject other) {
+        for (int i = 0; i < getLength(); i++) {
+            if (other.intersect(body.get(i))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

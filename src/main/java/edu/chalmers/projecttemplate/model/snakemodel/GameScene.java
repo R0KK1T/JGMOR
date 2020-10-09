@@ -9,7 +9,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -128,6 +127,14 @@ public class GameScene extends Scene {
                 addEventHandler(KeyEvent.KEY_PRESSED, myHandlerForArrows);
                 lastUpdate = now;
                 snake.move();
+
+                if (snake.getHead().intersect(food)) {
+                    do {
+                        food.setRandomPosition(WIDTH, HEIGHT);
+                    } while (snake.intersect(food));
+                    snake.grow();
+                }
+
                 renderGameElements();
             }
         }

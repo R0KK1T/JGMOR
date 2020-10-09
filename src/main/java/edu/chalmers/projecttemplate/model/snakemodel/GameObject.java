@@ -74,6 +74,14 @@ public class GameObject implements Renderable{
         }
     }
 
+    public Rectangle2D getBoundary() {
+        return new Rectangle2D(position.getX(), position.getY(), width, height);
+    }
+
+    public boolean intersect(GameObject other) {
+        return this.getBoundary().intersects(other.getBoundary());
+    }
+
     // Set food position randomly
     public void setRandomPosition(int width, int height) {
         Random random = new Random();
