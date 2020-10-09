@@ -43,6 +43,7 @@ public class GameScene extends Scene {
     private final String LEFT = "LEFT";
 
     private MyHandlerForArrows myHandlerForArrows = new MyHandlerForArrows();
+    private MyHandlerForEsc myHandlerForEsc = new MyHandlerForEsc();
 
     public GameScene(Parent root, long time) {
         this(root);
@@ -63,6 +64,7 @@ public class GameScene extends Scene {
 
         // check user inputs on the first screen
         addEventHandler(KeyEvent.KEY_PRESSED, myHandlerForArrows);
+        addEventHandler(KeyEvent.KEY_PRESSED, myHandlerForEsc);
 
         initScreen();
 
@@ -123,10 +125,18 @@ public class GameScene extends Scene {
         public void handle(long now) {
             // if the game isn't paused it will refresh the screen in every 100 milliseconds
             if (now - lastUpdate >= time) {
+                addEventHandler(KeyEvent.KEY_PRESSED, myHandlerForArrows);
                 lastUpdate = now;
                 snake.move();
                 renderGameElements();
             }
+        }
+    }
+
+    private class MyHandlerForEsc implements EventHandler<KeyEvent> {
+        @Override
+        public void handle(KeyEvent event) {
+            KeyCode kc = event.getCode();
         }
     }
 
