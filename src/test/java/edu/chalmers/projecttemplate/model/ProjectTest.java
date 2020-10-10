@@ -107,7 +107,17 @@ public class ProjectTest {
             model.getPlayer().moveUp();
         }
     }
+    @Test
+    public void frogAttach(){
+        Frog frog = new Frog(25, 25, 25,25, 25);
+        Obstacle obs = new Log(25, 25, 25, 25, 5);
 
+        frog.attach(obs);
+        obs.move();
+        frog.update();
+
+        Assert.assertTrue(frog.getX() == obs.getX() && frog.getX() == 30);
+    }
 
     // SPACE INVADERS TESTS
     @Test

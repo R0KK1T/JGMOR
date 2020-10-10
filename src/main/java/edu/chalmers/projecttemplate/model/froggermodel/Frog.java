@@ -4,6 +4,7 @@ import edu.chalmers.projecttemplate.model.common.Rectangle;
 
 public class Frog {
     private Rectangle hitbox;
+    private Obstacle riverObs;
     private int velocity;
     public Frog(int x, int y, int width, int height, int velocity){
         hitbox = new Rectangle(x, y, width, height);
@@ -31,4 +32,14 @@ public class Frog {
     public void moveDown(){
         hitbox.incY(getVelocity());
     }
+
+    private void moveWhileAttached(){
+        hitbox.incX(riverObs.getVelocity());
+    }
+    public void update(){
+        if(riverObs != null){
+            moveWhileAttached();
+        }
+    }
+    public void attach(Obstacle obs){riverObs = obs;}
 }
