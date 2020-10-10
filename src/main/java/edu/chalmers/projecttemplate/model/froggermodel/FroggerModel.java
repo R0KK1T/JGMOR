@@ -45,13 +45,23 @@ public class FroggerModel {
 
     private void checkForCollision() {
         Lane current = getCurrentPlayerLane();
-        for (Obstacle obs: current.getObstacles()) {
-            if(player.getHitbox().intersect(obs.getHitbox())){
-                if(current.isRiver()){
-                    //TODO implement player.attach(obs);
+
+        if(current.isRiver()){
+            boolean inRiver = true;
+            for (Obstacle obs: current.getObstacles()) {
+                if(player.getHitbox().intersect(obs.getHitbox())){
+                    player.attach(obs);
+                    inRiver = false;
                 }
-                else{
-                    //TODO implement player.takeDamage();
+            }
+            if(inRiver){
+                //TODO loseLife()
+            }
+        }
+        else{
+            for (Obstacle obs: current.getObstacles()) {
+                if(player.getHitbox().intersect(obs.getHitbox())){
+                    //TODO loseLife()
                 }
             }
         }
