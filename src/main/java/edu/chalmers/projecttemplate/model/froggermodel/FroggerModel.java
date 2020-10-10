@@ -44,7 +44,17 @@ public class FroggerModel {
     }
 
     private void checkForCollision() {
-
+        Lane current = getCurrentPlayerLane();
+        for (Obstacle obs: current.getObstacles()) {
+            if(player.getHitbox().intersect(obs.getHitbox())){
+                if(current.isRiver()){
+                    //TODO implement player.attach(obs);
+                }
+                else{
+                    //TODO implement player.takeDamage();
+                }
+            }
+        }
     }
     public Lane getCurrentPlayerLane(){
         for (int i = 0; i < getLanes().size(); i++) {
@@ -64,10 +74,6 @@ public class FroggerModel {
 
     public int getSquareDimension() {
         return squareDimension;
-    }
-
-    public int getColumns() {
-        return columns;
     }
 
     public int getRows(){
