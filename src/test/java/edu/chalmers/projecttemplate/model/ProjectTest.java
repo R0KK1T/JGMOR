@@ -73,7 +73,9 @@ public class ProjectTest {
         int amountOfRivers = 0;
         int amountOfEmpty = 0;
         int amountOfFinish = 0;
-
+        //Correct number of lanes
+        Assert.assertTrue(game.getRows() == game.getLanes().size());
+        //Correct number of each lane type
         for (int i = 0; i < game.getLanes().size(); i++) {
             if(game.getLanes().get(i).isRiver()){
                 amountOfRivers++;
@@ -92,8 +94,21 @@ public class ProjectTest {
         Assert.assertTrue(amountOfRoads == 5);
         Assert.assertTrue(amountOfEmpty == 2);
         Assert.assertTrue(amountOfFinish == 1);
-
+        //Correct y-coordinates for all lanes
+        for (int i = 1; i < game.getLanes().size()+1; i++) {
+            Assert.assertTrue(game.getLanes().get(i-1).getY() == (game.getWindowSizeY()-(game.getSquareDimension()*i )));
+        }
     }
+    @Test
+    public void checkLaneFrog(){
+        FroggerModel model = new FroggerModel();
+        for (int i = 0; i < model.getRows(); i++) {
+            Assert.assertTrue(model.getCurrentPlayerLane()==model.getLanes().get(i));
+            model.getPlayer().moveUp();
+        }
+    }
+
+
     // SPACE INVADERS TESTS
     @Test
     public void moveSpaceshipTest(){
