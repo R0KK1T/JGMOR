@@ -1,8 +1,7 @@
 package edu.chalmers.projecttemplate.controller.breakoutcontroller;
 
-import edu.chalmers.projecttemplate.model.breakoutmodel.BreakoutConfig;
-import edu.chalmers.projecttemplate.model.breakoutmodel.BreakoutMenuModel;
 import edu.chalmers.projecttemplate.view.breakoutview.BreakoutGameView;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,15 +28,16 @@ public class BreakoutMenuController implements Initializable {
     @FXML public AnchorPane mainPane;
 
     AnchorPane paneTohide;
-    BreakoutMenuModel menuModel;
-    BreakoutConfig breakoutConfig;
+    public BreakoutGameView newGame;
+    private boolean isHidden;
     //constructor
-    public BreakoutMenuController() {}
+    public BreakoutMenuController() {
+        isHidden=true;
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            menuModel = new BreakoutMenuModel(mainPane, subPanePlay, subPaneScores, subPaneHelp, btnPlay, btnScores, btnHelp, btnExit);
-            breakoutConfig = new BreakoutConfig();
+            newGame = new BreakoutGameView();
             controlPlay();
             controlHelp();
             controlScore();
@@ -82,18 +83,36 @@ public class BreakoutMenuController implements Initializable {
 
     // 5. Button start **breakoutButtonModel.setButtonFreeStyle(btnStart)**;
     public void btnStartControl(ActionEvent actionEvent) throws IOException {
-        BreakoutGameView newGame = new BreakoutGameView();
         Scene gameScene = newGame.getGameScene();
         Stage gameStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        gameStage.setTitle("Breakout Game");
         gameStage.setScene(gameScene);
         gameStage.show();
     }
     private void showSubPane(AnchorPane thePane) {
         if (paneTohide != null) {
-            breakoutConfig.moveSubPaneRightToLeft(paneTohide);
+            moveSubPaneRightToLeft(paneTohide);
         }
-        breakoutConfig.moveSubPaneRightToLeft(thePane);
+        moveSubPaneRightToLeft(thePane);
         paneTohide = thePane;
     }
+    public void moveSubPaneRightToLeft(AnchorPane thePane) {
+        TranslateTransition transition = new TranslateTransition();
+        transition.setDuration(Duration.seconds(0.3));
+        transition.setNode(thePane);
+        if (isHidden) {
+            transition.setToX(-625);
+            isHidden = false;
+        } else {
+            transition.setToX(0);
+            isHidden = true;
+        }
+        transition.play();
+    }
+
+    /*
+     * Göra newGame variabel global inom package så att jag kan accessa den från BreakoutGameController
+     * och renderar brickListan, ball, paddle som är målat med gc - canvas
+     */
 
 }

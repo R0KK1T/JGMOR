@@ -8,6 +8,7 @@ public class Brick extends Rectangle {
     private String Color;
     private boolean isActive;
     private int hit;
+
     public Brick(int x, int y, int width, int height, int point) {
         super(x, y, width, height);
         this.point = point;
@@ -44,5 +45,8 @@ public class Brick extends Rectangle {
         if (this.hit<=0 || this.hit>4)
             this.isActive = false;
     }
+    /*
+     * Create and return a list of break (position osv..)
+     */
 
 }

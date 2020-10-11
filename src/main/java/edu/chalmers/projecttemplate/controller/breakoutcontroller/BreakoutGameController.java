@@ -1,7 +1,9 @@
 package edu.chalmers.projecttemplate.controller.breakoutcontroller;
 
 import edu.chalmers.projecttemplate.model.breakoutmodel.*;
+import edu.chalmers.projecttemplate.view.breakoutview.BreakoutMenuView;
 import edu.chalmers.projecttemplate.view.breakoutview.BreakoutViewManager;
+import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,33 +22,77 @@ public class BreakoutGameController implements Initializable {
     @FXML public Button btnGamePause;
     @FXML public AnchorPane gameArea;
     @FXML public Label scoreLabel;
+    public AnchorPane gamePane;
     private Wall gameModel;
     private Paddle paddle;
     private Ball ball;
-    private Brick brick;
+    private BreakoutViewManager breakoutViewManager;
+    int x;
+    AnimationTimer timer;
     //constructor
     public BreakoutGameController() {}
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        paddle = new Paddle(420, 536, 60, 12, gameArea.getPrefWidth());
+        breakoutViewManager = new BreakoutViewManager();
         try {
-            paddle = new Paddle();
-            ball = new Ball();
-            gameModel = new Wall(gameArea, btnGameExit, btnGamePause, scoreLabel, paddle, ball);
+            renderTheGame();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        run();
     }
-    //1. Button Exit
+
+    /*
+     * 1. Button Exit
+     */
     public void btnExitGameControl(ActionEvent mouseEvent) throws IOException {
-        BreakoutViewManager newMenu = new BreakoutViewManager();
+        BreakoutMenuView newMenu = new BreakoutMenuView();
         Scene gameScene = newMenu.getMainScene();
         Stage gameStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
         gameStage.setScene(gameScene);
         gameStage.show();
     }
-    //2. Button Pause
+    /*
+     * 2. Button Pause
+     */
     public void btnExitPauseControl(ActionEvent actionEvent) {
     }
+    /*
+     * 3. Paddle
+     */
+    //Draw paddle
+    private void drawPaddle() throws IOException {
+        breakoutViewManager.drawPaddle(paddle);
+    }
 
+    /*
+     * Render the game
+     */
+    private void renderTheGame() throws IOException {
+        drawPaddle();
+        gameArea.getChildren().add(paddle);
+        initializeListeners();
+    }
+    /*
+     * Initialize listeners
+     */
+    private void initializeListeners() {
+        gamePane.setOnKeyPressed(keyEvent -> paddle.keyPressed(keyEvent));
+        gamePane.setOnKeyReleased(keyEvent -> paddle.keyReleased(keyEvent));
+    }
+
+    /*
+     * Run the game
+     */
+    private void run() {
+        timer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                paddle.move();
+            }
+        };
+        timer.start();
+    }
 
 }

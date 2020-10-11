@@ -37,26 +37,30 @@ public class BreakoutTest {
     }
     @Test
     public void setBrickStatusTest() {
-        // First hit
+        // Normal state
         assertTrue("Brick should contain 4 hits: ",brick.getBrickHit() == 4);
+        // First hit
         brick.setBrickHit();
         brick.setBrickStatus();
         assertEquals("isActive should be true: ", brick.getBrickStatus(), true);
 
-        // Second hit
+
         assertTrue("Brick should have 3 hits left: ",brick.getBrickHit() == 3);
+        // Second hit
         brick.setBrickHit();
         brick.setBrickStatus();
         assertEquals("isActive should be true: ", brick.getBrickStatus(), true);
 
-        // Third hit
+
         assertTrue("Brick should have 2 hits left: ",brick.getBrickHit() == 2);
+        // Third hit
         brick.setBrickHit();
         brick.setBrickStatus();
         assertEquals("isActive should be true: ", brick.getBrickStatus(), true);
 
-        // Fourth
+
         assertTrue("Brick should have 1 hit left: ",brick.getBrickHit() == 1);
+        // Fourth hit
         brick.setBrickHit();
         brick.setBrickStatus();
         assertEquals("isActive should now be false: ", brick.getBrickStatus(), false);

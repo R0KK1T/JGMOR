@@ -1,30 +1,23 @@
 package edu.chalmers.projecttemplate.view.breakoutview;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import java.io.IOException;
+import edu.chalmers.projecttemplate.model.breakoutmodel.Paddle;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 
-public class BreakoutViewManager {
-    private AnchorPane mainPane;
-    private Scene mainScene;
-    private Stage mainStage;
-    private final String STARTMENU = "breakoutresources/fxml/breakoutStartMenu.fxml";
-    private static final int WIDTH = 1000;
-    private static int HEIGHT = 700;
-    //constuctor
-    public BreakoutViewManager() throws IOException {
-        initializeStage();
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+public class BreakoutViewManager  {
+    Image paddleImg;
+    public BreakoutViewManager() {}
+    /*
+     * Draw paddle
+     */
+    public void drawPaddle(Paddle paddle) throws IOException {
+        InputStream inStream = Files.newInputStream(Paths.get("src/main/resources/breakoutresources/images/paddle.png"));
+        paddleImg = new Image(inStream, paddle.getWidth(), paddle.getHeight(), false, true);
+        paddle.setFill(new ImagePattern(paddleImg));
     }
-    private void initializeStage() throws IOException {
-        mainPane = FXMLLoader.load(getClass().getClassLoader().getResource(STARTMENU));
-        mainScene = new Scene(mainPane, WIDTH, HEIGHT);
-        mainStage = new Stage();
-        mainStage.setScene(mainScene);
-    }
-    //return the main stage
-    public Stage getMainStage() {return mainStage;}
-    //retunr the main Scene
-    public Scene getMainScene() {return mainScene;}
 }
