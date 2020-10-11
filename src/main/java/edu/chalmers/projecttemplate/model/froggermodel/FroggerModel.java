@@ -45,35 +45,40 @@ public class FroggerModel {
     }
 
     public void update(){
-        checkForCollision();
+        checkForPlayerInteraction();
     }
-
-    private void checkForCollision() {
+    public Obstacle collisionDetected(Lane current){
+        for (Obstacle obs: current.getObstacles()) {
+            if(player.getHitbox().intersect(obs.getHitbox())){
+                return obs;
+            }
+        }
+        return null;
+    }
+    private void checkForPlayerInteraction() {
         Lane current = getCurrentPlayerLane();
         //Skip all if player isn't found on any lane.
         if(current == null){
             return;
         }
+
+        Obstacle collidingObstacle = collisionDetected(current);
+        //If current lane is river
         if(current.isRiver()){
-            //If on river, then not intersecting an obstacle results in losing a life.
-            //If on river and intersecting, player attaches to obstacle.
-            boolean inRiver = true;
-            for (Obstacle obs: current.getObstacles()) {
-                if(player.getHitbox().intersect(obs.getHitbox())){
-                    player.attach(obs);
-                    inRiver = false;
-                }
+            //If player is colliding with obstacle, attach.
+            //Else lose life
+            if(collidingObstacle != null){
+                player.attach(collidingObstacle);
             }
-            if(inRiver){
+            else{
                 loseLife();
             }
         }
         else{
-            //If not on river, then intersection with obstacle results in losing a life.
-            for (Obstacle obs: current.getObstacles()) {
-                if(player.getHitbox().intersect(obs.getHitbox())){
-                    loseLife();
-                }
+            //Current !isRiver()
+            //If player is colliding with obstacle, lose life
+            if(collidingObstacle != null){
+                loseLife();
             }
         }
     }
@@ -112,5 +117,9 @@ public class FroggerModel {
     }
     public int getWindowSizeY() {
         return windowSizeY;
+    }
+
+    public int getLifeCount() {
+        return lifeCount;
     }
 }

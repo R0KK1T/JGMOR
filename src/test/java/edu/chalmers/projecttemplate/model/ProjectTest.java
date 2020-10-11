@@ -144,7 +144,54 @@ public class ProjectTest {
 
         Assert.assertTrue(frog.getX() == obs.getX() && frog.getX() == 30);
     }
+    @Test
+    public void collisionDetection(){
+        FroggerModel model = new FroggerModel();
+        //Move frog all the way to the left
+        for (int i = 0; i < 6; i++) {
+            model.getPlayer().moveLeft();
+        }
+        //Move frog one step up
+        model.getPlayer().moveUp();
+        //Move frog to right until it intersects with an obstacle
+        while(model.collisionDetected(model.getCurrentPlayerLane()) == null){
+            model.getPlayer().moveRight();
+        }
+        //Run update to check if it gives the correct consequences from intersection.
+        model.update();
+        Assert.assertTrue(model.getLifeCount() == 6);
+        Assert.assertTrue(model.getPlayer().getX()==150 && model.getPlayer().getY()==300);
 
+        //Move frog all the way to the left and up middle safe lane
+        for (int i = 0; i < 6; i++) {
+            model.getPlayer().moveLeft();
+            model.getPlayer().moveUp();
+        }
+        //One more step to enter first riverLane
+        model.getPlayer().moveUp();
+        //Move frog to right until it doesn't intersect with an obstacle
+        while(model.collisionDetected(model.getCurrentPlayerLane()) != null){
+            model.getPlayer().moveRight();
+        }
+        model.update();
+        Assert.assertTrue(model.getLifeCount() == 5);
+        Assert.assertTrue(model.getPlayer().getX()==150 && model.getPlayer().getY()==300);
+
+        //Move frog all the way to the left and up middle safe lane
+        for (int i = 0; i < 6; i++) {
+            model.getPlayer().moveLeft();
+            model.getPlayer().moveUp();
+        }
+        //One more step to enter first riverLane
+        model.getPlayer().moveUp();
+
+        //Move frog to right until it intersects with an obstacle
+        while(model.collisionDetected(model.getCurrentPlayerLane()) == null){
+            model.getPlayer().moveRight();
+        }
+        model.update();
+        Assert.assertTrue(model.getPlayer().getRiverObs() == model.collisionDetected(model.getCurrentPlayerLane()));
+    }
     // SPACE INVADERS TESTS
     @Test
     public void moveSpaceshipTest(){
