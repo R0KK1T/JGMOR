@@ -4,10 +4,11 @@ import java.util.ArrayList;
 
 public class FroggerModel {
     private int squareDimension = 25;
-    private int columns = 11;
+    private int columns = 13;
     private int rows = 13;
     private int windowSizeX;
     private int windowSizeY;
+    private int lifeCount = 7;
 
     private Frog player;
     private LaneFactory factory;
@@ -16,15 +17,11 @@ public class FroggerModel {
     public FroggerModel() {
         windowSizeX = squareDimension * columns;
         windowSizeY = squareDimension * rows;
-        player = new Frog(squareDimension * (columns/2), windowSizeY - squareDimension,
-                squareDimension, squareDimension, squareDimension);
+        newFrog();
         factory = new LaneFactory(squareDimension, squareDimension / 10, squareDimension / 5);
 
         //Create lanes in accordance to Frogger Map
         initLanes();
-    }
-    public void update(){
-        checkForCollision();
     }
     public void initLanes(){
         //Starting lane
@@ -40,13 +37,26 @@ public class FroggerModel {
             lanes.add(factory.createRiverLane(3, windowSizeY - squareDimension * i));
         }
         //Finish line
-        lanes.add(factory.createFinishLane(columns/2,0));
+        lanes.add(factory.createFinishLane(columns/2 + 1,0));
+    }
+    private void newFrog(){
+        player = new Frog(squareDimension * (columns/2), windowSizeY - squareDimension,
+                squareDimension, squareDimension, squareDimension);
+    }
+
+    public void update(){
+        checkForCollision();
     }
 
     private void checkForCollision() {
         Lane current = getCurrentPlayerLane();
-
+        //Skip all if player isn't found on any lane.
+        if(current == null){
+            return;
+        }
         if(current.isRiver()){
+            //If on river, then not intersecting an obstacle results in losing a life.
+            //If on river and intersecting, player attaches to obstacle.
             boolean inRiver = true;
             for (Obstacle obs: current.getObstacles()) {
                 if(player.getHitbox().intersect(obs.getHitbox())){
@@ -55,13 +65,14 @@ public class FroggerModel {
                 }
             }
             if(inRiver){
-                //TODO loseLife()
+                loseLife();
             }
         }
         else{
+            //If not on river, then intersection with obstacle results in losing a life.
             for (Obstacle obs: current.getObstacles()) {
                 if(player.getHitbox().intersect(obs.getHitbox())){
-                    //TODO loseLife()
+                    loseLife();
                 }
             }
         }
@@ -74,6 +85,18 @@ public class FroggerModel {
         }
         return null;
     }
+    public void loseLife(){
+        if(lifeCount > 0){
+            newFrog();
+            lifeCount--;
+        }
+        else{
+            gameOver();
+        }
+    }
+    public void gameOver(){
+
+    }
 
     public ArrayList<Lane> getLanes() {
         return lanes;
@@ -81,15 +104,12 @@ public class FroggerModel {
     public Frog getPlayer(){
         return player;
     }
-
     public int getSquareDimension() {
         return squareDimension;
     }
-
     public int getRows(){
         return rows;
     }
-
     public int getWindowSizeY() {
         return windowSizeY;
     }

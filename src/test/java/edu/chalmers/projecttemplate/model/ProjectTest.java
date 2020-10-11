@@ -16,6 +16,9 @@ public class ProjectTest {
         Rectangle rect3 = new Rectangle(10,10,10,10);
         Rectangle rect4 = new Rectangle(15,10,10,10);
         Assert.assertTrue(rect3.intersect(rect4));
+        Rectangle rect5 = new Rectangle(10,10,100,100);
+        Rectangle rect6 = new Rectangle(97,50,10,10);
+        Assert.assertTrue(rect5.intersect(rect6));
     }
     @Test
     public void moveFrog(){
@@ -34,12 +37,20 @@ public class ProjectTest {
         LaneFactory factory = new LaneFactory(10, 3, 10);
 
         //Roadlane
-        Lane roadLane = factory.createRoadLane(3, 1);
+        Lane roadLane = factory.createRoadLane(3, 10);
         Car car = new Car(10,10,10,10,10);
 
         Assert.assertTrue(!roadLane.isRiver());
         for (int i = 0; i < roadLane.getObstacles().size(); i++) {
             Assert.assertTrue(roadLane.getObstacles().get(i).getClass()==car.getClass());
+        }
+
+        for (int i = 0; i < roadLane.getObstacles().size(); i++) {
+            for (int j = 0; j < roadLane.getObstacles().size(); j++) {
+                if(i != j){
+                    Assert.assertFalse(roadLane.getObstacles().get(i).getHitbox().intersect(roadLane.getObstacles().get(j).getHitbox()));
+                }
+            }
         }
 
 
@@ -49,6 +60,14 @@ public class ProjectTest {
         Assert.assertTrue(riverLane.isRiver());
         for (int i = 0; i < riverLane.getObstacles().size(); i++) {
             Assert.assertTrue(riverLane.getObstacles().get(i).getClass()==log.getClass());
+        }
+
+        for (int i = 0; i < riverLane.getObstacles().size(); i++) {
+            for (int j = 0; j < riverLane.getObstacles().size(); j++) {
+                if(i != j){
+                    Assert.assertFalse(riverLane.getObstacles().get(i).getHitbox().intersect(riverLane.getObstacles().get(j).getHitbox()));
+                }
+            }
         }
 
         //Empty/safe lane
@@ -64,6 +83,13 @@ public class ProjectTest {
             Assert.assertTrue(finishLine.getObstacles().get(i).getClass()==grass.getClass());
         }
         Assert.assertTrue(!finishLine.isRiver());
+        for (int i = 0; i < finishLine.getObstacles().size(); i++) {
+            for (int j = 0; j < finishLine.getObstacles().size(); j++) {
+                if(i != j){
+                    Assert.assertFalse(finishLine.getObstacles().get(i).getHitbox().intersect(finishLine.getObstacles().get(j).getHitbox()));
+                }
+            }
+        }
     }
     @Test
     public void initFroggerModel(){
