@@ -2,18 +2,13 @@ package edu.chalmers.projecttemplate.model.breakoutmodel;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.shape.Rectangle;
 
 
-public class Paddle extends Rectangle {
-    private int dx;
-    private double x;
-    private double windowSizeX;
-    public Paddle(int x, int y, int width, int height, double gameWidth) {
+public class Paddle extends Commons {
+    private double dx;
+    public Paddle(double x, double y, double width, double height) {
         super(x, y, width, height);
         this.dx = 0;
-        this.x = x;
-        windowSizeX = gameWidth;
     }
     /*
      * The paddle moves only in the horizontal direction, so we only update the x
@@ -24,8 +19,8 @@ public class Paddle extends Rectangle {
        this.setX(x);
        if (x <=0)
            x = 0;
-       if (x >= windowSizeX - this.getWidth())
-           x = windowSizeX - this.getWidth();
+       if (x >= windowSizeX - width)
+           x = windowSizeX - width;
     }
     public void keyPressed(KeyEvent e) {
         KeyCode key = e.getCode();

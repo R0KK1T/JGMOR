@@ -33,7 +33,8 @@ public class BreakoutGameController implements Initializable {
     public BreakoutGameController() {}
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        paddle = new Paddle(420, 536, 60, 12, gameArea.getPrefWidth());
+        paddle = new Paddle(420, 538, 60, 12);
+        ball = new Ball(432, 507, 25, 25);
         breakoutViewManager = new BreakoutViewManager();
         try {
             renderTheGame();
@@ -65,14 +66,12 @@ public class BreakoutGameController implements Initializable {
     private void drawPaddle() throws IOException {
         breakoutViewManager.drawPaddle(paddle);
     }
-
     /*
-     * Render the game
+     * 4. Ball
      */
-    private void renderTheGame() throws IOException {
-        drawPaddle();
-        gameArea.getChildren().add(paddle);
-        initializeListeners();
+    //Draw ball
+    private void drawBall() throws IOException {
+        breakoutViewManager.drawBall(ball);
     }
     /*
      * Initialize listeners
@@ -80,6 +79,19 @@ public class BreakoutGameController implements Initializable {
     private void initializeListeners() {
         gamePane.setOnKeyPressed(keyEvent -> paddle.keyPressed(keyEvent));
         gamePane.setOnKeyReleased(keyEvent -> paddle.keyReleased(keyEvent));
+    }
+    /*
+     * Render the game
+     */
+    private void renderTheGame() throws IOException {
+        //Drawing and adding paddle to the game field
+        drawPaddle();
+        gameArea.getChildren().add(paddle);
+        //Drawing and adding ball to the game field
+        drawBall();
+        gameArea.getChildren().add(ball);
+        //Init game listeners
+        initializeListeners();
     }
 
     /*
@@ -90,6 +102,7 @@ public class BreakoutGameController implements Initializable {
             @Override
             public void handle(long now) {
                 paddle.move();
+                ball.move();
             }
         };
         timer.start();

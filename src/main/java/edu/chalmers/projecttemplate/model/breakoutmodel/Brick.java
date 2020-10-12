@@ -5,7 +5,6 @@ import edu.chalmers.projecttemplate.model.common.Rectangle;
 
 public class Brick extends Rectangle {
     private int point;
-    private String Color;
     private boolean isActive;
     private int hit;
 
@@ -45,8 +44,5 @@ public class Brick extends Rectangle {
         if (this.hit<=0 || this.hit>4)
             this.isActive = false;
     }
-    /*
-     * Create and return a list of break (position osv..)
-     */
 
 }
