@@ -9,21 +9,28 @@ public class FroggerModel {
     private int windowSizeX;
     private int windowSizeY;
     private int lifeCount = 7;
+    private int currentLifeCount;
 
     private Frog player;
     private LaneFactory factory;
-    private ArrayList<Lane> lanes = new ArrayList<>();
+    private ArrayList<Lane> lanes;
 
     public FroggerModel() {
         windowSizeX = squareDimension * columns;
         windowSizeY = squareDimension * rows;
-        newFrog();
         factory = new LaneFactory(squareDimension, squareDimension / 10, squareDimension / 5);
-
+        resetGame();
+    }
+    private void resetGame(){
+        //Create frog
+        newFrog();
+        //Set life count
+        currentLifeCount = lifeCount;
         //Create lanes in accordance to Frogger Map
         initLanes();
     }
-    public void initLanes(){
+    private void initLanes(){
+        lanes = new ArrayList<>();
         //Starting lane
         lanes.add(factory.createEmptyLane(windowSizeY - squareDimension));
         //All consecutive roads
@@ -47,14 +54,7 @@ public class FroggerModel {
     public void update(){
         checkForPlayerInteraction();
     }
-    public Obstacle collisionDetected(Lane current){
-        for (Obstacle obs: current.getObstacles()) {
-            if(player.getHitbox().intersect(obs.getHitbox())){
-                return obs;
-            }
-        }
-        return null;
-    }
+
     private void checkForPlayerInteraction() {
         Lane current = getCurrentPlayerLane();
         //Skip all if player isn't found on any lane.
@@ -82,6 +82,18 @@ public class FroggerModel {
             }
         }
     }
+    //Is public strictly because one test gets significantly easier to write
+    public void loseLife(){
+        currentLifeCount--;
+        if(currentLifeCount > 0){
+            newFrog();
+        }
+        else{
+            resetGame();
+        }
+    }
+
+    //Getter to check which lane player is currently on
     public Lane getCurrentPlayerLane(){
         for (int i = 0; i < getLanes().size(); i++) {
             if(player.getY() == getLanes().get(i).getY()){
@@ -90,19 +102,17 @@ public class FroggerModel {
         }
         return null;
     }
-    public void loseLife(){
-        if(lifeCount > 0){
-            newFrog();
-            lifeCount--;
+    //Getter for obstacle colliding with player
+    public Obstacle collisionDetected(Lane current){
+        for (Obstacle obs: current.getObstacles()) {
+            if(player.getHitbox().intersect(obs.getHitbox())){
+                return obs;
+            }
         }
-        else{
-            gameOver();
-        }
-    }
-    public void gameOver(){
-
+        return null;
     }
 
+    //Getters, mostly for testing purposes
     public ArrayList<Lane> getLanes() {
         return lanes;
     }
@@ -118,8 +128,8 @@ public class FroggerModel {
     public int getWindowSizeY() {
         return windowSizeY;
     }
-
     public int getLifeCount() {
         return lifeCount;
     }
+    public int getCurrentLifeCount(){ return currentLifeCount; }
 }

@@ -7,6 +7,8 @@ import edu.chalmers.projecttemplate.model.spaceInvadersModel.SpaceInvadersModel;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class ProjectTest {
     @Test
     public void intersectTest(){
@@ -159,7 +161,7 @@ public class ProjectTest {
         }
         //Run update to check if it gives the correct consequences from intersection.
         model.update();
-        Assert.assertTrue(model.getLifeCount() == 6);
+        Assert.assertTrue(model.getCurrentLifeCount() == model.getLifeCount() - 1);
         Assert.assertTrue(model.getPlayer().getX()==150 && model.getPlayer().getY()==300);
 
         //Move frog all the way to the left and up middle safe lane
@@ -174,7 +176,7 @@ public class ProjectTest {
             model.getPlayer().moveRight();
         }
         model.update();
-        Assert.assertTrue(model.getLifeCount() == 5);
+        Assert.assertTrue(model.getCurrentLifeCount() == model.getLifeCount() - 2);
         Assert.assertTrue(model.getPlayer().getX()==150 && model.getPlayer().getY()==300);
 
         //Move frog all the way to the left and up middle safe lane
@@ -192,6 +194,23 @@ public class ProjectTest {
         model.update();
         Assert.assertTrue(model.getPlayer().getRiverObs() == model.collisionDetected(model.getCurrentPlayerLane()));
     }
+    @Test
+    public void zeroLives(){
+        FroggerModel model = new FroggerModel();
+
+        model.getPlayer().moveLeft();
+        int x = model.getPlayer().getX();
+        ArrayList<Lane> lanes = model.getLanes();
+        for (int i = 0; i < model.getLifeCount()-1; i++) {
+            model.loseLife();
+        }
+        Assert.assertTrue(model.getCurrentLifeCount() == 1);
+        model.loseLife();
+        Assert.assertTrue(model.getCurrentLifeCount() == model.getLifeCount());
+        Assert.assertTrue(model.getPlayer().getX() != x);
+        Assert.assertTrue(model.getLanes() != lanes);
+    }
+
     // SPACE INVADERS TESTS
     @Test
     public void moveSpaceshipTest(){
