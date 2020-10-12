@@ -7,9 +7,12 @@ public class PongModel {
     private final int windowSizeX = 1920;
     private final int windowSizeY = 1080;
     private final int paddleVelocity = 3;
+    private final int ballVelocity = 5;
+    private int leftPlayerScore = 0;
+    private int rightPlayerScore = 0;
 
     public PongModel (){
-        pongBall = new PongBall(windowSizeX/2, windowSizeY/2, 40, 40,5);
+        pongBall = new PongBall(windowSizeX/2, windowSizeY/2, 40, 40,ballVelocity);
         pongRightPaddle = new PongPaddle(windowSizeX - 50,windowSizeY/2, 200,40, windowSizeY,0);
         pongLeftPaddle = new PongPaddle(10, windowSizeY/2, 200,40, windowSizeY, 0);
         pongAI = new PongAI(pongRightPaddle,pongBall);
@@ -48,7 +51,12 @@ public class PongModel {
     }
 
     private void ballRespawn(){
-        if((pongBall.getX() + pongBall.getWidth() < 0) || (pongBall.getX() > windowSizeX)){
+        if(pongBall.getX() + pongBall.getWidth() < 0){
+            leftPlayerScore++;
+            pongBall.resetBall();
+        }
+        if(pongBall.getX() > windowSizeX){
+            rightPlayerScore++;
             pongBall.resetBall();
         }
     }
@@ -78,5 +86,13 @@ public class PongModel {
 
     public int getPaddleVelocity() {
         return paddleVelocity;
+    }
+
+    public int getLeftPlayerScore() {
+        return leftPlayerScore;
+    }
+
+    public int getRightPlayerScore() {
+        return rightPlayerScore;
     }
 }

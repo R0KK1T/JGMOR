@@ -4,29 +4,33 @@ import java.util.ArrayList;
 
 public class FroggerModel {
     private int squareDimension = 25;
-    private int columns = 11;
+    private int columns = 13;
     private int rows = 13;
     private int windowSizeX;
     private int windowSizeY;
+    private int lifeCount = 7;
+    private int currentLifeCount;
 
     private Frog player;
     private LaneFactory factory;
-    private ArrayList<Lane> lanes = new ArrayList<>();
+    private ArrayList<Lane> lanes;
 
     public FroggerModel() {
         windowSizeX = squareDimension * columns;
         windowSizeY = squareDimension * rows;
-        player = new Frog(squareDimension * (columns/2), windowSizeY - squareDimension,
-                squareDimension, squareDimension, squareDimension);
         factory = new LaneFactory(squareDimension, squareDimension / 10, squareDimension / 5);
-
+        resetGame();
+    }
+    private void resetGame(){
+        //Create frog
+        newFrog();
+        //Set life count
+        currentLifeCount = lifeCount;
         //Create lanes in accordance to Frogger Map
         initLanes();
     }
-    public void update(){
-        checkForCollision();
-    }
-    public void initLanes(){
+    private void initLanes(){
+        lanes = new ArrayList<>();
         //Starting lane
         lanes.add(factory.createEmptyLane(windowSizeY - squareDimension));
         //All consecutive roads
@@ -40,32 +44,56 @@ public class FroggerModel {
             lanes.add(factory.createRiverLane(3, windowSizeY - squareDimension * i));
         }
         //Finish line
-        lanes.add(factory.createFinishLane(columns/2,0));
+        lanes.add(factory.createFinishLane(columns/2 + 1,0));
+    }
+    private void newFrog(){
+        player = new Frog(squareDimension * (columns/2), windowSizeY - squareDimension,
+                squareDimension, squareDimension, squareDimension);
     }
 
-    private void checkForCollision() {
-        Lane current = getCurrentPlayerLane();
+    public void update(){
+        checkForPlayerInteraction();
+    }
 
+    private void checkForPlayerInteraction() {
+        Lane current = getCurrentPlayerLane();
+        //Skip all if player isn't found on any lane.
+        if(current == null){
+            return;
+        }
+
+        Obstacle collidingObstacle = collisionDetected(current);
+        //If current lane is river
         if(current.isRiver()){
-            boolean inRiver = true;
-            for (Obstacle obs: current.getObstacles()) {
-                if(player.getHitbox().intersect(obs.getHitbox())){
-                    player.attach(obs);
-                    inRiver = false;
-                }
+            //If player is colliding with obstacle, attach.
+            //Else lose life
+            if(collidingObstacle != null){
+                player.attach(collidingObstacle);
             }
-            if(inRiver){
-                //TODO loseLife()
+            else{
+                loseLife();
             }
         }
         else{
-            for (Obstacle obs: current.getObstacles()) {
-                if(player.getHitbox().intersect(obs.getHitbox())){
-                    //TODO loseLife()
-                }
+            //Current !isRiver()
+            //If player is colliding with obstacle, lose life
+            if(collidingObstacle != null){
+                loseLife();
             }
         }
     }
+    //Is public strictly because one test gets significantly easier to write
+    public void loseLife(){
+        currentLifeCount--;
+        if(currentLifeCount > 0){
+            newFrog();
+        }
+        else{
+            resetGame();
+        }
+    }
+
+    //Getter to check which lane player is currently on
     public Lane getCurrentPlayerLane(){
         for (int i = 0; i < getLanes().size(); i++) {
             if(player.getY() == getLanes().get(i).getY()){
@@ -74,23 +102,34 @@ public class FroggerModel {
         }
         return null;
     }
+    //Getter for obstacle colliding with player
+    public Obstacle collisionDetected(Lane current){
+        for (Obstacle obs: current.getObstacles()) {
+            if(player.getHitbox().intersect(obs.getHitbox())){
+                return obs;
+            }
+        }
+        return null;
+    }
 
+    //Getters, mostly for testing purposes
     public ArrayList<Lane> getLanes() {
         return lanes;
     }
     public Frog getPlayer(){
         return player;
     }
-
     public int getSquareDimension() {
         return squareDimension;
     }
-
     public int getRows(){
         return rows;
     }
-
     public int getWindowSizeY() {
         return windowSizeY;
     }
+    public int getLifeCount() {
+        return lifeCount;
+    }
+    public int getCurrentLifeCount(){ return currentLifeCount; }
 }

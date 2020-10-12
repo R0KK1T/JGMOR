@@ -13,7 +13,7 @@ public class Rectangle {
         this.height = height;
     }
     public boolean intersect(Rectangle rect){
-        return !((this.x >= rect.getX()+rect.getWidth()) || (this.x + this.width <= rect.getWidth())
+        return !((this.x >= rect.getX()+rect.getWidth()) || (this.x + this.width <= rect.getX())
                 || (this.y >= rect.getY() + rect.getHeight()) || (this.y + this.height <= rect.getY()));
     }
 

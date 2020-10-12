@@ -33,6 +33,7 @@ public class GameScene extends Scene {
     private final Food food;
 
     private boolean inGame = false;
+    private boolean gameOver = false;
 
     private Preferences prefs;
 
@@ -104,6 +105,12 @@ public class GameScene extends Scene {
         }
     }
 
+    private boolean checkSnake() {
+        double posX = snake.getHead().getPosition().getX();
+        double posY = snake.getHead().getPosition().getY();
+        return posX >= WIDTH || posX < 0 || posY >= HEIGHT || posY < 0;
+    }
+
     private void renderGameElements(){
         snake.render(gc);
         food.render(gc);
@@ -136,6 +143,13 @@ public class GameScene extends Scene {
                 }
 
                 renderGameElements();
+                if (checkSnake()) {
+                    gameOver =true;
+                }
+                if(gameOver) {
+                    // stop the timer
+                    this.stop();
+                }
             }
         }
     }

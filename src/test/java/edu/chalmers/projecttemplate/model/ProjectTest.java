@@ -7,6 +7,8 @@ import edu.chalmers.projecttemplate.model.spaceInvadersModel.SpaceInvadersModel;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 public class ProjectTest {
     @Test
     public void intersectTest(){
@@ -16,6 +18,9 @@ public class ProjectTest {
         Rectangle rect3 = new Rectangle(10,10,10,10);
         Rectangle rect4 = new Rectangle(15,10,10,10);
         Assert.assertTrue(rect3.intersect(rect4));
+        Rectangle rect5 = new Rectangle(10,10,100,100);
+        Rectangle rect6 = new Rectangle(97,50,10,10);
+        Assert.assertTrue(rect5.intersect(rect6));
     }
     @Test
     public void moveFrog(){
@@ -34,12 +39,20 @@ public class ProjectTest {
         LaneFactory factory = new LaneFactory(10, 3, 10);
 
         //Roadlane
-        Lane roadLane = factory.createRoadLane(3, 1);
+        Lane roadLane = factory.createRoadLane(3, 10);
         Car car = new Car(10,10,10,10,10);
 
         Assert.assertTrue(!roadLane.isRiver());
         for (int i = 0; i < roadLane.getObstacles().size(); i++) {
             Assert.assertTrue(roadLane.getObstacles().get(i).getClass()==car.getClass());
+        }
+
+        for (int i = 0; i < roadLane.getObstacles().size(); i++) {
+            for (int j = 0; j < roadLane.getObstacles().size(); j++) {
+                if(i != j){
+                    Assert.assertFalse(roadLane.getObstacles().get(i).getHitbox().intersect(roadLane.getObstacles().get(j).getHitbox()));
+                }
+            }
         }
 
 
@@ -49,6 +62,14 @@ public class ProjectTest {
         Assert.assertTrue(riverLane.isRiver());
         for (int i = 0; i < riverLane.getObstacles().size(); i++) {
             Assert.assertTrue(riverLane.getObstacles().get(i).getClass()==log.getClass());
+        }
+
+        for (int i = 0; i < riverLane.getObstacles().size(); i++) {
+            for (int j = 0; j < riverLane.getObstacles().size(); j++) {
+                if(i != j){
+                    Assert.assertFalse(riverLane.getObstacles().get(i).getHitbox().intersect(riverLane.getObstacles().get(j).getHitbox()));
+                }
+            }
         }
 
         //Empty/safe lane
@@ -64,6 +85,13 @@ public class ProjectTest {
             Assert.assertTrue(finishLine.getObstacles().get(i).getClass()==grass.getClass());
         }
         Assert.assertTrue(!finishLine.isRiver());
+        for (int i = 0; i < finishLine.getObstacles().size(); i++) {
+            for (int j = 0; j < finishLine.getObstacles().size(); j++) {
+                if(i != j){
+                    Assert.assertFalse(finishLine.getObstacles().get(i).getHitbox().intersect(finishLine.getObstacles().get(j).getHitbox()));
+                }
+            }
+        }
     }
     @Test
     public void initFroggerModel(){
@@ -117,6 +145,70 @@ public class ProjectTest {
         frog.update();
 
         Assert.assertTrue(frog.getX() == obs.getX() && frog.getX() == 30);
+    }
+    @Test
+    public void collisionDetection(){
+        FroggerModel model = new FroggerModel();
+        //Move frog all the way to the left
+        for (int i = 0; i < 6; i++) {
+            model.getPlayer().moveLeft();
+        }
+        //Move frog one step up
+        model.getPlayer().moveUp();
+        //Move frog to right until it intersects with an obstacle
+        while(model.collisionDetected(model.getCurrentPlayerLane()) == null){
+            model.getPlayer().moveRight();
+        }
+        //Run update to check if it gives the correct consequences from intersection.
+        model.update();
+        Assert.assertTrue(model.getCurrentLifeCount() == model.getLifeCount() - 1);
+        Assert.assertTrue(model.getPlayer().getX()==150 && model.getPlayer().getY()==300);
+
+        //Move frog all the way to the left and up middle safe lane
+        for (int i = 0; i < 6; i++) {
+            model.getPlayer().moveLeft();
+            model.getPlayer().moveUp();
+        }
+        //One more step to enter first riverLane
+        model.getPlayer().moveUp();
+        //Move frog to right until it doesn't intersect with an obstacle
+        while(model.collisionDetected(model.getCurrentPlayerLane()) != null){
+            model.getPlayer().moveRight();
+        }
+        model.update();
+        Assert.assertTrue(model.getCurrentLifeCount() == model.getLifeCount() - 2);
+        Assert.assertTrue(model.getPlayer().getX()==150 && model.getPlayer().getY()==300);
+
+        //Move frog all the way to the left and up middle safe lane
+        for (int i = 0; i < 6; i++) {
+            model.getPlayer().moveLeft();
+            model.getPlayer().moveUp();
+        }
+        //One more step to enter first riverLane
+        model.getPlayer().moveUp();
+
+        //Move frog to right until it intersects with an obstacle
+        while(model.collisionDetected(model.getCurrentPlayerLane()) == null){
+            model.getPlayer().moveRight();
+        }
+        model.update();
+        Assert.assertTrue(model.getPlayer().getRiverObs() == model.collisionDetected(model.getCurrentPlayerLane()));
+    }
+    @Test
+    public void zeroLives(){
+        FroggerModel model = new FroggerModel();
+
+        model.getPlayer().moveLeft();
+        int x = model.getPlayer().getX();
+        ArrayList<Lane> lanes = model.getLanes();
+        for (int i = 0; i < model.getLifeCount()-1; i++) {
+            model.loseLife();
+        }
+        Assert.assertTrue(model.getCurrentLifeCount() == 1);
+        model.loseLife();
+        Assert.assertTrue(model.getCurrentLifeCount() == model.getLifeCount());
+        Assert.assertTrue(model.getPlayer().getX() != x);
+        Assert.assertTrue(model.getLanes() != lanes);
     }
 
     // SPACE INVADERS TESTS

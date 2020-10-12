@@ -42,4 +42,8 @@ public class Frog {
         }
     }
     public void attach(Obstacle obs){riverObs = obs;}
+
+    public Obstacle getRiverObs() {
+        return riverObs;
+    }
 }
