@@ -15,6 +15,8 @@ public class SpaceInvadersModel {
     private List<Barrier> barriers;
     private List<IPositionable> positionables;
 
+    private int score = 0;
+
     private int alienSize = 40;
     private int alienOffset = 20;
     private int numberOfAlienCols = 10;
@@ -63,6 +65,9 @@ public class SpaceInvadersModel {
 
         //All aliens shoot if its time for them to shoot
         aliensShoot();
+
+        //check all collisions
+        checkCollisions();
 
         //increase time since last player shoot'
         timeSinceLastPlayerShot++;
@@ -118,11 +123,6 @@ public class SpaceInvadersModel {
         }
     }
 
-    public void setPlayerDirection(int direction){
-        //set direction of the player (-1, 0, 1)(left, stay, right)
-        player.setDirection(direction);
-    }
-
     private void aliensShoot(){
 
         for (int i = 0; i < aliens.size(); i++) {
@@ -135,12 +135,67 @@ public class SpaceInvadersModel {
             }
         }
     }
+    
+    private void checkCollisions(){
+        for (Projectile projectile: projectiles) {
+            //enemy projectiles
+            if (projectile.getDirection() == 1){
+                //checks collisions with the player
+                if (projectile.getHitbox().intersect(player.getHitbox())){
+                    //TODO kill player
+                    projectiles.remove(projectile);
+                    System.out.println("player died");
+                    continue;
+                }
+                //checks collisions with barriers
+                for (Barrier barrier: barriers) {
+                    if (projectile.getHitbox().intersect(barrier.getHitbox())){
+                        damageBarrier(barrier);
+                        projectiles.remove(projectile);
+                        break;
+                    }
+                }
+            }
+            //player projectiles
+            else if (projectile.getDirection() == -1){
+                for (Barrier barrier: barriers) {
+                    if (projectile.getHitbox().intersect(barrier.getHitbox())){
+                        projectiles.remove(projectile);
+                        break;
+                    }
+                }
+                for (Alien alien: aliens) {
+                    if (projectile.getHitbox().intersect(alien.getHitbox())){
+                        projectiles.remove(projectile);
+                        aliens.remove(alien);
+                        score += 100;
+                        System.out.println("Score is now: " + score);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    private void damageBarrier(Barrier barrier){
+        if (barrier.getHealth() <= 0){
+            barriers.remove(barrier);
+        }
+        else {
+            barrier.decreaseHealth();
+        }
+    }
 
     public void playerShoot(){
         if (timeSinceLastPlayerShot >= timeBetweenPlayerShots){
             projectiles.add(new Projectile(player.getXpos(), player.getYpos(), -1));
             timeSinceLastPlayerShot = 0;
         }
+    }
+
+    public void setPlayerDirection(int direction){
+        //set direction of the player (-1, 0, 1)(left, stay, right)
+        player.setDirection(direction);
     }
 
     public int getWindowSizeX() {
@@ -151,12 +206,6 @@ public class SpaceInvadersModel {
     public int getWindowSizeY() {
         //return size y of playing field
         return windowSizeY;
-    }
-
-    //TODO remove get player because it's redundant code
-    public MovableObject getPlayer(){
-        //return the player
-        return player;
     }
 
     public List<IPositionable> getPositionables(){

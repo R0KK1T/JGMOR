@@ -2,12 +2,12 @@ package edu.chalmers.projecttemplate.model.spaceInvadersModel;
 
 import edu.chalmers.projecttemplate.model.common.Rectangle;
 
-public class Barrier implements IPositionable{
+class Barrier implements IPositionable{
     private int health;
     private Rectangle hitbox;
     private String type;
 
-    public Barrier(int xPos, int yPos, int width, int height) {
+    protected Barrier(int xPos, int yPos, int width, int height) {
         health = 10;
         type = "Barrier";
         hitbox = new Rectangle(xPos, yPos, width, height);
@@ -31,6 +31,18 @@ public class Barrier implements IPositionable{
 
     public String getType() {
         return type;
+    }
+
+    public Rectangle getHitbox() {
+        return hitbox;
+    }
+
+    public int getHealth(){
+        return health;
+    }
+
+    public void decreaseHealth(){
+        health--;
     }
 
 

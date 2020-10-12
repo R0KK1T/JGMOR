@@ -1,9 +1,9 @@
 package edu.chalmers.projecttemplate.model.spaceInvadersModel;
 
-public class Spaceship extends MovableObject{
+class Spaceship extends MovableObject{
 
 
-    public Spaceship(int xPos, int yPos, int width, int height, int speed) {
+    protected Spaceship(int xPos, int yPos, int width, int height, int speed) {
         super(xPos, yPos, width, height, speed, "Spaceship");
     }
 

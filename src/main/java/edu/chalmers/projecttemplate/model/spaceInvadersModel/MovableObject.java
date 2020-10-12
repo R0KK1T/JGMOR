@@ -9,7 +9,7 @@ public abstract class MovableObject implements IPositionable{
     private int direction;
     private int speed;
 
-    public MovableObject(int xPos, int yPos, int width, int height, int speed, String type) {
+    protected MovableObject(int xPos, int yPos, int width, int height, int speed, String type) {
         this.speed = speed;
         hitbox = new Rectangle(xPos, yPos, width, height);
         this.type = type;
@@ -35,6 +35,10 @@ public abstract class MovableObject implements IPositionable{
 
     public String getType() {
         return type;
+    }
+
+    public Rectangle getHitbox(){
+        return hitbox;
     }
 
     public int getSpeed(){

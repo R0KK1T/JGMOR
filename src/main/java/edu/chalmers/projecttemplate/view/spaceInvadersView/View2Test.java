@@ -21,7 +21,7 @@ public class View2Test extends Application {
 
 
         Label label1 = new Label("Welcome to the first scene");
-        Button button1 = new Button("Go to scene 2");
+        Button button1 = new Button("Go to game (other scene)");
         button1.setOnAction(e -> changeScene());
 
         //layout 1 - children are laid out in a vertical column
