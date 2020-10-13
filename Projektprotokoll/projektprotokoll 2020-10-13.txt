@@ -29,6 +29,8 @@ Gemensam kod.
 En körbar view kopplad med controller och model för ens spel.
 Nästa möte ska vi sätta ihop så att spelen kan startas från mainapplikationen.
 
+SKRIVA TESTER.
+
 ## Wrap up
 Nästa möte: 2020-10-16
 Nästa handledarmöte: 2020-10-15
