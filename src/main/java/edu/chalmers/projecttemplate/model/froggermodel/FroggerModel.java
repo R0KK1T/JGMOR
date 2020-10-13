@@ -132,6 +132,10 @@ public class FroggerModel {
         return rows;
     }
 
+    public int getColumns() {
+        return columns;
+    }
+
     public int getWindowSizeX() {
         return windowSizeX;
     }

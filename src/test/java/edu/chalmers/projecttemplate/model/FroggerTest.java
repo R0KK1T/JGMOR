@@ -160,7 +160,7 @@ public class FroggerTest {
         //Run update to check if it gives the correct consequences from intersection.
         model.update();
         Assert.assertTrue(model.getCurrentLifeCount() == model.getLifeCount() - 1);
-        Assert.assertTrue(model.getPlayer().getX()==150 && model.getPlayer().getY()==300);
+        Assert.assertTrue(model.getPlayer().getX()==(model.getSquareDimension()*(model.getColumns()/2)) && model.getPlayer().getY()==model.getWindowSizeY()-model.getSquareDimension());
 
         //Move frog all the way to the left and up middle safe lane
         for (int i = 0; i < 6; i++) {
@@ -175,7 +175,7 @@ public class FroggerTest {
         }
         model.update();
         Assert.assertTrue(model.getCurrentLifeCount() == model.getLifeCount() - 2);
-        Assert.assertTrue(model.getPlayer().getX()==150 && model.getPlayer().getY()==300);
+        Assert.assertTrue(model.getPlayer().getX()==(model.getSquareDimension()*(model.getColumns()/2)) && model.getPlayer().getY()==model.getWindowSizeY()-model.getSquareDimension());
 
         //Move frog all the way to the left and up middle safe lane
         for (int i = 0; i < 6; i++) {
