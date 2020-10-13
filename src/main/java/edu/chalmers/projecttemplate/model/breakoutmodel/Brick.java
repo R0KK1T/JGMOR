@@ -1,14 +1,13 @@
 package edu.chalmers.projecttemplate.model.breakoutmodel;
-
-
-import edu.chalmers.projecttemplate.model.common.Rectangle;
-
-public class Brick extends Rectangle {
+/*
+ * Model for Breakout brick - Represent the number of bricks in the game.
+ */
+public class Brick extends Commons {
     private int point;
     private boolean isActive;
     private int hit;
 
-    public Brick(int x, int y, int width, int height, int point) {
+    public Brick(double x, double y, double width, double height, int point) {
         super(x, y, width, height);
         this.point = point;
         this.hit = point;

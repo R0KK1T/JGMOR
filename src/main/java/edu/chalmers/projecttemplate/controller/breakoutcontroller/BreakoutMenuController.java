@@ -5,17 +5,23 @@ import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
-
+/*
+ * Controller for breakout game menu
+ */
 public class BreakoutMenuController implements Initializable {
     @FXML public Button btnPlay;
     @FXML public Button btnScores;
@@ -27,9 +33,10 @@ public class BreakoutMenuController implements Initializable {
     @FXML public Button btnStart;
     @FXML public AnchorPane mainPane;
 
-    AnchorPane paneTohide;
-    public BreakoutGameView newGame;
+    private AnchorPane paneTohide;
+    private BreakoutGameView newGame;
     private boolean isHidden;
+    private List<Button> buttonList;
     //constructor
     public BreakoutMenuController() {
         isHidden=true;
@@ -42,6 +49,9 @@ public class BreakoutMenuController implements Initializable {
             controlHelp();
             controlScore();
             controlExit();
+            buttonList = new ArrayList<>();
+            addButtonToList();
+            initializeListeners();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -81,7 +91,7 @@ public class BreakoutMenuController implements Initializable {
 
     }
 
-    // 5. Button start **breakoutButtonModel.setButtonFreeStyle(btnStart)**;
+    // 5. Button start
     public void btnStartControl(ActionEvent actionEvent) throws IOException {
         Scene gameScene = newGame.getGameScene();
         Stage gameStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
@@ -89,6 +99,9 @@ public class BreakoutMenuController implements Initializable {
         gameStage.setScene(gameScene);
         gameStage.show();
     }
+    /*
+     * Subpane : play - scores - help
+     */
     private void showSubPane(AnchorPane thePane) {
         if (paneTohide != null) {
             moveSubPaneRightToLeft(paneTohide);
@@ -96,7 +109,7 @@ public class BreakoutMenuController implements Initializable {
         moveSubPaneRightToLeft(thePane);
         paneTohide = thePane;
     }
-    public void moveSubPaneRightToLeft(AnchorPane thePane) {
+    private void moveSubPaneRightToLeft(AnchorPane thePane) {
         TranslateTransition transition = new TranslateTransition();
         transition.setDuration(Duration.seconds(0.3));
         transition.setNode(thePane);
@@ -109,10 +122,25 @@ public class BreakoutMenuController implements Initializable {
         }
         transition.play();
     }
-
     /*
-     * Göra newGame variabel global inom package så att jag kan accessa den från BreakoutGameController
-     * och renderar brickListan, ball, paddle som är målat med gc - canvas
+     * Initialize listeners
      */
-
+    private void addButtonToList() {
+        for (int i=0; i<5; i++) {
+            buttonList.add(btnPlay);
+            buttonList.add(btnScores);
+            buttonList.add(btnHelp);
+            buttonList.add(btnExit);
+            buttonList.add(btnStart);
+        }
+    }
+    private void initializeListeners() {
+        //Buttons
+        for (int i=0; i<5; i++) {
+            int finalI = i;
+            buttonList.get(i).setOnMouseEntered(mouseEvent -> buttonList.get(finalI).setEffect(new Glow()));
+            buttonList.get(i).setOnMouseExited(mouseEvent -> buttonList.get(finalI).setEffect(null));
+            buttonList.get(i).setCursor((Cursor.HAND));
+        }
+    }
 }

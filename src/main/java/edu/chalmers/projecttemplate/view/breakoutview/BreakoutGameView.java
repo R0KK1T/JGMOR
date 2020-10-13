@@ -2,14 +2,14 @@ package edu.chalmers.projecttemplate.view.breakoutview;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
+/*
+ * View for breakout Game
+ */
 public class BreakoutGameView {
     private AnchorPane gamePane;
     private Scene gameScene;
@@ -31,12 +31,5 @@ public class BreakoutGameView {
         paddleImage = new Image(new FileInputStream("src/main/resources/breakoutresources/images/paddle.png"));
     }
     public Scene getGameScene() {return gameScene;}
-
-    /*
-     * Draw game paddle, ball, and brick
-     */
-    public void drawPaddle(GraphicsContext gc, int posX, int posY, int width, int height) {
-        gc.drawImage(paddleImage, posX, posY, width, height);
-    }
 
 }

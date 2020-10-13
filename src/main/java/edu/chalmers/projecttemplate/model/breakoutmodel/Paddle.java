@@ -1,9 +1,7 @@
 package edu.chalmers.projecttemplate.model.breakoutmodel;
-
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-
-
+/*
+ * Model for Breakout paddle - The paddle is controlled with left and right arrow keys.
+ */
 public class Paddle extends Commons {
     private double dx;
     public Paddle(double x, double y, double width, double height) {
@@ -22,25 +20,7 @@ public class Paddle extends Commons {
        if (x >= windowSizeX - width)
            x = windowSizeX - width;
     }
-    public void keyPressed(KeyEvent e) {
-        KeyCode key = e.getCode();
-        if (key.equals(KeyCode.LEFT)) {
-            dx = -1;
-            //System.out.println("Left pressed");
-        }
-        if (key.equals(KeyCode.RIGHT)) {
-            dx = 1;
-            //System.out.println("Right pressed");
-        }
-    }
-    public void keyReleased(KeyEvent e) {
-        KeyCode key = e.getCode();
-        if (key.equals(KeyCode.LEFT)) {
-            dx = 0;
-        }
-        if (key.equals(KeyCode.RIGHT)) {
-            dx = 0;
-        }
-    }
+    public void setDx(double x) { this.dx = x; }
+    public double getDx() { return dx; }
 
 }

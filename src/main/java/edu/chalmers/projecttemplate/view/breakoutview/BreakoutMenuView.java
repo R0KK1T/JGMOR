@@ -5,7 +5,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.IOException;
-
+/*
+ * View for Breakout menu
+ */
 public class BreakoutMenuView {
     private AnchorPane mainPane;
     private Scene mainScene;

@@ -15,7 +15,7 @@
          <font>
             <Font size="8.0" />
          </font></Button>
-      <AnchorPane fx:id="gameArea" prefHeight="550.0" prefWidth="900.0" style="-fx-border-color: green;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0" />
+      <AnchorPane fx:id="gameArea" prefHeight="550.0" prefWidth="900.0" style="-fx-border-color: green; -fx-background-color: black;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0" />
       <Label layoutX="577.0" layoutY="21.0" prefHeight="57.0" prefWidth="80.0" text="SCORE:" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="20.0">
          <font>
             <Font size="18.0" />

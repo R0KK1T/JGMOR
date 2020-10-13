@@ -1,5 +1,8 @@
 package edu.chalmers.projecttemplate.model.breakoutmodel;
-
+/*
+ * Model for Breakout ball - The class has a move() method that moves the ball on the Board.
+ * If the ball hits the borders, the directions are changed accordingly.
+ */
 public class Ball extends Commons{
     private double dx;
     private double dy;
@@ -7,9 +10,9 @@ public class Ball extends Commons{
 
     public Ball(double x, double y, double width, double height) {
         super(x, y, width, height);
-        dx = 1;
-        dy = 1;
-        dt = 1;
+        dx = 0.1;
+        dy = 0.1;
+        dt = 5;
     }
     /*
      * The ball bounces off the wall according to low of elastic collision
