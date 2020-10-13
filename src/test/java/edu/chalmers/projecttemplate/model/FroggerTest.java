@@ -2,14 +2,12 @@ package edu.chalmers.projecttemplate.model;
 
 import edu.chalmers.projecttemplate.model.froggermodel.*;
 import edu.chalmers.projecttemplate.model.common.Rectangle;
-import edu.chalmers.projecttemplate.model.spaceInvadersModel.MovableObject;
-import edu.chalmers.projecttemplate.model.spaceInvadersModel.SpaceInvadersModel;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class ProjectTest {
+public class FroggerTest {
     @Test
     public void intersectTest(){
         Rectangle rect1 = new Rectangle(10,10,10,10);

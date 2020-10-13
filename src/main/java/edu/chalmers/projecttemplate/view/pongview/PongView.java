@@ -1,26 +1,13 @@
 package edu.chalmers.projecttemplate.view.pongview;
 
-import edu.chalmers.projecttemplate.view.ProjectView;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 public class PongView {
     Image backgroundImg;

@@ -1,4 +1,4 @@
-package edu.chalmers.projecttemplate;
+package edu.chalmers.projecttemplate.application;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,10 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.Enumeration;
-import java.util.ResourceBundle;
-
-public class ProjectTemplate extends Application {
+public class MainApplication extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
