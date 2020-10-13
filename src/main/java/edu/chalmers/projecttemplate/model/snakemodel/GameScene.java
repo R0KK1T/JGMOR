@@ -11,8 +11,13 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.control.Label;
+import javafx.scene.text.Font;
+import javafx.animation.ScaleTransition;
+import javafx.util.Duration;
 
 import java.util.prefs.Preferences;
 
@@ -33,6 +38,7 @@ public class GameScene extends Scene {
     private final Food food;
 
     private boolean inGame = false;
+    private boolean paused = false;
     private boolean gameOver = false;
 
     private Preferences prefs;
@@ -41,6 +47,8 @@ public class GameScene extends Scene {
     private final String DOWN = "DOWN";
     private final String RIGHT = "RIGHT";
     private final String LEFT = "LEFT";
+
+    private Label pauseLabel;
 
     private MyHandlerForArrows myHandlerForArrows = new MyHandlerForArrows();
     private MyHandlerForEsc myHandlerForEsc = new MyHandlerForEsc();
@@ -67,6 +75,7 @@ public class GameScene extends Scene {
         addEventHandler(KeyEvent.KEY_PRESSED, myHandlerForEsc);
 
         initScreen();
+        initLabels();
 
     }
 
@@ -76,12 +85,27 @@ public class GameScene extends Scene {
 
     public Snake getSnake() { return snake;}
 
+    private void initLabels() {
+        pauseLabel = new Label("Paused!");
+        pauseLabel.setLayoutX(WIDTH/2f - 25);
+        pauseLabel.setLayoutY(HEIGHT/2f);
+        pauseLabel.getStylesheets().add(getClass().getClassLoader().getResource("snakeresources/styles/overallStyle.css").toString());
+        pauseLabel.setFont(new Font("Tahoma", 18));
+        ScaleTransition scaleTransition = new ScaleTransition();
+        scaleTransition.setDuration(Duration.seconds(1));
+        scaleTransition.setNode(pauseLabel);
+        scaleTransition.setByY(1.5);
+        scaleTransition.setByX(1.5);
+        scaleTransition.setCycleCount(-1);
+        scaleTransition.setAutoReverse(true);
+        scaleTransition.play();
+    }
+
     private void initScreen() {
         renderBackground();
         initSnake();
         food.setRandomPosition(WIDTH, HEIGHT);
         renderGameElements();
-
     }
 
     private void renderBackground() {
@@ -158,6 +182,18 @@ public class GameScene extends Scene {
         @Override
         public void handle(KeyEvent event) {
             KeyCode kc = event.getCode();
+            // Pause playing
+            if (kc == KeyCode.ESCAPE && inGame) {
+                if (paused) {
+                    timer.start();
+                    ((AnchorPane) getRoot()).getChildren().remove(pauseLabel);
+                } else {
+                    timer.stop();
+                    ((AnchorPane) getRoot()).getChildren().add(pauseLabel);
+                }
+                paused = !paused;
+
+            }
         }
     }
 

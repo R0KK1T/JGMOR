@@ -2,12 +2,12 @@ package edu.chalmers.projecttemplate.model.spaceInvadersModel;
 
 import java.util.Random;
 
-public class Alien extends MovableObject{
+class Alien extends MovableObject{
     private int timeBetweenShots;
     private int timeSinceLastShot = 0;
     Random rng = new Random();
 
-    public Alien(int xPos, int yPos, int size, int speed) {
+    protected Alien(int xPos, int yPos, int size, int speed) {
         super(xPos, yPos, size, size, speed, "Alien");
         setDirection(1);
         timeBetweenShots = rng.nextInt(3000 - 500 + 1) + 500;
@@ -35,6 +35,7 @@ public class Alien extends MovableObject{
 
     public void resetTimeScinceLastShot(){
         timeSinceLastShot = 0;
+        //TODO change time between shots after every shoot
     }
 
     public void incTimeScinceLastShot(){

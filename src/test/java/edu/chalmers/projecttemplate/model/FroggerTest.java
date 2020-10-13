@@ -2,14 +2,12 @@ package edu.chalmers.projecttemplate.model;
 
 import edu.chalmers.projecttemplate.model.froggermodel.*;
 import edu.chalmers.projecttemplate.model.common.Rectangle;
-import edu.chalmers.projecttemplate.model.spaceInvadersModel.MovableObject;
-import edu.chalmers.projecttemplate.model.spaceInvadersModel.SpaceInvadersModel;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
-public class ProjectTest {
+public class FroggerTest {
     @Test
     public void intersectTest(){
         Rectangle rect1 = new Rectangle(10,10,10,10);
@@ -209,31 +207,5 @@ public class ProjectTest {
         Assert.assertTrue(model.getCurrentLifeCount() == model.getLifeCount());
         Assert.assertTrue(model.getPlayer().getX() != x);
         Assert.assertTrue(model.getLanes() != lanes);
-    }
-
-    // SPACE INVADERS TESTS
-    @Test
-    public void moveSpaceshipTest(){
-        SpaceInvadersModel model = new SpaceInvadersModel();
-        MovableObject player = model.getPlayer();
-
-        //test for moving right (direction 1)
-        int newpos1 = player.getXpos() + player.getSpeed();
-        model.setPlayerDirection(1);
-        model.update();
-        Assert.assertTrue(player.getXpos() == newpos1);
-
-        //test for moving left (direction -1)
-        int newpos2 = player.getXpos() - player.getSpeed();
-        model.setPlayerDirection(-1);
-        model.update();
-        Assert.assertTrue(player.getXpos() == newpos2);
-
-        //test for standing still (direction 0)
-        int newpos3 = player.getXpos();
-        model.setPlayerDirection(0);
-        model.update();
-        Assert.assertTrue(player.getXpos() == newpos3);
-
     }
 }

@@ -3,7 +3,7 @@ package edu.chalmers.projecttemplate.model.froggermodel;
 import java.util.ArrayList;
 
 public class FroggerModel {
-    private int squareDimension = 25;
+    private int squareDimension = 50;
     private int columns = 13;
     private int rows = 13;
     private int windowSizeX;
@@ -52,7 +52,13 @@ public class FroggerModel {
     }
 
     public void update(){
+        for (Lane lane: lanes) {
+            for (Obstacle obs: lane.getObstacles()) {
+                obs.move();
+            }
+        }
         checkForPlayerInteraction();
+
     }
 
     private void checkForPlayerInteraction() {
@@ -125,6 +131,11 @@ public class FroggerModel {
     public int getRows(){
         return rows;
     }
+
+    public int getWindowSizeX() {
+        return windowSizeX;
+    }
+
     public int getWindowSizeY() {
         return windowSizeY;
     }

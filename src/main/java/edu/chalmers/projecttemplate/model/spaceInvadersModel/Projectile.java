@@ -1,8 +1,8 @@
 package edu.chalmers.projecttemplate.model.spaceInvadersModel;
 
-public class Projectile extends MovableObject {
+class Projectile extends MovableObject {
 
-    public Projectile(int xPos, int yPos,int direction) {
+    protected Projectile(int xPos, int yPos,int direction) {
         super(xPos, yPos, 10, 20, 2, "Projectile");
         setDirection(direction);
     }

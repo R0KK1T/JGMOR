@@ -1,6 +1,6 @@
-package edu.chalmers.projecttemplate.view.spaceInvadersView;
+package edu.chalmers.projecttemplate.view.froggerview;
 
-import edu.chalmers.projecttemplate.controller.spaceInvadersController.SpaceInvadersController;
+import edu.chalmers.projecttemplate.controller.froggercontroller.FroggerController;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -8,15 +8,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class View2Test extends Application {
+public class TestViewFrogger extends Application {
 
     private static Stage stage;
     Scene scene1;
-    SpaceInvadersController SIController;
+    FroggerController froggerController;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        SIController = new SpaceInvadersController();
+        froggerController = new FroggerController();
         stage = primaryStage;
 
 
@@ -42,8 +42,8 @@ public class View2Test extends Application {
     private void changeScene(){
         stage.setX(500);
         stage.setY(50);
-        stage.setScene(SIController.getScene());
-        SIController.startGame();
+        stage.setScene(froggerController.getScene());
+        froggerController.startGame();
     }
-}
 
+}
