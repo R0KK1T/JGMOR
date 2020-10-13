@@ -1,0 +1,34 @@
+# Meeting Agenda
+
+Group: JGMOR
+Date: 2020-10-13
+Chair: Georges Kayembe
+Participants: Jonathan Stigson, Mhd Jamal Basal, Robert Sahlqvist, Oliver Ljung, Georges Kayembe
+
+
+## Objectives (5 min) 
+
+
+
+## Reports (15 min) from previous meeting
+Georges: Flyttat view och controller grejer från model. Rörelse för breakout
+Oliver: Klar med Space Invaders till stort sett.
+Robert: I princip klar, inget poängsystem (visuellt), inga controls för player 2.
+Jamal: I princip klar, inga tester och några småsaker kvar.
+Jonathan: All funktionalitet förutom ny level med ökad svårighetsgrad. Inget visuellt men skrivit tester för allt.
+
+## Discussion items (35 min)
+
+Peer review. 
+Rensade upp mvc-arkitektur.
+Refaktorisering av namn.
+Gemensam kod.
+
+## Outcomes and assignments (5 min)
+
+En körbar view kopplad med controller och model för ens spel.
+Nästa möte ska vi sätta ihop så att spelen kan startas från mainapplikationen.
+
+## Wrap up
+Nästa möte: 2020-10-16
+Nästa handledarmöte: 2020-10-15
