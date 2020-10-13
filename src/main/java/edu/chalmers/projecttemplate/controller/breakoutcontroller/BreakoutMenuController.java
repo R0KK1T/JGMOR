@@ -1,21 +1,27 @@
 package edu.chalmers.projecttemplate.controller.breakoutcontroller;
 
-import edu.chalmers.projecttemplate.model.breakoutmodel.BreakoutConfig;
-import edu.chalmers.projecttemplate.model.breakoutmodel.BreakoutMenuModel;
 import edu.chalmers.projecttemplate.view.breakoutview.BreakoutGameView;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
-
+/*
+ * Controller for breakout game menu
+ */
 public class BreakoutMenuController implements Initializable {
     @FXML public Button btnPlay;
     @FXML public Button btnScores;
@@ -27,20 +33,25 @@ public class BreakoutMenuController implements Initializable {
     @FXML public Button btnStart;
     @FXML public AnchorPane mainPane;
 
-    AnchorPane paneTohide;
-    BreakoutMenuModel menuModel;
-    BreakoutConfig breakoutConfig;
+    private AnchorPane paneTohide;
+    private BreakoutGameView newGame;
+    private boolean isHidden;
+    private List<Button> buttonList;
     //constructor
-    public BreakoutMenuController() {}
+    public BreakoutMenuController() {
+        isHidden=true;
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            menuModel = new BreakoutMenuModel(mainPane, subPanePlay, subPaneScores, subPaneHelp, btnPlay, btnScores, btnHelp, btnExit);
-            breakoutConfig = new BreakoutConfig();
+            newGame = new BreakoutGameView();
             controlPlay();
             controlHelp();
             controlScore();
             controlExit();
+            buttonList = new ArrayList<>();
+            addButtonToList();
+            initializeListeners();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -80,20 +91,56 @@ public class BreakoutMenuController implements Initializable {
 
     }
 
-    // 5. Button start **breakoutButtonModel.setButtonFreeStyle(btnStart)**;
+    // 5. Button start
     public void btnStartControl(ActionEvent actionEvent) throws IOException {
-        BreakoutGameView newGame = new BreakoutGameView();
         Scene gameScene = newGame.getGameScene();
         Stage gameStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        gameStage.setTitle("Breakout Game");
         gameStage.setScene(gameScene);
         gameStage.show();
     }
+    /*
+     * Subpane : play - scores - help
+     */
     private void showSubPane(AnchorPane thePane) {
         if (paneTohide != null) {
-            breakoutConfig.moveSubPaneRightToLeft(paneTohide);
+            moveSubPaneRightToLeft(paneTohide);
         }
-        breakoutConfig.moveSubPaneRightToLeft(thePane);
+        moveSubPaneRightToLeft(thePane);
         paneTohide = thePane;
     }
-
+    private void moveSubPaneRightToLeft(AnchorPane thePane) {
+        TranslateTransition transition = new TranslateTransition();
+        transition.setDuration(Duration.seconds(0.3));
+        transition.setNode(thePane);
+        if (isHidden) {
+            transition.setToX(-625);
+            isHidden = false;
+        } else {
+            transition.setToX(0);
+            isHidden = true;
+        }
+        transition.play();
+    }
+    /*
+     * Initialize listeners
+     */
+    private void addButtonToList() {
+        for (int i=0; i<5; i++) {
+            buttonList.add(btnPlay);
+            buttonList.add(btnScores);
+            buttonList.add(btnHelp);
+            buttonList.add(btnExit);
+            buttonList.add(btnStart);
+        }
+    }
+    private void initializeListeners() {
+        //Buttons
+        for (int i=0; i<5; i++) {
+            int finalI = i;
+            buttonList.get(i).setOnMouseEntered(mouseEvent -> buttonList.get(finalI).setEffect(new Glow()));
+            buttonList.get(i).setOnMouseExited(mouseEvent -> buttonList.get(finalI).setEffect(null));
+            buttonList.get(i).setCursor((Cursor.HAND));
+        }
+    }
 }

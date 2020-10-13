@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 public class BreakoutView extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        BreakoutViewManager breakoutViewManager = new BreakoutViewManager();
+        BreakoutMenuView breakoutViewManager = new BreakoutMenuView();
         primaryStage = breakoutViewManager.getMainStage();
         primaryStage.setResizable(false);
         primaryStage.show();
