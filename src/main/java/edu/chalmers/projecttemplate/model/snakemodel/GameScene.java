@@ -3,6 +3,7 @@ package edu.chalmers.projecttemplate.model.snakemodel;
 import com.sun.javafx.scene.traversal.Direction;
 import edu.chalmers.projecttemplate.controller.snakecontroller.SettingsViewController;
 import javafx.animation.AnimationTimer;
+import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
@@ -50,6 +51,7 @@ public class GameScene extends Scene {
     private final String LEFT = "LEFT";
 
     private Label pauseLabel;
+    private Label gameOverLabel;
 
     private MyHandlerForArrows myHandlerForArrows = new MyHandlerForArrows();
     private MyHandlerForEsc myHandlerForEsc = new MyHandlerForEsc();
@@ -92,6 +94,7 @@ public class GameScene extends Scene {
         pauseLabel.setLayoutY(HEIGHT/2f);
         pauseLabel.getStylesheets().add(getClass().getClassLoader().getResource("snakeresources/styles/overallStyle.css").toString());
         pauseLabel.setFont(new Font("Tahoma", 18));
+        // Add movement to label
         ScaleTransition scaleTransition = new ScaleTransition();
         scaleTransition.setDuration(Duration.seconds(1));
         scaleTransition.setNode(pauseLabel);
@@ -100,6 +103,19 @@ public class GameScene extends Scene {
         scaleTransition.setCycleCount(-1);
         scaleTransition.setAutoReverse(true);
         scaleTransition.play();
+
+        gameOverLabel = new Label("Game Over!");
+        gameOverLabel.setLayoutX(WIDTH/2f - 75);
+        gameOverLabel.setLayoutY(HEIGHT/2f - 40);
+        gameOverLabel.getStylesheets().add(getClass().getClassLoader().getResource("snakeresources/styles/overallStyle.css").toString());
+        // Add movement to label
+        TranslateTransition translateTransition = new TranslateTransition();
+        translateTransition.setDuration(Duration.seconds(0.8));
+        translateTransition.setNode(gameOverLabel);
+        translateTransition.setByY(80);
+        translateTransition.setCycleCount(-1);
+        translateTransition.setAutoReverse(true);
+        translateTransition.play();
     }
 
     private void initScreen() {
@@ -142,6 +158,10 @@ public class GameScene extends Scene {
         snake.render(gc);
     }
 
+    private void renderGameOverMsg() {
+        boolean add = ((AnchorPane) getRoot()).getChildren().add(gameOverLabel);
+    }
+
     private class myTimer extends AnimationTimer {
         private long lastUpdate = 0;
 
@@ -174,6 +194,7 @@ public class GameScene extends Scene {
                 if(gameOver) {
                     // stop the timer
                     this.stop();
+                    renderGameOverMsg();
                 }
             }
         }
