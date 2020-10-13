@@ -28,6 +28,7 @@ public class Snake implements Renderable {
     public MovingGameObject getNeck() {
         return body.get(1);
     }
+    public MovingGameObject getBody(int index) {return body.get(index);}
 
     public int getLength() {
         return body.size();
@@ -75,6 +76,15 @@ public class Snake implements Renderable {
     boolean intersect(GameObject other) {
         for (int i = 0; i < getLength(); i++) {
             if (other.intersect(body.get(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean collide() {
+        for (int i = 1; i < getLength(); i++) {
+            if (getHead().getPosition().equals(getBody(i).getPosition())) {
                 return true;
             }
         }

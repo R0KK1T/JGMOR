@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;
+
 import javafx.animation.ScaleTransition;
 import javafx.util.Duration;
 
@@ -167,7 +168,7 @@ public class GameScene extends Scene {
                 }
 
                 renderGameElements();
-                if (checkSnake()) {
+                if (snake.collide() || checkSnake()) {
                     gameOver =true;
                 }
                 if(gameOver) {
