@@ -38,11 +38,10 @@ public class FroggerTest {
 
         //Roadlane
         Lane roadLane = factory.createRoadLane(3, 10);
-        Car car = new Car(10,10,10,10,10);
 
         Assert.assertTrue(!roadLane.isRiver());
         for (int i = 0; i < roadLane.getObstacles().size(); i++) {
-            Assert.assertTrue(roadLane.getObstacles().get(i).getClass()==car.getClass());
+            Assert.assertTrue(roadLane.getObstacles().get(i).getVelocity()!=0);
         }
 
         for (int i = 0; i < roadLane.getObstacles().size(); i++) {
@@ -56,10 +55,9 @@ public class FroggerTest {
 
         //Riverlane
         Lane riverLane = factory.createRiverLane(3, 150);
-        Log log = new Log(10, 10, 10, 10, 10);
         Assert.assertTrue(riverLane.isRiver());
         for (int i = 0; i < riverLane.getObstacles().size(); i++) {
-            Assert.assertTrue(riverLane.getObstacles().get(i).getClass()==log.getClass());
+            Assert.assertTrue(riverLane.getObstacles().get(i).getWidth()==30);
         }
 
         for (int i = 0; i < riverLane.getObstacles().size(); i++) {
@@ -77,10 +75,9 @@ public class FroggerTest {
 
         //Finish line
         Lane finishLine = factory.createFinishLane(4,450);
-        Grass grass = new Grass(10, 10, 10,10,10);
         Assert.assertTrue(finishLine.getObstacles().size() == 4);
         for (int i = 0; i < finishLine.getObstacles().size(); i++) {
-            Assert.assertTrue(finishLine.getObstacles().get(i).getClass()==grass.getClass());
+            Assert.assertTrue(finishLine.getObstacles().get(i).getVelocity() == 0);
         }
         Assert.assertTrue(!finishLine.isRiver());
         for (int i = 0; i < finishLine.getObstacles().size(); i++) {
@@ -94,7 +91,6 @@ public class FroggerTest {
     @Test
     public void initFroggerModel(){
         FroggerModel game = new FroggerModel();
-        Car car = new Car(10,10,10,10,10);
         int amountOfRoads = 0;
         int amountOfRivers = 0;
         int amountOfEmpty = 0;
@@ -109,7 +105,7 @@ public class FroggerTest {
             else if(game.getLanes().get(i).getObstacles().size() == 0){
                 amountOfEmpty++;
             }
-            else if(game.getLanes().get(i).getObstacles().get(0).getClass() == car.getClass()){
+            else if(game.getLanes().get(i).getObstacles().get(0).getVelocity() != 0){
                 amountOfRoads++;
             }
             else{
@@ -136,7 +132,7 @@ public class FroggerTest {
     @Test
     public void frogAttach(){
         Frog frog = new Frog(25, 25, 25,25, 25);
-        Obstacle obs = new Log(25, 25, 25, 25, 5);
+        Obstacle obs = new Obstacle(25, 25, 75, 25, 5);
 
         frog.attach(obs);
         obs.move();

@@ -2,7 +2,7 @@ package edu.chalmers.projecttemplate.model.froggermodel;
 
 import edu.chalmers.projecttemplate.model.common.Rectangle;
 
-public abstract class Obstacle {
+public class Obstacle {
     private Rectangle hitbox;
     private int velocity;
 

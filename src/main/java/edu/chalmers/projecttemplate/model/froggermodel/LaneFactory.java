@@ -19,10 +19,10 @@ public class LaneFactory {
         ArrayList<Obstacle> obs = new ArrayList<>();
         int velocity = minSpeed + rand.nextInt(maxSpeed);
 
-        obs.add(new Car(obsWidth * (rand.nextInt(3)), y, obsWidth, obsWidth, velocity));
+        obs.add(new Obstacle(obsWidth * (rand.nextInt(3)), y, obsWidth, obsWidth, velocity));
         for (int i = 1; i < amountOfObstacles; i++) {
             int offset = obsWidth * (rand.nextInt(3)+1);
-            obs.add(new Car(obs.get(i-1).getX() + obs.get(i-1).getWidth() + offset, y, obsWidth, obsWidth, velocity));
+            obs.add(new Obstacle(obs.get(i-1).getX() + obs.get(i-1).getWidth() + offset, y, obsWidth, obsWidth, velocity));
         }
 
         Lane returnLane = new Lane(obs, velocity, y, false);
@@ -32,9 +32,9 @@ public class LaneFactory {
     public Lane createRiverLane(int amountOfObstacles, int y){
         ArrayList<Obstacle> obs = new ArrayList<>();
         int velocity = minSpeed + rand.nextInt(maxSpeed);
-        obs.add(new Log(obsWidth * (rand.nextInt(3)+1), y, 3*obsWidth, obsWidth, velocity));
+        obs.add(new Obstacle(obsWidth * (rand.nextInt(3)+1), y, 3*obsWidth, obsWidth, velocity));
         for (int i = 1; i < amountOfObstacles; i++) {
-            obs.add(new Log(obs.get(i-1).getX() + obs.get(i-1).getWidth() + obsWidth * (rand.nextInt(3)+1), y, 3*obsWidth, obsWidth, velocity));
+            obs.add(new Obstacle(obs.get(i-1).getX() + obs.get(i-1).getWidth() + obsWidth * (rand.nextInt(3)+1), y, 3*obsWidth, obsWidth, velocity));
         }
         Lane returnLane = new Lane(obs, velocity, y, true);
 
@@ -50,7 +50,7 @@ public class LaneFactory {
         ArrayList<Obstacle> obs = new ArrayList<>();
         int velocity = 0;
         for (int i = 0; i < amountOfObstacles; i++) {
-            obs.add(new Grass(obsWidth*i*2, y, obsWidth, obsWidth, velocity));
+            obs.add(new Obstacle(obsWidth*i*2, y, obsWidth, obsWidth, velocity));
         }
         Lane returnLane = new Lane(obs, velocity, y, false);
 
