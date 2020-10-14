@@ -15,24 +15,27 @@ public class SpaceInvadersModel {
     private List<Barrier> barriers;
     private List<IPositionable> positionables;
 
-    private int score = 0;
+    private int score;
+    private int lives;
 
     private int alienSize = 40;
     private int alienOffset = 20;
     private int numberOfAlienCols = 10;
     private int numberOfAlienRows = 5;
     private int alienTopRowPos = 100;
+    private int fieldBottom = 600;
 
     private int numberOfBarriers = 4;
 
     private int timeBetweenPlayerShots = 150;
     private int timeSinceLastPlayerShot = 10000;
 
-    private int timeBetweenMove = 40;
+    private int timeBetweenMove = 5; //40
     private int currentTime = 0;
     private int alienRowToMove = -1;
 
-    private boolean moveDown = false;
+    private boolean hitBound = false;
+    private boolean atBottom = false;
 
 
     public SpaceInvadersModel() {
@@ -41,6 +44,8 @@ public class SpaceInvadersModel {
         aliens = new ArrayList<>();
         projectiles = new ArrayList<>();
         barriers = new ArrayList<>();
+        score = 0;
+        lives = 3;
 
         //populate list of aliens
         for (int i = 0; i < numberOfAlienCols; i++) {
@@ -51,7 +56,7 @@ public class SpaceInvadersModel {
 
         //create barriers
         for (int i = 0; i < numberOfBarriers; i++) {
-            barriers.add(new Barrier(boundOffset + 200 * i, 650, 50, 50));
+            barriers.add(new Barrier(boundOffset + 200 * i, fieldBottom + 50, 50, 50));
         }
     }
 
@@ -74,18 +79,40 @@ public class SpaceInvadersModel {
     }
 
     private void moveEntities(){
-        //move player
-        player.move();
+        //player moving left with check for left bound
+        if (player.getDirection() == -1 && player.getXpos() >= boundOffset){
+            player.move();
+        }
+        //player moving right with check for right bound
+        else if (player.getDirection() == 1 && player.getXpos()+player.getWidth() <= windowSizeX-boundOffset){
+            player.move();
+        }
+
+        //check if any alien is at the bottom of the field
+        atBottom = false;
+        for (int i = 0; i < aliens.size(); i++) {
+            if (aliens.get(i).getYpos() + aliens.get(i).getHeight() >= fieldBottom){
+                atBottom = true;
+                break;
+            }
+        }
 
         //move aliens downwards and reset which row to move
         if (alienRowToMove < 0){
             alienRowToMove = numberOfAlienRows - 1;
-            if(moveDown){
+
+            //when aliens hit bound then move down as long as they are not on bottom
+            if(hitBound){
                 for (int i = 0; i < aliens.size(); i++) {
-                    aliens.get(i).moveDown();
+                    if (!atBottom){
+                        aliens.get(i).moveDown();
+                    }
+                    aliens.get(i).setDirection(aliens.get(i).getDirection() * -1);
                 }
-                alienTopRowPos += alienSize + alienOffset;
-                moveDown = false;
+                if (!atBottom){
+                    alienTopRowPos += alienSize + alienOffset;
+                }
+                hitBound = false;
             }
         }
 
@@ -113,11 +140,11 @@ public class SpaceInvadersModel {
         //check if aliens has hit the right or the left wall, if yes aliens should move do
         for (int i = 0; i < aliens.size(); i++) {
             if (aliens.get(i).getDirection() == 1 && (aliens.get(i).getXpos() + aliens.get(i).getWidth()) >= windowSizeX - boundOffset){
-                moveDown = true;
+                hitBound = true;
                 break;
             }
             else if(aliens.get(i).getDirection() == -1 && aliens.get(i).getXpos() <= boundOffset){
-                moveDown = true;
+                hitBound = true;
                 break;
             }
         }
@@ -142,7 +169,7 @@ public class SpaceInvadersModel {
             if (projectile.getDirection() == 1){
                 //checks collisions with the player
                 if (projectile.getHitbox().intersect(player.getHitbox())){
-                    //TODO kill player
+                    damagePlayer();
                     projectiles.remove(projectile);
                     System.out.println("player died");
                     continue;
@@ -183,6 +210,15 @@ public class SpaceInvadersModel {
         }
         else {
             barrier.decreaseHealth();
+        }
+    }
+
+    private void damagePlayer(){
+        if (lives > 0){
+            lives--;
+        }
+        else{
+            //TODO Game Over
         }
     }
 

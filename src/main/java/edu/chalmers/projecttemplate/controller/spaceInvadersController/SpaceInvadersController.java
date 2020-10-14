@@ -15,6 +15,9 @@ public class SpaceInvadersController {
     // direction int for knowing if the keys A and D are released properly
     int currentPlayerDir = 0;
 
+    //bool for pause
+    boolean paused = false;
+
     public SpaceInvadersController() throws Exception {
         //Create instance of view and model
         model = new SpaceInvadersModel();
@@ -54,6 +57,17 @@ public class SpaceInvadersController {
         return view.getScene();
     }
 
+    private void pauseGame(){
+        //TODO call view and tell it to draw pause method
+        paused = true;
+        timer.stop();
+    }
+
+    private void unpauseGame(){
+        paused = false;
+        timer.start();
+    }
+
     private void keyPressed(KeyEvent event) {
         KeyCode kc = event.getCode();
         switch (kc) {
@@ -67,6 +81,14 @@ public class SpaceInvadersController {
                 break;
             case SPACE:
                 model.playerShoot();
+                break;
+            case ESCAPE:
+                if (paused){
+                    unpauseGame();
+                }
+                else{
+                    pauseGame();
+                }
                 break;
             default:
         }

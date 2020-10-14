@@ -22,7 +22,6 @@ class Alien extends MovableObject{
     public void moveDown(){
         //move in direction according to speed
         setY(getSpeed() + getHeight());
-        setDirection(getDirection() * -1);
     }
 
     public int getTimeBetweenShots() {
