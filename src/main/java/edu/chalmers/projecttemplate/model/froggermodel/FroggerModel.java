@@ -14,6 +14,8 @@ public class FroggerModel {
     private Frog player;
     private LaneFactory factory;
     private ArrayList<Lane> lanes;
+    private ArrayList<IPositionable> positionables;
+    private boolean changesToPositionables = false;
 
     public FroggerModel() {
         windowSizeX = squareDimension * columns;
@@ -30,6 +32,7 @@ public class FroggerModel {
         initLanes();
     }
     private void initLanes(){
+        changesToPositionables = true;
         lanes = new ArrayList<>();
         //Starting lane
         lanes.add(factory.createEmptyLane(windowSizeY - squareDimension));
@@ -47,6 +50,7 @@ public class FroggerModel {
         lanes.add(factory.createFinishLane(columns/2 + 1,0));
     }
     private void newFrog(){
+        changesToPositionables = true;
         player = new Frog(squareDimension * (columns/2), windowSizeY - squareDimension,
                 squareDimension, squareDimension, squareDimension);
     }
@@ -56,10 +60,8 @@ public class FroggerModel {
         checkForPlayerInteraction();
     }
     private void moveObstacles(){
-        for (Lane lane: lanes) {
-            for (Obstacle obs: lane.getObstacles()) {
-                obs.move();
-            }
+        for (Obstacle obs:getAllObstacles()) {
+            obs.move();
         }
     }
 
@@ -120,6 +122,27 @@ public class FroggerModel {
         return null;
     }
 
+    public ArrayList<IPositionable> getPositionables(){
+        if (changesToPositionables){
+            positionables = new ArrayList<>();
+            for (Obstacle obs: getAllObstacles()) {
+                positionables.add(obs);
+            }
+            positionables.add(player);
+            changesToPositionables = false;
+        }
+        return positionables;
+    }
+
+    private ArrayList<Obstacle> getAllObstacles(){
+        ArrayList<Obstacle> returnList = new ArrayList<>();
+        for (Lane lane: lanes) {
+            for (Obstacle obs: lane.getObstacles()) {
+                returnList.add(obs);
+            }
+        }
+        return returnList;
+    }
     //Getters, mostly for testing purposes
     public ArrayList<Lane> getLanes() {
         return lanes;

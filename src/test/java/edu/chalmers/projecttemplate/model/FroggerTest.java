@@ -204,4 +204,33 @@ public class FroggerTest {
         Assert.assertTrue(model.getPlayer().getX() != x);
         Assert.assertTrue(model.getLanes() != lanes);
     }
+    @Test
+    public void postionables(){
+        FroggerModel model = new FroggerModel();
+        ArrayList<IPositionable> poss = new ArrayList<>();
+
+        for (Lane lane: model.getLanes()) {
+            for (Obstacle obs: lane.getObstacles()) {
+                poss.add(obs);
+            }
+        }
+        poss.add(model.getPlayer());
+        for (int i = 0; i < poss.size(); i++) {
+            Assert.assertTrue(poss.get(i) == model.getPositionables().get(i));
+        }
+        poss = new ArrayList<>();
+
+        for (int i = 0; i < model.getLifeCount(); i++) {
+            model.loseLife();
+        }
+        for (Lane lane: model.getLanes()) {
+            for (Obstacle obs: lane.getObstacles()) {
+                poss.add(obs);
+            }
+        }
+        poss.add(model.getPlayer());
+        for (int i = 0; i < poss.size(); i++) {
+            Assert.assertTrue(poss.get(i) == model.getPositionables().get(i));
+        }
+    }
 }
