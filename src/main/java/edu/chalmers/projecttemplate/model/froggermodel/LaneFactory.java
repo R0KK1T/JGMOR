@@ -15,9 +15,17 @@ public class LaneFactory {
         this.maxSpeed = maxSpeed;
     }
 
+    private int randomSpeed(){
+        int velocity = minSpeed + rand.nextInt(maxSpeed-minSpeed);
+        if(rand.nextInt(2) == 1){
+            velocity *= -1;
+        }
+        return velocity;
+    }
+
     public Lane createRoadLane(int amountOfObstacles, int y){
         ArrayList<Obstacle> obs = new ArrayList<>();
-        int velocity = minSpeed + rand.nextInt(maxSpeed);
+        int velocity = randomSpeed();
 
         obs.add(new Obstacle(obsWidth * (rand.nextInt(3)), y, obsWidth, obsWidth, velocity));
         for (int i = 1; i < amountOfObstacles; i++) {
@@ -31,7 +39,7 @@ public class LaneFactory {
     }
     public Lane createRiverLane(int amountOfObstacles, int y){
         ArrayList<Obstacle> obs = new ArrayList<>();
-        int velocity = minSpeed + rand.nextInt(maxSpeed);
+        int velocity = randomSpeed();
         obs.add(new Obstacle(obsWidth * (rand.nextInt(3)+1), y, 3*obsWidth, obsWidth, velocity));
         for (int i = 1; i < amountOfObstacles; i++) {
             obs.add(new Obstacle(obs.get(i-1).getX() + obs.get(i-1).getWidth() + obsWidth * (rand.nextInt(3)+1), y, 3*obsWidth, obsWidth, velocity));

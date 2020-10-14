@@ -18,7 +18,7 @@ public class FroggerModel {
     public FroggerModel() {
         windowSizeX = squareDimension * columns;
         windowSizeY = squareDimension * rows;
-        factory = new LaneFactory(squareDimension, squareDimension / 10, squareDimension / 5);
+        factory = new LaneFactory(squareDimension, squareDimension / 20, squareDimension / 10);
         resetGame();
     }
     private void resetGame(){
@@ -52,13 +52,15 @@ public class FroggerModel {
     }
 
     public void update(){
+        moveObstacles();
+        checkForPlayerInteraction();
+    }
+    private void moveObstacles(){
         for (Lane lane: lanes) {
             for (Obstacle obs: lane.getObstacles()) {
                 obs.move();
             }
         }
-        checkForPlayerInteraction();
-
     }
 
     private void checkForPlayerInteraction() {
