@@ -20,7 +20,7 @@ public class FroggerModel {
     public FroggerModel() {
         windowSizeX = squareDimension * columns;
         windowSizeY = squareDimension * rows;
-        factory = new LaneFactory(squareDimension, squareDimension / 20, squareDimension / 10);
+        factory = new LaneFactory(squareDimension, squareDimension / 40, squareDimension / 20);
         resetGame();
     }
     private void resetGame(){
@@ -38,13 +38,13 @@ public class FroggerModel {
         lanes.add(factory.createEmptyLane(windowSizeY - squareDimension));
         //All consecutive roads
         for (int i = 2; i < 7; i++) {
-            lanes.add(factory.createRoadLane(5, windowSizeY - squareDimension * i));
+            lanes.add(factory.createRoadLane(3, windowSizeY - squareDimension * i));
         }
         //Middle safe lane
         lanes.add(factory.createEmptyLane(windowSizeY - squareDimension * 7));
         //All consecutive rivers
         for (int i = 8; i < 13; i++) {
-            lanes.add(factory.createRiverLane(3, windowSizeY - squareDimension * i));
+            lanes.add(factory.createRiverLane(2, windowSizeY - squareDimension * i));
         }
         //Finish line
         lanes.add(factory.createFinishLane(columns/2 + 1,0));
@@ -57,11 +57,18 @@ public class FroggerModel {
 
     public void update(){
         moveObstacles();
+        player.update();
         checkForPlayerInteraction();
     }
     private void moveObstacles(){
         for (Obstacle obs:getAllObstacles()) {
             obs.move();
+            if(obs.getX() > windowSizeX + squareDimension && obs.getVelocity() > 0){
+                obs.moveTo(-squareDimension - obs.getWidth());
+            }
+            else if(obs.getX() + obs.getWidth() < -squareDimension && obs.getVelocity() < 0){
+                obs.moveTo(windowSizeX + squareDimension);
+            }
         }
     }
 

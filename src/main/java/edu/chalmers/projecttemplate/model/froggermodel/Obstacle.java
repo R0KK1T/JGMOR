@@ -25,4 +25,12 @@ public class Obstacle implements IPositionable{
     public void move(){
         hitbox.incX(getVelocity());
     }
+    public void moveTo(int x){
+        if(x > getX()){
+            hitbox.incX(x - getX());
+        }
+        else if (x < getX()){
+            hitbox.decX(getX() - x);
+        }
+    }
 }
