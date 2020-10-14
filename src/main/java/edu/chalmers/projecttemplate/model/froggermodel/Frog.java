@@ -2,7 +2,7 @@ package edu.chalmers.projecttemplate.model.froggermodel;
 
 import edu.chalmers.projecttemplate.model.common.Rectangle;
 
-public class Frog {
+public class Frog implements IPositionable{
     private Rectangle hitbox;
     private Obstacle riverObs;
     private int velocity;
