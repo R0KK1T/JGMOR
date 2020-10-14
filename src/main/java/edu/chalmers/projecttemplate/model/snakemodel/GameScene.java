@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 
 import javafx.animation.ScaleTransition;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.util.prefs.Preferences;
@@ -32,7 +33,6 @@ public class GameScene extends Scene {
     private final int WIDTH = 1000;
     private final int HEIGHT = 700;
 
-
     private long time;
     private myTimer timer;
 
@@ -44,6 +44,8 @@ public class GameScene extends Scene {
     private boolean gameOver = false;
 
     private Preferences prefs;
+    private int score = 0;
+    private int foodPoint = 10;
 
     private final String UP = "UP";
     private final String DOWN = "DOWN";
@@ -52,6 +54,8 @@ public class GameScene extends Scene {
 
     private Label pauseLabel;
     private Label gameOverLabel;
+    private Label scoreLabel;
+    private Label inGameScoreLabel;
 
     private MyHandlerForArrows myHandlerForArrows = new MyHandlerForArrows();
     private MyHandlerForEsc myHandlerForEsc = new MyHandlerForEsc();
@@ -77,15 +81,13 @@ public class GameScene extends Scene {
         addEventHandler(KeyEvent.KEY_PRESSED, myHandlerForArrows);
         addEventHandler(KeyEvent.KEY_PRESSED, myHandlerForEsc);
 
-        initScreen();
         initLabels();
-
+        initScreen();
     }
 
     public void setTime(long time) {
         this.time = time;
     }
-
     public Snake getSnake() { return snake;}
 
     private void initLabels() {
@@ -104,6 +106,7 @@ public class GameScene extends Scene {
         scaleTransition.setAutoReverse(true);
         scaleTransition.play();
 
+
         gameOverLabel = new Label("Game Over!");
         gameOverLabel.setLayoutX(WIDTH/2f - 75);
         gameOverLabel.setLayoutY(HEIGHT/2f - 40);
@@ -116,9 +119,28 @@ public class GameScene extends Scene {
         translateTransition.setCycleCount(-1);
         translateTransition.setAutoReverse(true);
         translateTransition.play();
+
+        // Score Label
+        scoreLabel = new Label();
+        scoreLabel.setLayoutX(WIDTH/2f - 125);
+        scoreLabel.setLayoutY(HEIGHT/2f - 10);
+        scoreLabel.getStylesheets().add(getClass().getClassLoader().getResource("snakeresources/styles/overallStyle.css").toString());
+
+        if (prefs.getBoolean("renderScore", true)) {
+            inGameScoreLabel = new Label();
+            inGameScoreLabel.setId("inGameScoreLabel");
+            inGameScoreLabel.setLayoutX(0);
+            inGameScoreLabel.setLayoutY(0);
+            inGameScoreLabel.getStylesheets().add(getClass().getClassLoader().getResource("snakeresources/styles/overallStyle.css").toString());
+            ((AnchorPane) getRoot()).getChildren().add(inGameScoreLabel);
+        }
     }
 
     private void initScreen() {
+        score = 0;
+        if (prefs.getBoolean("renderScore", true)) {
+            inGameScoreLabel.setText("Score: " + score + "pt.");
+        }
         renderBackground();
         initSnake();
         food.setRandomPosition(WIDTH, HEIGHT);
@@ -159,7 +181,8 @@ public class GameScene extends Scene {
     }
 
     private void renderGameOverMsg() {
-        boolean add = ((AnchorPane) getRoot()).getChildren().add(gameOverLabel);
+        scoreLabel.setText("Your score: " + score);
+        ((AnchorPane) getRoot()).getChildren().addAll(gameOverLabel, scoreLabel);
     }
 
     private class myTimer extends AnimationTimer {
@@ -178,13 +201,18 @@ public class GameScene extends Scene {
             if (now - lastUpdate >= time) {
                 addEventHandler(KeyEvent.KEY_PRESSED, myHandlerForArrows);
                 lastUpdate = now;
-                snake.move();
 
+                snake.move();
                 if (snake.getHead().intersect(food)) {
                     do {
                         food.setRandomPosition(WIDTH, HEIGHT);
                     } while (snake.intersect(food));
                     snake.grow();
+                    score += foodPoint;
+
+                    if (prefs.getBoolean("renderScore", true)) {
+                        inGameScoreLabel.setText("Score: " + score + "pt.");
+                    }
                 }
 
                 renderGameElements();
@@ -229,8 +257,9 @@ public class GameScene extends Scene {
                     || key.equals(prefs.get(LEFT, ""))
                     || key.equals(prefs.get(UP, ""))
                     || key.equals(prefs.get(DOWN, "")))
-                    ) {
+                    && !gameOver) {
                 timer.start();
+                paused = false;
             }
             if (key.equals(prefs.get(RIGHT, "")) && snake.getDirection() != Direction.LEFT) {
                 snake.setDirection(Direction.RIGHT);

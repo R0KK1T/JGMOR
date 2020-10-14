@@ -60,12 +60,9 @@ public class GameObject implements Renderable{
     public double getHeight() {
         return height;
     }
-
     public void setHeight(double height) {
         this.height = height;
     }
-
-
 
     @Override
     public void render(GraphicsContext gc) {

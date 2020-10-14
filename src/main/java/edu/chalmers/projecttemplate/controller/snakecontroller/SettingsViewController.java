@@ -73,7 +73,6 @@ public class SettingsViewController extends GoBack {
     // this method is called every time when the user open the settings view
     public void initialize() {
         setContText();
-
         setCheckBox();
     }
 
