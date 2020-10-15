@@ -150,6 +150,7 @@ public class FroggerTest {
     @Test
     public void collisionDetection(){
         FroggerModel model = new FroggerModel();
+        model.turnOffDelay();
         //Move frog all the way to the left
         for (int i = 0; i < 6; i++) {
             model.getPlayer().moveLeft();

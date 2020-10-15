@@ -3,7 +3,7 @@ package edu.chalmers.projecttemplate.model.froggermodel;
 import java.util.ArrayList;
 
 public class FroggerModel {
-    private int squareDimension = 50;
+    private int squareDimension = 75;
     private int columns = 13;
     private int rows = 13;
     private int windowSizeX;
@@ -16,11 +16,13 @@ public class FroggerModel {
     private ArrayList<Lane> lanes;
     private ArrayList<IPositionable> positionables;
     private boolean changesToPositionables = false;
+    private int updateUnits = 0;
+    private int delayAmount = 3;
 
     public FroggerModel() {
         windowSizeX = squareDimension * columns;
         windowSizeY = squareDimension * rows;
-        factory = new LaneFactory(squareDimension, squareDimension / 50, squareDimension / 25);
+        factory = new LaneFactory(squareDimension, 1, 5);
         resetGame();
     }
     private void resetGame(){
@@ -56,8 +58,14 @@ public class FroggerModel {
     }
 
     public void update(){
-        moveObstacles();
-        player.update();
+        if(updateUnits >= delayAmount){
+            moveObstacles();
+            player.update();
+            updateUnits = 0;
+        }
+        else{
+            updateUnits++;
+        }
         checkForPlayerInteraction();
     }
     private void moveObstacles(){
@@ -71,7 +79,6 @@ public class FroggerModel {
             }
         }
     }
-
     private void checkForPlayerInteraction() {
         Lane current = getCurrentPlayerLane();
         //Skip all if player isn't found on any lane.
@@ -110,6 +117,10 @@ public class FroggerModel {
         }
     }
 
+    //Only for testing purposes
+    public void turnOffDelay(){
+        delayAmount = 0;
+    }
     //Getter to check which lane player is currently on
     public Lane getCurrentPlayerLane(){
         for (int i = 0; i < getLanes().size(); i++) {
