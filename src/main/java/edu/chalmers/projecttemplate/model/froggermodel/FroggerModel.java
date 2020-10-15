@@ -20,7 +20,7 @@ public class FroggerModel {
     public FroggerModel() {
         windowSizeX = squareDimension * columns;
         windowSizeY = squareDimension * rows;
-        factory = new LaneFactory(squareDimension, squareDimension / 40, squareDimension / 20);
+        factory = new LaneFactory(squareDimension, squareDimension / 50, squareDimension / 25);
         resetGame();
     }
     private void resetGame(){
@@ -47,7 +47,7 @@ public class FroggerModel {
             lanes.add(factory.createRiverLane(2, windowSizeY - squareDimension * i));
         }
         //Finish line
-        lanes.add(factory.createFinishLane(columns/2 + 1,0));
+        lanes.add(factory.createFinishLane(columns/3 + 1,0));
     }
     private void newFrog(){
         changesToPositionables = true;
