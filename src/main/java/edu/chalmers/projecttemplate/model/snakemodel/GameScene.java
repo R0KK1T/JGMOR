@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -158,6 +159,7 @@ public class GameScene extends Scene {
                 new Point2D(WIDTH / 2f - PIXELSIZE, HEIGHT / 2f), PIXELSIZE);
     }
 
+
     private void renderGrid(GraphicsContext gc) {
         gc.setStroke(Color.GRAY);
         for (int i = 0; i < WIDTH; i += PIXELSIZE) {
@@ -182,7 +184,18 @@ public class GameScene extends Scene {
 
     private void renderGameOverMsg() {
         scoreLabel.setText("Your score: " + score);
-        ((AnchorPane) getRoot()).getChildren().addAll(gameOverLabel, scoreLabel);
+
+        // Add button "Restart, Exit, Back"
+        Button exitBtn = new Button("Exit");
+        exitBtn.setLayoutX(WIDTH/2f - 50);
+        exitBtn.setLayoutY(HEIGHT/2f + 100);
+        exitBtn.getStylesheets().add(getClass().getClassLoader().getResource("snakeresources/styles/GameOverStyle.css").toString());
+
+        // Add button Action
+        exitBtn.setOnMouseClicked(e -> System.exit(0));
+
+
+        ((AnchorPane) getRoot()).getChildren().addAll(gameOverLabel, scoreLabel,exitBtn);
     }
 
     private class myTimer extends AnimationTimer {
