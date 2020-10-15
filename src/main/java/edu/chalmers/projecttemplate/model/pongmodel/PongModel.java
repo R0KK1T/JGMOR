@@ -10,6 +10,7 @@ public class PongModel {
     private final int ballVelocity = 5;
     private int leftPlayerScore = 0;
     private int rightPlayerScore = 0;
+    private boolean isPaused;
 
     public PongModel (){
         pongBall = new PongBall(windowSizeX/2, windowSizeY/2, 40, 40,ballVelocity);
@@ -17,17 +18,20 @@ public class PongModel {
         pongLeftPaddle = new PongPaddle(10, windowSizeY/2, 200,40, windowSizeY, 0);
         pongAI = new PongAI(pongRightPaddle,pongBall);
         pongBall.resetBall();
+        isPaused = false;
     }
 
     public void update (){
         //calls the ball behaviour functions and the update functions in the game objects
-        ballHorizontalBounce();
-        ballVerticalBounce();
-        pongBall.updatePosition();
-        pongAI.movePaddle(paddleVelocity);
-        pongRightPaddle.updatePosition();
-        pongLeftPaddle.updatePosition();
-        ballRespawn();
+        if (isPaused == false){
+            ballHorizontalBounce();
+            ballVerticalBounce();
+            pongBall.updatePosition();
+            pongAI.movePaddle(paddleVelocity);
+            pongRightPaddle.updatePosition();
+            pongLeftPaddle.updatePosition();
+            ballRespawn();
+        }
     }
 
 
@@ -94,5 +98,13 @@ public class PongModel {
 
     public int getRightPlayerScore() {
         return rightPlayerScore;
+    }
+
+    public void setPaused(boolean paused) {
+        isPaused = paused;
+    }
+
+    public boolean isPaused() {
+        return isPaused;
     }
 }

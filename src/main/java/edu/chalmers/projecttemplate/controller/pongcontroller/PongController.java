@@ -59,6 +59,8 @@ public class PongController {
             case S:
                 model.getPongLeftPaddle().moveDown(model.getPaddleVelocity());
                 break;
+            case ESCAPE:
+                model.setPaused(!model.isPaused());
             default:  // Nothing
         }
     }
