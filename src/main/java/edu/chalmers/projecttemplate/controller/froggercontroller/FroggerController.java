@@ -2,9 +2,7 @@ package edu.chalmers.projecttemplate.controller.froggercontroller;
 
 import edu.chalmers.projecttemplate.model.froggermodel.FroggerModel;
 import edu.chalmers.projecttemplate.model.froggermodel.IPositionable;
-import edu.chalmers.projecttemplate.model.spaceInvadersModel.SpaceInvadersModel;
 import edu.chalmers.projecttemplate.view.froggerview.FroggerView;
-import edu.chalmers.projecttemplate.view.spaceInvadersView.SpaceInvadersView;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
@@ -36,17 +34,6 @@ public class FroggerController {
         view.clearDrawingArea();
 
         //draw all objects in the game
-        /*
-        for (int i = 0; i < model.getLanes().size(); i++) {
-            for (int j = 0; j < model.getLanes().get(i).getObstacles().size(); j++) {
-                view.draw(model.getLanes().get(i).getObstacles().get(j).getX(),
-                        model.getLanes().get(i).getObstacles().get(j).getY(),
-                        model.getLanes().get(i).getObstacles().get(j).getWidth(),
-                        model.getLanes().get(i).getObstacles().get(j).getHeight());
-            }
-        }
-
-         */
         for (IPositionable pos: model.getPositionables()) {
             view.draw(pos.getX(), pos.getY(), pos.getWidth(), pos.getHeight());
         }

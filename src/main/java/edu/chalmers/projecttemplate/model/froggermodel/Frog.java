@@ -38,11 +38,18 @@ public class Frog implements IPositionable{
     }
     public void update(){
         if(riverObs != null){
-            moveWhileAttached();
+            if(hitbox.intersect(riverObs.getHitbox())){
+                moveWhileAttached();
+            }
+            else{
+                detach();
+            }
         }
     }
     public void attach(Obstacle obs){riverObs = obs;}
-
+    private void detach(){
+        riverObs = null;
+    }
     public Obstacle getRiverObs() {
         return riverObs;
     }

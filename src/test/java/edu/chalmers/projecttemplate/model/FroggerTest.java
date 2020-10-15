@@ -130,7 +130,7 @@ public class FroggerTest {
         }
     }
     @Test
-    public void frogAttach(){
+    public void frogAttachandDetach(){
         Frog frog = new Frog(25, 25, 25,25, 25);
         Obstacle obs = new Obstacle(25, 25, 75, 25, 5);
 
@@ -139,6 +139,13 @@ public class FroggerTest {
         frog.update();
 
         Assert.assertTrue(frog.getX() == obs.getX() && frog.getX() == 30);
+
+        frog.moveUp();
+        //Detach is called via frog.update()
+        frog.update();
+        obs.move();
+
+        Assert.assertTrue(frog.getX() != obs.getX());
     }
     @Test
     public void collisionDetection(){
