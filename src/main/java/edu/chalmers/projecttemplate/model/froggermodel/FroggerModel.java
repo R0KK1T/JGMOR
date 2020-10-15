@@ -22,7 +22,7 @@ public class FroggerModel {
     public FroggerModel() {
         windowSizeX = squareDimension * columns;
         windowSizeY = squareDimension * rows;
-        factory = new LaneFactory(squareDimension, 1, 5);
+        factory = new LaneFactory(squareDimension, columns, 1, 5);
         resetGame();
     }
     private void resetGame(){

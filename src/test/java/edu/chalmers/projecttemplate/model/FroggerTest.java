@@ -34,7 +34,7 @@ public class FroggerTest {
     }
     @Test
     public void createLane(){
-        LaneFactory factory = new LaneFactory(10, 3, 10);
+        LaneFactory factory = new LaneFactory(10, 10,3, 10);
 
         //Roadlane
         Lane roadLane = factory.createRoadLane(3, 10);
