@@ -117,10 +117,6 @@ public class FroggerModel {
         }
     }
 
-    //Only for testing purposes
-    public void turnOffDelay(){
-        delayAmount = 0;
-    }
     //Getter to check which lane player is currently on
     public Lane getCurrentPlayerLane(){
         for (int i = 0; i < getLanes().size(); i++) {
@@ -139,6 +135,27 @@ public class FroggerModel {
         }
         return null;
     }
+
+
+    public void movePlayer(int direction){
+        switch (direction) {
+            case 1:
+                player.moveUp();
+                break;
+            case 2:
+                player.moveDown();
+                break;
+            case 3:
+                player.moveRight();
+                break;
+            case 4:
+                player.moveLeft();
+                break;
+            default:
+        }
+    }
+
+
 
     public ArrayList<IPositionable> getPositionables(){
         if (changesToPositionables){

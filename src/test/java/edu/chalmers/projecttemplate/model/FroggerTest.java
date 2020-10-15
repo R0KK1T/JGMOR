@@ -150,7 +150,6 @@ public class FroggerTest {
     @Test
     public void collisionDetection(){
         FroggerModel model = new FroggerModel();
-        model.turnOffDelay();
         //Move frog all the way to the left
         for (int i = 0; i < 6; i++) {
             model.getPlayer().moveLeft();
@@ -240,5 +239,19 @@ public class FroggerTest {
         for (int i = 0; i < poss.size(); i++) {
             Assert.assertTrue(poss.get(i) == model.getPositionables().get(i));
         }
+    }
+    @Test
+    public void moveFrogViaController(){
+        FroggerModel model = new FroggerModel();
+        int x = model.getPlayer().getX();
+        int y = model.getPlayer().getY();
+        model.movePlayer(1);
+        Assert.assertTrue(model.getPlayer().getY() == y - model.getSquareDimension());
+        model.movePlayer(2);
+        Assert.assertTrue(model.getPlayer().getY() == y);
+        model.movePlayer(3);
+        Assert.assertTrue(model.getPlayer().getX() == x + model.getSquareDimension());
+        model.movePlayer(4);
+        Assert.assertTrue(model.getPlayer().getX() == x);
     }
 }

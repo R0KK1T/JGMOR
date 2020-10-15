@@ -47,7 +47,7 @@ public class FroggerController {
     }
 
     public Scene getScene(){
-        //returns the scene from SpaceInvadersView
+        //returns the scene from FroggerView
         return view.getScene();
     }
 
@@ -55,16 +55,16 @@ public class FroggerController {
         KeyCode kc = event.getCode();
         switch (kc) {
             case UP:
-                model.getPlayer().moveUp();
+                model.movePlayer(1);
                 break;
             case DOWN:
-                model.getPlayer().moveDown();
+                model.movePlayer(2);
                 break;
             case RIGHT:
-                model.getPlayer().moveRight();
+                model.movePlayer(3);
                 break;
             case LEFT:
-                model.getPlayer().moveLeft();
+                model.movePlayer(4);
                 break;
             default:
         }
