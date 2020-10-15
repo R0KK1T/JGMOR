@@ -151,7 +151,7 @@ public class FroggerTest {
     public void collisionDetection(){
         FroggerModel model = new FroggerModel();
         //Move frog all the way to the left
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < model.getColumns()/2; i++) {
             model.getPlayer().moveLeft();
         }
         //Move frog one step up
@@ -198,47 +198,23 @@ public class FroggerTest {
     @Test
     public void zeroLives(){
         FroggerModel model = new FroggerModel();
-
-        model.getPlayer().moveLeft();
-        int x = model.getPlayer().getX();
-        ArrayList<Lane> lanes = model.getLanes();
-        for (int i = 0; i < model.getLifeCount()-1; i++) {
-            model.loseLife();
-        }
-        Assert.assertTrue(model.getCurrentLifeCount() == 1);
-        model.loseLife();
-        Assert.assertTrue(model.getCurrentLifeCount() == model.getLifeCount());
-        Assert.assertTrue(model.getPlayer().getX() != x);
-        Assert.assertTrue(model.getLanes() != lanes);
-    }
-    @Test
-    public void postionables(){
-        FroggerModel model = new FroggerModel();
-        ArrayList<IPositionable> poss = new ArrayList<>();
-
-        for (Lane lane: model.getLanes()) {
-            for (Obstacle obs: lane.getObstacles()) {
-                poss.add(obs);
-            }
-        }
-        poss.add(model.getPlayer());
-        for (int i = 0; i < poss.size(); i++) {
-            Assert.assertTrue(poss.get(i) == model.getPositionables().get(i));
-        }
-        poss = new ArrayList<>();
-
+        ArrayList<IPositionable> poss = model.getPositionables();
         for (int i = 0; i < model.getLifeCount(); i++) {
-            model.loseLife();
-        }
-        for (Lane lane: model.getLanes()) {
-            for (Obstacle obs: lane.getObstacles()) {
-                poss.add(obs);
+            //Move frog all the way to the left
+            for (int j = 0; j < model.getColumns()/2; j++) {
+                model.getPlayer().moveLeft();
             }
+            //Move frog one step up
+            model.getPlayer().moveUp();
+            //Move frog to right until it intersects with an obstacle
+            while(model.collisionDetected(model.getCurrentPlayerLane()) == null){
+                model.getPlayer().moveRight();
+            }
+            model.update();
         }
-        poss.add(model.getPlayer());
-        for (int i = 0; i < poss.size(); i++) {
-            Assert.assertTrue(poss.get(i) == model.getPositionables().get(i));
-        }
+
+        Assert.assertTrue(model.getCurrentLifeCount() == model.getLifeCount());
+        Assert.assertTrue(poss != model.getPositionables());
     }
     @Test
     public void moveFrogViaController(){

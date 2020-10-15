@@ -106,8 +106,7 @@ public class FroggerModel {
             }
         }
     }
-    //Is public strictly because one test gets significantly easier to write
-    public void loseLife(){
+    private void loseLife(){
         currentLifeCount--;
         if(currentLifeCount > 0){
             newFrog();
