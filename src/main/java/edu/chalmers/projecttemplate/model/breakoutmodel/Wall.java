@@ -7,10 +7,10 @@ import java.util.List;
  */
 public class Wall  {
     List<Brick> brickList;
-    double x;
-    double y;
-    double height;
-    double width;
+    int x;
+    int y;
+    int height;
+    int width;
     public Wall() {
         brickList = new ArrayList<>();
         x = 60;

@@ -32,7 +32,6 @@ public class BreakoutMenuController implements Initializable {
     @FXML public AnchorPane subPaneHelp;
     @FXML public Button btnStart;
     @FXML public AnchorPane mainPane;
-
     private AnchorPane paneTohide;
     private BreakoutGameView newGame;
     private boolean isHidden;
@@ -92,7 +91,7 @@ public class BreakoutMenuController implements Initializable {
     }
 
     // 5. Button start
-    public void btnStartControl(ActionEvent actionEvent) throws IOException {
+    public void btnStartControl(ActionEvent actionEvent) {
         Scene gameScene = newGame.getGameScene();
         Stage gameStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         gameStage.setTitle("Breakout Game");
@@ -126,17 +125,15 @@ public class BreakoutMenuController implements Initializable {
      * Initialize listeners
      */
     private void addButtonToList() {
-        for (int i=0; i<5; i++) {
-            buttonList.add(btnPlay);
-            buttonList.add(btnScores);
-            buttonList.add(btnHelp);
-            buttonList.add(btnExit);
-            buttonList.add(btnStart);
-        }
+        buttonList.add(btnPlay);
+        buttonList.add(btnScores);
+        buttonList.add(btnHelp);
+        buttonList.add(btnExit);
+        buttonList.add(btnStart);
     }
     private void initializeListeners() {
         //Buttons
-        for (int i=0; i<5; i++) {
+        for (int i=0; i<buttonList.size(); i++) {
             int finalI = i;
             buttonList.get(i).setOnMouseEntered(mouseEvent -> buttonList.get(finalI).setEffect(new Glow()));
             buttonList.get(i).setOnMouseExited(mouseEvent -> buttonList.get(finalI).setEffect(null));

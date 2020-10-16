@@ -1,6 +1,7 @@
 package edu.chalmers.projecttemplate.controller.viewNavigator;
 
 import edu.chalmers.projecttemplate.application.MainApplication;
+import edu.chalmers.projecttemplate.controller.breakoutcontroller.BreakoutGameController;
 import edu.chalmers.projecttemplate.controller.controllerInterface.IController;
 import edu.chalmers.projecttemplate.controller.froggercontroller.FroggerController;
 import edu.chalmers.projecttemplate.controller.pongcontroller.PongController;
@@ -65,5 +66,8 @@ public class ViewNavigator {
         //init pongGame
         controller = new PongController();
         addGameView("pong", controller);
+        //init breakout
+        controller = new BreakoutGameController();
+        addGameView("breakout", controller);
     }
 }

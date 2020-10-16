@@ -7,15 +7,15 @@
 
 <AnchorPane fx:id="gamePane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.chalmers.projecttemplate.controller.breakoutcontroller.BreakoutGameController">
    <children>
-      <Button fx:id="btnGameExit" layoutX="50.0" layoutY="24.0" maxHeight="50.0" maxWidth="50.0" mnemonicParsing="false" onAction="#btnExitGameControl" prefHeight="50.0" prefWidth="50.0" text="EXIT" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="24.0">
+      <Button fx:id="btnGameExit" layoutX="50.0" layoutY="24.0" maxHeight="50.0" maxWidth="50.0" mnemonicParsing="false" onMouseClicked="#btnExitGameControl" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: linear-gradient(#f2f2f2, #d6d6d6),        linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),        linear-gradient(#dddddd 0%, #f6f6f6 50%); -fx-background-radius: 8,7,6; -fx-background-insets: 0,1,2; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="EXIT" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="24.0">
          <font>
-            <Font size="8.0" />
+            <Font size="10.0" />
          </font></Button>
-      <Button fx:id="btnGamePause" layoutX="115.0" layoutY="24.0" maxHeight="50.0" maxWidth="50.0" mnemonicParsing="false" onAction="#btnExitPauseControl" prefHeight="50.0" prefWidth="50.0" text="PAUSE" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="24.0">
+      <Button fx:id="btnGamePause" layoutX="115.0" layoutY="24.0" maxHeight="50.0" maxWidth="50.0" mnemonicParsing="false" onMouseClicked="#btnExitPauseControl" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: linear-gradient(#f2f2f2, #d6d6d6),        linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),        linear-gradient(#dddddd 0%, #f6f6f6 50%); -fx-background-radius: 8,7,6; -fx-background-insets: 0,1,2; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );" text="PAUSE" AnchorPane.leftAnchor="115.0" AnchorPane.topAnchor="24.0">
          <font>
-            <Font size="8.0" />
+            <Font size="10.0" />
          </font></Button>
-      <AnchorPane fx:id="gameArea" prefHeight="550.0" prefWidth="900.0" style="-fx-border-color: green; -fx-background-color: black;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0" />
+      <AnchorPane fx:id="gameArea" prefHeight="550.0" prefWidth="900.0" style="-fx-border-color: green;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0" />
       <Label layoutX="577.0" layoutY="21.0" prefHeight="57.0" prefWidth="80.0" text="SCORE:" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="20.0">
          <font>
             <Font size="18.0" />

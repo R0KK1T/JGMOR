@@ -4,29 +4,29 @@ package edu.chalmers.projecttemplate.model.breakoutmodel;
  * If the ball hits the borders, the directions are changed accordingly.
  */
 public class Ball extends Commons{
-    private double dx;
-    private double dy;
-    private double dt;
+    private int dx;
+    private int dy;
+    private int dt;
 
-    public Ball(double x, double y, double width, double height) {
+    public Ball(int x, int y, int width, int height) {
         super(x, y, width, height);
-        dx = 0.1;
-        dy = 0.1;
-        dt = 5;
+        dx = 1;
+        dy = -1;
+        dt = 1;
     }
     /*
      * The ball bounces off the wall according to low of elastic collision
      */
     public void move() {
-        if (x < 0 || (x+width > windowSizeX))
+        if (this.getX() < 0 || (this.getX()+this.getWidth() > this.getWindowSizeX()))
             dx = -dx;
-        if (y < 0 || (y+height > windowSizeY))
+        if (this.getY() < 0 || (this.getY()+this.getHeight() > this.getWindowSizeY()))
             dy = -dy;
         //update position
-        x = x + dt*dx;
-        this.setX(x);
-        y = y + dt*dy;
-        this.setY(y);
+        //x = x + dt*dx;
+        this.incX((dt*dx));
+        //y = y + dt*dy;
+        this.incY((dt*dy));
 
     }
 

@@ -1,6 +1,7 @@
 package edu.chalmers.projecttemplate.model.breakoutmodel;
 
-import javafx.scene.shape.Rectangle;
+import edu.chalmers.projecttemplate.model.common.Rectangle;
+
 /*
  * The class extends Rectangle from Javafx library. (Maybe later Rectangle from commons package)
  * The class has some common constants. The windowSizeX and windowSizeY constants store the dimensions of the board.
@@ -8,19 +9,17 @@ import javafx.scene.shape.Rectangle;
  * The width and height store the dimension of the rectangle.
  */
 public class Commons extends Rectangle {
-    public double windowSizeX;
-    public double windowSizeY;
-    public double x;
-    public double y;
-    public double width;
-    public double height;
-    public Commons(double x, double y, double width, double height) {
+    private int windowSizeX;
+    private int windowSizeY;
+    public Commons(int x, int y, int width, int height) {
         super(x, y, width, height);
         windowSizeX = 900;
         windowSizeY = 550;
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+    }
+    public int getWindowSizeX() {
+        return windowSizeX;
+    }
+    public int getWindowSizeY() {
+        return windowSizeY;
     }
 }

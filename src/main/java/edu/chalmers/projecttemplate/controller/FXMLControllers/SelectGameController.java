@@ -29,6 +29,9 @@ public class SelectGameController {
     public void startSpaceInvaders() throws Exception {
         ViewNavigator.getInstance().loadGameView("spaceInvaders");
     }
+    public void startBreakout() throws Exception {
+        ViewNavigator.getInstance().loadGameView("breakout");
+    }
 
     public void backToStartMenu() throws Exception {
         ViewNavigator.getInstance().loadMenuView("startMenu");

@@ -1,26 +1,34 @@
 package edu.chalmers.projecttemplate.controller.breakoutcontroller;
 
+import edu.chalmers.projecttemplate.controller.controllerInterface.IController;
 import edu.chalmers.projecttemplate.model.breakoutmodel.*;
+import edu.chalmers.projecttemplate.view.breakoutview.BreakoutGameView;
+import edu.chalmers.projecttemplate.view.breakoutview.BreakoutGameViewManager;
 import edu.chalmers.projecttemplate.view.breakoutview.BreakoutMenuView;
-import edu.chalmers.projecttemplate.view.breakoutview.BreakoutViewManager;
 import javafx.animation.AnimationTimer;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.Glow;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 /*
  * Controller for breakout game area
  */
-public class BreakoutGameController implements Initializable {
+public class BreakoutGameController implements Initializable, IController {
     @FXML public Button btnGameExit;
     @FXML public Button btnGamePause;
     @FXML public AnchorPane gameArea;
@@ -29,30 +37,35 @@ public class BreakoutGameController implements Initializable {
     private Wall gameModel;
     private Paddle paddle;
     private Ball ball;
-    private BreakoutViewManager breakoutViewManager;
+    private BreakoutGameViewManager breakoutGameViewManager;
+    private BreakoutGameView newGame;
+    private Canvas canvas;
+    private GraphicsContext gc;
     private AnimationTimer timer;
     private boolean pause;
+    private List<Button> buttonList;
     //constructor
-    public BreakoutGameController() {}
+    public BreakoutGameController()  {}
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        paddle = new Paddle(420, 538, 60, 12);
-        ball = new Ball(432, 507, 25, 25);
+        paddle = new Paddle(420, 537, 100, 12);
+        ball = new Ball(442, 510, 25, 25);
         gameModel = new Wall();
-        breakoutViewManager = BreakoutViewManager.getInstance();
+        canvas = new Canvas(gameArea.getPrefWidth(), gameArea.getPrefHeight());
+        gc = canvas.getGraphicsContext2D();
+        gameArea.getChildren().add(canvas);
+        breakoutGameViewManager = new BreakoutGameViewManager(gc, gameArea.getPrefWidth(), gameArea.getPrefHeight());
+        buttonList = new ArrayList<>();
+        addButtonToList();
+        initButtonListeners();
         pause = true;
-        try {
-            renderTheGame();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        run();
+        start();
     }
 
     /*
      * 1. Button Exit
      */
-    public void btnExitGameControl(ActionEvent mouseEvent) throws IOException {
+    public void btnExitGameControl(MouseEvent mouseEvent) throws IOException {
         BreakoutMenuView newMenu = new BreakoutMenuView();
         Scene gameScene = newMenu.getMainScene();
         Stage gameStage = (Stage)((Node)mouseEvent.getSource()).getScene().getWindow();
@@ -62,7 +75,7 @@ public class BreakoutGameController implements Initializable {
     /*
      * 2. Button Pause
      */
-    public void btnExitPauseControl(ActionEvent actionEvent) {
+    public void btnExitPauseControl(MouseEvent actionEvent) {
         btnGamePause.setOnMouseClicked(mouseEvent -> {
             if (pause) {
                 timer.stop();
@@ -80,26 +93,24 @@ public class BreakoutGameController implements Initializable {
      * 3. Paddle
      */
     //Draw paddle
-    private void drawPaddle() throws IOException {
-        breakoutViewManager.drawPaddle(paddle);
+    private void drawPaddle() {
+        breakoutGameViewManager.drawPaddle(paddle);
     }
     /*
      * 4. Ball
      */
     //Draw ball
-    private void drawBall() throws IOException {
-        breakoutViewManager.drawBall(ball);
+    private void drawBall() {
+        breakoutGameViewManager.drawBall(ball);
     }
     /*
      * 5. Bricks
      */
-    private void drawBrick() throws IOException {
-        for (int i=0; i<gameModel.getBrickList().size(); i++) {
+    private void drawBrick() {
+       for (int i=0; i<gameModel.getBrickList().size(); i++) {
             //Drawing brick
-            breakoutViewManager.drawBrick(gameModel.getBrickList().get(i));
-            //Adding brick to the game field
-            gameArea.getChildren().add(gameModel.getBrickList().get(i));
-        }
+            breakoutGameViewManager.drawBrick(gameModel.getBrickList().get(i));
+       }
     }
     /*
      * Initialize listeners
@@ -107,47 +118,67 @@ public class BreakoutGameController implements Initializable {
     private void initializeListeners() {
         gamePane.setOnKeyPressed(keyEvent -> {
             KeyCode key = keyEvent.getCode();
-            if (key.equals(KeyCode.LEFT))
-                paddle.setDx(-1);
-            if (key.equals(KeyCode.RIGHT))
-                paddle.setDx(1);
-        });
-        gamePane.setOnKeyReleased(keyEvent -> {
-            KeyCode key = keyEvent.getCode();
-            if (key.equals(KeyCode.LEFT))
-                paddle.setDx(0);
-            if (key.equals(KeyCode.RIGHT))
-                paddle.setDx(0);
+            if (key.equals(KeyCode.Q))
+                paddle.decX(8);
+            if (key.equals(KeyCode.W))
+                paddle.decX(-8);
         });
     }
-    /*
-     * Render the game
-     */
-    private void renderTheGame() throws IOException {
-        //Drawing and adding paddle to the game field
-        drawPaddle();
-        gameArea.getChildren().add(paddle);
-        //Drawing and adding ball to the game field
-        drawBall();
-        gameArea.getChildren().add(ball);
-        //Drawing and adding brick to the game field
-        drawBrick();
-        //Init game listeners
-        initializeListeners();
+    private void addButtonToList() {
+        buttonList.add(btnGameExit);
+        buttonList.add(btnGamePause);
     }
+    private void initButtonListeners() {
+        for (int i=0; i<2; i++) {
+            int finalI = i;
+            buttonList.get(i).setOnMouseEntered(mouseEvent -> buttonList.get(finalI).setEffect(new Glow()));
+            buttonList.get(i).setOnMouseExited(mouseEvent -> buttonList.get(finalI).setEffect(null));
+            buttonList.get(i).setCursor((Cursor.HAND));
 
+        }
+    }
     /*
-     * Run the game
+     * Creating and processing the game
      */
+    //Game start
+    public void start() {
+        run();
+    }
+    //Game initialize
+    public void init() { breakoutGameViewManager.drawGameArea(); }
+    //Game moving stuff
+    public void tick() {
+        initializeListeners();
+        paddle.move();
+        ball.move();
+    }
+    //Game drawing stuff
+    public void render() {
+        drawPaddle();
+        drawBall();
+        drawBrick();
+    }
+    //Game run
     private void run() {
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                paddle.move();
-                ball.move();
+                init();
+                tick();
+                render();
             }
         };
         timer.start();
     }
-
+    //return scene
+    public Scene getScene()  {
+        try {
+            newGame = new BreakoutGameView();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return newGame.getGameScene();
+    }
+    @Override
+    public void startGame() {}
 }

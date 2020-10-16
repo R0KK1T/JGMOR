@@ -7,7 +7,7 @@ public class Brick extends Commons {
     private boolean isActive;
     private int hit;
 
-    public Brick(double x, double y, double width, double height, int point) {
+    public Brick(int x, int y, int width, int height, int point) {
         super(x, y, width, height);
         this.point = point;
         this.hit = point;

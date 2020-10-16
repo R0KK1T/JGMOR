@@ -49,4 +49,9 @@ public class Rectangle {
         y -= i;
     }
 
+    public void setX(int i) { x = i; }
+
+    public void setY(int i) { y = i; }
+
+
 }
