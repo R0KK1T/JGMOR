@@ -186,16 +186,28 @@ public class GameScene extends Scene {
         scoreLabel.setText("Your score: " + score);
 
         // Add button "Restart, Exit, Back"
+        Button restartBtn = new Button("Restart");
+        restartBtn.setLayoutX(WIDTH/2f - 125);
+        restartBtn.setLayoutY(HEIGHT/2f + 50);
+        restartBtn.getStylesheets().add(getClass().getClassLoader().getResource("snakeresources/styles/GameOverStyle.css").toString());
+
         Button exitBtn = new Button("Exit");
         exitBtn.setLayoutX(WIDTH/2f - 50);
         exitBtn.setLayoutY(HEIGHT/2f + 100);
         exitBtn.getStylesheets().add(getClass().getClassLoader().getResource("snakeresources/styles/GameOverStyle.css").toString());
 
-        // Add button Action
+        // Add button Action "Exit, Restart, Back"
         exitBtn.setOnMouseClicked(e -> System.exit(0));
 
+        restartBtn.setOnMouseClicked(e -> {
+            gameOver = false;
+            ((AnchorPane) getRoot()).getChildren().removeAll(gameOverLabel, scoreLabel, restartBtn, exitBtn);
 
-        ((AnchorPane) getRoot()).getChildren().addAll(gameOverLabel, scoreLabel,exitBtn);
+            food.setRandomPosition(WIDTH, HEIGHT);
+            initScreen();
+        });
+
+        ((AnchorPane) getRoot()).getChildren().addAll(gameOverLabel, scoreLabel, exitBtn, restartBtn);
     }
 
     private class myTimer extends AnimationTimer {
