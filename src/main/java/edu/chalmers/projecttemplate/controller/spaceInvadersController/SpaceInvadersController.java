@@ -38,10 +38,10 @@ public class SpaceInvadersController {
         view.clearDrawingArea();
 
         //draw all positionables in the game
-        for (int i = 0; i < model.getPositionables().size(); i++) {
-            view.draw(model.getPositionables().get(i).getXpos(), model.getPositionables().get(i).getYpos(),
-                    model.getPositionables().get(i).getWidth(), model.getPositionables().get(i).getHeight(),
-                    model.getPositionables().get(i).getType());
+        for (int i = 0; i < model.getGameObjects().size(); i++) {
+            view.draw(model.getGameObjects().get(i).getXpos(), model.getGameObjects().get(i).getYpos(),
+                    model.getGameObjects().get(i).getWidth(), model.getGameObjects().get(i).getHeight(),
+                    model.getGameObjects().get(i).getType());
         }
     }
 

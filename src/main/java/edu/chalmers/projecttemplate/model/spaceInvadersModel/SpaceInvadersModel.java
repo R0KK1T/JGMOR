@@ -5,35 +5,42 @@ import java.util.List;
 
 public class SpaceInvadersModel {
 
+    //window variables
     private final int windowSizeX = 1000;
     private final int windowSizeY = 900;
     private final int boundOffset = 50;
 
+    //all gameObjects
     private Spaceship player;
     private List<Alien> aliens;
     private List<Projectile> projectiles;
     private List<Barrier> barriers;
-    private List<IPositionable> positionables;
+    private List<GameObject> gameObjects;
 
+    //player lives and score
     private int score;
     private int lives;
 
-    private int alienSize = 40;
-    private int alienOffset = 20;
-    private int numberOfAlienCols = 10;
-    private int numberOfAlienRows = 5;
+    //variables for handling the creation and moving of aliens
+    private final int alienSize = 40;
+    private final int alienOffset = 20;
+    private final int numberOfAlienRows = 5;
+    private final int fieldBottom = 600;
     private int alienTopRowPos = 100;
-    private int fieldBottom = 600;
 
-    private int numberOfBarriers = 4;
+    //number of barriers
+    private final int numberOfBarriers = 4;
 
+    //logic surrounding timer for player shooting
     private int timeBetweenPlayerShots = 150;
-    private int timeSinceLastPlayerShot = 10000;
+    private int timeSinceLastPlayerShot = 8000;
 
-    private int timeBetweenMove = 5; //40
+    //logic for handling alien's move timer and what row to move
+    private int timeBetweenMove = 40;
     private int currentTime = 0;
     private int alienRowToMove = -1;
 
+    //variables for when aliens hits the wall or the floor of their field
     private boolean hitBound = false;
     private boolean atBottom = false;
 
@@ -48,6 +55,7 @@ public class SpaceInvadersModel {
         lives = 3;
 
         //populate list of aliens
+        int numberOfAlienCols = 10;
         for (int i = 0; i < numberOfAlienCols; i++) {
             for (int j = 0; j < numberOfAlienRows; j++) {
                 aliens.add(new Alien(boundOffset + (alienSize+alienSize)*i, alienTopRowPos + (alienSize+alienOffset)*j, alienSize, 20));
@@ -126,6 +134,7 @@ public class SpaceInvadersModel {
             alienRowToMove--;
             currentTime = 0;
         }
+        //get closer to moving aliens
         else{
             currentTime++;
         }
@@ -151,7 +160,8 @@ public class SpaceInvadersModel {
     }
 
     private void aliensShoot(){
-
+        //all aliens have an internal shoot timer if its time for an alien to shoot it will do so
+        // else the timer increase and get closer to shooting
         for (int i = 0; i < aliens.size(); i++) {
             if(aliens.get(i).getTimeSinceLastShot() >= aliens.get(i).getTimeBetweenShots()){
                 aliens.get(i).resetTimeScinceLastShot();
@@ -164,47 +174,72 @@ public class SpaceInvadersModel {
     }
     
     private void checkCollisions(){
-        for (Projectile projectile: projectiles) {
-            //enemy projectiles
-            if (projectile.getDirection() == 1){
-                //checks collisions with the player
-                if (projectile.getHitbox().intersect(player.getHitbox())){
+        //loop through projectile list and check if projectile either collides with anything or is out of bounds,
+        // if true then remove it and do action depending on what it hit
+        for (int i = 0; i < projectiles.size(); i++) {
+            //bool for knowing if projectile has hit something
+            boolean hit = false;
+            //check enemy projectiles
+            if (projectiles.get(i).getDirection() == 1){
+                //checks collisions with the player, player looses lives or dies when hit
+                if (projectiles.get(i).getHitbox().intersect(player.getHitbox())){
                     damagePlayer();
-                    projectiles.remove(projectile);
-                    System.out.println("player died");
+                    projectiles.remove(projectiles.get(i));
+                    i--;
+                    hit = true;
                     continue;
                 }
-                //checks collisions with barriers
+                //checks collisions with barriers, barriers looses lives or gets destroyed when hit
                 for (Barrier barrier: barriers) {
-                    if (projectile.getHitbox().intersect(barrier.getHitbox())){
+                    if (projectiles.get(i).getHitbox().intersect(barrier.getHitbox())){
                         damageBarrier(barrier);
-                        projectiles.remove(projectile);
+                        projectiles.remove(projectiles.get(i));
+                        i--;
+                        hit = true;
                         break;
                     }
                 }
             }
-            //player projectiles
-            else if (projectile.getDirection() == -1){
+            //check player projectiles
+            else if (projectiles.get(i).getDirection() == -1){
+                //checks collisions with barriers, barrier do not get effected by player projectiles and will therefore
+                //not loose lives/get destroyed when hit by one but projectile is destroyed
                 for (Barrier barrier: barriers) {
-                    if (projectile.getHitbox().intersect(barrier.getHitbox())){
-                        projectiles.remove(projectile);
+                    if (projectiles.get(i).getHitbox().intersect(barrier.getHitbox())){
+                        projectiles.remove(projectiles.get(i));
+                        i--;
+                        hit = true;
                         break;
                     }
                 }
+                //if a projectile has hit something it has been removed and we can
+                // therefore not check more collisions so we continue to next projectile in list
+                if (hit){
+                    continue;
+                }
+                //check collisions with aliens if hit they will be destroyed and player will receive score
                 for (Alien alien: aliens) {
-                    if (projectile.getHitbox().intersect(alien.getHitbox())){
-                        projectiles.remove(projectile);
+                    if (projectiles.get(i).getHitbox().intersect(alien.getHitbox())){
+                        projectiles.remove(projectiles.get(i));
+                        i--;
                         aliens.remove(alien);
                         score += 100;
                         System.out.println("Score is now: " + score);
+                        hit = true;
                         break;
                     }
                 }
+            }
+            //if a projectile hasn't hit anything and is out of bounds it is destroyed
+            if (!hit && (projectiles.get(i).getYpos() < 0 || projectiles.get(i).getYpos() > windowSizeY)){
+                projectiles.remove(projectiles.get(i));
+                i--;
             }
         }
     }
 
     private void damageBarrier(Barrier barrier){
+        //barrier is destroyed if health is at 0 else barrier looses 1 health
         if (barrier.getHealth() <= 0){
             barriers.remove(barrier);
         }
@@ -214,6 +249,7 @@ public class SpaceInvadersModel {
     }
 
     private void damagePlayer(){
+        // player looses 1 health if it has above 0 lives else looses the game
         if (lives > 0){
             lives--;
         }
@@ -223,6 +259,7 @@ public class SpaceInvadersModel {
     }
 
     public void playerShoot(){
+        //if the timer for player shooting is above time between shots the player will shoot a projectile
         if (timeSinceLastPlayerShot >= timeBetweenPlayerShots){
             projectiles.add(new Projectile(player.getXpos(), player.getYpos(), -1));
             timeSinceLastPlayerShot = 0;
@@ -244,28 +281,28 @@ public class SpaceInvadersModel {
         return windowSizeY;
     }
 
-    public List<IPositionable> getPositionables(){
-        positionables = new ArrayList<>();
+    public List<GameObject> getGameObjects(){
+        gameObjects = new ArrayList<>();
 
         //add player
-        positionables.add(player);
-        positionables.get(0);
+        gameObjects.add(player);
+        gameObjects.get(0);
 
         //add aliens
         for (int i = 0; i < aliens.size(); i++) {
-            positionables.add(aliens.get(i));
+            gameObjects.add(aliens.get(i));
         }
 
         //add projectiles
         for (int i = 0; i < projectiles.size(); i++) {
-            positionables.add(projectiles.get(i));
+            gameObjects.add(projectiles.get(i));
         }
 
         //add barriers
         for (int i = 0; i < barriers.size(); i++) {
-            positionables.add(barriers.get(i));
+            gameObjects.add(barriers.get(i));
         }
 
-        return positionables;
+        return gameObjects;
     }
 }

@@ -2,7 +2,7 @@ package edu.chalmers.projecttemplate.model.spaceInvadersModel;
 
 import edu.chalmers.projecttemplate.model.common.Rectangle;
 
-public abstract class MovableObject implements IPositionable{
+public abstract class MovableObject implements GameObject, IHitable{
 
     private String type;
     private Rectangle hitbox;

@@ -2,7 +2,7 @@ package edu.chalmers.projecttemplate.model.spaceInvadersModel;
 
 import edu.chalmers.projecttemplate.model.common.Rectangle;
 
-class Barrier implements IPositionable{
+class Barrier implements GameObject, IHitable{
     private int health;
     private Rectangle hitbox;
     private String type;
