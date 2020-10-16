@@ -1,15 +1,14 @@
 package edu.chalmers.projecttemplate.controller.pongcontroller;
 
+import edu.chalmers.projecttemplate.controller.controllerInterface.IController;
 import edu.chalmers.projecttemplate.model.pongmodel.PongModel;
-import edu.chalmers.projecttemplate.model.spaceInvadersModel.SpaceInvadersModel;
 import edu.chalmers.projecttemplate.view.pongview.PongView;
-import edu.chalmers.projecttemplate.view.spaceInvadersView.SpaceInvadersView;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-public class PongController {
+public class PongController implements IController {
     AnimationTimer timer;
     PongModel model;
     PongView view;

@@ -1,5 +1,6 @@
-package edu.chalmers.projecttemplate.controller;
+package edu.chalmers.projecttemplate.controller.FXMLControllers;
 
+import edu.chalmers.projecttemplate.controller.viewNavigator.ViewNavigator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -30,4 +31,8 @@ public class StartMenuController implements Initializable {
     public void quitGame(){
         System.exit(1);
     }
+    public void selectGame() throws Exception {
+        ViewNavigator.getInstance().loadMenuView("selectGame");
+    }
+
 }

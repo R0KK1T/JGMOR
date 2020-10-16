@@ -1,5 +1,6 @@
 package edu.chalmers.projecttemplate.controller.froggercontroller;
 
+import edu.chalmers.projecttemplate.controller.controllerInterface.IController;
 import edu.chalmers.projecttemplate.model.froggermodel.FroggerModel;
 import edu.chalmers.projecttemplate.model.froggermodel.IPositionable;
 import edu.chalmers.projecttemplate.view.froggerview.FroggerView;
@@ -8,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-public class FroggerController {
+public class FroggerController implements IController {
 
     FroggerModel model;
     FroggerView view;

@@ -1,5 +1,6 @@
 package edu.chalmers.projecttemplate.controller.spaceInvadersController;
 
+import edu.chalmers.projecttemplate.controller.controllerInterface.IController;
 import edu.chalmers.projecttemplate.model.spaceInvadersModel.SpaceInvadersModel;
 import edu.chalmers.projecttemplate.view.spaceInvadersView.SpaceInvadersView;
 import javafx.animation.AnimationTimer;
@@ -7,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-public class SpaceInvadersController {
+public class SpaceInvadersController implements IController {
     SpaceInvadersModel model;
     SpaceInvadersView view;
     AnimationTimer timer;

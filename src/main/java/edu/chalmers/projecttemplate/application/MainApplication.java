@@ -1,26 +1,32 @@
 package edu.chalmers.projecttemplate.application;
 
+import edu.chalmers.projecttemplate.controller.viewNavigator.ViewNavigator;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainApplication extends Application {
 
+	private static Stage stage;
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("startMenu.fxml"));
+		stage = primaryStage;
 
-		Scene scene = new Scene(root, 800, 600);
+		ViewNavigator.getInstance().loadMenuView("startMenu");
 
-		primaryStage.setScene(scene);
-		primaryStage.setResizable(false);
-		primaryStage.show();
+		stage.setResizable(false);
+		stage.setX(0);
+		stage.setY(0);
+		stage.show();
 	}
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	public static void setScene(Scene scene) {
+		stage.setScene(scene);
 	}
 }

@@ -4,8 +4,8 @@ public class PongModel {
     PongBall pongBall;
     PongPaddle pongLeftPaddle,pongRightPaddle;
     PongAI pongAI;
-    private final int windowSizeX = 1920;
-    private final int windowSizeY = 1080;
+    private final int windowSizeX = 1600;
+    private final int windowSizeY = 980;
     private final int paddleVelocity = 3;
     private final int ballVelocity = 5;
     private int leftPlayerScore = 0;
