@@ -43,7 +43,7 @@ public class FroggerTest {
 
         for (int i = 0; i < roadLane.getObstacles().size(); i++) {
             Assert.assertTrue(roadLane.getObstacles().get(i).getVelocity()!=0);
-            Assert.assertTrue(roadLane.getObstacles().get(i).getType() == ObstacleType.CAR);
+            Assert.assertTrue(roadLane.getObstacles().get(i).getType() == ObstacleType.CAR.toString());
         }
 
         for (int i = 0; i < roadLane.getObstacles().size(); i++) {
@@ -60,7 +60,7 @@ public class FroggerTest {
         Assert.assertTrue(riverLane.isRiver());
         for (int i = 0; i < riverLane.getObstacles().size(); i++) {
             Assert.assertTrue(riverLane.getObstacles().get(i).getWidth()==30);
-            Assert.assertTrue(riverLane.getObstacles().get(i).getType() == ObstacleType.LOG);
+            Assert.assertTrue(riverLane.getObstacles().get(i).getType() == ObstacleType.LOG.toString());
         }
 
         for (int i = 0; i < riverLane.getObstacles().size(); i++) {
@@ -81,7 +81,7 @@ public class FroggerTest {
         Assert.assertTrue(finishLine.getObstacles().size() == 4);
         for (int i = 0; i < finishLine.getObstacles().size(); i++) {
             Assert.assertTrue(finishLine.getObstacles().get(i).getVelocity() == 0);
-            Assert.assertTrue(finishLine.getObstacles().get(i).getType() == ObstacleType.GRASS);
+            Assert.assertTrue(finishLine.getObstacles().get(i).getType() == ObstacleType.GRASS.toString());
         }
         Assert.assertTrue(!finishLine.isRiver());
         for (int i = 0; i < finishLine.getObstacles().size(); i++) {
@@ -202,7 +202,7 @@ public class FroggerTest {
     @Test
     public void zeroLives(){
         FroggerModel model = new FroggerModel();
-        ArrayList<IPositionable> poss = model.getPositionables();
+        ArrayList<IRepresentable> reps = model.getRepresents();
         for (int i = 0; i < model.getLifeCount(); i++) {
             //Move frog all the way to the left
             for (int j = 0; j < model.getColumns()/2; j++) {
@@ -218,7 +218,7 @@ public class FroggerTest {
         }
 
         Assert.assertTrue(model.getCurrentLifeCount() == model.getLifeCount());
-        Assert.assertTrue(poss != model.getPositionables());
+        Assert.assertTrue(reps != model.getRepresents());
     }
     @Test
     public void moveFrogViaController(){
@@ -243,10 +243,10 @@ public class FroggerTest {
         }
         int x = model.getPlayer().getX();
         int y = model.getPlayer().getY();
-        ArrayList<IPositionable> poss = model.getPositionables();
+        ArrayList<IRepresentable> reps = model.getRepresents();
         model.update();
         Assert.assertTrue(model.getPlayer().getX() != x && model.getPlayer().getY() != y);
-        Assert.assertTrue(poss.size() != model.getPositionables().size());
+        Assert.assertTrue(reps.size() != model.getRepresents().size());
     }
     @Test
     public void savedAllFrogs(){

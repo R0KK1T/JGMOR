@@ -18,8 +18,8 @@ public class FroggerModel {
     private Frog player;
     private LaneFactory factory;
     private ArrayList<Lane> lanes;
-    private ArrayList<IPositionable> positionables;
-    private boolean changesToPositionables = false;
+    private ArrayList<IRepresentable> represents;
+    private boolean changesToRepresents = false;
 
     public FroggerModel() {
         windowSizeX = squareDimension * columns;
@@ -37,7 +37,7 @@ public class FroggerModel {
         initLanes();
     }
     private void initLanes(){
-        changesToPositionables = true;
+        changesToRepresents = true;
         lanes = new ArrayList<>();
         //Starting lane
         lanes.add(factory.createEmptyLane(windowSizeY - squareDimension));
@@ -55,7 +55,7 @@ public class FroggerModel {
         lanes.add(factory.createFinishLane(columns/3 + 1,0));
     }
     private void newFrog(){
-        changesToPositionables = true;
+        changesToRepresents = true;
         player = new Frog(squareDimension * (columns/2), windowSizeY - squareDimension,
                 squareDimension, squareDimension, squareDimension);
     }
@@ -151,7 +151,6 @@ public class FroggerModel {
         return null;
     }
 
-
     public void movePlayer(int direction){
         switch (direction) {
             case 1:
@@ -170,18 +169,16 @@ public class FroggerModel {
         }
     }
 
-
-
-    public ArrayList<IPositionable> getPositionables(){
-        if (changesToPositionables){
-            positionables = new ArrayList<>();
+    public ArrayList<IRepresentable> getRepresents(){
+        if (changesToRepresents){
+            represents = new ArrayList<>();
             for (Obstacle obs: getAllObstacles()) {
-                positionables.add(obs);
+                represents.add(obs);
             }
-            positionables.add(player);
-            changesToPositionables = false;
+            represents.add(player);
+            changesToRepresents = false;
         }
-        return positionables;
+        return represents;
     }
 
     private ArrayList<Obstacle> getAllObstacles(){
@@ -223,7 +220,4 @@ public class FroggerModel {
     }
     public int getCurrentLifeCount(){ return currentLifeCount; }
 
-    public int getFrogsToSave() {
-        return frogsToSave;
-    }
 }

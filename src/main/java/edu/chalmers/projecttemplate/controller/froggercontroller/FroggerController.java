@@ -2,7 +2,7 @@ package edu.chalmers.projecttemplate.controller.froggercontroller;
 
 import edu.chalmers.projecttemplate.controller.controllerInterface.IController;
 import edu.chalmers.projecttemplate.model.froggermodel.FroggerModel;
-import edu.chalmers.projecttemplate.model.froggermodel.IPositionable;
+import edu.chalmers.projecttemplate.model.froggermodel.IRepresentable;
 import edu.chalmers.projecttemplate.view.froggerview.FroggerView;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Scene;
@@ -35,8 +35,8 @@ public class FroggerController implements IController {
         view.clearDrawingArea();
 
         //draw all objects in the game
-        for (IPositionable pos: model.getPositionables()) {
-            view.draw(pos.getX(), pos.getY(), pos.getWidth(), pos.getHeight());
+        for (IRepresentable rep: model.getRepresents()) {
+            view.draw(rep.getX(), rep.getY(), rep.getWidth(), rep.getHeight(), rep.getType());
         }
     }
 

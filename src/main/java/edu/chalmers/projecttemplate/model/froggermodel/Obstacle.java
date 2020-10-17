@@ -2,7 +2,7 @@ package edu.chalmers.projecttemplate.model.froggermodel;
 
 import edu.chalmers.projecttemplate.model.common.Rectangle;
 
-public class Obstacle implements IPositionable{
+public class Obstacle implements IRepresentable{
     private Rectangle hitbox;
     private int velocity;
     private ObstacleType type;
@@ -13,8 +13,6 @@ public class Obstacle implements IPositionable{
         this.type = type;
     }
 
-    //Very much alike Frog. Might be smart to refactor with superclass or other
-    //In order to minimize duplication of code.
     public Rectangle getHitbox() {
         return hitbox;
     }
@@ -23,8 +21,8 @@ public class Obstacle implements IPositionable{
     public int getWidth(){ return getHitbox().getWidth(); }
     public int getHeight(){ return getHitbox().getHeight(); }
     public int getVelocity(){ return velocity;}
-    public ObstacleType getType(){
-        return type;
+    public String getType(){
+        return type.toString();
     }
 
     public void move(){

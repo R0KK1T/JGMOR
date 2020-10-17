@@ -2,13 +2,18 @@ package edu.chalmers.projecttemplate.model.froggermodel;
 
 import edu.chalmers.projecttemplate.model.common.Rectangle;
 
-public class Frog implements IPositionable{
+public class Frog implements IRepresentable{
     private Rectangle hitbox;
     private Obstacle riverObs;
     private int velocity;
     public Frog(int x, int y, int width, int height, int velocity){
         hitbox = new Rectangle(x, y, width, height);
         this.velocity = velocity;
+    }
+
+    @Override
+    public String toString() {
+        return "FROG";
     }
 
     public Rectangle getHitbox() {
@@ -18,6 +23,9 @@ public class Frog implements IPositionable{
     public int getY(){ return getHitbox().getY(); }
     public int getWidth(){ return getHitbox().getWidth(); }
     public int getHeight(){ return getHitbox().getHeight(); }
+    public String getType(){
+        return this.toString();
+    }
     public int getVelocity(){ return velocity; }
 
     public void moveRight(){

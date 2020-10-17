@@ -68,9 +68,34 @@ public class FroggerView {
         gameLayer.clearRect(0, 0, windowSizeX, windowSizeY);
     }
 
-    public void draw(int posX, int posY, int width, int height){
-        //draw object
-        gameLayer.drawImage(playerImg, posX, posY, width, height);
+    public void draw(int posX, int posY, int width, int height, String type){
+        switch(type){
+            case "FROG":
+                //draw object
+                gameLayer.drawImage(playerImg, posX, posY, width, height);
+                break;
+            case "CAR":
+                //draw object
+                gameLayer.drawImage(playerImg, posX, posY, width, height);
+                break;
+            case "LOG":
+                //draw object
+                gameLayer.drawImage(playerImg, posX, posY, width, height);
+                break;
+            case "GRASS":
+                //draw object
+                gameLayer.drawImage(playerImg, posX, posY, width, height);
+                break;
+            case "FINISHLINEFROG":
+                //draw object
+                gameLayer.drawImage(playerImg, posX, posY, width, height);
+                break;
+            default:
+                //draw object
+                gameLayer.drawImage(playerImg, posX, posY, width, height);
+                break;
+        }
+
     }
 
 }
