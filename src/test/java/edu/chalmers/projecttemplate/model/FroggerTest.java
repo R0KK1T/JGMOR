@@ -248,4 +248,42 @@ public class FroggerTest {
         Assert.assertTrue(model.getPlayer().getX() != x && model.getPlayer().getY() != y);
         Assert.assertTrue(poss.size() != model.getPositionables().size());
     }
+    @Test
+    public void savedAllFrogs(){
+        FroggerModel model = new FroggerModel();
+        ArrayList<Lane> lanes = model.getLanes();
+
+        model.movePlayer(3);
+        while(model.getCurrentPlayerLane() != model.getLanes().get(model.getLanes().size() - 1)){
+            model.movePlayer(1);
+        }
+        model.update();
+        Assert.assertTrue(lanes == model.getLanes());
+
+        for (int i = 0; i < 4; i++) {
+            model.movePlayer(3);
+        }
+        while(model.getCurrentPlayerLane() != model.getLanes().get(model.getLanes().size() - 1)){
+            model.movePlayer(1);
+        }
+        model.update();
+        Assert.assertTrue(lanes == model.getLanes());
+
+        model.movePlayer(4);
+        while(model.getCurrentPlayerLane() != model.getLanes().get(model.getLanes().size() - 1)){
+            model.movePlayer(1);
+        }
+        model.update();
+        Assert.assertTrue(lanes == model.getLanes());
+
+        for (int i = 0; i < 4; i++) {
+            model.movePlayer(4);
+        }
+        while(model.getCurrentPlayerLane() != model.getLanes().get(model.getLanes().size() - 1)){
+            model.movePlayer(1);
+        }
+        model.update();
+        Assert.assertFalse(lanes == model.getLanes());
+
+    }
 }

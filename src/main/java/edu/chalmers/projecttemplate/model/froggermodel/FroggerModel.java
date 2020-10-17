@@ -10,18 +10,21 @@ public class FroggerModel {
     private int windowSizeY;
     private int lifeCount = 7;
     private int currentLifeCount;
+    private int frogsToSave;
+    private int savedFrogs = 0;
+    private int updateUnits = 0;
+    private int delayAmount = 3;
 
     private Frog player;
     private LaneFactory factory;
     private ArrayList<Lane> lanes;
     private ArrayList<IPositionable> positionables;
     private boolean changesToPositionables = false;
-    private int updateUnits = 0;
-    private int delayAmount = 3;
 
     public FroggerModel() {
         windowSizeX = squareDimension * columns;
         windowSizeY = squareDimension * rows;
+        frogsToSave = (columns - (columns/3 + 1)) / 2;
         factory = new LaneFactory(squareDimension, columns, 1, 5);
         resetGame();
     }
@@ -119,7 +122,14 @@ public class FroggerModel {
     private void checkForPlayerAtFinishLine(){
         if(getCurrentPlayerLane() == lanes.get(lanes.size() - 1)){
             lanes.get(lanes.size() - 1).add(new Obstacle(player.getX(), player.getY(), squareDimension, squareDimension, 0, ObstacleType.FINISHLINEFROG));
-            newFrog();
+            savedFrogs++;
+            if(savedFrogs >= frogsToSave){
+                resetGame();
+                //TODO newGame() after pointsystem is implemented
+            }
+            else{
+                newFrog();
+            }
         }
     }
     //Getter to check which lane player is currently on
@@ -212,4 +222,8 @@ public class FroggerModel {
         return lifeCount;
     }
     public int getCurrentLifeCount(){ return currentLifeCount; }
+
+    public int getFrogsToSave() {
+        return frogsToSave;
+    }
 }
