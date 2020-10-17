@@ -22,15 +22,36 @@ public class FroggerTest {
     }
     @Test
     public void moveFrog(){
-        Frog frog = new Frog(10, 10, 10, 10, 1);
+        Frog frog = new Frog(10, 10, 10, 10, 10);
         frog.moveRight();
-        Assert.assertTrue(frog.getHitbox().getX() == 11);
+        Assert.assertTrue(frog.getHitbox().getX() == 20);
         frog.moveUp();
-        Assert.assertTrue(frog.getHitbox().getY() == 9);
+        Assert.assertTrue(frog.getHitbox().getY() == 0);
         frog.moveLeft();
         Assert.assertTrue(frog.getHitbox().getX() == 10);
         frog.moveDown();
         Assert.assertTrue(frog.getHitbox().getY() == 10);
+
+        frog.setBounds(10, 10, 20, 20);
+        frog.moveRight();
+        Assert.assertTrue(frog.getHitbox().getX() == 10);
+        frog.moveUp();
+        Assert.assertTrue(frog.getHitbox().getY() == 10);
+        frog.moveLeft();
+        Assert.assertTrue(frog.getHitbox().getX() == 10);
+        frog.moveDown();
+        Assert.assertTrue(frog.getHitbox().getY() == 10);
+
+        frog.setBounds(10, 10, 25, 25);
+        frog.moveRight();
+        Assert.assertTrue(frog.getHitbox().getX() == 15);
+        frog.moveDown();
+        Assert.assertTrue(frog.getHitbox().getY() == 15);
+        frog.moveLeft();
+        Assert.assertTrue(frog.getHitbox().getX() == 10);
+        frog.moveUp();
+        Assert.assertTrue(frog.getHitbox().getY() == 10);
+
     }
     @Test
     public void createLane(){
@@ -143,6 +164,19 @@ public class FroggerTest {
         frog.update();
 
         Assert.assertTrue(frog.getX() == obs.getX() && frog.getX() == 30);
+
+        frog.setBounds(frog.getX(), frog.getY(), frog.getX()+frog.getWidth(), frog.getY()+frog.getHeight());
+        obs.move();
+        frog.update();
+        Assert.assertTrue(frog.getX() < obs.getX() && frog.getX() == 30);
+
+        frog = new Frog(25, 25, 25,25, 25);
+        obs = new Obstacle(25, 25, 75, 25, -5, ObstacleType.LOG);
+
+        frog.setBounds(frog.getX(), frog.getY(), frog.getX()+frog.getWidth(), frog.getY()+frog.getHeight());
+        obs.move();
+        frog.update();
+        Assert.assertTrue(frog.getX() > obs.getX() && frog.getX() == 25);
 
         frog.moveUp();
         //Detach is called via frog.update()

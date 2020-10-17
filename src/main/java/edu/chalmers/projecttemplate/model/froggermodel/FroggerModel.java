@@ -58,6 +58,7 @@ public class FroggerModel {
         changesToRepresents = true;
         player = new Frog(squareDimension * (columns/2), windowSizeY - squareDimension,
                 squareDimension, squareDimension, squareDimension);
+        player.setBounds(0, 0, windowSizeX, windowSizeY);
     }
 
     public void update(){
