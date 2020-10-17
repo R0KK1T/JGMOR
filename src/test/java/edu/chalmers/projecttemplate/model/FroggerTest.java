@@ -132,7 +132,7 @@ public class FroggerTest {
     @Test
     public void frogAttachAndDetach(){
         Frog frog = new Frog(25, 25, 25,25, 25);
-        Obstacle obs = new Obstacle(25, 25, 75, 25, 5);
+        Obstacle obs = new Obstacle(25, 25, 75, 25, 5, ObstacleType.LOG);
 
         frog.attach(obs);
         obs.move();
