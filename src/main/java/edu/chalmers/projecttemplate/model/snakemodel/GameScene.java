@@ -5,6 +5,7 @@ import edu.chalmers.projecttemplate.controller.snakecontroller.SettingsViewContr
 import javafx.animation.AnimationTimer;
 import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,9 +21,10 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 
 import javafx.animation.ScaleTransition;
-import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.util.prefs.Preferences;
 
 
@@ -196,18 +198,39 @@ public class GameScene extends Scene {
         exitBtn.setLayoutY(HEIGHT/2f + 100);
         exitBtn.getStylesheets().add(getClass().getClassLoader().getResource("snakeresources/styles/GameOverStyle.css").toString());
 
+        Button backBtn = new Button("Back");
+        backBtn.setLayoutX(WIDTH/2f + 30);
+        backBtn.setLayoutY(HEIGHT/2f + 50);
+        backBtn.getStylesheets().add(getClass().getClassLoader().getResource("snakeresources/styles/GameOverStyle.css").toString());
+
         // Add button Action "Exit, Restart, Back"
         exitBtn.setOnMouseClicked(e -> System.exit(0));
 
         restartBtn.setOnMouseClicked(e -> {
             gameOver = false;
-            ((AnchorPane) getRoot()).getChildren().removeAll(gameOverLabel, scoreLabel, restartBtn, exitBtn);
+            ((AnchorPane) getRoot()).getChildren().removeAll(gameOverLabel, scoreLabel, restartBtn, exitBtn, backBtn);
 
             food.setRandomPosition(WIDTH, HEIGHT);
             initScreen();
         });
 
-        ((AnchorPane) getRoot()).getChildren().addAll(gameOverLabel, scoreLabel, exitBtn, restartBtn);
+        backBtn.setOnMouseClicked(e -> {
+            Stage stage = (Stage) getWindow();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().
+                        getClassLoader().
+                        getResource("snakeresources/views/WelcomeView.fxml"));
+            } catch (IOException e1) {
+                MyLogger.WARN("snakeresources/views/WelcomeView.fxml file not found");
+                System.exit(0);
+            }
+            stage.setScene(new Scene(root));
+            stage.centerOnScreen();
+            stage.show();
+        });
+
+        ((AnchorPane) getRoot()).getChildren().addAll(gameOverLabel, scoreLabel, exitBtn, restartBtn, backBtn);
     }
 
     private class myTimer extends AnimationTimer {
