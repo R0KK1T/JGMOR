@@ -28,29 +28,25 @@ import java.util.ResourceBundle;
 /*
  * Controller for breakout game area
  */
-public class BreakoutGameController implements Initializable, IController {
+public class BreakoutGameController implements Initializable {
     @FXML public Button btnGameExit;
     @FXML public Button btnGamePause;
     @FXML public AnchorPane gameArea;
     @FXML public Label scoreLabel;
     public AnchorPane gamePane;
-    private Wall gameModel;
-    private Paddle paddle;
-    private Ball ball;
+    private GameModel gameModel;
     private BreakoutGameViewManager breakoutGameViewManager;
-    private BreakoutGameView newGame;
     private Canvas canvas;
     private GraphicsContext gc;
     private AnimationTimer timer;
     private boolean pause;
+    private boolean inGame;
     private List<Button> buttonList;
     //constructor
     public BreakoutGameController()  {}
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        paddle = new Paddle(420, 537, 100, 12);
-        ball = new Ball(442, 510, 25, 25);
-        gameModel = new Wall();
+        gameModel = new GameModel();
         canvas = new Canvas(gameArea.getPrefWidth(), gameArea.getPrefHeight());
         gc = canvas.getGraphicsContext2D();
         gameArea.getChildren().add(canvas);
@@ -59,6 +55,7 @@ public class BreakoutGameController implements Initializable, IController {
         addButtonToList();
         initButtonListeners();
         pause = true;
+        inGame = true;
         start();
     }
 
@@ -77,12 +74,12 @@ public class BreakoutGameController implements Initializable, IController {
      */
     public void btnExitPauseControl(MouseEvent actionEvent) {
         btnGamePause.setOnMouseClicked(mouseEvent -> {
-            if (pause) {
+            if (pause && inGame) {
                 timer.stop();
                 pause = false;
                 btnGamePause.setText("PLAY");
             }
-            else {
+            else if (!pause && inGame){
                 timer.start();
                 pause = true;
                 btnGamePause.setText("PAUSE");
@@ -94,14 +91,14 @@ public class BreakoutGameController implements Initializable, IController {
      */
     //Draw paddle
     private void drawPaddle() {
-        breakoutGameViewManager.drawPaddle(paddle);
+        breakoutGameViewManager.drawPaddle(gameModel.getPaddle());
     }
     /*
      * 4. Ball
      */
     //Draw ball
     private void drawBall() {
-        breakoutGameViewManager.drawBall(ball);
+        breakoutGameViewManager.drawBall(gameModel.getBall());
     }
     /*
      * 5. Bricks
@@ -119,9 +116,9 @@ public class BreakoutGameController implements Initializable, IController {
         gamePane.setOnKeyPressed(keyEvent -> {
             KeyCode key = keyEvent.getCode();
             if (key.equals(KeyCode.Q))
-                paddle.decX(8);
+                gameModel.getPaddle().decX(10);
             if (key.equals(KeyCode.W))
-                paddle.decX(-8);
+                gameModel.getPaddle().decX(-10);
         });
     }
     private void addButtonToList() {
@@ -149,8 +146,9 @@ public class BreakoutGameController implements Initializable, IController {
     //Game moving stuff
     public void tick() {
         initializeListeners();
-        paddle.move();
-        ball.move();
+        gameModel.tick();
+        gameModel.checkCollisionBallPaddle();
+        checkIsGameOver();
     }
     //Game drawing stuff
     public void render() {
@@ -164,21 +162,17 @@ public class BreakoutGameController implements Initializable, IController {
             @Override
             public void handle(long now) {
                 init();
-                tick();
                 render();
+                tick();
             }
         };
         timer.start();
     }
-    //return scene
-    public Scene getScene()  {
-        try {
-            newGame = new BreakoutGameView();
-        } catch (IOException e) {
-            e.printStackTrace();
+    //Game over
+    private void checkIsGameOver() {
+        if (gameModel.gameIsOver()) {
+            timer.stop();
+            inGame = false;
         }
-        return newGame.getGameScene();
     }
-    @Override
-    public void startGame() {}
 }

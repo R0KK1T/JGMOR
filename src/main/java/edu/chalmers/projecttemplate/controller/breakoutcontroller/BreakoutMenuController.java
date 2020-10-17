@@ -1,6 +1,8 @@
 package edu.chalmers.projecttemplate.controller.breakoutcontroller;
 
+import edu.chalmers.projecttemplate.controller.controllerInterface.IController;
 import edu.chalmers.projecttemplate.view.breakoutview.BreakoutGameView;
+import edu.chalmers.projecttemplate.view.breakoutview.BreakoutMenuView;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,7 +24,7 @@ import java.util.ResourceBundle;
 /*
  * Controller for breakout game menu
  */
-public class BreakoutMenuController implements Initializable {
+public class BreakoutMenuController implements Initializable, IController {
     @FXML public Button btnPlay;
     @FXML public Button btnScores;
     @FXML public Button btnHelp;
@@ -34,6 +36,7 @@ public class BreakoutMenuController implements Initializable {
     @FXML public AnchorPane mainPane;
     private AnchorPane paneTohide;
     private BreakoutGameView newGame;
+    private BreakoutMenuView menuView;
     private boolean isHidden;
     private List<Button> buttonList;
     //constructor
@@ -140,4 +143,18 @@ public class BreakoutMenuController implements Initializable {
             buttonList.get(i).setCursor((Cursor.HAND));
         }
     }
+
+    @Override
+    public void startGame() { /** On clicked to start  **/}
+
+    @Override
+    public Scene getScene() {
+        try {
+            menuView = new BreakoutMenuView();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return menuView.getMainScene();
+    }
+
 }

@@ -2,10 +2,7 @@ package edu.chalmers.projecttemplate.view.breakoutview;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 /*
  * View for breakout Game
