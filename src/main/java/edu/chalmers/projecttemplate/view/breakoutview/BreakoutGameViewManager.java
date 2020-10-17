@@ -43,15 +43,15 @@ public class BreakoutGameViewManager {
      * Drawing Brick
      */
     public void drawBrick(Brick brick) {
-        if (brick.getBrickPoint()==4) {
+        if (brick.getBrickHit()==4) {
             gc.setFill(Color.RED);
             gc.fillRect(brick.getX(), brick.getY(), brick.getWidth(), brick.getHeight());
         }
-        else if (brick.getBrickPoint()==3) {
+        else if (brick.getBrickHit()==3) {
             gc.setFill(Color.ORANGE);
             gc.fillRect(brick.getX(), brick.getY(), brick.getWidth(), brick.getHeight());
         }
-        else if (brick.getBrickPoint()==2) {
+        else if (brick.getBrickHit()==2) {
             gc.setFill(Color.GREEN);
             gc.fillRect(brick.getX(), brick.getY(), brick.getWidth(), brick.getHeight());
         }

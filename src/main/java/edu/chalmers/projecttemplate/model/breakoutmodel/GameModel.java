@@ -35,12 +35,9 @@ public class GameModel {
         ball.move();
     }
     /*
-     * Check for collision
+     * Checks if the ball is colliding with the paddle.
      */
     public void checkCollisionBallPaddle() {
-        /*
-         * Checks if the ball is colliding with the paddle.
-         */
         if (ball.intersect(paddle)) {
             if (ball.getY() < paddle.getY()) {
                 ball.reverseVerticalMomentum();
@@ -66,6 +63,43 @@ public class GameModel {
             }
         }
 
+    }
+    /*
+     * Loops through the array of bricks and checks if any of the bricks
+     * collides with the ball.
+     */
+    public void checkCollisionBallBrick() {
+        for (int i=0; i<brickList.size(); i++) {
+            checkCollisionBallBrick(brickList.get(i));
+        }
+    }
+    /*
+     * Method for checking collision between a Brick and the ball.
+     */
+    private void checkCollisionBallBrick(Brick brick) {
+        if (!brick.getBrickStatus()) {
+            return;
+        }
+        if (ball.intersect(brick)) {
+            //Hit was from below the brick
+            if (ball.getY() <= brick.getY() - ((brick.getHeight())/2)) {
+                ball.reverseVerticalMomentum();
+            }
+            //Hit was from above the brick
+            if (ball.getY() >= brick.getY() - ((brick.getHeight())/2)) {
+                ball.reverseVerticalMomentum();
+            }
+            //Hit was on left
+            if (ball.getX() < brick.getX()) {
+                ball.reverseHorizontalMomentum();
+            }
+            //Hit was on right
+            if (ball.getX() > brick.getX()) {
+                ball.reverseHorizontalMomentum();
+            }
+            brick.setBrickHit();
+            brick.setBrickStatus();
+        }
     }
     /*
      * Check for game over

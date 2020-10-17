@@ -105,8 +105,9 @@ public class BreakoutGameController implements Initializable {
      */
     private void drawBrick() {
        for (int i=0; i<gameModel.getBrickList().size(); i++) {
-            //Drawing brick
-            breakoutGameViewManager.drawBrick(gameModel.getBrickList().get(i));
+           //Drawing brick
+           if (gameModel.getBrickList().get(i).getBrickStatus())
+                breakoutGameViewManager.drawBrick(gameModel.getBrickList().get(i));
        }
     }
     /*
@@ -148,6 +149,7 @@ public class BreakoutGameController implements Initializable {
         initializeListeners();
         gameModel.tick();
         gameModel.checkCollisionBallPaddle();
+        gameModel.checkCollisionBallBrick();
         checkIsGameOver();
     }
     //Game drawing stuff

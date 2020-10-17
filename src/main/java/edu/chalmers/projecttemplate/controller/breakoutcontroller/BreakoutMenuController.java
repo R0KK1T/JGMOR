@@ -35,7 +35,6 @@ public class BreakoutMenuController implements Initializable, IController {
     @FXML public Button btnStart;
     @FXML public AnchorPane mainPane;
     private AnchorPane paneTohide;
-    private BreakoutGameView newGame;
     private BreakoutMenuView menuView;
     private boolean isHidden;
     private List<Button> buttonList;
@@ -45,18 +44,13 @@ public class BreakoutMenuController implements Initializable, IController {
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            newGame = new BreakoutGameView();
-            controlPlay();
-            controlHelp();
-            controlScore();
-            controlExit();
-            buttonList = new ArrayList<>();
-            addButtonToList();
-            initializeListeners();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        controlPlay();
+        controlHelp();
+        controlScore();
+        controlExit();
+        buttonList = new ArrayList<>();
+        addButtonToList();
+        initializeListeners();
     }
 
     /*
@@ -94,7 +88,8 @@ public class BreakoutMenuController implements Initializable, IController {
     }
 
     // 5. Button start
-    public void btnStartControl(ActionEvent actionEvent) {
+    public void btnStartControl(ActionEvent actionEvent) throws IOException {
+        BreakoutGameView newGame = new BreakoutGameView();
         Scene gameScene = newGame.getGameScene();
         Stage gameStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         gameStage.setTitle("Breakout Game");
@@ -145,7 +140,7 @@ public class BreakoutMenuController implements Initializable, IController {
     }
 
     @Override
-    public void startGame() { /** On clicked to start  **/}
+    public void startGame() {}
 
     @Override
     public Scene getScene() {
