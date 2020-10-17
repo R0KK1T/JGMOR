@@ -59,9 +59,7 @@ public class App extends Application {
         prefs.putBoolean("renderScore", false);
     }
 
-
     public static void main(String[] args) {
         launch(args);
     }
-
 }

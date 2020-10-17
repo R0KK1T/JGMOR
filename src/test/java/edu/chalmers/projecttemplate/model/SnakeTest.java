@@ -30,4 +30,15 @@ public class SnakeTest {
     public void test_getBodyPosition() {
         Assert.assertEquals(tail,snake.getBody(1).getPosition());
     }
+
+    @Test
+    public void test_getLength() {
+        Assert.assertEquals(2, snake.getLength());
+    }
+
+    @Test
+    public void test_getDirection() {
+        Assert.assertEquals(Direction.DOWN, snake.getDirection());
+    }
+
 }

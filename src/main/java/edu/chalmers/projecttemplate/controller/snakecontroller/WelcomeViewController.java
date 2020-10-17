@@ -22,6 +22,7 @@ public class WelcomeViewController {
     private Parent root;
     private Stage parentView;
 
+
     private long difficulty = 100_000_000;
 
     public void exit() {
