@@ -15,6 +15,10 @@ public class Lane {
         this.river = river;
     }
 
+    public void add(Obstacle obs){
+        obstacles.add(obs);
+    }
+
     public ArrayList<Obstacle> getObstacles(){
         return new ArrayList<>(this.obstacles);
     }

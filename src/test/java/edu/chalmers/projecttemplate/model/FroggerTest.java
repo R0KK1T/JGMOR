@@ -40,8 +40,10 @@ public class FroggerTest {
         Lane roadLane = factory.createRoadLane(3, 10);
 
         Assert.assertTrue(!roadLane.isRiver());
+
         for (int i = 0; i < roadLane.getObstacles().size(); i++) {
             Assert.assertTrue(roadLane.getObstacles().get(i).getVelocity()!=0);
+            Assert.assertTrue(roadLane.getObstacles().get(i).getType() == ObstacleType.CAR);
         }
 
         for (int i = 0; i < roadLane.getObstacles().size(); i++) {
@@ -58,6 +60,7 @@ public class FroggerTest {
         Assert.assertTrue(riverLane.isRiver());
         for (int i = 0; i < riverLane.getObstacles().size(); i++) {
             Assert.assertTrue(riverLane.getObstacles().get(i).getWidth()==30);
+            Assert.assertTrue(riverLane.getObstacles().get(i).getType() == ObstacleType.LOG);
         }
 
         for (int i = 0; i < riverLane.getObstacles().size(); i++) {
@@ -78,6 +81,7 @@ public class FroggerTest {
         Assert.assertTrue(finishLine.getObstacles().size() == 4);
         for (int i = 0; i < finishLine.getObstacles().size(); i++) {
             Assert.assertTrue(finishLine.getObstacles().get(i).getVelocity() == 0);
+            Assert.assertTrue(finishLine.getObstacles().get(i).getType() == ObstacleType.GRASS);
         }
         Assert.assertTrue(!finishLine.isRiver());
         for (int i = 0; i < finishLine.getObstacles().size(); i++) {
@@ -90,22 +94,22 @@ public class FroggerTest {
     }
     @Test
     public void initFroggerModel(){
-        FroggerModel game = new FroggerModel();
+        FroggerModel model = new FroggerModel();
         int amountOfRoads = 0;
         int amountOfRivers = 0;
         int amountOfEmpty = 0;
         int amountOfFinish = 0;
         //Correct number of lanes
-        Assert.assertTrue(game.getRows() == game.getLanes().size());
+        Assert.assertTrue(model.getRows() == model.getLanes().size());
         //Correct number of each lane type
-        for (int i = 0; i < game.getLanes().size(); i++) {
-            if(game.getLanes().get(i).isRiver()){
+        for (int i = 0; i < model.getLanes().size(); i++) {
+            if(model.getLanes().get(i).isRiver()){
                 amountOfRivers++;
             }
-            else if(game.getLanes().get(i).getObstacles().size() == 0){
+            else if(model.getLanes().get(i).getObstacles().size() == 0){
                 amountOfEmpty++;
             }
-            else if(game.getLanes().get(i).getObstacles().get(0).getVelocity() != 0){
+            else if(model.getLanes().get(i).getObstacles().get(0).getVelocity() != 0){
                 amountOfRoads++;
             }
             else{
@@ -117,8 +121,8 @@ public class FroggerTest {
         Assert.assertTrue(amountOfEmpty == 2);
         Assert.assertTrue(amountOfFinish == 1);
         //Correct y-coordinates for all lanes
-        for (int i = 1; i < game.getLanes().size()+1; i++) {
-            Assert.assertTrue(game.getLanes().get(i-1).getY() == (game.getWindowSizeY()-(game.getSquareDimension()*i )));
+        for (int i = 1; i < model.getLanes().size()+1; i++) {
+            Assert.assertTrue(model.getLanes().get(i-1).getY() == (model.getWindowSizeY()-(model.getSquareDimension()*i )));
         }
     }
     @Test
@@ -229,5 +233,19 @@ public class FroggerTest {
         Assert.assertTrue(model.getPlayer().getX() == x + model.getSquareDimension());
         model.movePlayer(4);
         Assert.assertTrue(model.getPlayer().getX() == x);
+    }
+    @Test
+    public void madeItToTheFinishLine(){
+        FroggerModel model = new FroggerModel();
+        model.movePlayer(3);
+        while(model.getCurrentPlayerLane() != model.getLanes().get(model.getLanes().size() - 1)){
+            model.movePlayer(1);
+        }
+        int x = model.getPlayer().getX();
+        int y = model.getPlayer().getY();
+        ArrayList<IPositionable> poss = model.getPositionables();
+        model.update();
+        Assert.assertTrue(model.getPlayer().getX() != x && model.getPlayer().getY() != y);
+        Assert.assertTrue(poss.size() != model.getPositionables().size());
     }
 }

@@ -67,6 +67,7 @@ public class FroggerModel {
             updateUnits++;
         }
         checkForPlayerInteraction();
+        checkForPlayerAtFinishLine();
     }
     private void moveObstacles(){
         for (Obstacle obs:getAllObstacles()) {
@@ -115,7 +116,12 @@ public class FroggerModel {
             resetGame();
         }
     }
-
+    private void checkForPlayerAtFinishLine(){
+        if(getCurrentPlayerLane() == lanes.get(lanes.size() - 1)){
+            lanes.get(lanes.size() - 1).add(new Obstacle(player.getX(), player.getY(), squareDimension, squareDimension, 0, ObstacleType.FINISHLINEFROG));
+            newFrog();
+        }
+    }
     //Getter to check which lane player is currently on
     public Lane getCurrentPlayerLane(){
         for (int i = 0; i < getLanes().size(); i++) {
