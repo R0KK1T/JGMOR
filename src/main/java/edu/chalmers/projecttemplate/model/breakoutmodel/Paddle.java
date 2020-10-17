@@ -3,8 +3,10 @@ package edu.chalmers.projecttemplate.model.breakoutmodel;
  * Model for Breakout paddle - The paddle is controlled with left and right arrow keys.
  */
 public class Paddle extends Commons {
+    private int dx;
     public Paddle(int x, int y, int width, int height) {
         super(x, y, width, height);
+        dx = 0;
     }
     /*
      * The paddle moves only in the horizontal direction, so we only update the x

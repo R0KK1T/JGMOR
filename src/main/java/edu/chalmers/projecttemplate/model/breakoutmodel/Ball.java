@@ -42,7 +42,6 @@ public class Ball extends Commons{
     public void reverseVerticalMomentum() {
         dy = -dy;
     }
-    //init har han 5 0ch -5
     public void setDx(int i) {
         this.dx = i;
     }
