@@ -14,6 +14,7 @@ public class FroggerController implements IController {
     FroggerModel model;
     FroggerView view;
     AnimationTimer timer;
+    private boolean pause = false;
 
     public FroggerController() throws Exception {
         //Create instance of view and model
@@ -24,8 +25,10 @@ public class FroggerController implements IController {
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                model.update();
-                callForRedraw();
+                if(!pause){
+                    model.update();
+                    callForRedraw();
+                }
             }
         };
     }
@@ -74,9 +77,8 @@ public class FroggerController implements IController {
     private void keyReleased(KeyEvent event) {
         KeyCode kc = event.getCode();
         switch (kc) {
-            case A:
-                break;
-            case D:
+            case ESCAPE:
+                pause = !pause;
                 break;
             default:
         }
