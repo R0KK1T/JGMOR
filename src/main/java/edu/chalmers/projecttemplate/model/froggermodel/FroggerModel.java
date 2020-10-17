@@ -126,6 +126,7 @@ public class FroggerModel {
             savedFrogs++;
             if(savedFrogs >= frogsToSave){
                 resetGame();
+                savedFrogs = 0;
                 //TODO newGame() after pointsystem is implemented
             }
             else{
