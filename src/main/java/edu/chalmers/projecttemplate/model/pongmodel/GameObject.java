@@ -25,6 +25,7 @@ public abstract class GameObject implements IPositionable {
         return width;
     }
     public boolean intersects (GameObject other){
+        //Checks if another GameObject intersects with this one
         if (other.x >= x - other.getWidth() && other.x <= x + this.getWidth() && other.y >= y - other.getHeight() && other.y <= y + this.getWidth()){
             return true;
         }

@@ -22,6 +22,7 @@ public class PongBall extends GameObject implements IMovable {
     }
 
     public void resetBall() {
+        //Resets the ball to the initial coordinates and sets the direction to a random one
         x = initialX;
         y = initialY;
         Random random = new Random();

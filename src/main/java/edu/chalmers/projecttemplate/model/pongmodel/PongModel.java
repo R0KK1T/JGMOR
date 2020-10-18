@@ -36,6 +36,7 @@ public class PongModel {
 
 
     private boolean ballIntersectCheck(){
+        //Checks if the ball touches either of the paddles
         if (pongBall.intersects(pongLeftPaddle) || pongBall.intersects(pongRightPaddle)){
             return true;
         }
@@ -43,18 +44,22 @@ public class PongModel {
     }
 
     private void ballHorizontalBounce(){
+        //Switches the horizontal direction of the ball if it touches any of the paddles
         if (ballIntersectCheck()){
             pongBall.xDirection = -pongBall.xDirection;
         }
     }
 
     private void ballVerticalBounce(){
+        //Switches the vertical direction of the ball if it touches either the top or the bottom of the game screen
         if ((pongBall.getY()) < 0 || ((pongBall.getY() + pongBall.getHeight()) > windowSizeY)){
             pongBall.yDirection = -pongBall.yDirection;
         }
     }
 
     private void ballRespawn(){
+        //Triggers the resetBall method which respawns the ball if it passes either of the paddles
+        //and increases the score for the opposite player
         if(pongBall.getX() + pongBall.getWidth() < 0){
             leftPlayerScore++;
             pongBall.resetBall();
