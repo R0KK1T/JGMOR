@@ -320,4 +320,52 @@ public class FroggerTest {
         Assert.assertFalse(lanes == model.getLanes());
 
     }
+    @Test
+    public void pointSystem(){
+        boolean noInterSectionWithObstacle = false;
+        while(!noInterSectionWithObstacle){
+            FroggerModel model = new FroggerModel();
+            int y = model.getPlayer().getY();
+            model.movePlayer(1);
+            model.update();
+            if(model.getPlayer().getY() != y){
+                Assert.assertTrue(model.getPoints() == 10);
+            }
+            else{
+                continue;
+            }
+            model.movePlayer(2);
+            model.update();
+            model.movePlayer(1);
+            model.update();
+            if(model.getPlayer().getY() != y){
+                Assert.assertTrue(model.getPoints() == 10);
+            }
+            else{
+                continue;
+            }
+            noInterSectionWithObstacle = true;
+        }
+
+        FroggerModel model = new FroggerModel();
+        model.movePlayer(3);
+        for (int i = 0; i < model.getRows() - 1; i++) {
+            model.movePlayer(1);
+        }
+        model.update();
+        Assert.assertTrue(model.getPoints() == 210);
+
+        //Move frog all the way to the left
+        for (int i = 0; i < model.getColumns()/2; i++) {
+            model.movePlayer(4);
+        }
+        //Move frog one step up
+        model.movePlayer(1);
+        //Move frog to right until it doesn't intersect with an obstacle
+        while(model.collisionDetected(model.getCurrentPlayerLane()) != null){
+            model.movePlayer(3);
+        }
+        model.update();
+        Assert.assertTrue(model.getPoints() == 220);
+    }
 }
