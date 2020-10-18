@@ -1,77 +1,65 @@
 package edu.chalmers.projecttemplate.view.snakeview;
 
+import edu.chalmers.projecttemplate.model.snakemodel.MyLogger;
+import edu.chalmers.projecttemplate.controller.snakecontroller.SettingsViewController;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.util.Objects;
+import java.util.prefs.Preferences;
 
 public class SnakeView extends Application {
+    public static final int WIDTH = 400;
+    public static final int HEIGHT = 400;
 
-    public static Stage mainStage;
-    public static Stage pauseMenuStage;
-    public static Stage gameOverMenuStage;
-    public static Scene gameScene;
-    public static Scene mainMenuScene;
-    public static Scene pauseMenuScene;
-    public static Scene settingsMenuScene;
-    public static Scene gameOverMenuScene;
+    private Preferences prefs;
+
+    private final String UP = "UP";
+    private final String DOWN = "DOWN";
+    private final String RIGHT = "RIGHT";
+    private final String LEFT = "LEFT";
+
+
+    public void start(Stage primaryStage) {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(getClass()
+                    .getClassLoader()
+                    .getResource("snakeresources/views/WelcomeView.fxml")));
+
+        } catch (Exception ex) {
+            MyLogger.WARN("snakeresources/views/WelcomeView.fxml file not found.");
+            System.exit(0);
+        }
+        primaryStage.setTitle("Snake");
+        primaryStage.setScene(new Scene(root, WIDTH, HEIGHT));
+        primaryStage.setResizable(false);
+        primaryStage.centerOnScreen();
+
+        setDefCont();
+
+        primaryStage.show();
+    }
+
+    // reset the controls to default
+    // every time the application started
+    private void setDefCont() {
+        MyLogger.INFO("set controls");
+        prefs = Preferences.userRoot().node(SettingsViewController.class.getName());
+
+        prefs.put(UP, UP);
+        prefs.put(DOWN, DOWN);
+        prefs.put(RIGHT, RIGHT);
+        prefs.put(LEFT, LEFT);
+
+        prefs.putBoolean("renderScore", false);
+    }
 
     public static void main(String[] args) {
         launch(args);
     }
-
-    @Override
-    public void start(Stage stage) throws Exception {
-        // *** Initial set-up of the window ***
-
-        SnakeView.mainStage = stage;
-
-        stage.setTitle("SnakeFX");
-        stage.setResizable(false);
-
-
-        // loads main menu window
-        Parent mainMenu = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("snakeresources/mainMenu.fxml")));
-        mainMenuScene = new Scene(mainMenu, 320, 320);
-
-        // loads pause menu window
-        Parent pauseMenu = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("snakeresources/pauseMenu.fxml")));
-        pauseMenuScene = new Scene(pauseMenu, 320, 320);
-
-        // loads settings menu window
-        Parent settingsMenu = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("snakeresources/settingsMenu.fxml")));
-        settingsMenuScene = new Scene(settingsMenu);
-
-        // loads game over menu window
-        Parent gameOverMenu = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("snakeresources/gameOver.fxml")));
-        gameOverMenuScene = new Scene(gameOverMenu);
-
-
-        stage.setScene(mainMenuScene);
-        stage.show();
-
-    }
-
-    public static void pauseMenu(){
-        pauseMenuStage = new Stage();
-        pauseMenuStage.initModality(Modality.APPLICATION_MODAL);
-        pauseMenuStage.setTitle("Game paused");
-        pauseMenuStage.setScene(SnakeView.pauseMenuScene);
-        pauseMenuStage.show();
-    }
-
-    public static void gameOverMenu(){
-        gameOverMenuStage = new Stage();
-        gameOverMenuStage.initModality(Modality.APPLICATION_MODAL);
-        gameOverMenuStage.setTitle("Game over");
-        gameOverMenuStage.setScene(SnakeView.gameOverMenuScene);
-        gameOverMenuStage.show();
-    }
-
-
 }

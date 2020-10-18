@@ -41,4 +41,17 @@ public class SnakeTest {
         Assert.assertEquals(Direction.DOWN, snake.getDirection());
     }
 
+    @Test
+    public void test_grow() {
+        snake.grow();
+
+        Assert.assertEquals(3, snake.getLength());
+    }
+
+    @Test
+    public void test_collide() {
+        snake = new Snake(new Point2D(0, 0), tail, 25);
+
+        Assert.assertTrue(snake.collide());
+    }
 }
