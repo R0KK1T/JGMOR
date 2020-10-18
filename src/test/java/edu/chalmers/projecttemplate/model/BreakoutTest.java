@@ -3,6 +3,7 @@ package edu.chalmers.projecttemplate.model;
 import edu.chalmers.projecttemplate.model.breakoutmodel.Ball;
 import edu.chalmers.projecttemplate.model.breakoutmodel.Brick;
 import edu.chalmers.projecttemplate.model.breakoutmodel.Paddle;
+import edu.chalmers.projecttemplate.model.breakoutmodel.Player;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,6 +14,7 @@ public class BreakoutTest {
     private static Brick brick;
     private static Paddle paddle;
     private static Ball ball;
+    private static Player player;
 
     @Before
     public void before() {
@@ -20,11 +22,14 @@ public class BreakoutTest {
         brick = new Brick(10, 20, 30, 30, 4);
         paddle = new Paddle(20, 20, 40, 20);
         ball = new Ball(50, 50, 25, 25);
+        player = new Player("Georges", "Kayembe");
     }
     @After
     public void after() {
         brick = new Brick(10, 20, 30, 30, 4);
         paddle = new Paddle(20, 20, 40, 20);
+        ball = new Ball(50, 50, 25, 25);
+        player = new Player("Georges", "Kayembe");
     }
     /*
      * Test class Brick
@@ -123,4 +128,21 @@ public class BreakoutTest {
         paddle.setY(50);
         assertEquals("The ball should collide with the paddle: ", ball.intersect(paddle), true);
     }
+    /*
+     * Test class Player
+     */
+    @Test
+    public void playerTest() {
+        assertTrue("The player's frist name is 'Georges' : ",player.getFirstName().equals("Georges"));
+        player.setFirstName("David");
+        assertTrue("The player's first name is now 'David' : ",player.getFirstName().equals("David"));
+        assertTrue("The play should initial have 0 point : ",player.getMyScore() == 0);
+        player.setMyScore(50);
+        assertTrue("The play should have 50 point : ",player.getMyScore() == 50);
+    }
+    /*
+     * Test class score
+     */
+
+
 }

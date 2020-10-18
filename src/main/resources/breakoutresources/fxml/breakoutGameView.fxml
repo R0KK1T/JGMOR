@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -25,6 +26,14 @@
          <font>
             <Font size="18.0" />
          </font>
+      </Label>
+      <Label fx:id="playerName" layoutX="500.0" layoutY="20.0" prefHeight="57.0" prefWidth="250.0" style="-fx-background-color: #f4f4f4; -fx-border-color: yellow;" text="First Name, Last Name" AnchorPane.topAnchor="20.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <padding>
+            <Insets left="15.0" />
+         </padding>
       </Label>
    </children>
 </AnchorPane>

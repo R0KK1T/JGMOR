@@ -29,7 +29,7 @@
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
-            <Button fx:id="btnExit" layoutX="98.0" layoutY="258.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="190.0" style="-fx-background-color: linear-gradient(#ffd65b, #e68400),        linear-gradient(#ffef84, #f2ba44),        linear-gradient(#ffea6a, #efaa22),        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0)); -fx-background-radius: 30; -fx-background-insets: 0,1,2,3,0; -fx-padding: 10 20 10 20;" text="&lt;- Back" textFill="#654b00" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="400.0">
+            <Button fx:id="btnExit" layoutX="98.0" layoutY="258.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="190.0" style="-fx-background-color: linear-gradient(#ffd65b, #e68400),        linear-gradient(#ffef84, #f2ba44),        linear-gradient(#ffea6a, #efaa22),        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0)); -fx-background-radius: 30; -fx-background-insets: 0,1,2,3,0; -fx-padding: 10 20 10 20;" text="Exit" textFill="#654b00" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="400.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
@@ -74,23 +74,23 @@
                   </Label>
                   <Label text="Last Name" GridPane.rowIndex="1" />
                   <Label text="Speed" GridPane.rowIndex="2" />
-                  <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                  <TextArea fx:id="firstName" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets bottom="10.0" />
                      </GridPane.margin>
                   </TextArea>
-                  <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextArea fx:id="lastName" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets bottom="10.0" />
                      </GridPane.margin>
                   </TextArea>
-                  <CheckBox mnemonicParsing="false" text="Slow" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <CheckBox mnemonicParsing="false" text="Normal" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <CheckBox fx:id="slowMode" mnemonicParsing="false" text="Slow" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <CheckBox fx:id="normalMode" mnemonicParsing="false" text="Normal" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="100.0" />
                      </GridPane.margin>
                   </CheckBox>
-                  <CheckBox mnemonicParsing="false" text="Fast" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <CheckBox fx:id="fastMode" mnemonicParsing="false" text="Fast" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="200.0" />
                      </GridPane.margin>

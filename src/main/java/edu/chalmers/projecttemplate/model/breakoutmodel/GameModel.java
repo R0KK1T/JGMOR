@@ -11,6 +11,7 @@ public class GameModel {
     private List<Brick> brickList;
     private int x, y;
     private int height, width;
+    private Player player;
     public GameModel() {
         brickList = new ArrayList<>();
         x = 60;
@@ -26,6 +27,7 @@ public class GameModel {
     private void init() {
         paddle = new Paddle(420, 537, 100, 12);
         ball = new Ball(442, 510, 25, 25);
+        player = new Player("Player1", "Player1");
     }
     /*
      * Movable object
@@ -99,6 +101,7 @@ public class GameModel {
             }
             brick.setBrickHit();
             brick.setBrickStatus();
+            player.setMyScore(1);
         }
     }
     /*
@@ -153,6 +156,10 @@ public class GameModel {
     //get ball
     public Ball getBall() {
         return ball;
+    }
+    //get player
+    public Player getPlayer() {
+        return player;
     }
     //get brick list
     public List<Brick> getBrickList() {

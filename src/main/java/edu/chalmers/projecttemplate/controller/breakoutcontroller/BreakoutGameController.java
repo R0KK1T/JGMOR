@@ -20,6 +20,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -33,7 +35,8 @@ public class BreakoutGameController implements Initializable {
     @FXML public Button btnGamePause;
     @FXML public AnchorPane gameArea;
     @FXML public Label scoreLabel;
-    public AnchorPane gamePane;
+    @FXML public AnchorPane gamePane;
+    @FXML public Label playerName;
     private GameModel gameModel;
     private BreakoutGameViewManager breakoutGameViewManager;
     private Canvas canvas;
@@ -50,17 +53,22 @@ public class BreakoutGameController implements Initializable {
         canvas = new Canvas(gameArea.getPrefWidth(), gameArea.getPrefHeight());
         gc = canvas.getGraphicsContext2D();
         gameArea.getChildren().add(canvas);
-        breakoutGameViewManager = new BreakoutGameViewManager(gc, gameArea.getPrefWidth(), gameArea.getPrefHeight());
+        try {
+            breakoutGameViewManager = new BreakoutGameViewManager(gc, gameArea.getPrefWidth(), gameArea.getPrefHeight());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         buttonList = new ArrayList<>();
         addButtonToList();
         initButtonListeners();
+        showPlayer();
         pause = true;
         inGame = true;
         start();
     }
 
     /*
-     * 1. Button Exit
+     * Button Exit
      */
     public void btnExitGameControl(MouseEvent mouseEvent) throws IOException {
         BreakoutMenuView newMenu = new BreakoutMenuView();
@@ -70,7 +78,7 @@ public class BreakoutGameController implements Initializable {
         gameStage.show();
     }
     /*
-     * 2. Button Pause
+     * Button Pause
      */
     public void btnExitPauseControl(MouseEvent actionEvent) {
         btnGamePause.setOnMouseClicked(mouseEvent -> {
@@ -87,28 +95,46 @@ public class BreakoutGameController implements Initializable {
         });
     }
     /*
-     * 3. Paddle
+     * Drawing paddle
      */
-    //Draw paddle
-    private void drawPaddle() {
+    private void drawPaddle() throws FileNotFoundException {
         breakoutGameViewManager.drawPaddle(gameModel.getPaddle());
     }
     /*
-     * 4. Ball
+     * Drawing ball
      */
-    //Draw ball
-    private void drawBall() {
+    private void drawBall() throws FileNotFoundException {
         breakoutGameViewManager.drawBall(gameModel.getBall());
     }
     /*
-     * 5. Bricks
+     * Drawing Bricks
      */
-    private void drawBrick() {
+    private void drawBrick() throws FileNotFoundException {
        for (int i=0; i<gameModel.getBrickList().size(); i++) {
            //Drawing brick
            if (gameModel.getBrickList().get(i).getBrickStatus())
                 breakoutGameViewManager.drawBrick(gameModel.getBrickList().get(i));
        }
+    }
+    /*
+     * Show the player's firstname and last name
+     */
+    private void showPlayer() {
+        //Get user's info from menu controller
+        String firstName = BreakoutMenuController.userInfo.get(0);
+        String lastName = BreakoutMenuController.userInfo.get(1);
+        //set user's info to player
+        gameModel.getPlayer().setFirstName(firstName);
+        gameModel.getPlayer().setLastName(lastName);
+        //Concatenating the first-and last name in one sentence
+        String name = gameModel.getPlayer().getFirstName() + ", "+gameModel.getPlayer().getLastName();
+        playerName.setText(name);
+    }
+    /*
+     * Show the current score while playing the game
+     */
+    private void showTheScore() {
+        scoreLabel.setText(String.valueOf(gameModel.getPlayer().getMyScore()));
     }
     /*
      * Initialize listeners
@@ -150,10 +176,11 @@ public class BreakoutGameController implements Initializable {
         gameModel.tick();
         gameModel.checkCollisionBallPaddle();
         gameModel.checkCollisionBallBrick();
+        showTheScore();
         checkIsGameOver();
     }
     //Game drawing stuff
-    public void render() {
+    public void render() throws FileNotFoundException {
         drawPaddle();
         drawBall();
         drawBrick();
@@ -163,9 +190,13 @@ public class BreakoutGameController implements Initializable {
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                init();
-                render();
-                tick();
+                try {
+                    init();
+                    render();
+                    tick();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         };
         timer.start();
