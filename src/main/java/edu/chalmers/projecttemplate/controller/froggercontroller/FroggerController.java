@@ -57,20 +57,22 @@ public class FroggerController implements IController {
 
     private void keyPressed(KeyEvent event) {
         KeyCode kc = event.getCode();
-        switch (kc) {
-            case UP:
-                model.movePlayer(1);
-                break;
-            case DOWN:
-                model.movePlayer(2);
-                break;
-            case RIGHT:
-                model.movePlayer(3);
-                break;
-            case LEFT:
-                model.movePlayer(4);
-                break;
-            default:
+        if(!pause){
+            switch (kc) {
+                case UP:
+                    model.movePlayer(1);
+                    break;
+                case DOWN:
+                    model.movePlayer(2);
+                    break;
+                case RIGHT:
+                    model.movePlayer(3);
+                    break;
+                case LEFT:
+                    model.movePlayer(4);
+                    break;
+                default:
+            }
         }
     }
 
