@@ -21,6 +21,8 @@ public class PongController implements IController {
             public void handle(long now) {
                 model.update();
                 callForRedraw();
+                view.setLeftScoreText(String.valueOf(model.getLeftPlayerScore()));
+                view.setRightScoreText(String.valueOf(model.getLeftPlayerScore()));
             }
         };
     }
