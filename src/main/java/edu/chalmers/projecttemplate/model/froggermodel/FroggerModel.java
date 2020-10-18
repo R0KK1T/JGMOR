@@ -11,7 +11,7 @@ public class FroggerModel {
     private int windowSizeY;
 
     //Game variables
-    private int lifeCount = 7;
+    private int amountOfLives = 7;
     private int currentLifeCount;
     private int frogsToSave;
     private int savedFrogs = 0;
@@ -40,16 +40,20 @@ public class FroggerModel {
         resetGame();
     }
     private void resetGame(){
+        newLevel();
+        //Set life count
+        currentLifeCount = amountOfLives;
+        //Set points
+        points = 0;
+    }
+    private void newLevel(){
+        savedFrogs = 0;
         //Create frog
         newFrog();
-        //Set life count
-        currentLifeCount = lifeCount;
-        //Create lanes in accordance to Frogger Map
+        //Create lanes in accordance to the original game
         initLanes();
         //Set highestLane
         resetHighestLane();
-        //Set points
-        //TODO when newGame() is implemented points = 0;
     }
     private void resetHighestLane(){
         highestLane = lanes.get(0).getY();
@@ -144,9 +148,7 @@ public class FroggerModel {
             lanes.get(lanes.size() - 1).add(new Obstacle(player.getX(), player.getY(), squareDimension, squareDimension, 0, ObstacleType.FINISHLINEFROG));
             reachedTheFinishLine();
             if(savedFrogs >= frogsToSave){
-                resetGame();
-                savedFrogs = 0;
-                //TODO newGame() after pointsystem is implemented
+                newLevel();
             }
             else{
                 newFrog();
@@ -249,8 +251,8 @@ public class FroggerModel {
     public int getWindowSizeY() {
         return windowSizeY;
     }
-    public int getLifeCount() {
-        return lifeCount;
+    public int getAmountOfLives() {
+        return amountOfLives;
     }
     public int getCurrentLifeCount(){ return currentLifeCount; }
 

@@ -68,7 +68,6 @@ public class FroggerView {
         //clear gameLayer
         gameLayer.clearRect(0, 0, windowSizeX, windowSizeY);
     }
-
     public void draw(int posX, int posY, int width, int height, String type){
         switch(type){
             case "FROG":

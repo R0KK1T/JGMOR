@@ -200,7 +200,7 @@ public class FroggerTest {
         }
         //Run update to check if it gives the correct consequences from intersection.
         model.update();
-        Assert.assertTrue(model.getCurrentLifeCount() == model.getLifeCount() - 1);
+        Assert.assertTrue(model.getCurrentLifeCount() == model.getAmountOfLives() - 1);
         Assert.assertTrue(model.getPlayer().getX()==(model.getSquareDimension()*(model.getColumns()/2)) && model.getPlayer().getY()==model.getWindowSizeY()-model.getSquareDimension());
 
         //Move frog all the way to the left and up middle safe lane
@@ -215,7 +215,7 @@ public class FroggerTest {
             model.getPlayer().moveRight();
         }
         model.update();
-        Assert.assertTrue(model.getCurrentLifeCount() == model.getLifeCount() - 2);
+        Assert.assertTrue(model.getCurrentLifeCount() == model.getAmountOfLives() - 2);
         Assert.assertTrue(model.getPlayer().getX()==(model.getSquareDimension()*(model.getColumns()/2)) && model.getPlayer().getY()==model.getWindowSizeY()-model.getSquareDimension());
 
         //Move frog all the way to the left and up middle safe lane
@@ -237,7 +237,7 @@ public class FroggerTest {
     public void zeroLives(){
         FroggerModel model = new FroggerModel();
         ArrayList<IRepresentable> reps = model.getRepresents();
-        for (int i = 0; i < model.getLifeCount(); i++) {
+        for (int i = 0; i < model.getAmountOfLives(); i++) {
             //Move frog all the way to the left
             for (int j = 0; j < model.getColumns()/2; j++) {
                 model.getPlayer().moveLeft();
@@ -251,7 +251,7 @@ public class FroggerTest {
             model.update();
         }
 
-        Assert.assertTrue(model.getCurrentLifeCount() == model.getLifeCount());
+        Assert.assertTrue(model.getCurrentLifeCount() == model.getAmountOfLives());
         Assert.assertTrue(reps != model.getRepresents());
     }
     @Test
@@ -317,6 +317,7 @@ public class FroggerTest {
             model.movePlayer(1);
         }
         model.update();
+        Assert.assertTrue(model.getPoints() == 840);
         Assert.assertFalse(lanes == model.getLanes());
 
     }
