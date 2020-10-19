@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b073a204-cbaa-4d87-8b8f-cdce6743b871" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/controller/pongcontroller/PongController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/controller/pongcontroller/PongController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/model/pongmodel/PongModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/model/pongmodel/PongModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/controller/snakecontroller/ScoreViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/controller/snakecontroller/ScoreViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/model/snakemodel/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/model/snakemodel/GameScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/snakeresources/views/ScoreView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/snakeresources/views/ScoreView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +30,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.2\plugins\maven\lib\maven3" />
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.2.3\plugins\maven\lib\maven3" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -48,7 +50,6 @@
     <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.chalmers.projecttemplate.application.MainApplication" />
       <module name="VirtualArcade" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Programming\javafx-sdk-13\lib&quot; --add-modules javafx.controls,javafx.fxml " />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="edu.chalmers.projecttemplate.application.*" />
@@ -149,9 +150,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="552" y="236" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603122649024">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="268" y="38" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603128715559">
+      <screen x="0" y="0" width="1360" height="728" />
     </state>
+    <state x="268" y="38" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1360.728@0.0.1360.728" timestamp="1603128715559" />
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603102435666" />
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603116123171" />
     <state x="552" y="236" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/-1920.363.1920.1040@0.0.2560.1400" timestamp="1603122649024" />
@@ -171,37 +173,42 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603102123703" />
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1603126792937">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="885" height="179" key="GridCell.Tab.0.bottom" timestamp="1603129123133">
+      <screen x="0" y="0" width="1360" height="728" />
     </state>
+    <state width="885" height="179" key="GridCell.Tab.0.bottom/0.0.1360.728@0.0.1360.728" timestamp="1603129123133" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603103161397" />
     <state width="3786" height="264" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603120448565" />
     <state width="1439" height="229" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603116722842" />
     <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.363.1920.1040@0.0.2560.1400" timestamp="1603126792937" />
-    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1603126792937">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="885" height="179" key="GridCell.Tab.0.center" timestamp="1603129123133">
+      <screen x="0" y="0" width="1360" height="728" />
     </state>
+    <state width="885" height="179" key="GridCell.Tab.0.center/0.0.1360.728@0.0.1360.728" timestamp="1603129123133" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603103161397" />
     <state width="3786" height="264" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603120448564" />
     <state width="1439" height="229" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603116722842" />
     <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.363.1920.1040@0.0.2560.1400" timestamp="1603126792937" />
-    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1603126792937">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="885" height="179" key="GridCell.Tab.0.left" timestamp="1603129123133">
+      <screen x="0" y="0" width="1360" height="728" />
     </state>
+    <state width="885" height="179" key="GridCell.Tab.0.left/0.0.1360.728@0.0.1360.728" timestamp="1603129123133" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603103161397" />
     <state width="3786" height="264" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603120448564" />
     <state width="1439" height="229" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603116722842" />
     <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.363.1920.1040@0.0.2560.1400" timestamp="1603126792937" />
-    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1603126792937">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="885" height="179" key="GridCell.Tab.0.right" timestamp="1603129123133">
+      <screen x="0" y="0" width="1360" height="728" />
     </state>
+    <state width="885" height="179" key="GridCell.Tab.0.right/0.0.1360.728@0.0.1360.728" timestamp="1603129123133" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603103161397" />
     <state width="3786" height="264" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603120448564" />
     <state width="1439" height="229" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603116722842" />
     <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.363.1920.1040@0.0.2560.1400" timestamp="1603126792937" />
-    <state x="587" y="127" key="SettingsEditor" timestamp="1603122219192">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="312" y="0" key="SettingsEditor" timestamp="1603128706603">
+      <screen x="0" y="0" width="1360" height="728" />
     </state>
+    <state x="312" y="0" key="SettingsEditor/0.0.1360.728@0.0.1360.728" timestamp="1603128706603" />
     <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603099788376" />
     <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603116076249" />
     <state x="587" y="127" key="SettingsEditor/0.0.2560.1400/-1920.363.1920.1040@0.0.2560.1400" timestamp="1603122219192" />
