@@ -4,6 +4,7 @@ import edu.chalmers.projecttemplate.model.breakoutmodel.Ball;
 import edu.chalmers.projecttemplate.model.breakoutmodel.Brick;
 import edu.chalmers.projecttemplate.model.breakoutmodel.Paddle;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
@@ -92,6 +93,4 @@ public class BreakoutGameViewManager {
             gc.drawImage(yellowBrick, brick.getX(), brick.getY(), brick.getWidth(), brick.getHeight());
         }
     }
-
-
 }

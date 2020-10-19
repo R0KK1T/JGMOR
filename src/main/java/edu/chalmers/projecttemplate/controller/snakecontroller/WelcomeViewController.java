@@ -1,5 +1,6 @@
 package edu.chalmers.projecttemplate.controller.snakecontroller;
 
+import edu.chalmers.projecttemplate.controller.viewNavigator.ViewNavigator;
 import edu.chalmers.projecttemplate.model.snakemodel.GameScene;
 import edu.chalmers.projecttemplate.model.snakemodel.MyLogger;
 
@@ -25,8 +26,13 @@ public class WelcomeViewController {
 
     private long difficulty = 100_000_000;
 
+    //public void exit() { System.exit(0); }
     public void exit() {
-        System.exit(0);
+        try {
+            ViewNavigator.getInstance().loadMenuView("selectGame");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void startBtnAction() {
