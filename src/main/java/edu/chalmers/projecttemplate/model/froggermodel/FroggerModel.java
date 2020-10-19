@@ -19,6 +19,7 @@ public class FroggerModel {
     private int savedFrogs = 0;
     private int points = 0;
     private int highestLane;
+    private int level;
 
     //Fundamental variables to create the structure of the game
     private Frog player;
@@ -47,8 +48,11 @@ public class FroggerModel {
         currentLifeCount = amountOfLives;
         //Set points
         points = 0;
+        //Set level
+        level = 1;
     }
     private void newLevel(){
+        level++;
         savedFrogs = 0;
         //Create frog
         newFrog();
@@ -260,5 +264,8 @@ public class FroggerModel {
 
     public int getPoints() {
         return points;
+    }
+    public int getLevel(){
+        return level;
     }
 }
