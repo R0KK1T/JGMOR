@@ -1,18 +1,14 @@
 package edu.chalmers.projecttemplate.model.breakoutmodel;
-
 import edu.chalmers.projecttemplate.model.common.IPositionableInt;
 import edu.chalmers.projecttemplate.model.common.IRectangle;
 import edu.chalmers.projecttemplate.model.common.Rectangle;
 
-public class GameMovableObject implements IPositionableInt {
+public abstract class GameMovableObject implements IPositionableInt {
     private IRectangle hitbox;
-    private int velocity;
-    private int dt;
-    public GameMovableObject(int x, int y, int width, int height, int velocity) {
+    public GameMovableObject(int x, int y, int width, int height) {
        hitbox = new Rectangle(x, y, width, height);
-       this.velocity = velocity;
-       this.dt = 1;
     }
+    protected abstract void move();
 
     @Override
     public int getX() {
@@ -21,7 +17,7 @@ public class GameMovableObject implements IPositionableInt {
 
     @Override
     public int getY() {
-        return hitbox.getX();
+        return hitbox.getY();
     }
 
     @Override
@@ -36,9 +32,6 @@ public class GameMovableObject implements IPositionableInt {
 
     public IRectangle getHitbox() {
         return hitbox;
-    }
-    public int getVelocity() {
-        return velocity;
     }
     public void setX(int i) {
         hitbox.incX(i);

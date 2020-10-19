@@ -3,7 +3,7 @@ package edu.chalmers.projecttemplate.model.breakoutmodel;
  * Model for Breakout ball - The class has a move() method that moves the ball on the Board.
  * If the ball hits the borders, the directions are changed accordingly.
  */
-public class Ball extends Commons{
+public class Ball extends GameMovableObject{
     private int dx;
     private int dy;
     private int dt;
@@ -14,10 +14,17 @@ public class Ball extends Commons{
         dy = -1;
         dt = 1;
     }
+
+    @Override
+    protected void move() {
+        //update position
+        this.setX((dt*dx));
+        this.setY((dt*dy));
+    }
     /*
      * The ball bounces off the wall according to low of elastic collision
      */
-    public void move() {
+    /*public void move() {
         if (this.getX() < 0 || (this.getX()+this.getWidth() > this.getWindowSizeX()))
             dx = -dx;
         if (this.getY() < 0)
@@ -26,7 +33,7 @@ public class Ball extends Commons{
         this.incX((dt*dx));
         this.incY((dt*dy));
 
-    }
+    }*/
     /**
      * Reverse horizontal movement. If ball was moving left change it to move
      * right and vice versa

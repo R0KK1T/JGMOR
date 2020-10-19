@@ -95,27 +95,32 @@ public class BreakoutGameController implements Initializable {
             }
         });
     }
+    private void callForRedraw() throws FileNotFoundException {
+        for (int i=0; i < gameModel.getRepresents().get(0).size(); i++) {
+            breakoutGameViewManager.drawPaddle(gameModel.getRepresents().get(0).get(i));
+        }
+    }
     /*
      * Drawing paddle
      */
     private void drawPaddle() throws FileNotFoundException {
-        breakoutGameViewManager.drawPaddle(gameModel.getPaddle());
+       // breakoutGameViewManager.drawPaddle(gameModel.getPaddle());
     }
     /*
      * Drawing ball
      */
     private void drawBall() throws FileNotFoundException {
-        breakoutGameViewManager.drawBall(gameModel.getBall());
+        //breakoutGameViewManager.drawBall(gameModel.getBall());
     }
     /*
      * Drawing Bricks
      */
     private void drawBrick() throws FileNotFoundException {
-       for (int i=0; i<gameModel.getBrickList().size(); i++) {
+      /* for (int i=0; i<gameModel.getBrickList().size(); i++) {
            //Drawing brick
            if (gameModel.getBrickList().get(i).getBrickStatus())
                 breakoutGameViewManager.drawBrick(gameModel.getBrickList().get(i));
-       }
+       }*/
     }
     /*
      * Show the player's firstname and last name
@@ -125,17 +130,17 @@ public class BreakoutGameController implements Initializable {
         String firstName = BreakoutMenuController.userInfo.get(0);
         String lastName = BreakoutMenuController.userInfo.get(1);
         //set user's info to player
-        gameModel.getPlayer().setFirstName(firstName);
-        gameModel.getPlayer().setLastName(lastName);
+      /*  gameModel.getPlayer().setFirstName(firstName);
+        gameModel.getPlayer().setLastName(lastName);*/
         //Concatenating the first-and last name in one sentence
-        String name = gameModel.getPlayer().getFirstName() + ", "+gameModel.getPlayer().getLastName();
-        playerName.setText(name);
+        //String name = gameModel.getPlayer().getFirstName() + ", "+gameModel.getPlayer().getLastName();
+       // playerName.setText(name);
     }
     /*
      * Show the current score while playing the game
      */
     private void showTheScore() {
-        scoreLabel.setText(String.valueOf(gameModel.getPlayer().getMyScore()));
+        //scoreLabel.setText(String.valueOf(gameModel.getPlayer().getMyScore()));
     }
     /*
      * Initialize listeners
@@ -143,10 +148,10 @@ public class BreakoutGameController implements Initializable {
     private void initializeListeners() {
         gamePane.setOnKeyPressed(keyEvent -> {
             KeyCode key = keyEvent.getCode();
-            if (key.equals(KeyCode.Q))
-                gameModel.getPaddle().decX(10);
-            if (key.equals(KeyCode.W))
-                gameModel.getPaddle().decX(-10);
+            //if (key.equals(KeyCode.Q))
+                //gameModel.getPaddle().decX(10);
+            //if (key.equals(KeyCode.W))
+                //gameModel.getPaddle().decX(-10);
         });
     }
     private void addButtonToList() {
@@ -175,8 +180,8 @@ public class BreakoutGameController implements Initializable {
     public void tick() {
         initializeListeners();
         gameModel.tick();
-        gameModel.checkCollisionBallPaddle();
-        gameModel.checkCollisionBallBrick();
+        //gameModel.checkCollisionBallPaddle();
+        //gameModel.checkCollisionBallBrick();
         showTheScore();
         checkIsGameOver();
     }
@@ -185,6 +190,7 @@ public class BreakoutGameController implements Initializable {
         drawPaddle();
         drawBall();
         drawBrick();
+        callForRedraw();
     }
     //Game run
     private void run() {
@@ -204,9 +210,9 @@ public class BreakoutGameController implements Initializable {
     }
     //Game over
     private void checkIsGameOver() {
-        if (gameModel.gameIsOver()) {
+       /* if (gameModel.gameIsOver()) {
             timer.stop();
             inGame = false;
-        }
+        }*/
     }
 }

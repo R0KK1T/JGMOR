@@ -3,6 +3,7 @@ package edu.chalmers.projecttemplate.view.breakoutview;
 import edu.chalmers.projecttemplate.model.breakoutmodel.Ball;
 import edu.chalmers.projecttemplate.model.breakoutmodel.Brick;
 import edu.chalmers.projecttemplate.model.breakoutmodel.Paddle;
+import edu.chalmers.projecttemplate.model.common.IPositionableInt;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -54,7 +55,7 @@ public class BreakoutGameViewManager {
     /*
      * Drawing the paddle
      */
-    public void drawPaddle(Paddle paddle) throws FileNotFoundException {
+    public void drawPaddle(IPositionableInt paddle) throws FileNotFoundException {
         //gc.setFill(Color.CYAN);
         //gc.fillRoundRect(paddle.getX(), paddle.getY(), paddle.getWidth(), paddle.getHeight(), 25, 25);
         gc.drawImage(paddleImg, paddle.getX(), paddle.getY(), paddle.getWidth(), paddle.getHeight());

@@ -1,5 +1,8 @@
 package edu.chalmers.projecttemplate.model.breakoutmodel;
 
+import edu.chalmers.projecttemplate.model.common.IPositionableInt;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 /*
@@ -8,23 +11,18 @@ import java.util.List;
 public class GameModel {
     private Paddle paddle;
     private Ball ball;
-    private List<Brick> brickList;
-    private int x, y;
-    private int height, width;
     private Player player;
+    private int windowSizeX;
+    private int windowSizeY;
     public GameModel() {
-        brickList = new ArrayList<>();
-        x = 60;
-        y = 50;
-        height = 40;
-        width= 60;
         init();
-        gameModelOne();
     }
     /*
      * Initialize game object
      */
     private void init() {
+        windowSizeX = 900;
+        windowSizeY = 550;
         paddle = new Paddle(420, 537, 100, 12);
         ball = new Ball(442, 510, 25, 25);
         player = new Player("Player1", "Player1");
@@ -39,7 +37,7 @@ public class GameModel {
     /*
      * Checks if the ball is colliding with the paddle.
      */
-    public void checkCollisionBallPaddle() {
+    /*public void checkCollisionBallPaddle() {
         if (ball.intersect(paddle)) {
             if (ball.getY() < paddle.getY()) {
                 ball.reverseVerticalMomentum();
@@ -48,7 +46,7 @@ public class GameModel {
                  * is the middle left part of the paddle, zone three middle right
                  * and lastly the rightmost part of the paddle
                  */
-                int zoneWidth = paddle.getWidth() / 4;
+                /*int zoneWidth = paddle.getWidth() / 4;
                 int zoneOne = paddle.getX() + zoneWidth;
                 int zoneTwo = zoneOne + zoneWidth;
                 int zoneThree = zoneTwo + zoneWidth;
@@ -65,20 +63,20 @@ public class GameModel {
             }
         }
 
-    }
+    }*/
     /*
      * Loops through the array of bricks and checks if any of the bricks
      * collides with the ball.
      */
-    public void checkCollisionBallBrick() {
+    /*public void checkCollisionBallBrick() {
         for (int i=0; i<brickList.size(); i++) {
             checkCollisionBallBrick(brickList.get(i));
         }
-    }
+    }*/
     /*
      * Method for checking collision between a Brick and the ball.
      */
-    private void checkCollisionBallBrick(Brick brick) {
+    /*private void checkCollisionBallBrick(Brick brick) {
         if (!brick.getBrickStatus()) {
             return;
         }
@@ -103,54 +101,21 @@ public class GameModel {
             brick.setBrickStatus();
             player.setMyScore(1);
         }
-    }
+    }*/
     /*
      * Check for game over
      */
-    public boolean gameIsOver() {
+    /*public boolean gameIsOver() {
         return ball.getY()>(ball.getWindowSizeY()-26);
-    }
+    }*/
 
     /*
      * modeling game field
      */
 
-    //1. Game model1: 12 bricks x 4 = 48bricks
-    /* 4 4 4 4 4 4 4 4 4 4 4 4
-       3 3 3 3 3 3 3 3 3 3 3 3
-       2 2 2 2 2 2 2 2 2 2 2 2
-       1 1 1 1 1 1 1 1 1 1 1 1
-     */
-    private void gameModelOne() {
-        for (int i = 0; i<48; i++) {
-            Brick brick = null;
-            if (i<=11) {
-                brick = new Brick(x, y, width, height, 4);
-                if (i==11) {
-                    y = y + 45;
-                    x = -5;
-                }
-            } else if (i>=12 && i<=23) {
-                brick = new Brick(x, y, width, height, 3);
-                if (i==23) {
-                    y = y + 45;
-                    x = -5;
-                }
-            } else if (i>=24 && i<=35) {
-                brick = new Brick(x, y, width, height, 2);
-                if (i==35) {
-                    y = y + 45;
-                    x = -5;
-                }
-            } else {
-                brick = new Brick(x, y, width, height, 1);
-            }
-            brickList.add(brick);
-            x = x + 65;
-        }
-    }
+
     //get paddle
-    public Paddle getPaddle() {
+    /*public Paddle getPaddle() {
         return paddle;
     }
     //get ball
@@ -162,7 +127,13 @@ public class GameModel {
         return player;
     }
     //get brick list
-    public List<Brick> getBrickList() {
+    /*public List<Brick> getBrickList() {
         return brickList;
+    }*/
+    public List<List<IPositionableInt>> getRepresents() {
+        List<List<IPositionableInt>> gameObjects = new ArrayList<>();
+        IPositionableInt myArr[][] = new IPositionableInt[][];
+        gameObjects.get(0).add(paddle);
+        return gameObjects;
     }
 }

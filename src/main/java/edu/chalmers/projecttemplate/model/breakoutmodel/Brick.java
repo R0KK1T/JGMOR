@@ -1,16 +1,20 @@
 package edu.chalmers.projecttemplate.model.breakoutmodel;
+
+import edu.chalmers.projecttemplate.model.common.IPositionableInt;
+import edu.chalmers.projecttemplate.model.common.IRectangle;
+import edu.chalmers.projecttemplate.model.common.Rectangle;
+
 /*
  * Model for Breakout brick - Represent the number of bricks in the game.
  */
-public class Brick extends Commons {
+public class Brick implements IPositionableInt {
+    private IRectangle hitbox;
     private int point;
     private boolean isActive;
     private int hit;
-
     public Brick(int x, int y, int width, int height, int point) {
-        super(x, y, width, height);
+        hitbox = new Rectangle(x, y, width, height);
         this.point = point;
-        this.hit = point;
         isActive = true;
     }
     /*
@@ -44,4 +48,27 @@ public class Brick extends Commons {
             this.isActive = false;
     }
 
+    @Override
+    public int getX() {
+        return hitbox.getX();
+    }
+
+    @Override
+    public int getY() {
+        return hitbox.getY();
+    }
+
+    @Override
+    public int getWidth() {
+        return hitbox.getWidth();
+    }
+
+    @Override
+    public int getHeight() {
+        return hitbox.getHeight();
+    }
+
+    public IRectangle getHitbox() {
+        return hitbox;
+    }
 }

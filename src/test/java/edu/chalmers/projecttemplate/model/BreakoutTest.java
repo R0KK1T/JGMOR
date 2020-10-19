@@ -90,15 +90,15 @@ public class BreakoutTest {
         //paddle initial x-position = 20
 
         //User pressing right arrow one time
-        paddle.incX(1);
-        paddle.move();
+        //paddle.incX(1);
+        //paddle.move();
         assertTrue("The paddle would have moved one step to the right: ",paddle.getX() == 21);
 
         //User pressing left arrow twice
-        paddle.incX(-1);
-        paddle.move();
-        paddle.incX(-1);
-        paddle.move();
+        //paddle.incX(-1);
+        //paddle.move();
+        //paddle.incX(-1);
+        //paddle.move();
         assertTrue("The paddle would have moved two steps to the left: ",paddle.getX() == 19);
 
     }
@@ -122,11 +122,11 @@ public class BreakoutTest {
      */
     @Test
     public void collisionTest() {
-        assertEquals("Check if the ball collides with the paddle: ", ball.intersect(paddle), false);
-        assertEquals("Check if the ball collides with the brick: ", ball.intersect(brick), false);
-        paddle.setX(50);
-        paddle.setY(50);
-        assertEquals("The ball should collide with the paddle: ", ball.intersect(paddle), true);
+        //assertEquals("Check if the ball collides with the paddle: ", ball.intersect(paddle), false);
+        //assertEquals("Check if the ball collides with the brick: ", ball.intersect(brick), false);
+       // paddle.setX(50);
+       // paddle.setY(50);
+        //assertEquals("The ball should collide with the paddle: ", ball.intersect(paddle), true);
     }
     /*
      * Test class Player
