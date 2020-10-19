@@ -65,8 +65,23 @@ public class PongController implements IController {
             case S:
                 model.movePongLeftPaddleDown();
                 break;
+            case UP:
+                if (model.isAIEnabled() == false) {
+                    model.movePongRightPaddleUp();
+                }
+                break;
+            case DOWN:
+                if (model.isAIEnabled() == false) {
+                    model.movePongRightPaddleDown();
+                }
+                break;
+            case P:
+                model.setAIEnabled(!model.isAIEnabled());
+                model.stopPongRightPaddle();
+                break;
             case ESCAPE:
                 model.setPaused(!model.isPaused());
+                break;
             default:  // Nothing
         }
     }
@@ -79,6 +94,16 @@ public class PongController implements IController {
                 break;
             case S:
                 model.stopPongLeftPaddle();
+                break;
+            case UP:
+                if (model.isAIEnabled()) {
+                    model.stopPongRightPaddle();
+                }
+                break;
+            case DOWN:
+                if (model.isAIEnabled()) {
+                    model.stopPongRightPaddle();
+                }
                 break;
             default: // Nothing
         }

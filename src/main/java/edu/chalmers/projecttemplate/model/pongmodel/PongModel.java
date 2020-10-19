@@ -13,6 +13,7 @@ public class PongModel {
     private int leftPlayerScore = 0;
     private int rightPlayerScore = 0;
     private boolean isPaused;
+    private boolean AIEnabled;
     private ArrayList<GameObject> gameObjects;
 
     public PongModel (){
@@ -26,6 +27,7 @@ public class PongModel {
         pongAI = new PongAI(pongRightPaddle,pongBall);
         pongBall.resetBall();
         isPaused = false;
+        AIEnabled = false;
     }
 
     public void update (){
@@ -34,7 +36,9 @@ public class PongModel {
             ballHorizontalBounce();
             ballVerticalBounce();
             pongBall.updatePosition();
-            pongAI.movePaddle(paddleVelocity);
+            if (AIEnabled) {
+                pongAI.movePaddle(paddleVelocity);
+            }
             pongRightPaddle.updatePosition();
             pongLeftPaddle.updatePosition();
             ballRespawn();
@@ -127,6 +131,14 @@ public class PongModel {
 
     public boolean isPaused() {
         return isPaused;
+    }
+
+    public void setAIEnabled(boolean AIEnabled) {
+        this.AIEnabled = AIEnabled;
+    }
+
+    public boolean isAIEnabled() {
+        return AIEnabled;
     }
 
     public ArrayList<GameObject> getGameObjects() {
