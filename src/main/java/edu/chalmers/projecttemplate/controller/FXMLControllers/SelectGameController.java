@@ -36,4 +36,8 @@ public class SelectGameController {
     public void backToStartMenu() throws Exception {
         ViewNavigator.getInstance().loadMenuView("startMenu");
     }
+
+    public void startSnake() throws Exception {
+        ViewNavigator.getInstance().loadMenuView("snake");
+    }
 }

@@ -8,7 +8,7 @@
       <Button fx:id="breakoutBtn" layoutX="21.0" layoutY="133.0" mnemonicParsing="false" onMousePressed="#startBreakout" prefHeight="67.0" prefWidth="90.0" text="Breakout" />
       <Button fx:id="froggerBtn" layoutX="137.0" layoutY="133.0" mnemonicParsing="false" onMousePressed="#startFrogger" prefHeight="67.0" prefWidth="90.0" text="Frogger" />
       <Button fx:id="pongBtn" layoutX="252.0" layoutY="133.0" mnemonicParsing="false" onMousePressed="#startPong" prefHeight="67.0" prefWidth="90.0" text="Pong" />
-      <Button fx:id="snakeBtn" layoutX="371.0" layoutY="133.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="96.0" text="Snake" />
+      <Button fx:id="snakeBtn" layoutX="371.0" layoutY="133.0" mnemonicParsing="false" onMousePressed="#startSnake" prefHeight="67.0" prefWidth="96.0" text="Snake" />
       <Button fx:id="backBtn" layoutX="25.0" layoutY="351.0" mnemonicParsing="false" onMousePressed="#backToStartMenu" text="Back" />
       <Button fx:id="spaceInvadersBtn" layoutX="484.0" layoutY="133.0" mnemonicParsing="false" onMousePressed="#startSpaceInvaders" prefHeight="67.0" prefWidth="96.0" text="SpaceInvaders" />
    </children>

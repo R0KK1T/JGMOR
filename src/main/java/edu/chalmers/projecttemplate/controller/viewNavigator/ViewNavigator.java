@@ -1,6 +1,7 @@
 package edu.chalmers.projecttemplate.controller.viewNavigator;
 
 import edu.chalmers.projecttemplate.application.MainApplication;
+import edu.chalmers.projecttemplate.controller.snakecontroller.WelcomeViewController;
 import edu.chalmers.projecttemplate.controller.breakoutcontroller.BreakoutGameController;
 import edu.chalmers.projecttemplate.controller.breakoutcontroller.BreakoutMenuController;
 import edu.chalmers.projecttemplate.controller.controllerInterface.IController;
@@ -70,5 +71,9 @@ public class ViewNavigator {
         //init breakout
         controller = new BreakoutMenuController();
         addGameView("breakout", controller);
+        //init snake
+        root = FXMLLoader.load(getClass().getClassLoader().getResource("snakeresources/views/WelcomeView.fxml"));
+        scene = new Scene(root);
+        addMenuView("snake", scene);
     }
 }

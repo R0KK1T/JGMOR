@@ -1,5 +1,6 @@
 package edu.chalmers.projecttemplate.model.snakemodel;
 
+import edu.chalmers.projecttemplate.controller.viewNavigator.ViewNavigator;
 import com.sun.javafx.scene.traversal.Direction;
 import edu.chalmers.projecttemplate.controller.snakecontroller.SettingsViewController;
 import javafx.animation.AnimationTimer;
@@ -204,7 +205,14 @@ public class GameScene extends Scene {
         backBtn.getStylesheets().add(getClass().getClassLoader().getResource("snakeresources/styles/GameOverStyle.css").toString());
 
         // Add button Action "Exit, Restart, Back"
-        exitBtn.setOnMouseClicked(e -> System.exit(0));
+        //exitBtn.setOnMouseClicked(e -> System.exit(0));
+        exitBtn.setOnMouseClicked(mouseEvent -> {
+            try {
+                ViewNavigator.getInstance().loadMenuView("selectGame");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
         restartBtn.setOnMouseClicked(e -> {
             gameOver = false;
