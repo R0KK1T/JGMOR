@@ -54,4 +54,40 @@ public class SnakeTest {
 
         Assert.assertTrue(snake.collide());
     }
+
+    @Test
+    public void test_move_right() {
+        snake.setDirection(Direction.RIGHT);
+        snake.move();
+
+        Assert.assertEquals(new Point2D(2, 0), snake.getHead().getPosition());
+        Assert.assertEquals(new Point2D(1, 0), snake.getBody(1).getPosition());
+    }
+
+    @Test
+    public void test_move_left() {
+        snake.setDirection(Direction.LEFT);
+        snake.move();
+
+        Assert.assertEquals(new Point2D(0, 0), snake.getHead().getPosition());
+        Assert.assertEquals(new Point2D(1, 0), snake.getBody(1).getPosition());
+    }
+
+    @Test
+    public void test_move_down() {
+        snake.setDirection(Direction.DOWN);
+        snake.move();
+
+        Assert.assertEquals(new Point2D(1, 1), snake.getHead().getPosition());
+        Assert.assertEquals(new Point2D(1, 0), snake.getBody(1).getPosition());
+    }
+
+    @Test
+    public void test_move_up() {
+        snake.setDirection(Direction.UP);
+        snake.move();
+
+        Assert.assertEquals(new Point2D(1, -1), snake.getHead().getPosition());
+        Assert.assertEquals(new Point2D(1, 0), snake.getBody(1).getPosition());
+    }
 }
