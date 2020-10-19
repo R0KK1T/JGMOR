@@ -13,8 +13,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -35,15 +35,15 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.MainApplication">
     <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.chalmers.projecttemplate.application.MainApplication" />
       <module name="VirtualArcade" />
-      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\ollie\javafx-sdk-15\lib&quot; --add-modules javafx.controls,javafx.fxml" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Users\ollie\javafx-sdk-15\lib&quot; --add-modules javafx.controls,javafx.fxml " />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="edu.chalmers.projecttemplate.application.*" />
@@ -54,9 +54,80 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BreakoutTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="VirtualArcade" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.chalmers.projecttemplate.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.chalmers.projecttemplate.model" />
+      <option name="MAIN_CLASS_NAME" value="edu.chalmers.projecttemplate.model.BreakoutTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="VirtualArcade" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.chalmers.projecttemplate.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.chalmers.projecttemplate.model" />
+      <option name="MAIN_CLASS_NAME" value="edu.chalmers.projecttemplate.model.CommonTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SnakeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="VirtualArcade" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.chalmers.projecttemplate.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.chalmers.projecttemplate.model" />
+      <option name="MAIN_CLASS_NAME" value="edu.chalmers.projecttemplate.model.SnakeTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpaceInvadersTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="VirtualArcade" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.chalmers.projecttemplate.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.chalmers.projecttemplate.model" />
+      <option name="MAIN_CLASS_NAME" value="edu.chalmers.projecttemplate.model.SpaceInvadersTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.MainApplication" />
+      <item itemvalue="JUnit.CommonTest" />
+      <item itemvalue="JUnit.BreakoutTest" />
+      <item itemvalue="JUnit.SnakeTest" />
+      <item itemvalue="JUnit.SpaceInvadersTest" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainApplication" />
+        <item itemvalue="JUnit.SpaceInvadersTest" />
+        <item itemvalue="JUnit.SnakeTest" />
+        <item itemvalue="JUnit.CommonTest" />
+        <item itemvalue="JUnit.BreakoutTest" />
       </list>
     </recent_temporary>
   </component>
@@ -75,41 +146,45 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603021943235">
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603102435666">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603021943235" />
+    <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603102435666" />
     <state x="765" y="221" key="#com.intellij.ide.util.MemberChooser" timestamp="1603096993685">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="221" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603096993685" />
-    <state x="672" y="327" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1603099143588">
+    <state x="682" y="389" width="557" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1603102811043">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="672" y="327" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603099143588" />
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603099042204">
+    <state x="682" y="389" width="557" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603102811043" />
+    <state x="672" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1603102087843">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603099042204" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1603099232381">
+    <state x="672" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603102087843" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603102123703">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603099232381" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1603099232381">
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603102123703" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1603103161397">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603099232381" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1603099232381">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603103161397" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1603103161397">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603099232381" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1603099232381">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603103161397" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1603103161397">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603099232381" />
-    <state x="440" y="94" key="SettingsEditor" timestamp="1603021998769">
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603103161397" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1603103161397">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603021998769" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603103161397" />
+    <state x="440" y="94" key="SettingsEditor" timestamp="1603099788376">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603099788376" />
   </component>
 </project>

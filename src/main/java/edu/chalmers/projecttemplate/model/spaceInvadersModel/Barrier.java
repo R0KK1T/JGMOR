@@ -1,12 +1,13 @@
 package edu.chalmers.projecttemplate.model.spaceInvadersModel;
 
+import edu.chalmers.projecttemplate.model.common.IRepresentable;
 import edu.chalmers.projecttemplate.model.common.Rectangle;
 
 /**
  * Represents a protective barrier for the old retro game Space Invaders
  *
  */
-class Barrier implements GameObject, IHitable{
+class Barrier implements IHitable, IRepresentable {
     private int health;
     private Rectangle hitbox;
     private String type;

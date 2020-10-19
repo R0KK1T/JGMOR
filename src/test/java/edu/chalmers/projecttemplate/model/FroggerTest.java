@@ -1,25 +1,13 @@
 package edu.chalmers.projecttemplate.model;
 
+import edu.chalmers.projecttemplate.model.common.IRepresentable;
 import edu.chalmers.projecttemplate.model.froggermodel.*;
-import edu.chalmers.projecttemplate.model.common.Rectangle;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
 public class FroggerTest {
-    @Test
-    public void intersectTest(){
-        Rectangle rect1 = new Rectangle(10,10,10,10);
-        Rectangle rect2 = new Rectangle(10,20,10,10);
-        Assert.assertFalse(rect1.intersect(rect2));
-        Rectangle rect3 = new Rectangle(10,10,10,10);
-        Rectangle rect4 = new Rectangle(15,10,10,10);
-        Assert.assertTrue(rect3.intersect(rect4));
-        Rectangle rect5 = new Rectangle(10,10,100,100);
-        Rectangle rect6 = new Rectangle(97,50,10,10);
-        Assert.assertTrue(rect5.intersect(rect6));
-    }
     @Test
     public void moveFrog(){
         Frog frog = new Frog(10, 10, 10, 10, 10);

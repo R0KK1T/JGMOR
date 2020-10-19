@@ -1,15 +1,17 @@
 package edu.chalmers.projecttemplate.model.spaceInvadersModel;
 
+import edu.chalmers.projecttemplate.model.common.IRectangle;
+import edu.chalmers.projecttemplate.model.common.IRepresentable;
 import edu.chalmers.projecttemplate.model.common.Rectangle;
 
 /**
  * Represents an abstract movable object for the old retro game Space Invaders
  *
  */
-public abstract class MovableObject implements GameObject, IHitable{
+public abstract class MovableObject implements IHitable, IRepresentable {
 
     private String type;
-    private Rectangle hitbox;
+    private IRectangle hitbox;
     private int direction;
     private int speed;
 
@@ -85,7 +87,7 @@ public abstract class MovableObject implements GameObject, IHitable{
      *
      * @return rectangle hitbox of the movableObject
      */
-    public Rectangle getHitbox(){
+    public IRectangle getHitbox(){
         return hitbox;
     }
 
