@@ -1,9 +1,11 @@
 package edu.chalmers.projecttemplate.model.froggermodel;
 
+import edu.chalmers.projecttemplate.model.common.IRectangle;
+import edu.chalmers.projecttemplate.model.common.IRepresentable;
 import edu.chalmers.projecttemplate.model.common.Rectangle;
 
-public class Obstacle implements IRepresentable{
-    private Rectangle hitbox;
+public class Obstacle implements IRepresentable {
+    private IRectangle hitbox;
     private int velocity;
     private ObstacleType type;
 
@@ -13,7 +15,7 @@ public class Obstacle implements IRepresentable{
         this.type = type;
     }
 
-    public Rectangle getHitbox() {
+    public IRectangle getHitbox() {
         return hitbox;
     }
     public int getX(){ return getHitbox().getX(); }

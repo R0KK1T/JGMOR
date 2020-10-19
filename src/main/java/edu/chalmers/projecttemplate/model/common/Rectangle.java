@@ -1,6 +1,6 @@
 package edu.chalmers.projecttemplate.model.common;
 
-public class Rectangle {
+public class Rectangle implements IRectangle{
     private int x;
     private int y;
     private int width;
@@ -12,7 +12,7 @@ public class Rectangle {
         this.width = width;
         this.height = height;
     }
-    public boolean intersect(Rectangle rect){
+    public boolean intersect(IRectangle rect){
         return !((this.x >= rect.getX()+rect.getWidth()) || (this.x + this.width <= rect.getX())
                 || (this.y >= rect.getY() + rect.getHeight()) || (this.y + this.height <= rect.getY()));
     }

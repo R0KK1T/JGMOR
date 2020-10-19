@@ -1,6 +1,6 @@
 package edu.chalmers.projecttemplate.model;
 
-import edu.chalmers.projecttemplate.model.spaceInvadersModel.GameObject;
+import edu.chalmers.projecttemplate.model.common.IRepresentable;
 import edu.chalmers.projecttemplate.model.spaceInvadersModel.SpaceInvadersModel;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class SpaceInvadersTest {
     @Test
     public void moveSpaceshipTest(){
         SpaceInvadersModel model = new SpaceInvadersModel();
-        GameObject player = model.getGameObjects().get(0);
+        IRepresentable player = model.getRepresents().get(0);
         int playerSpeed = 2;
 
         //test for moving right (direction 1)
@@ -37,15 +37,15 @@ public class SpaceInvadersTest {
     @Test
     public void moveAliensTest(){
         SpaceInvadersModel model = new SpaceInvadersModel();
-        List<GameObject> aliens = new ArrayList<>();
-        for (GameObject go:model.getGameObjects()) {
+        List<IRepresentable> aliens = new ArrayList<>();
+        for (IRepresentable go:model.getRepresents()) {
             if (go.getType() == "Alien"){
                 aliens.add(go);
             }
         }
 
         List<Integer> alienPosList = new ArrayList<>();
-        for (GameObject mo:aliens) {
+        for (IRepresentable mo:aliens) {
             alienPosList.add(mo.getX());
         }
 
@@ -68,7 +68,7 @@ public class SpaceInvadersTest {
 
         model.playerShoot();
 
-        for (GameObject go: model.getGameObjects()) {
+        for (IRepresentable go: model.getRepresents()) {
             if (go.getType() == "Projectile"){
                 foundProjectile = true;
             }
@@ -83,7 +83,7 @@ public class SpaceInvadersTest {
 
         for (int i = 0; i < 200000; i++) {
             model.update();
-            for (GameObject go: model.getGameObjects()) {
+            for (IRepresentable go: model.getRepresents()) {
                 if (go.getType() == "Projectile"){
                     foundProjectile = true;
                 }

@@ -44,10 +44,10 @@ public class SpaceInvadersController implements IController {
         view.clearDrawingArea();
 
         //draw all positionables in the game
-        for (int i = 0; i < model.getGameObjects().size(); i++) {
-            view.draw(model.getGameObjects().get(i).getX(), model.getGameObjects().get(i).getY(),
-                    model.getGameObjects().get(i).getWidth(), model.getGameObjects().get(i).getHeight(),
-                    model.getGameObjects().get(i).getType());
+        for (int i = 0; i < model.getRepresents().size(); i++) {
+            view.draw(model.getRepresents().get(i).getX(), model.getRepresents().get(i).getY(),
+                    model.getRepresents().get(i).getWidth(), model.getRepresents().get(i).getHeight(),
+                    model.getRepresents().get(i).getType());
         }
         
         //draw player lives

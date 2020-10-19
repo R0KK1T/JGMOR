@@ -1,5 +1,7 @@
 package edu.chalmers.projecttemplate.model.froggermodel;
 
+import edu.chalmers.projecttemplate.model.common.IRepresentable;
+
 import java.util.ArrayList;
 
 public class FroggerModel {

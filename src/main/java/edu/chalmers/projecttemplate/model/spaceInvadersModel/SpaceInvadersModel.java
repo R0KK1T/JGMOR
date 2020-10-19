@@ -1,5 +1,7 @@
 package edu.chalmers.projecttemplate.model.spaceInvadersModel;
 
+import edu.chalmers.projecttemplate.model.common.IRepresentable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -353,8 +355,8 @@ public class SpaceInvadersModel {
         return gameOver;
     }
 
-    public List<GameObject> getGameObjects(){
-        List<GameObject> gameObjects = new ArrayList<>();
+    public List<IRepresentable> getRepresents(){
+        List<IRepresentable> gameObjects = new ArrayList<>();
 
         //add player
         gameObjects.add(player);
