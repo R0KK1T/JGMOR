@@ -31,7 +31,12 @@ public class PongController implements IController {
         //clear
         view.clearDrawingArea();
 
-        //draw Ball
+        //draw all GameObjects in model
+        for (int i = 0; i < model.getGameObjects().size(); i++){
+            view.draw(model.getGameObjects().get(i).getX(), model.getGameObjects().get(i).getY(), model.getGameObjects().get(i).getWidth(), model.getGameObjects().get(i).getHeight());
+        }
+
+        /*//draw Ball
         view.draw(model.getPongBall().getX(), model.getPongBall().getY(), model.getPongBall().getWidth(), model.getPongBall().getHeight());
 
         //draw Right Paddle
@@ -39,7 +44,7 @@ public class PongController implements IController {
 
         //draw Left Paddle
         view.draw(model.getPongLeftPaddle().getX(), model.getPongLeftPaddle().getY(), model.getPongLeftPaddle().getWidth(), model.getPongLeftPaddle().getHeight());
-
+        */
     }
 
     public void startGame(){
@@ -55,10 +60,10 @@ public class PongController implements IController {
         KeyCode kc = event.getCode();
         switch (kc) {
             case W:
-                model.getPongLeftPaddle().moveUp(model.getPaddleVelocity());
+                model.movePongLeftPaddleUp();
                 break;
             case S:
-                model.getPongLeftPaddle().moveDown(model.getPaddleVelocity());
+                model.movePongLeftPaddleDown();
                 break;
             case ESCAPE:
                 model.setPaused(!model.isPaused());
@@ -70,10 +75,10 @@ public class PongController implements IController {
         KeyCode kc = event.getCode();
         switch (kc) {
             case W:
-                model.getPongLeftPaddle().stopMoving();;
+                model.stopPongLeftPaddle();
                 break;
             case S:
-                model.getPongLeftPaddle().stopMoving();;;
+                model.stopPongLeftPaddle();
                 break;
             default: // Nothing
         }

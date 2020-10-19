@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b073a204-cbaa-4d87-8b8f-cdce6743b871" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/model/pongmodel/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/model/pongmodel/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/model/pongmodel/PongBall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/model/pongmodel/PongBall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/model/pongmodel/PongPaddle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/model/pongmodel/PongPaddle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/controller/pongcontroller/PongController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/controller/pongcontroller/PongController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/model/pongmodel/PongModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/model/pongmodel/PongModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,34 +171,34 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603102123703" />
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1603122597791">
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1603124812757">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603103161397" />
     <state width="3786" height="264" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603120448565" />
     <state width="1439" height="229" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603116722842" />
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.363.1920.1040@0.0.2560.1400" timestamp="1603122597791" />
-    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1603122597790">
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.363.1920.1040@0.0.2560.1400" timestamp="1603124812757" />
+    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1603124812757">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603103161397" />
     <state width="3786" height="264" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603120448564" />
     <state width="1439" height="229" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603116722842" />
-    <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.363.1920.1040@0.0.2560.1400" timestamp="1603122597790" />
-    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1603122597790">
+    <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.363.1920.1040@0.0.2560.1400" timestamp="1603124812757" />
+    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1603124812757">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603103161397" />
     <state width="3786" height="264" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603120448564" />
     <state width="1439" height="229" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603116722842" />
-    <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.363.1920.1040@0.0.2560.1400" timestamp="1603122597790" />
-    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1603122597791">
+    <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.363.1920.1040@0.0.2560.1400" timestamp="1603124812757" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1603124812757">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603103161397" />
     <state width="3786" height="264" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603120448564" />
     <state width="1439" height="229" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603116722842" />
-    <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.363.1920.1040@0.0.2560.1400" timestamp="1603122597791" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.363.1920.1040@0.0.2560.1400" timestamp="1603124812757" />
     <state x="587" y="127" key="SettingsEditor" timestamp="1603122219192">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
