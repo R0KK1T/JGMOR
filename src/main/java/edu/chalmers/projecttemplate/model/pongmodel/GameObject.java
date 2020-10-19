@@ -3,9 +3,17 @@ package edu.chalmers.projecttemplate.model.pongmodel;
 import edu.chalmers.projecttemplate.model.common.IPositionableDouble;
 
 public abstract class GameObject implements IPositionableDouble {
-    protected double x,y;
-    protected double height,width;
-    protected double velocity;
+    private double x,y;
+    private double height,width;
+    private double velocity;
+
+    public GameObject(double x, double y, double height, double width, double velocity){
+        this.x = x;
+        this.y = y;
+        this.height = height;
+        this.width = width;
+        this.velocity = velocity;
+    }
 
     @Override
     public double getX() {
@@ -20,6 +28,30 @@ public abstract class GameObject implements IPositionableDouble {
     @Override
     public double getHeight() {
         return height;
+    }
+
+    public double getVelocity() {
+        return velocity;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public void setVelocity(double velocity) {
+        this.velocity = velocity;
     }
 
     @Override
