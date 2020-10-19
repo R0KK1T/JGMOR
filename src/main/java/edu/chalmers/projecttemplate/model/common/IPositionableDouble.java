@@ -1,6 +1,6 @@
-package edu.chalmers.projecttemplate.model.pongmodel;
+package edu.chalmers.projecttemplate.model.common;
 
-public interface IPositionable {
+public interface IPositionableDouble {
 
     double getX ();
 

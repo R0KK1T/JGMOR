@@ -5,6 +5,11 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,6 +24,7 @@ public class SpaceInvadersView{
 
     GraphicsContext backgroundLayer;
     GraphicsContext gameLayer;
+    Text scoreText;
 
     private Scene scene;
 
@@ -34,16 +40,23 @@ public class SpaceInvadersView{
     }
 
     public void initScene() {
-        //create instance of model
-
         //setup the 2 different layered canvases
         Canvas backgroundCanvas = new Canvas(windowSizeX, windowSizeY);
         backgroundLayer = backgroundCanvas.getGraphicsContext2D();
         Canvas gameCanvas = new Canvas(windowSizeX, windowSizeY);
         gameLayer = gameCanvas.getGraphicsContext2D();
 
+        //init score text
+        scoreText = new Text();
+        scoreText.setX(30);
+        scoreText.setY(30);
+        scoreText.setScaleX(3);
+        scoreText.setScaleY(3);
+        scoreText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 10));
+        scoreText.setFill(Color.WHITESMOKE);
+
         //add canvases to the pane
-        Pane pane = new Pane(backgroundCanvas, gameCanvas);
+        Pane pane = new Pane(backgroundCanvas, gameCanvas, scoreText);
 
         //draw the background
         backgroundLayer.drawImage(backgroundImg, 0, 0, windowSizeX, windowSizeY);
@@ -85,5 +98,9 @@ public class SpaceInvadersView{
                 break;
             default:
         }
+    }
+
+    public void displayScore(String score){
+        scoreText.setText(score);
     }
 }

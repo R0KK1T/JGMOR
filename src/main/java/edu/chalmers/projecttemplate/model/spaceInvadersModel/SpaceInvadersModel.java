@@ -3,6 +3,10 @@ package edu.chalmers.projecttemplate.model.spaceInvadersModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents the model for the old retro game Space Invaders
+ *
+ */
 public class SpaceInvadersModel {
 
     //window variables
@@ -15,7 +19,6 @@ public class SpaceInvadersModel {
     private List<Alien> aliens;
     private List<Projectile> projectiles;
     private List<Barrier> barriers;
-    private List<GameObject> gameObjects;
 
     //player lives and score
     private int score;
@@ -25,8 +28,9 @@ public class SpaceInvadersModel {
     private final int alienSize = 40;
     private final int alienOffset = 20;
     private final int numberOfAlienRows = 5;
+    private final int numberOfAlienCols = 10;
     private final int fieldBottom = 600;
-    private int alienTopRowPos = 100;
+    private int alienTopRowPos;
 
     //number of barriers
     private final int numberOfBarriers = 4;
@@ -44,18 +48,35 @@ public class SpaceInvadersModel {
     private boolean hitBound = false;
     private boolean atBottom = false;
 
+    //bool for game over
+    private Boolean gameOver = false;
 
+    /**
+     * Constructs the model and initializes all objects in the game
+     *
+     */
     public SpaceInvadersModel() {
-        //create player, aliens and projectile
-        player = new Spaceship(100, 800, 40, 20, 2);
-        aliens = new ArrayList<>();
-        projectiles = new ArrayList<>();
-        barriers = new ArrayList<>();
         score = 0;
         lives = 3;
 
+        resetField();
+    }
+
+    /**
+     * Resets the state of all aliens, barriers, projectiles and the player to their starting state
+     *
+     */
+    private void resetField(){
+        //create create player, aliens and projectile
+        resetPlayerAndProjectiles();
+        aliens = new ArrayList<>();
+        barriers = new ArrayList<>();
+
+        //reset alien movement variables
+        alienTopRowPos = 100;
+        alienRowToMove = numberOfAlienRows - 1;
+
         //populate list of aliens
-        int numberOfAlienCols = 10;
         for (int i = 0; i < numberOfAlienCols; i++) {
             for (int j = 0; j < numberOfAlienRows; j++) {
                 aliens.add(new Alien(boundOffset + (alienSize+alienSize)*i, alienTopRowPos + (alienSize+alienOffset)*j, alienSize, 20));
@@ -68,7 +89,26 @@ public class SpaceInvadersModel {
         }
     }
 
+    /**
+     * Resets the state of all projectiles and the player to their starting state
+     *
+     */
+    private void resetPlayerAndProjectiles(){
+        player = new Spaceship(100, 800, 40, 20, 2);
+        projectiles = new ArrayList<>();
+    }
+
+    /**
+     * Updates the game state by checking collisions, checking for shooting and moving all movable entities
+     *
+     */
     public void update(){
+        //if all aliens has been defeated the field will fully reset except for the player score and lives,
+        //this enables a player to get high scores above one level worth of aliens
+        if (aliens.size() == 0){
+            resetField();
+        }
+
         //check collision with walls if all rows have moved to the same xposition
         if (alienRowToMove == numberOfAlienRows - 1){
             checkAlienBounds();
@@ -86,20 +126,25 @@ public class SpaceInvadersModel {
         timeSinceLastPlayerShot++;
     }
 
+    /**
+     * Moves all objects that are able to move these include the player represented by a Spaceship,
+     * all aliens and all projectiles
+     *
+     */
     private void moveEntities(){
         //player moving left with check for left bound
-        if (player.getDirection() == -1 && player.getXpos() >= boundOffset){
+        if (player.getDirection() == -1 && player.getX() >= boundOffset){
             player.move();
         }
         //player moving right with check for right bound
-        else if (player.getDirection() == 1 && player.getXpos()+player.getWidth() <= windowSizeX-boundOffset){
+        else if (player.getDirection() == 1 && player.getX()+player.getWidth() <= windowSizeX-boundOffset){
             player.move();
         }
 
         //check if any alien is at the bottom of the field
         atBottom = false;
         for (int i = 0; i < aliens.size(); i++) {
-            if (aliens.get(i).getYpos() + aliens.get(i).getHeight() >= fieldBottom){
+            if (aliens.get(i).getY() + aliens.get(i).getHeight() >= fieldBottom){
                 atBottom = true;
                 break;
             }
@@ -127,7 +172,7 @@ public class SpaceInvadersModel {
         //move alien row sideways if timer is right
         if (currentTime >= timeBetweenMove){
             for (int i = 0; i < aliens.size(); i++) {
-                if (aliens.get(i).getYpos() == alienTopRowPos + ((alienSize + alienOffset) * alienRowToMove)){
+                if (aliens.get(i).getY() == alienTopRowPos + ((alienSize + alienOffset) * alienRowToMove)){
                     aliens.get(i).move();
                 }
             }
@@ -145,34 +190,60 @@ public class SpaceInvadersModel {
         }
     }
 
+    /**
+     * Checks if the aliens has hit their horizontal bounds
+     *
+     */
     private void checkAlienBounds(){
         //check if aliens has hit the right or the left wall, if yes aliens should move do
         for (int i = 0; i < aliens.size(); i++) {
-            if (aliens.get(i).getDirection() == 1 && (aliens.get(i).getXpos() + aliens.get(i).getWidth()) >= windowSizeX - boundOffset){
+            if (aliens.get(i).getDirection() == 1 && (aliens.get(i).getX() + aliens.get(i).getWidth()) >= windowSizeX - boundOffset){
                 hitBound = true;
                 break;
             }
-            else if(aliens.get(i).getDirection() == -1 && aliens.get(i).getXpos() <= boundOffset){
+            else if(aliens.get(i).getDirection() == -1 && aliens.get(i).getX() <= boundOffset){
                 hitBound = true;
                 break;
             }
         }
     }
 
+    /**
+     * Checks it's time for any alien to shoot,
+     * if yes they will spawn a new projectile
+     * if no they will get closer to shooting
+     *
+     */
     private void aliensShoot(){
         //all aliens have an internal shoot timer if its time for an alien to shoot it will do so
         // else the timer increase and get closer to shooting
         for (int i = 0; i < aliens.size(); i++) {
             if(aliens.get(i).getTimeSinceLastShot() >= aliens.get(i).getTimeBetweenShots()){
                 aliens.get(i).resetTimeScinceLastShot();
-                projectiles.add(new Projectile(aliens.get(i).getXpos(), aliens.get(i).getYpos(), 1));
+                projectiles.add(new Projectile(aliens.get(i).getX() + aliens.get(i).getWidth()/2 - 5, aliens.get(i).getY(), 1));
             }
             else{
                 aliens.get(i).incTimeScinceLastShot();
             }
         }
     }
-    
+
+    /**
+     * Spawns a projectile at player position
+     *
+     */
+    public void playerShoot(){
+        //if the timer for player shooting is above time between shots the player will shoot a projectile
+        if (timeSinceLastPlayerShot >= timeBetweenPlayerShots){
+            projectiles.add(new Projectile(player.getX() + player.getWidth()/2 - 5, player.getY(), -1));
+            timeSinceLastPlayerShot = 0;
+        }
+    }
+
+    /**
+     * Checks collisions between all projectiles and the
+     *
+     */
     private void checkCollisions(){
         //loop through projectile list and check if projectile either collides with anything or is out of bounds,
         // if true then remove it and do action depending on what it hit
@@ -184,10 +255,7 @@ public class SpaceInvadersModel {
                 //checks collisions with the player, player looses lives or dies when hit
                 if (projectiles.get(i).getHitbox().intersect(player.getHitbox())){
                     damagePlayer();
-                    projectiles.remove(projectiles.get(i));
-                    i--;
-                    hit = true;
-                    continue;
+                    break;
                 }
                 //checks collisions with barriers, barriers looses lives or gets destroyed when hit
                 for (Barrier barrier: barriers) {
@@ -224,14 +292,13 @@ public class SpaceInvadersModel {
                         i--;
                         aliens.remove(alien);
                         score += 100;
-                        System.out.println("Score is now: " + score);
                         hit = true;
                         break;
                     }
                 }
             }
             //if a projectile hasn't hit anything and is out of bounds it is destroyed
-            if (!hit && (projectiles.get(i).getYpos() < 0 || projectiles.get(i).getYpos() > windowSizeY)){
+            if (!hit && (projectiles.get(i).getY() < 0 || projectiles.get(i).getY() > windowSizeY)){
                 projectiles.remove(projectiles.get(i));
                 i--;
             }
@@ -252,17 +319,10 @@ public class SpaceInvadersModel {
         // player looses 1 health if it has above 0 lives else looses the game
         if (lives > 0){
             lives--;
+            resetPlayerAndProjectiles();
         }
         else{
-            //TODO Game Over
-        }
-    }
-
-    public void playerShoot(){
-        //if the timer for player shooting is above time between shots the player will shoot a projectile
-        if (timeSinceLastPlayerShot >= timeBetweenPlayerShots){
-            projectiles.add(new Projectile(player.getXpos(), player.getYpos(), -1));
-            timeSinceLastPlayerShot = 0;
+            gameOver = true;
         }
     }
 
@@ -281,8 +341,20 @@ public class SpaceInvadersModel {
         return windowSizeY;
     }
 
+    public int getScore() {
+        return score;
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public Boolean getGameOver() {
+        return gameOver;
+    }
+
     public List<GameObject> getGameObjects(){
-        gameObjects = new ArrayList<>();
+        List<GameObject> gameObjects = new ArrayList<>();
 
         //add player
         gameObjects.add(player);

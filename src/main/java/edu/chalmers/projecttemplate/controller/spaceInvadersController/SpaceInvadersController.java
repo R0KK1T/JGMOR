@@ -28,6 +28,11 @@ public class SpaceInvadersController implements IController {
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
+                //if game over then save score and then pause game
+                if (model.getGameOver()){
+                    //TODO save score
+                    timer.stop();
+                }
                 model.update();
                 callForRedraw();
             }
@@ -40,10 +45,18 @@ public class SpaceInvadersController implements IController {
 
         //draw all positionables in the game
         for (int i = 0; i < model.getGameObjects().size(); i++) {
-            view.draw(model.getGameObjects().get(i).getXpos(), model.getGameObjects().get(i).getYpos(),
+            view.draw(model.getGameObjects().get(i).getX(), model.getGameObjects().get(i).getY(),
                     model.getGameObjects().get(i).getWidth(), model.getGameObjects().get(i).getHeight(),
                     model.getGameObjects().get(i).getType());
         }
+        
+        //draw player lives
+        for (int i = 0; i < model.getLives(); i++) {
+            view.draw(20 + 60*i, model.getWindowSizeY() - 40,40,20,"Spaceship" );
+        }
+
+        //display score
+        view.displayScore(Integer.toString(model.getScore()));
     }
 
     public void startGame(){

@@ -2,8 +2,6 @@ package edu.chalmers.projecttemplate.model.froggermodel;
 
 import edu.chalmers.projecttemplate.model.common.Rectangle;
 
-import java.util.HashMap;
-
 public class Frog implements IRepresentable{
     private Rectangle hitbox;
     private Obstacle riverObs;

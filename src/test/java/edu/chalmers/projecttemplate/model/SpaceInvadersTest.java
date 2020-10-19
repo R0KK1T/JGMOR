@@ -17,22 +17,22 @@ public class SpaceInvadersTest {
         int playerSpeed = 2;
 
         //test for moving right (direction 1)
-        int newpos1 = player.getXpos() + playerSpeed;
+        int newpos1 = player.getX() + playerSpeed;
         model.setPlayerDirection(1);
         model.update();
-        Assert.assertTrue(player.getXpos() == newpos1);
+        Assert.assertTrue(player.getX() == newpos1);
 
         //test for moving left (direction -1)
-        int newpos2 = player.getXpos() - playerSpeed;
+        int newpos2 = player.getX() - playerSpeed;
         model.setPlayerDirection(-1);
         model.update();
-        Assert.assertTrue(player.getXpos() == newpos2);
+        Assert.assertTrue(player.getX() == newpos2);
 
         //test for standing still (direction 0)
-        int newpos3 = player.getXpos();
+        int newpos3 = player.getX();
         model.setPlayerDirection(0);
         model.update();
-        Assert.assertTrue(player.getXpos() == newpos3);
+        Assert.assertTrue(player.getX() == newpos3);
     }
     @Test
     public void moveAliensTest(){
@@ -46,7 +46,7 @@ public class SpaceInvadersTest {
 
         List<Integer> alienPosList = new ArrayList<>();
         for (GameObject mo:aliens) {
-            alienPosList.add(mo.getXpos());
+            alienPosList.add(mo.getX());
         }
 
         for (int i = 0; i < 220; i++) {
@@ -54,7 +54,7 @@ public class SpaceInvadersTest {
         }
         boolean allMoved = true;
         for (int i = 0; i < aliens.size(); i++) {
-            if (aliens.get(i).getXpos() != alienPosList.get(i)+20){
+            if (aliens.get(i).getX() != alienPosList.get(i)+20){
                 allMoved = false;
             }
         }

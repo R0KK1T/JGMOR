@@ -2,7 +2,6 @@ package edu.chalmers.projecttemplate.application;
 
 import edu.chalmers.projecttemplate.controller.viewNavigator.ViewNavigator;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MainApplication extends Application {
@@ -13,7 +12,7 @@ public class MainApplication extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		stage = primaryStage;
-
+		ViewNavigator.getInstance().setStage(stage);
 		ViewNavigator.getInstance().loadMenuView("startMenu");
 
 		stage.setResizable(false);
@@ -24,9 +23,5 @@ public class MainApplication extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
-	}
-
-	public static void setScene(Scene scene) {
-		stage.setScene(scene);
 	}
 }

@@ -1,6 +1,8 @@
 package edu.chalmers.projecttemplate.model.pongmodel;
 
-public abstract class GameObject implements IPositionable {
+import edu.chalmers.projecttemplate.model.common.IPositionableDouble;
+
+public abstract class GameObject implements IPositionableDouble {
     protected double x,y;
     protected double height,width;
     protected double velocity;

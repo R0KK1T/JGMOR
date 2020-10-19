@@ -1,5 +1,7 @@
 package edu.chalmers.projecttemplate.model.froggermodel;
 
-public interface IRepresentable extends IPositionable {
+import edu.chalmers.projecttemplate.model.common.IPositionableInt;
+
+public interface IRepresentable extends IPositionableInt {
     String getType();
 }

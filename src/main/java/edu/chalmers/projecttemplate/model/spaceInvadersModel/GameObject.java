@@ -1,5 +1,7 @@
 package edu.chalmers.projecttemplate.model.spaceInvadersModel;
 
-public interface GameObject extends IPositionable, ITypeable{
+import edu.chalmers.projecttemplate.model.common.IPositionableInt;
+
+public interface GameObject extends IPositionableInt, ITypeable{
 
 }
