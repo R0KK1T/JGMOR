@@ -4,6 +4,9 @@ import edu.chalmers.projecttemplate.model.common.IRepresentable;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the structure and functionality of the old retro game Frogger
+ */
 public class FroggerModel {
     //Window measures and dimensions
     private int squareDimension = 75;
@@ -13,7 +16,7 @@ public class FroggerModel {
     private int windowSizeY;
 
     //Game variables
-    private int amountOfLives = 7;
+    private int initialAmountOfLives = 7;
     private int currentLifeCount;
     private int frogsToSave;
     private int savedFrogs = 0;
@@ -34,7 +37,9 @@ public class FroggerModel {
     private ArrayList<IRepresentable> represents;
     private boolean changesToRepresents = false;
 
-    //Constructor
+    /**
+     * Constructs an instance of FroggerModel with no specified parameters
+     */
     public FroggerModel() {
         windowSizeX = squareDimension * columns;
         windowSizeY = squareDimension * rows;
@@ -42,15 +47,23 @@ public class FroggerModel {
         factory = new LaneFactory(squareDimension, columns, 1, 5);
         resetGame();
     }
+
+    /**
+     * Sets starting values to appropriate variables and calls function newLevel()
+     */
     private void resetGame(){
         newLevel();
         //Set life count
-        currentLifeCount = amountOfLives;
+        currentLifeCount = initialAmountOfLives;
         //Set points
         points = 0;
         //Set level
         level = 1;
     }
+
+    /**
+     * Calls functions to structure a new level and sets values to appropriate variables accordingly
+     */
     private void newLevel(){
         level++;
         savedFrogs = 0;
@@ -61,9 +74,17 @@ public class FroggerModel {
         //Set highestLane
         resetHighestLane();
     }
+
+    /**
+     * Sets variable highestLane to the y-coordinate of the first lane in ArrayList lanes
+     */
     private void resetHighestLane(){
         highestLane = lanes.get(0).getY();
     }
+
+    /**
+     * Sets ArrayList lanes and adds lanes based on the structure of the original Frogger
+     */
     private void initLanes(){
         changesToRepresents = true;
         lanes = new ArrayList<>();
@@ -82,6 +103,10 @@ public class FroggerModel {
         //Finish line
         lanes.add(factory.createFinishLane(columns/3 + 1,0));
     }
+
+    /**
+     * Sets variable player and sets boundaries of player
+     */
     private void newFrog(){
         changesToRepresents = true;
         player = new Frog(squareDimension * (columns/2), windowSizeY - squareDimension,
@@ -89,6 +114,10 @@ public class FroggerModel {
         player.setBounds(0, 0, windowSizeX, windowSizeY);
     }
 
+    /**
+     * Updates the state of the entire game. Calls appropriate functions to check for
+     * everything that would alter the state of the game.
+     */
     public void update(){
         if(updateUnits >= delayAmount){
             moveObstacles();
@@ -102,6 +131,10 @@ public class FroggerModel {
         checkForProgress();
         checkForPlayerAtFinishLine();
     }
+
+    /**
+     * Updates the positions of all obstacles
+     */
     private void moveObstacles(){
         for (Obstacle obs:getAllObstacles()) {
             obs.move();
@@ -113,6 +146,33 @@ public class FroggerModel {
             }
         }
     }
+
+    /**
+     * Calls for player to move based on parameter direction
+     * @param direction int, determines which of variable player's move functions to call
+     */
+    public void movePlayer(int direction){
+        switch (direction) {
+            case 1:
+                player.moveUp();
+                break;
+            case 2:
+                player.moveDown();
+                break;
+            case 3:
+                player.moveRight();
+                break;
+            case 4:
+                player.moveLeft();
+                break;
+            default:
+        }
+    }
+
+    /**
+     * Calls appropriate functions to determine if player is colliding with an obstacle in a specific lane
+     * and decides what consequences that would bring based on the state of the game
+     */
     private void checkForPlayerInteraction() {
         Lane current = getCurrentPlayerLane();
         //Skip all if player isn't found on any lane.
@@ -140,6 +200,11 @@ public class FroggerModel {
             }
         }
     }
+
+    /**
+     * Decreases variable currentLifeCount by one and either calls function resetGame() or newFrog() depending
+     * on the value of variable currentLifeCount
+     */
     private void loseLife(){
         currentLifeCount--;
         if(currentLifeCount > 0){
@@ -149,6 +214,11 @@ public class FroggerModel {
             resetGame();
         }
     }
+
+    /**
+     * Checks if player is on the last lane and calls appropriate functions accordingly, adding points and either
+     * sets new level or resets player's position.
+     */
     private void checkForPlayerAtFinishLine(){
         if(getCurrentPlayerLane() == lanes.get(lanes.size() - 1)){
             lanes.get(lanes.size() - 1).add(new Obstacle(player.getX(), player.getY(), squareDimension, squareDimension, 0, ObstacleType.FINISHLINEFROG));
@@ -162,45 +232,30 @@ public class FroggerModel {
             }
         }
     }
+
+    /**
+     * Checks if player has progressed towards the goal and adds points accordingly
+     */
     private void checkForProgress(){
         if(player.getY() < highestLane){
             points += 10;
             highestLane = player.getY();
         }
     }
+
+    /**
+     * Increases amount of saved frogs by one and adds 20 points
+     */
     private void reachedTheFinishLine(){
         savedFrogs++;
         points += 200;
     }
 
-
-    public void movePlayer(int direction){
-        switch (direction) {
-            case 1:
-                player.moveUp();
-                break;
-            case 2:
-                player.moveDown();
-                break;
-            case 3:
-                player.moveRight();
-                break;
-            case 4:
-                player.moveLeft();
-                break;
-            default:
-        }
-    }
-    //Getter to check which lane player is currently on
-    public Lane getCurrentPlayerLane(){
-        for (int i = 0; i < getLanes().size(); i++) {
-            if(player.getY() == getLanes().get(i).getY()){
-                return getLanes().get(i);
-            }
-        }
-        return null;
-    }
-    //Getter for obstacle colliding with player
+    /**
+     * Checks if player is colliding with an obstacle on a given lane
+     * @param current Lane, the lane of which collision is investigated
+     * @return Obstacle that player is colliding with. If no collision return null
+     */
     public Obstacle collisionDetected(Lane current){
         for (Obstacle obs: current.getObstacles()) {
             if(player.getHitbox().intersect(obs.getHitbox())){
@@ -210,7 +265,23 @@ public class FroggerModel {
         return null;
     }
 
+    /**
+     * Return the lane which player is currently on
+     * @return Lane, with the same y-coordinate as player. If none found, return null
+     */
+    public Lane getCurrentPlayerLane(){
+        for (int i = 0; i < getLanes().size(); i++) {
+            if(player.getY() == getLanes().get(i).getY()){
+                return getLanes().get(i);
+            }
+        }
+        return null;
+    }
 
+    /**
+     * Getter for ArrayList "represents" containing all representable objects in terms of game functionality
+     * @return ArrayList of IRepresentable, represents
+     */
     public ArrayList<IRepresentable> getRepresents(){
         if (changesToRepresents){
             represents = new ArrayList<>();
@@ -223,6 +294,10 @@ public class FroggerModel {
         return represents;
     }
 
+    /**
+     * Getter for all obstacles
+     * @return ArrayList of Obstacle
+     */
     private ArrayList<Obstacle> getAllObstacles(){
         ArrayList<Obstacle> returnList = new ArrayList<>();
         for (Lane lane: lanes) {
@@ -232,39 +307,89 @@ public class FroggerModel {
         }
         return returnList;
     }
-    //Getters, mostly for testing purposes
+
+    /**
+     * Getter for all lanes
+     * @return ArrayList of Lane, lanes
+     */
     public ArrayList<Lane> getLanes() {
         return lanes;
     }
+
+    /**
+     * Getter for object player
+     * @return Frog, player
+     */
     public Frog getPlayer(){
         return player;
     }
+
+    /**
+     * Getter for variable squareDimension
+     * @return int, squareDimension
+     */
     public int getSquareDimension() {
         return squareDimension;
     }
+
+    /**
+     * Getter for variable rows
+     * @return int, rows
+     */
     public int getRows(){
         return rows;
     }
 
+    /**
+     * Getter for variable columns
+     * @return int, columns
+     */
     public int getColumns() {
         return columns;
     }
 
+    /**
+     * Getter for variable windowSizeX
+     * @return int, windowSizeX
+     */
     public int getWindowSizeX() {
         return windowSizeX;
     }
 
+    /**
+     * Getter for variable windowSizeY
+     * @return int, windowSizeY
+     */
     public int getWindowSizeY() {
         return windowSizeY;
     }
-    public int getAmountOfLives() {
-        return amountOfLives;
+
+    /**
+     * Getter for variable initialAmountOfLives
+     * @return int, initialAmountOfLives
+     */
+    public int getInitialAmountOfLives() {
+        return initialAmountOfLives;
     }
+
+    /**
+     * Getter for variable currentLifeCount
+     * @return int, currentLifeCount
+     */
     public int getCurrentLifeCount(){ return currentLifeCount; }
 
+    /**
+     * Getter for variable points
+     * @return int, points
+     */
     public int getPoints() {
         return points;
     }
+
+    /**
+     * Getter for variable level
+     * @return int, level
+     */
     public int getLevel(){
         return level;
     }

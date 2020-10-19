@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b073a204-cbaa-4d87-8b8f-cdce6743b871" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/controller/snakecontroller/ScoreViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/controller/snakecontroller/ScoreViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/model/snakemodel/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/chalmers/projecttemplate/model/snakemodel/GameScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/snakeresources/views/ScoreView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/snakeresources/views/ScoreView.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="b073a204-cbaa-4d87-8b8f-cdce6743b871" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,7 +40,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.MainApplication">
+  <component name="RunManager" selected="JUnit.FroggerTest">
     <configuration name="MainApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.chalmers.projecttemplate.application.MainApplication" />
       <module name="VirtualArcade" />
@@ -73,7 +67,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CommonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FroggerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="VirtualArcade" />
       <extension name="coverage">
         <pattern>
@@ -82,7 +76,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="edu.chalmers.projecttemplate.model" />
-      <option name="MAIN_CLASS_NAME" value="edu.chalmers.projecttemplate.model.CommonTest" />
+      <option name="MAIN_CLASS_NAME" value="edu.chalmers.projecttemplate.model.FroggerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -121,21 +115,33 @@
     <list>
       <item itemvalue="Application.MainApplication" />
       <item itemvalue="Application.PongView2Test" />
-      <item itemvalue="JUnit.CommonTest" />
       <item itemvalue="JUnit.SnakeTest" />
       <item itemvalue="JUnit.SpaceInvadersTest" />
+      <item itemvalue="JUnit.FroggerTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.FroggerTest" />
         <item itemvalue="Application.MainApplication" />
         <item itemvalue="Application.PongView2Test" />
         <item itemvalue="JUnit.SpaceInvadersTest" />
         <item itemvalue="JUnit.SnakeTest" />
-        <item itemvalue="JUnit.CommonTest" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -205,12 +211,12 @@
     <state width="3786" height="264" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603120448564" />
     <state width="1439" height="229" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603116722842" />
     <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.363.1920.1040@0.0.2560.1400" timestamp="1603126792937" />
-    <state x="312" y="0" key="SettingsEditor" timestamp="1603128706603">
-      <screen x="0" y="0" width="1360" height="728" />
+    <state x="440" y="94" key="SettingsEditor" timestamp="1603131012020">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="312" y="0" key="SettingsEditor/0.0.1360.728@0.0.1360.728" timestamp="1603128706603" />
     <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/-1920.0.1920.1040/1920.-853.1080.1880@0.0.1920.1040" timestamp="1603099788376" />
-    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603116076249" />
+    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1603131012020" />
     <state x="587" y="127" key="SettingsEditor/0.0.2560.1400/-1920.363.1920.1040@0.0.2560.1400" timestamp="1603122219192" />
   </component>
 </project>
