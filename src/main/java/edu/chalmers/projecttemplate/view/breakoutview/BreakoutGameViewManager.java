@@ -5,7 +5,10 @@ import edu.chalmers.projecttemplate.model.common.IPositionableInt;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+
+import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -20,6 +23,7 @@ public class BreakoutGameViewManager {
     private Image bc;
     private Image paddleImg;
     private Image ballImg;
+    private Image gameOver;
     private Image redBrick;
     private Image greeBrick;
     private Image orangeBrick;
@@ -47,6 +51,7 @@ public class BreakoutGameViewManager {
         bc = new Image(new FileInputStream("src/main/resources/breakoutresources/images/bc3.gif"));
         paddleImg = new Image(new FileInputStream("src/main/resources/breakoutresources/images/paddle.png"));
         ballImg = new Image(new FileInputStream("src/main/resources/breakoutresources/images/ball.png"));
+        gameOver = new Image(new FileInputStream("src/main/resources/breakoutresources/images/gameOver.png"));
         redBrick = new Image(new FileInputStream("src/main/resources/breakoutresources/images/redbrick.png"));
         orangeBrick = new Image(new FileInputStream("src/main/resources/breakoutresources/images/orangebrick.png"));
         greeBrick = new Image(new FileInputStream("src/main/resources/breakoutresources/images/greenbrick.png"));
@@ -91,6 +96,13 @@ public class BreakoutGameViewManager {
             gc.fillRect(brick.getX(), brick.getY(), brick.getWidth(), brick.getHeight());
             gc.drawImage(yellowBrick, brick.getX(), brick.getY(), brick.getWidth(), brick.getHeight());
         }
+    }
+    /*
+     * Drawing game over
+     */
+    public void drawGameOver() {
+        gc.setFill(Color.BLACK);
+        gc.drawImage(gameOver, 200, 200, 500, 200);
     }
     //get canvas
     public Canvas getCanvas() {

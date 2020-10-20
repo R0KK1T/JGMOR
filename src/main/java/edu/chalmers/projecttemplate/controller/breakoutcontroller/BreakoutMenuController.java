@@ -133,7 +133,6 @@ public class BreakoutMenuController implements Initializable, IController {
         }
         transition.play();
     }
-
     /*
      * Initialize listeners
      */

@@ -72,7 +72,7 @@ public class BreakoutGameController implements Initializable {
     /*
      * Button Pause
      */
-    public void btnExitPauseControl(MouseEvent actionEvent) {
+    public void btnExitPauseControl() {
         btnGamePause.setOnMouseClicked(mouseEvent -> {
             if (pause && inGame) {
                 timer.stop();
@@ -175,16 +175,14 @@ public class BreakoutGameController implements Initializable {
      * Creating and processing the game
      */
     //Game start
-    public void start() {
-        run();
-    }
+    public void start() { run(); }
     //Game initialize
     public void init() { viewManager.drawGameArea(); }
     //Game moving stuff
     public void tick() {
         gameModel.tick();
         showTheScore();
-        checkIsGameOver();
+        isGameOver();
     }
     //Game drawing stuff
     public void render() {
@@ -203,10 +201,11 @@ public class BreakoutGameController implements Initializable {
         timer.start();
     }
     //Game over
-    private void checkIsGameOver() {
+    private void isGameOver() {
        if (gameModel.gameIsOver()) {
             timer.stop();
             inGame = false;
+            viewManager.drawGameOver();
         }
     }
 }
