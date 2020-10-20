@@ -13,7 +13,7 @@ public class PongPaddle extends GameObject implements IMovable {
     public void updatePosition() {
         setY(getVelocity()+getY());
         if (getY() < minY){
-            setY(0);
+            setY(minY);
         }
         if ((getY() + getHeight()) > maxY){
             setY(maxY - getHeight());
