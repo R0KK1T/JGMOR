@@ -87,19 +87,18 @@ public class BreakoutTest {
      */
     @Test
     public void moveTest() {
-        //paddle initial x-position = 20
+        //paddle initial x-position = 20. The paddle moves with a velocity = 3
 
-        //User pressing right arrow one time
-        //paddle.incX(1);
-        //paddle.move();
-        assertTrue("The paddle would have moved one step to the right: ",paddle.getX() == 21);
+        //User pressing key 'W' one time
+         paddle.moveRight();
+         //paddle.move();
+        assertTrue("The paddle should have moved three steps to the right: ",paddle.getX() == 20);
 
-        //User pressing left arrow twice
-        //paddle.incX(-1);
-        //paddle.move();
-        //paddle.incX(-1);
-        //paddle.move();
-        assertTrue("The paddle would have moved two steps to the left: ",paddle.getX() == 19);
+        //User pressing key 'Q' twice
+         paddle.moveLeft();
+         paddle.moveLeft();
+         //paddle.move()
+        assertTrue("The paddle should have moved six steps to the left: ",paddle.getX() == 20);
 
     }
     /*
@@ -122,11 +121,11 @@ public class BreakoutTest {
      */
     @Test
     public void collisionTest() {
-        //assertEquals("Check if the ball collides with the paddle: ", ball.intersect(paddle), false);
-        //assertEquals("Check if the ball collides with the brick: ", ball.intersect(brick), false);
-       // paddle.setX(50);
-       // paddle.setY(50);
-        //assertEquals("The ball should collide with the paddle: ", ball.intersect(paddle), true);
+        assertEquals("Check if the ball collides with the paddle: ", ball.getHitbox().intersect(paddle.getHitbox()), false);
+        assertEquals("Check if the ball collides with the brick: ", ball.getHitbox().intersect(brick.getHitbox()), false);
+        paddle.setX(50);
+        paddle.setY(50);
+        assertEquals("The ball should collide with the paddle: ", ball.getHitbox().intersect(paddle.getHitbox()), true);
     }
     /*
      * Test class Player
