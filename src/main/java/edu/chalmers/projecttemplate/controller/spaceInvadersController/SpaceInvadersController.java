@@ -31,7 +31,6 @@ public class SpaceInvadersController implements IController {
                 //if game over then save score and then pause game
                 if (model.getGameOver()){
                     //TODO save score
-                    timer.stop();
                 }
                 model.update();
                 callForRedraw();
