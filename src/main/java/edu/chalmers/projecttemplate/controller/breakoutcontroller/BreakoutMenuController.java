@@ -5,7 +5,6 @@ import edu.chalmers.projecttemplate.view.breakoutview.BreakoutGameView;
 import edu.chalmers.projecttemplate.view.breakoutview.BreakoutMenuView;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
@@ -14,7 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.effect.*;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -25,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 /*
- * Controller for breakout game menu
+ * Controller for Breakout game menu
  */
 public class BreakoutMenuController implements Initializable, IController {
     @FXML public Button btnPlay;
@@ -36,7 +34,6 @@ public class BreakoutMenuController implements Initializable, IController {
     @FXML public AnchorPane subPaneScores;
     @FXML public AnchorPane subPaneHelp;
     @FXML public Button btnStart;
-    @FXML public AnchorPane mainPane;
     @FXML public TextArea firstName;
     @FXML public TextArea lastName;
     private AnchorPane paneTohide;
@@ -44,11 +41,13 @@ public class BreakoutMenuController implements Initializable, IController {
     private boolean isHidden;
     private List<Button> buttonList;
     public static ArrayList<String> userInfo;
+
     //constructor
     public BreakoutMenuController() {
-        isHidden=true;
+        isHidden = true;
         userInfo = new ArrayList<>();
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         controlPlay();
@@ -61,7 +60,7 @@ public class BreakoutMenuController implements Initializable, IController {
     }
 
     /*
-     * BUTTONS
+     * BUTTONS - The menu has 5 buttons
      */
 
     //1. Button play
@@ -72,6 +71,7 @@ public class BreakoutMenuController implements Initializable, IController {
             }
         });
     }
+
     //2. Button score
     private void controlScore() {
         btnScores.setOnMouseClicked(mouseEvent -> {
@@ -80,6 +80,7 @@ public class BreakoutMenuController implements Initializable, IController {
             }
         });
     }
+
     //3. Button help
     private void controlHelp() {
         btnHelp.setOnMouseClicked(mouseEvent -> {
@@ -88,6 +89,7 @@ public class BreakoutMenuController implements Initializable, IController {
             }
         });
     }
+
     //4. Button exit
     private void controlExit() {
         btnExit.setOnMouseClicked(event -> System.exit(0));
@@ -99,13 +101,14 @@ public class BreakoutMenuController implements Initializable, IController {
         passingUserInfo();//Passing user info
         BreakoutGameView newGame = new BreakoutGameView();
         Scene gameScene = newGame.getGameScene();
-        Stage gameStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        Stage gameStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         gameStage.setTitle("Breakout Game");
         gameStage.setScene(gameScene);
         gameStage.show();
     }
+
     /*
-     * Subpane : play - scores - help
+     * Sub-pane : The menu has 3 sub-panes : sub-pane for play, scores and help
      */
     private void showSubPane(AnchorPane thePane) {
         if (paneTohide != null) {
@@ -114,6 +117,9 @@ public class BreakoutMenuController implements Initializable, IController {
         moveSubPaneRightToLeft(thePane);
         paneTohide = thePane;
     }
+    /*
+     * This function show and hide a sub-pane
+     */
     private void moveSubPaneRightToLeft(AnchorPane thePane) {
         TranslateTransition transition = new TranslateTransition();
         transition.setDuration(Duration.seconds(0.3));
@@ -127,6 +133,7 @@ public class BreakoutMenuController implements Initializable, IController {
         }
         transition.play();
     }
+
     /*
      * Initialize listeners
      */
@@ -137,15 +144,17 @@ public class BreakoutMenuController implements Initializable, IController {
         buttonList.add(btnExit);
         buttonList.add(btnStart);
     }
+
     private void initializeListeners() {
         //Buttons
-        for (int i=0; i<buttonList.size(); i++) {
+        for (int i = 0; i < buttonList.size(); i++) {
             int finalI = i;
             buttonList.get(i).setOnMouseEntered(mouseEvent -> buttonList.get(finalI).setEffect(new Glow()));
             buttonList.get(i).setOnMouseExited(mouseEvent -> buttonList.get(finalI).setEffect(null));
             buttonList.get(i).setCursor((Cursor.HAND));
         }
     }
+
     /*
      * Get user's first & last name
      */
@@ -161,7 +170,8 @@ public class BreakoutMenuController implements Initializable, IController {
     }
 
     @Override
-    public void startGame() {}
+    public void startGame() {
+    }
 
     @Override
     public Scene getScene() {
@@ -172,5 +182,4 @@ public class BreakoutMenuController implements Initializable, IController {
         }
         return menuView.getMainScene();
     }
-
 }
