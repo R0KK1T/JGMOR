@@ -188,7 +188,7 @@ public class FroggerTest {
         }
         //Run update to check if it gives the correct consequences from intersection.
         model.update();
-        Assert.assertTrue(model.getCurrentLifeCount() == model.getAmountOfLives() - 1);
+        Assert.assertTrue(model.getCurrentLifeCount() == model.getInitialAmountOfLives() - 1);
         Assert.assertTrue(model.getPlayer().getX()==(model.getSquareDimension()*(model.getColumns()/2)) && model.getPlayer().getY()==model.getWindowSizeY()-model.getSquareDimension());
 
         //Move frog all the way to the left and up middle safe lane
@@ -203,7 +203,7 @@ public class FroggerTest {
             model.getPlayer().moveRight();
         }
         model.update();
-        Assert.assertTrue(model.getCurrentLifeCount() == model.getAmountOfLives() - 2);
+        Assert.assertTrue(model.getCurrentLifeCount() == model.getInitialAmountOfLives() - 2);
         Assert.assertTrue(model.getPlayer().getX()==(model.getSquareDimension()*(model.getColumns()/2)) && model.getPlayer().getY()==model.getWindowSizeY()-model.getSquareDimension());
 
         //Move frog all the way to the left and up middle safe lane
@@ -225,7 +225,7 @@ public class FroggerTest {
     public void zeroLives(){
         FroggerModel model = new FroggerModel();
         ArrayList<IRepresentable> reps = model.getRepresents();
-        for (int i = 0; i < model.getAmountOfLives(); i++) {
+        for (int i = 0; i < model.getInitialAmountOfLives(); i++) {
             //Move frog all the way to the left
             for (int j = 0; j < model.getColumns()/2; j++) {
                 model.getPlayer().moveLeft();
@@ -239,7 +239,7 @@ public class FroggerTest {
             model.update();
         }
 
-        Assert.assertTrue(model.getCurrentLifeCount() == model.getAmountOfLives());
+        Assert.assertTrue(model.getCurrentLifeCount() == model.getInitialAmountOfLives());
         Assert.assertTrue(reps != model.getRepresents());
     }
     @Test

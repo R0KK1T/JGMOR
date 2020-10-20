@@ -41,6 +41,10 @@ public class FroggerController implements IController {
         for (IRepresentable rep: model.getRepresents()) {
             view.draw(rep.getX(), rep.getY(), rep.getWidth(), rep.getHeight(), rep.getType());
         }
+
+        view.drawLives(model.getCurrentLifeCount());
+
+        view.displayScore(model.getPoints(), model.getLevel());
     }
 
     public void startGame(){

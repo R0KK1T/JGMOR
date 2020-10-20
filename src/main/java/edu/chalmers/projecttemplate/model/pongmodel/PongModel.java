@@ -1,5 +1,7 @@
 package edu.chalmers.projecttemplate.model.pongmodel;
 
+import java.util.ArrayList;
+
 public class PongModel {
     PongBall pongBall;
     PongPaddle pongLeftPaddle,pongRightPaddle;
@@ -11,14 +13,21 @@ public class PongModel {
     private int leftPlayerScore = 0;
     private int rightPlayerScore = 0;
     private boolean isPaused;
+    private boolean AIEnabled;
+    private ArrayList<GameObject> gameObjects;
 
     public PongModel (){
+        gameObjects = new ArrayList<>();
         pongBall = new PongBall(windowSizeX/2, windowSizeY/2, 40, 40,ballVelocity);
         pongRightPaddle = new PongPaddle(windowSizeX - 50,windowSizeY/2, 200,40, windowSizeY,0);
         pongLeftPaddle = new PongPaddle(10, windowSizeY/2, 200,40, windowSizeY, 0);
+        gameObjects.add(pongBall);
+        gameObjects.add(pongRightPaddle);
+        gameObjects.add(pongLeftPaddle);
         pongAI = new PongAI(pongRightPaddle,pongBall);
         pongBall.resetBall();
         isPaused = false;
+        AIEnabled = false;
     }
 
     public void update (){
@@ -27,7 +36,9 @@ public class PongModel {
             ballHorizontalBounce();
             ballVerticalBounce();
             pongBall.updatePosition();
-            pongAI.movePaddle(paddleVelocity);
+            if (AIEnabled) {
+                pongAI.movePaddle(paddleVelocity);
+            }
             pongRightPaddle.updatePosition();
             pongLeftPaddle.updatePosition();
             ballRespawn();
@@ -70,19 +81,31 @@ public class PongModel {
         }
     }
 
-    public PongBall getPongBall() {
-        //returns the ball object
-        return pongBall;
+    public void movePongRightPaddleUp(){
+        pongRightPaddle.moveUp(paddleVelocity);
     }
 
-    public PongPaddle getPongRightPaddle() {
-        //return the right paddle object
-        return pongRightPaddle;
+    public void movePongRightPaddleDown(){
+        pongRightPaddle.moveDown(paddleVelocity);
     }
-    public PongPaddle getPongLeftPaddle() {
-        //return the left paddle object
-        return pongLeftPaddle;
+
+    public void stopPongRightPaddle(){
+        pongRightPaddle.stopMoving();
     }
+
+    public void movePongLeftPaddleUp(){
+        pongLeftPaddle.moveUp(paddleVelocity);
+    }
+
+    public void movePongLeftPaddleDown(){
+        pongLeftPaddle.moveDown(paddleVelocity);
+    }
+
+    public void stopPongLeftPaddle(){
+        pongLeftPaddle.stopMoving();
+    }
+
+
     public int getSizeX() {
         //return size x of playing field
         return windowSizeX;
@@ -93,9 +116,6 @@ public class PongModel {
         return windowSizeY;
     }
 
-    public int getPaddleVelocity() {
-        return paddleVelocity;
-    }
 
     public int getLeftPlayerScore() {
         return leftPlayerScore;
@@ -111,5 +131,17 @@ public class PongModel {
 
     public boolean isPaused() {
         return isPaused;
+    }
+
+    public void setAIEnabled(boolean AIEnabled) {
+        this.AIEnabled = AIEnabled;
+    }
+
+    public boolean isAIEnabled() {
+        return AIEnabled;
+    }
+
+    public ArrayList<GameObject> getGameObjects() {
+        return gameObjects;
     }
 }

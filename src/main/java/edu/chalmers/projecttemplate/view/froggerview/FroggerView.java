@@ -5,6 +5,11 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,6 +24,8 @@ public class FroggerView {
 
     GraphicsContext backgroundLayer;
     GraphicsContext gameLayer;
+
+    Text scoreAndLevelText;
 
     private Scene scene;
 
@@ -42,8 +49,17 @@ public class FroggerView {
         Canvas gameCanvas = new Canvas(windowSizeX, windowSizeY);
         gameLayer = gameCanvas.getGraphicsContext2D();
 
+        //init scoreText
+        scoreAndLevelText = new Text();
+        scoreAndLevelText.setX(75);
+        scoreAndLevelText.setY(11);
+        //scoreAndLevelText.setScaleX(3);
+        //scoreAndLevelText.setScaleY(3);
+        scoreAndLevelText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 10));
+        scoreAndLevelText.setFill(Color.WHITESMOKE);
+
         //add canvases to the pane
-        Pane pane = new Pane(backgroundCanvas, gameCanvas);
+        Pane pane = new Pane(backgroundCanvas, gameCanvas, scoreAndLevelText);
 
         //draw the background
         backgroundLayer.drawImage(imageHashMap.get("Background"), 0, 0, windowSizeX, windowSizeY);
@@ -94,5 +110,14 @@ public class FroggerView {
                 break;
         }
     }
+    public void displayScore(int score, int level){
+        scoreAndLevelText.setText("Level: " + level + " Score: " + score);
+    }
 
+    public void drawLives(int currentLifeCount) {
+        int width = 20;
+        for (int i = 0; i < currentLifeCount; i++) {
+            draw(i*width, windowSizeY - width, width, width, "FROG");
+        }
+    }
 }

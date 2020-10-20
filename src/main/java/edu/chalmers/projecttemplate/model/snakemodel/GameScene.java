@@ -48,7 +48,7 @@ public class GameScene extends Scene {
     private boolean gameOver = false;
 
     private Preferences prefs;
-    private int score = 0;
+    public static int score = 0;
     private int foodPoint = 10;
 
     private final String UP = "UP";
