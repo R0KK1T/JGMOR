@@ -1,12 +1,10 @@
 package edu.chalmers.projecttemplate.model.breakoutmodel;
 
 import edu.chalmers.projecttemplate.model.common.IPositionableInt;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 /*
- * Model for breakout game - The class randomly creates and returns a game model.
+ * Model for breakout game.
  */
 public class GameModel {
     private Paddle paddle;

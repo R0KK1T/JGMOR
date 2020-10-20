@@ -1,7 +1,5 @@
 package edu.chalmers.projecttemplate.model.breakoutmodel;
 
-import java.util.PriorityQueue;
-
 /*
  * Breakout model for player. The class contains the player's name and score.
  */

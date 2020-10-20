@@ -1,9 +1,12 @@
 package edu.chalmers.projecttemplate.model.breakoutmodel;
 
-
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+ * Model for Breakout brick obstacle.
+ * This class is responsible for keep different models of breakout brick obstacle
+ * The class randomly creates and returns a brick obstacle.
+ */
 public class BrickObstacle {
     private List<Brick> brickList;
     private int x, y;
