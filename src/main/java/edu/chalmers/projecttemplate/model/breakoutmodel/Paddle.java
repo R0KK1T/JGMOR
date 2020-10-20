@@ -1,10 +1,8 @@
 package edu.chalmers.projecttemplate.model.breakoutmodel;
 /*
- * Model for Breakout paddle - The paddle is controlled with left and right arrow keys.
+ * Model for Breakout paddle - The paddle is controlled with Q (move to left) and W (move to right).
  */
 public class Paddle extends GameMovableObject {
-    private int dx;
-
     public Paddle(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
@@ -13,13 +11,13 @@ public class Paddle extends GameMovableObject {
      */
     @Override
     protected void move() {
-        this.setX(this.getVelocity());
+        this.setX(this.getDx());
     }
     public void moveRight() {
-        this.setVelocity(5);
+        this.setDx(3);
     }
     public void moveLeft() {
-        this.setVelocity(-5);
+        this.setDx(-3);
     }
 
 }

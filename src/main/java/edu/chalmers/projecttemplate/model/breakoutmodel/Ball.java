@@ -4,14 +4,12 @@ package edu.chalmers.projecttemplate.model.breakoutmodel;
  * If the ball hits the borders, the directions are changed accordingly.
  */
 public class Ball extends GameMovableObject{
-    private int dx;
-    private int dy;
     private int dt;
 
     public Ball(int x, int y, int width, int height) {
         super(x, y, width, height);
-        dx = 1;
-        dy = -1;
+        this.setDx(1);
+        this.setDy(-1);
         dt = 1;
     }
     /*
@@ -20,26 +18,15 @@ public class Ball extends GameMovableObject{
     @Override
     protected void move() {
         //update position
-        this.setX((dt*dx));
-        this.setY((dt*dy));
+        this.setX((getDx()*dt));
+        this.setY((getDy()*dt));
     }
-
-    /*public void move() {
-        if (this.getX() < 0 || (this.getX()+this.getWidth() > this.getWindowSizeX()))
-            dx = -dx;
-        if (this.getY() < 0)
-            dy = -dy;
-        //update position
-        this.incX((dt*dx));
-        this.incY((dt*dy));
-
-    }*/
     /**
      * Reverse horizontal movement. If ball was moving left change it to move
      * right and vice versa
      */
     public void reverseHorizontalMomentum() {
-        dx = -dx;
+        setDx(-getDx());
     }
 
     /**
@@ -47,18 +34,6 @@ public class Ball extends GameMovableObject{
      * downwards and vice versa
      */
     public void reverseVerticalMomentum() {
-        dy = -dy;
-    }
-    public void setDx(int i) {
-        this.dx = i;
-    }
-    public void setDy(int i) {
-        this.dy = i;
-    }
-    public int getDx() {
-        return dx;
-    }
-    public int getDy() {
-        return dy;
+        setDy(-getDy());
     }
 }

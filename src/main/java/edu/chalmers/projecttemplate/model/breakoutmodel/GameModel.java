@@ -12,6 +12,7 @@ public class GameModel {
     private Paddle paddle;
     private Ball ball;
     private Player player;
+    private BrickObstacle brickObstacle;
     private int windowSizeX;
     private int windowSizeY;
     public GameModel() {
@@ -26,6 +27,7 @@ public class GameModel {
         paddle = new Paddle(420, 537, 100, 12);
         ball = new Ball(442, 510, 25, 25);
         player = new Player("Player1", "Player1");
+        brickObstacle = new BrickObstacle();
     }
     /*
      * Movable object
@@ -50,7 +52,7 @@ public class GameModel {
         paddle.moveLeft();
     }
     public void setPaddleStill() {
-        paddle.setVelocity(0);
+        paddle.setDx(0);
     }
     /*
      * Check if the paddle is colliding with the wall
@@ -150,28 +152,33 @@ public class GameModel {
      */
 
 
-    //get paddle
-    /*public Paddle getPaddle() {
-        return paddle;
-    }
-    //get ball
-    public Ball getBall() {
-        return ball;
-    }
     //get player
-    public Player getPlayer() {
+   /* public Player getPlayer() {
         return player;
     }
     //get brick list
     /*public List<Brick> getBrickList() {
         return brickList;
     }*/
-    public List<IPositionableInt> getRepresents() {
+    /*
+     * Return game movable object
+     */
+    public List<IPositionableInt> getMovableObject() {
         List<IPositionableInt> gameObjects = new ArrayList<>();
         //add paddle
         gameObjects.add(paddle);
         //add ball
         gameObjects.add(ball);
+        return gameObjects;
+    }
+    /*
+     * Return game static object
+     */
+    public List<Brick> getStaticObject() {
+        List<Brick> gameObjects = new ArrayList<>();
+        //add bricks
+        for (int i=0; i<brickObstacle.getBrickList().size(); i++)
+            gameObjects.add(brickObstacle.getBrickList().get(i));
         return gameObjects;
     }
 }

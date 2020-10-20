@@ -1,14 +1,11 @@
 package edu.chalmers.projecttemplate.view.breakoutview;
 
-import edu.chalmers.projecttemplate.model.breakoutmodel.Ball;
 import edu.chalmers.projecttemplate.model.breakoutmodel.Brick;
-import edu.chalmers.projecttemplate.model.breakoutmodel.Paddle;
 import edu.chalmers.projecttemplate.model.common.IPositionableInt;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
@@ -58,15 +55,14 @@ public class BreakoutGameViewManager {
     /*
      * Drawing the paddle
      */
-    public void drawPaddle(IPositionableInt paddle) throws FileNotFoundException {
-        //gc.setFill(Color.CYAN);
-        //gc.fillRoundRect(paddle.getX(), paddle.getY(), paddle.getWidth(), paddle.getHeight(), 25, 25);
+    public void drawPaddle(IPositionableInt paddle) {
+        gc.setFill(Color.WHITE);
         gc.drawImage(paddleImg, paddle.getX(), paddle.getY(), paddle.getWidth(), paddle.getHeight());
     }
     /*
      * Drawing the ball
      */
-    public void drawBall(IPositionableInt ball) throws FileNotFoundException {
+    public void drawBall(IPositionableInt ball) {
         gc.setFill(Color.WHITE);
         gc.fillOval(ball.getX(), ball.getY() , ball.getHeight(), ball.getHeight());
         gc.drawImage(ballImg, ball.getX(), ball.getY(), ball.getWidth(), ball.getHeight());
@@ -74,7 +70,7 @@ public class BreakoutGameViewManager {
     /*
      * Drawing Brick
      */
-    public void drawBrick(Brick brick) throws FileNotFoundException {
+    public void drawBrick(Brick brick) {
         if (brick.getBrickHit()==4) {
             gc.setFill(Color.RED);
             gc.fillRect(brick.getX(), brick.getY(), brick.getWidth(), brick.getHeight());

@@ -1,5 +1,7 @@
 package edu.chalmers.projecttemplate.model.breakoutmodel;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class BrickObstacle {
@@ -11,6 +13,7 @@ public class BrickObstacle {
         y = 50;
         height = 40;
         width = 60;
+        brickList = new ArrayList<>();
         gameModelOne();
     }
     //1. Game model1: 12 bricks x 4 = 48bricks
@@ -46,5 +49,9 @@ public class BrickObstacle {
             brickList.add(brick);
             x = x + 65;
         }
+    }
+    //return brick obstacle
+    public List<Brick> getBrickList() {
+        return brickList;
     }
 }

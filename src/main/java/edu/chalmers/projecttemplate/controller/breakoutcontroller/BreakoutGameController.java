@@ -136,11 +136,17 @@ public class BreakoutGameController implements Initializable {
      * Drawing paddle, ball & bricks
      */
     private void callForRedraw() throws FileNotFoundException {
-        for (int i=0; i < gameModel.getRepresents().size(); i++) {
+        // Drawing paddle & ball
+        for (int i = 0; i < gameModel.getMovableObject().size(); i++) {
             if (i==0)
-                viewManager.drawPaddle(gameModel.getRepresents().get(i));
+                viewManager.drawPaddle(gameModel.getMovableObject().get(i));
             if (i==1)
-                viewManager.drawBall(gameModel.getRepresents().get(i));
+                viewManager.drawBall(gameModel.getMovableObject().get(i));
+        }
+        // Drawing bricks
+        for (int i=0; i < gameModel.getStaticObject().size(); i++) {
+            viewManager.drawBrick(gameModel.getStaticObject().get(i));
+            System.out.println(gameModel.getStaticObject().get(i).getBrickHit());
         }
 
     }

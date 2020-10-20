@@ -15,6 +15,7 @@ public class Brick implements IPositionableInt {
     public Brick(int x, int y, int width, int height, int point) {
         hitbox = new Rectangle(x, y, width, height);
         this.point = point;
+        this.hit = point;
         isActive = true;
     }
     /*

@@ -5,10 +5,12 @@ import edu.chalmers.projecttemplate.model.common.Rectangle;
 
 public abstract class GameMovableObject implements IPositionableInt {
     private IRectangle hitbox;
-    private int velocity;
+    private int dx;
+    private int dy;
     public GameMovableObject(int x, int y, int width, int height) {
        hitbox = new Rectangle(x, y, width, height);
-       velocity = 0;
+       dx = 0;
+       dy = 0;
     }
     protected abstract void move();
 
@@ -43,10 +45,16 @@ public abstract class GameMovableObject implements IPositionableInt {
     }
     public void initX(int i) { hitbox.setX(i);}
     public void initY(int i) { hitbox.setY(i);}
-    public void setVelocity(int i) {
-        velocity = i;
+    public void setDx(int i) {
+        dx = i;
     }
-    public int getVelocity() {
-        return velocity;
+    public void setDy(int i) {
+        dy = i;
+    }
+    public int getDx() {
+        return dx;
+    }
+    public int getDy() {
+        return dy;
     }
 }
