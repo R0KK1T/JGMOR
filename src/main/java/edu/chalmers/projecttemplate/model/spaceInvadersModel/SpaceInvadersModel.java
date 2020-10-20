@@ -85,9 +85,13 @@ public class SpaceInvadersModel {
             }
         }
 
-        //create barriers
+
+        //create barriers (variables only used for centering the barrier and aligning them symmetrically)
+        int barrierWidth = 80;
+        int barrierHeight = 50;
+        int barrierOffset = (windowSizeX - (boundOffset * 2) - (numberOfBarriers * barrierWidth))/(numberOfBarriers+1);
         for (int i = 0; i < numberOfBarriers; i++) {
-            barriers.add(new Barrier(boundOffset + 200 * i, fieldBottom + 50, 50, 50));
+            barriers.add(new Barrier(boundOffset + barrierOffset * (i+1) + barrierWidth*i, fieldBottom + 50, barrierWidth, barrierHeight));
         }
     }
 

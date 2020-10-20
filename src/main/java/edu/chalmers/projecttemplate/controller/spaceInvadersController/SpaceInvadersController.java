@@ -38,10 +38,13 @@ public class SpaceInvadersController implements IController {
             public void handle(long now) {
                 //if game over then save score and then pause game
                 if (model.getGameOver()){
+                    view.drawGameOverScreen();
                     //TODO save score
                 }
-                model.update();
-                callForRedraw();
+                else{
+                    model.update();
+                    callForRedraw();
+                }
             }
         };
     }
@@ -63,7 +66,7 @@ public class SpaceInvadersController implements IController {
         
         //draw player lives
         for (int i = 0; i < model.getLives(); i++) {
-            view.draw(20 + 60*i, model.getWindowSizeY() - 40,40,20,"Spaceship" );
+            view.draw(800 + 60*i,  40,40,20,"Spaceship" );
         }
 
         //display score
@@ -133,8 +136,13 @@ public class SpaceInvadersController implements IController {
                 if (paused){
                     unpauseGame();
                 }
-                else{
+                else if(!paused && !model.getGameOver()){
                     pauseGame();
+                }
+                break;
+            case ENTER:
+                if (model.getGameOver()){
+                    model = new SpaceInvadersModel();
                 }
                 break;
             default:

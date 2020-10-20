@@ -20,18 +20,20 @@ import java.io.FileNotFoundException;
  */
 public class SpaceInvadersView{
 
-    Image backgroundImg;
-    Image playerImg;
-    Image alienImg;
-    Image barrierImg;
-    Image projectileImg;
+    private Image backgroundImg;
+    private Image playerImg;
+    private Image alienImg;
+    private Image barrierImg;
+    private Image projectileImg;
+    private Image gameOverImg;
+    private Image pauseImg;
 
-    private int windowSizeX;
-    private int windowSizeY;
+    private final int windowSizeX;
+    private final int windowSizeY;
 
-    GraphicsContext backgroundLayer;
-    GraphicsContext gameLayer;
-    Text scoreText;
+    private GraphicsContext backgroundLayer;
+    private GraphicsContext gameLayer;
+    private Text scoreText;
 
     private Scene scene;
 
@@ -63,12 +65,12 @@ public class SpaceInvadersView{
 
         //init score text
         scoreText = new Text();
-        scoreText.setX(30);
-        scoreText.setY(30);
-        scoreText.setScaleX(3);
-        scoreText.setScaleY(3);
+        scoreText.setX(50);
+        scoreText.setY(50);
+        scoreText.setScaleX(2);
+        scoreText.setScaleY(2);
         scoreText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 10));
-        scoreText.setFill(Color.WHITESMOKE);
+        scoreText.setFill(Color.LIME);
 
         //add canvases to the pane
         Pane pane = new Pane(backgroundCanvas, gameCanvas, scoreText);
@@ -85,19 +87,25 @@ public class SpaceInvadersView{
      */
     private void initImages() throws FileNotFoundException {
         //get background image from path
-        backgroundImg = new Image(new FileInputStream("src/main/resources/pongresources/Background.png"));
+        backgroundImg = new Image(new FileInputStream("src/main/resources/spaceinvadesresources/background.png"));
 
         //get player image from path
-        playerImg = new Image(new FileInputStream("src/main/resources/spaceinvadesresources/SpaceInvadersPlayer.png"));
+        playerImg = new Image(new FileInputStream("src/main/resources/spaceinvadesresources/spaceship.png"));
 
         //get alien image from path
-        alienImg = new Image(new FileInputStream("src/main/resources/spaceinvadesresources/SpaceInvadersAlien.png"));
+        alienImg = new Image(new FileInputStream("src/main/resources/spaceinvadesresources/alien.png"));
 
         //get barrier image from path
-        barrierImg = new Image(new FileInputStream("src/main/resources/pongresources/Ball.png"));
+        barrierImg = new Image(new FileInputStream("src/main/resources/spaceinvadesresources/barrier.png"));
 
         //get projectile image from path
-        projectileImg = new Image(new FileInputStream("src/main/resources/pongresources/Ball.png"));
+        projectileImg = new Image(new FileInputStream("src/main/resources/spaceinvadesresources/projectile.png"));
+
+        //get pause image from path
+        pauseImg = new Image(new FileInputStream("src/main/resources/spaceinvadesresources/gamepaused.png"));
+
+        //get game over image from path
+        gameOverImg = new Image(new FileInputStream("src/main/resources/spaceinvadesresources/gameover.png"));
     }
 
     /**
@@ -152,7 +160,7 @@ public class SpaceInvadersView{
      * @param score string for current score
      */
     public void displayScore(String score){
-        scoreText.setText(score);
+        scoreText.setText("Score: " + score);
     }
 
     /**
@@ -160,6 +168,14 @@ public class SpaceInvadersView{
      *
      */
     public void drawPauseScreen(){
-        gameLayer.drawImage(backgroundImg, 0, 0, windowSizeX, windowSizeY);
+        gameLayer.drawImage(pauseImg, 0, 0, windowSizeX, windowSizeY);
+    }
+
+    /**
+     * Draws a "game over screen" used for displaying that the game is over because the player lost
+     *
+     */
+    public void drawGameOverScreen(){
+        gameLayer.drawImage(gameOverImg, 0, 0, windowSizeX, windowSizeY);
     }
 }
