@@ -12,9 +12,10 @@ class Projectile extends MovableObject {
      * @param xPos the start x position of the projectile
      * @param yPos the start y position of the projectile
      * @param direction the direction of the projectile
+     * @param speed the speed of the projectile
      */
-    protected Projectile(int xPos, int yPos,int direction) {
-        super(xPos, yPos, 10, 20, 2, "Projectile");
+    protected Projectile(int xPos, int yPos,int direction, int speed) {
+        super(xPos, yPos, 10, 20, speed, "Projectile");
         setDirection(direction);
     }
 

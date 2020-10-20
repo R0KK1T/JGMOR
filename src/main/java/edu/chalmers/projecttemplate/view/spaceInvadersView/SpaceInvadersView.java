@@ -22,6 +22,9 @@ public class SpaceInvadersView{
 
     Image backgroundImg;
     Image playerImg;
+    Image alienImg;
+    Image barrierImg;
+    Image projectileImg;
 
     private int windowSizeX;
     private int windowSizeY;
@@ -85,7 +88,16 @@ public class SpaceInvadersView{
         backgroundImg = new Image(new FileInputStream("src/main/resources/pongresources/Background.png"));
 
         //get player image from path
-        playerImg = new Image(new FileInputStream("src/main/resources/pongresources/Ball.png"));
+        playerImg = new Image(new FileInputStream("src/main/resources/spaceinvadesresources/SpaceInvadersPlayer.png"));
+
+        //get alien image from path
+        alienImg = new Image(new FileInputStream("src/main/resources/spaceinvadesresources/SpaceInvadersAlien.png"));
+
+        //get barrier image from path
+        barrierImg = new Image(new FileInputStream("src/main/resources/pongresources/Ball.png"));
+
+        //get projectile image from path
+        projectileImg = new Image(new FileInputStream("src/main/resources/pongresources/Ball.png"));
     }
 
     /**
@@ -122,13 +134,13 @@ public class SpaceInvadersView{
                 gameLayer.drawImage(playerImg, posX, posY, width, height);
                 break;
             case "Alien":
-                gameLayer.drawImage(playerImg, posX, posY, width, height);
+                gameLayer.drawImage(alienImg, posX, posY, width, height);
                 break;
             case "Projectile":
-                gameLayer.drawImage(playerImg, posX, posY, width, height);
+                gameLayer.drawImage(projectileImg, posX, posY, width, height);
                 break;
             case "Barrier":
-                gameLayer.drawImage(playerImg, posX, posY, width, height);
+                gameLayer.drawImage(barrierImg, posX, posY, width, height);
                 break;
             default:
         }
@@ -141,5 +153,13 @@ public class SpaceInvadersView{
      */
     public void displayScore(String score){
         scoreText.setText(score);
+    }
+
+    /**
+     * Draws a "pause screen" used for displaying that the game is paused
+     *
+     */
+    public void drawPauseScreen(){
+        gameLayer.drawImage(backgroundImg, 0, 0, windowSizeX, windowSizeY);
     }
 }

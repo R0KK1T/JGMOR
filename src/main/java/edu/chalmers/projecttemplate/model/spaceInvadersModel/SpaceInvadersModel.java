@@ -227,7 +227,7 @@ public class SpaceInvadersModel {
         for (int i = 0; i < aliens.size(); i++) {
             if(aliens.get(i).getTimeSinceLastShot() >= aliens.get(i).getTimeBetweenShots()){
                 aliens.get(i).resetTimeScinceLastShot();
-                projectiles.add(new Projectile(aliens.get(i).getX() + aliens.get(i).getWidth()/2 - 5, aliens.get(i).getY(), 1));
+                projectiles.add(new Projectile(aliens.get(i).getX() + aliens.get(i).getWidth()/2 - 5, aliens.get(i).getY(), 1, 2));
             }
             else{
                 aliens.get(i).incTimeScinceLastShot();
@@ -242,7 +242,7 @@ public class SpaceInvadersModel {
     public void playerShoot(){
         //if the timer for player shooting is above time between shots the player will shoot a projectile
         if (timeSinceLastPlayerShot >= timeBetweenPlayerShots){
-            projectiles.add(new Projectile(player.getX() + player.getWidth()/2 - 5, player.getY(), -1));
+            projectiles.add(new Projectile(player.getX() + player.getWidth()/2 - 5, player.getY(), -1, 5));
             timeSinceLastPlayerShot = 0;
         }
     }

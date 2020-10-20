@@ -96,7 +96,7 @@ public class SpaceInvadersController implements IController {
      *
      */
     private void pauseGame(){
-        //TODO call view and tell it to draw pause method
+        view.drawPauseScreen();
         paused = true;
         timer.stop();
     }
