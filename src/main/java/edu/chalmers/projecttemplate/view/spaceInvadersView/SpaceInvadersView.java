@@ -14,6 +14,10 @@ import javafx.scene.text.Text;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+/**
+ * Represents the view of the model representing the game space invaders
+ *
+ */
 public class SpaceInvadersView{
 
     Image backgroundImg;
@@ -28,6 +32,10 @@ public class SpaceInvadersView{
 
     private Scene scene;
 
+    /**
+     * Constructs the view and initializes the scene and all necessary images
+     *
+     */
     public SpaceInvadersView(int windowSizeX, int windowSizeY) throws Exception{
         this.windowSizeX = windowSizeX;
         this.windowSizeY = windowSizeY;
@@ -39,6 +47,10 @@ public class SpaceInvadersView{
         initScene();
     }
 
+    /**
+     * Initializes all components used by the scene and adds them to the scene
+     *
+     */
     public void initScene() {
         //setup the 2 different layered canvases
         Canvas backgroundCanvas = new Canvas(windowSizeX, windowSizeY);
@@ -64,6 +76,10 @@ public class SpaceInvadersView{
         scene = new Scene(pane);
     }
 
+    /**
+     * Initializes all images used in the game as sprites which are located in the recourses folder
+     *
+     */
     private void initImages() throws FileNotFoundException {
         //get background image from path
         backgroundImg = new Image(new FileInputStream("src/main/resources/pongresources/Background.png"));
@@ -72,15 +88,33 @@ public class SpaceInvadersView{
         playerImg = new Image(new FileInputStream("src/main/resources/pongresources/Ball.png"));
     }
 
+    /**
+     * Returns the scene that view is responsible for
+     *
+     * @return scene used for drawing the game
+     */
     public Scene getScene() {
         return scene;
     }
 
+    /**
+     * Clears gameLayer so that the canvas becomes empty meaning that images can be redrawn
+     *
+     */
     public void clearDrawingArea(){
         //clear gameLayer
         gameLayer.clearRect(0, 0, windowSizeX, windowSizeY);
     }
 
+    /**
+     * Draws an object at specified coordinates, with specified and using image depending on what type of object sent
+     *
+     * @param posX x position of the object being drawn
+     * @param posY y position of the object being drawn
+     * @param width width of the object being drawn
+     * @param height height of the object being drawn
+     * @param type type of the object being drawn used to determine which image to draw
+     */
     public void draw(int posX, int posY, int width, int height, String type){
         //draw object
         switch (type){
@@ -100,6 +134,11 @@ public class SpaceInvadersView{
         }
     }
 
+    /**
+     * Changes the Text object used for displaying score depending on input parameter
+     *
+     * @param score string for current score
+     */
     public void displayScore(String score){
         scoreText.setText(score);
     }
