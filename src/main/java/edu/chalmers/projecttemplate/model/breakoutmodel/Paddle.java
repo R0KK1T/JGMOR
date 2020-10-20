@@ -13,24 +13,13 @@ public class Paddle extends GameMovableObject {
      */
     @Override
     protected void move() {
-        this.setX(dx);
+        this.setX(this.getVelocity());
     }
     public void moveRight() {
-        this.dx = 5;
+        this.setVelocity(5);
     }
     public void moveLeft() {
-        this.dx = -5;
+        this.setVelocity(-5);
     }
-
-    /*
-     * The paddle moves only in the horizontal direction, so we only update the x
-     */
-    //Check collision with the wall
-    /*public void move() {
-       if (this.getX() <=0)
-           this.setX(0);
-
-       if (this.getX() >= this.getWindowSizeX() - this.getWidth())
-           this.setX((this.getWindowSizeX() - this.getWidth()));
-    }*/
+    
 }

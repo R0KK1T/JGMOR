@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Glow;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
@@ -36,7 +37,6 @@ public class BreakoutGameController implements Initializable {
     @FXML public Button btnGamePause;
     @FXML public AnchorPane gameArea;
     @FXML public Label scoreLabel;
-    @FXML public AnchorPane gamePane;
     @FXML public Label playerName;
     private GameModel gameModel;
     private BreakoutGameViewManager breakoutGameViewManager;
@@ -95,16 +95,63 @@ public class BreakoutGameController implements Initializable {
             }
         });
     }
-    private void callForRedraw() throws FileNotFoundException {
-        for (int i=0; i < gameModel.getRepresents().get(0).size(); i++) {
-            breakoutGameViewManager.drawPaddle(gameModel.getRepresents().get(0).get(i));
+    /*
+     * Initialize listeners
+     */
+    public void onKeyPressed(KeyEvent keyEvent) {
+        KeyCode kc = keyEvent.getCode();
+        switch (kc) {
+            case Q:
+                gameModel.setPaddleMoveLeft();
+                break;
+            case W:
+                gameModel.setPaddleMoveRight();
+                break;
+            case ESCAPE:
+                break;
+            default:
         }
+    }
+
+    public void onKeyReleased(KeyEvent keyEvent) {
+        KeyCode kc = keyEvent.getCode();
+        switch (kc) {
+            case Q:
+                gameModel.setPaddleStill();
+                break;
+            case W:
+                gameModel.setPaddleStill();
+                break;
+            case ESCAPE:
+                break;
+            default:
+        }
+    }
+
+    private void addButtonToList() {
+        buttonList.add(btnGameExit);
+        buttonList.add(btnGamePause);
+    }
+    private void initButtonListeners() {
+        for (int i=0; i<2; i++) {
+            int finalI = i;
+            buttonList.get(i).setOnMouseEntered(mouseEvent -> buttonList.get(finalI).setEffect(new Glow()));
+            buttonList.get(i).setOnMouseExited(mouseEvent -> buttonList.get(finalI).setEffect(null));
+            buttonList.get(i).setCursor((Cursor.HAND));
+
+        }
+    }
+    private void callForRedraw() throws FileNotFoundException {
+        for (int i=0; i < gameModel.getRepresents().size(); i++) {
+            breakoutGameViewManager.drawPaddle(gameModel.getRepresents().get(i));
+        }
+
     }
     /*
      * Drawing paddle
      */
     private void drawPaddle() throws FileNotFoundException {
-       // breakoutGameViewManager.drawPaddle(gameModel.getPaddle());
+        // breakoutGameViewManager.drawPaddle(gameModel.getPaddle());
     }
     /*
      * Drawing ball
@@ -134,38 +181,13 @@ public class BreakoutGameController implements Initializable {
         gameModel.getPlayer().setLastName(lastName);*/
         //Concatenating the first-and last name in one sentence
         //String name = gameModel.getPlayer().getFirstName() + ", "+gameModel.getPlayer().getLastName();
-       // playerName.setText(name);
+        // playerName.setText(name);
     }
     /*
      * Show the current score while playing the game
      */
     private void showTheScore() {
         //scoreLabel.setText(String.valueOf(gameModel.getPlayer().getMyScore()));
-    }
-    /*
-     * Initialize listeners
-     */
-    private void initializeListeners() {
-        gamePane.setOnKeyPressed(keyEvent -> {
-            KeyCode key = keyEvent.getCode();
-            //if (key.equals(KeyCode.Q))
-                //gameModel.getPaddle().decX(10);
-            //if (key.equals(KeyCode.W))
-                //gameModel.getPaddle().decX(-10);
-        });
-    }
-    private void addButtonToList() {
-        buttonList.add(btnGameExit);
-        buttonList.add(btnGamePause);
-    }
-    private void initButtonListeners() {
-        for (int i=0; i<2; i++) {
-            int finalI = i;
-            buttonList.get(i).setOnMouseEntered(mouseEvent -> buttonList.get(finalI).setEffect(new Glow()));
-            buttonList.get(i).setOnMouseExited(mouseEvent -> buttonList.get(finalI).setEffect(null));
-            buttonList.get(i).setCursor((Cursor.HAND));
-
-        }
     }
     /*
      * Creating and processing the game
@@ -178,7 +200,7 @@ public class BreakoutGameController implements Initializable {
     public void init() { breakoutGameViewManager.drawGameArea(); }
     //Game moving stuff
     public void tick() {
-        initializeListeners();
+        //initializeListeners();
         gameModel.tick();
         //gameModel.checkCollisionBallPaddle();
         //gameModel.checkCollisionBallBrick();

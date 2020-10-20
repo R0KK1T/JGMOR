@@ -32,7 +32,29 @@ public class GameModel {
      */
     public void tick() {
         paddle.move();
-        ball.move();
+        checkCollisionPaddleWall();
+        //ball.move();
+    }
+    /*
+     * Set paddle direction on KeyListeners
+     */
+    public void setPaddleMoveRight() {
+        paddle.moveRight();
+    }
+    public void setPaddleMoveLeft() {
+        paddle.moveLeft();
+    }
+    public void setPaddleStill() {
+        paddle.setVelocity(0);
+    }
+    /*
+     * Check if the paddle is colliding the wall
+     */
+    public void checkCollisionPaddleWall() {
+        if (paddle.getX() <= 0)
+            paddle.initX(0);
+        if (paddle.getX() >= windowSizeX - paddle.getWidth())
+            paddle.initX(windowSizeX - paddle.getWidth());
     }
     /*
      * Checks if the ball is colliding with the paddle.
@@ -130,10 +152,9 @@ public class GameModel {
     /*public List<Brick> getBrickList() {
         return brickList;
     }*/
-    public List<List<IPositionableInt>> getRepresents() {
-        List<List<IPositionableInt>> gameObjects = new ArrayList<>();
-        IPositionableInt myArr[][] = new IPositionableInt[][];
-        gameObjects.get(0).add(paddle);
+    public List<IPositionableInt> getRepresents() {
+        List<IPositionableInt> gameObjects = new ArrayList<>();
+        gameObjects.add(paddle);
         return gameObjects;
     }
 }
