@@ -41,6 +41,8 @@ public class GameModel {
 
         checkCollisionBallPaddle();
 
+        checkCollisionBallBrick();
+
     }
     /*
      * Set paddle direction on KeyListeners
@@ -106,19 +108,19 @@ public class GameModel {
      * Loops through the array of bricks and checks if any of the bricks
      * collides with the ball.
      */
-    /*public void checkCollisionBallBrick() {
-        for (int i=0; i<brickList.size(); i++) {
-            checkCollisionBallBrick(brickList.get(i));
+    public void checkCollisionBallBrick() {
+        for (int i=0; i<brickObstacle.getBrickList().size(); i++) {
+            checkCollisionBallBrick(brickObstacle.getBrickList().get(i));
         }
-    }*/
+    }
     /*
      * Method for checking collision between a Brick and the ball.
      */
-    /*private void checkCollisionBallBrick(Brick brick) {
+    private void checkCollisionBallBrick(Brick brick) {
         if (!brick.getBrickStatus()) {
             return;
         }
-        if (ball.intersect(brick)) {
+        if (ball.getHitbox().intersect(brick.getHitbox())) {
             //Hit was from below the brick
             if (ball.getY() <= brick.getY() - ((brick.getHeight())/2)) {
                 ball.reverseVerticalMomentum();
@@ -139,27 +141,14 @@ public class GameModel {
             brick.setBrickStatus();
             player.setMyScore(1);
         }
-    }*/
+    }
     /*
      * Check for game over
      */
-    /*public boolean gameIsOver() {
-        return ball.getY()>(ball.getWindowSizeY()-26);
-    }*/
-
-    /*
-     * modeling game field
-     */
-
-
-    //get player
-   /* public Player getPlayer() {
-        return player;
+    public boolean gameIsOver() {
+        return ball.getY()>(windowSizeY-26);
     }
-    //get brick list
-    /*public List<Brick> getBrickList() {
-        return brickList;
-    }*/
+
     /*
      * Return game movable object
      */
@@ -180,5 +169,11 @@ public class GameModel {
         for (int i=0; i<brickObstacle.getBrickList().size(); i++)
             gameObjects.add(brickObstacle.getBrickList().get(i));
         return gameObjects;
+    }
+    /*
+     * Get player
+     */
+    public Player getPlayer() {
+        return player;
     }
 }

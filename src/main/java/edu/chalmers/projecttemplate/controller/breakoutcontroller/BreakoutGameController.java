@@ -135,7 +135,7 @@ public class BreakoutGameController implements Initializable {
     /*
      * Drawing paddle, ball & bricks
      */
-    private void callForRedraw() throws FileNotFoundException {
+    private void callForRedraw() {
         // Drawing paddle & ball
         for (int i = 0; i < gameModel.getMovableObject().size(); i++) {
             if (i==0)
@@ -145,21 +145,12 @@ public class BreakoutGameController implements Initializable {
         }
         // Drawing bricks
         for (int i=0; i < gameModel.getStaticObject().size(); i++) {
-            viewManager.drawBrick(gameModel.getStaticObject().get(i));
-            System.out.println(gameModel.getStaticObject().get(i).getBrickHit());
+            if (gameModel.getStaticObject().get(i).getBrickStatus())
+                viewManager.drawBrick(gameModel.getStaticObject().get(i));
         }
 
     }
-    /*
-     * Drawing Bricks
-     */
-    private void drawBrick() throws FileNotFoundException {
-      /* for (int i=0; i<gameModel.getBrickList().size(); i++) {
-           //Drawing brick
-           if (gameModel.getBrickList().get(i).getBrickStatus())
-                breakoutGameViewManager.drawBrick(gameModel.getBrickList().get(i));
-       }*/
-    }
+
     /*
      * Show the player's firstname and last name
      */
@@ -168,17 +159,17 @@ public class BreakoutGameController implements Initializable {
         String firstName = BreakoutMenuController.userInfo.get(0);
         String lastName = BreakoutMenuController.userInfo.get(1);
         //set user's info to player
-      /*  gameModel.getPlayer().setFirstName(firstName);
-        gameModel.getPlayer().setLastName(lastName);*/
+        gameModel.getPlayer().setFirstName(firstName);
+        gameModel.getPlayer().setLastName(lastName);
         //Concatenating the first-and last name in one sentence
-        //String name = gameModel.getPlayer().getFirstName() + ", "+gameModel.getPlayer().getLastName();
-        // playerName.setText(name);
+        String name = gameModel.getPlayer().getFirstName() + ", "+gameModel.getPlayer().getLastName();
+        playerName.setText(name);
     }
     /*
      * Show the current score while playing the game
      */
     private void showTheScore() {
-        //scoreLabel.setText(String.valueOf(gameModel.getPlayer().getMyScore()));
+        scoreLabel.setText(String.valueOf(gameModel.getPlayer().getMyScore()));
     }
     /*
      * Creating and processing the game
@@ -191,15 +182,12 @@ public class BreakoutGameController implements Initializable {
     public void init() { viewManager.drawGameArea(); }
     //Game moving stuff
     public void tick() {
-        //initializeListeners();
         gameModel.tick();
-        //gameModel.checkCollisionBallPaddle();
-        //gameModel.checkCollisionBallBrick();
         showTheScore();
         checkIsGameOver();
     }
     //Game drawing stuff
-    public void render() throws FileNotFoundException {
+    public void render() {
         callForRedraw();
     }
     //Game run
@@ -207,22 +195,18 @@ public class BreakoutGameController implements Initializable {
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                try {
-                    init();
-                    render();
-                    tick();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
+                init();
+                render();
+                tick();
             }
         };
         timer.start();
     }
     //Game over
     private void checkIsGameOver() {
-       /* if (gameModel.gameIsOver()) {
+       if (gameModel.gameIsOver()) {
             timer.stop();
             inGame = false;
-        }*/
+        }
     }
 }
