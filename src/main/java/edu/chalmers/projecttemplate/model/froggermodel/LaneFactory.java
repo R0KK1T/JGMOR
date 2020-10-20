@@ -9,12 +9,16 @@ public class LaneFactory {
     private int minSpeed;
     private int maxSpeed;
     private int columns;
+    private int x;
+    private int length;
 
-    public LaneFactory(int standardWidth, int columns, int minSpeed, int maxSpeed){
+    public LaneFactory(int standardWidth, int columns, int minSpeed, int maxSpeed, int x, int length){
         this.standardWidth = standardWidth;
         this.minSpeed = minSpeed;
         this.maxSpeed = maxSpeed;
         this.columns = columns;
+        this.x = x;
+        this.length = length;
     }
 
     private int randomSpeed(){
@@ -38,7 +42,7 @@ public class LaneFactory {
             obs.add(new Obstacle(obs.get(i-1).getX() + obs.get(i-1).getWidth() + spacing(amountOfObstacles), y, standardWidth, standardWidth, velocity, ObstacleType.CAR));
         }
 
-        Lane returnLane = new Lane(obs, velocity, y, false);
+        Lane returnLane = new Lane(obs, x, y, length, false);
         
         return returnLane;
     }
@@ -49,13 +53,13 @@ public class LaneFactory {
         for (int i = 1; i < amountOfObstacles; i++) {
             obs.add(new Obstacle(obs.get(i-1).getX() + obs.get(i-1).getWidth() + spacing(amountOfObstacles), y, 3* standardWidth, standardWidth, velocity, ObstacleType.LOG));
         }
-        Lane returnLane = new Lane(obs, velocity, y, true);
+        Lane returnLane = new Lane(obs, x, y, length, true);
 
         return returnLane;
     }
     public Lane createEmptyLane(int y){
         ArrayList<Obstacle> obs = new ArrayList<>();
-        Lane returnLane = new Lane(obs, 0, y, false);
+        Lane returnLane = new Lane(obs, x, y, length, false);
 
         return returnLane;
     }
@@ -65,7 +69,7 @@ public class LaneFactory {
         for (int i = 0; i < amountOfObstacles; i++) {
             obs.add(new Obstacle(standardWidth *i*3, y, standardWidth, standardWidth, velocity, ObstacleType.GRASS));
         }
-        Lane returnLane = new Lane(obs, velocity, y, false);
+        Lane returnLane = new Lane(obs, x, y, length, false);
 
         return returnLane;
     }

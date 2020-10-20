@@ -44,7 +44,7 @@ public class FroggerModel {
         windowSizeX = squareDimension * columns;
         windowSizeY = squareDimension * rows;
         frogsToSave = (columns - (columns/3 + 1)) / 2;
-        factory = new LaneFactory(squareDimension, columns, 1, 5);
+        factory = new LaneFactory(squareDimension, columns, 1, 5, -squareDimension, windowSizeX + 2*squareDimension);
         resetGame();
     }
 
@@ -120,7 +120,7 @@ public class FroggerModel {
      */
     public void update(){
         if(updateUnits >= delayAmount){
-            moveObstacles();
+            updateLanes();
             player.update();
             updateUnits = 0;
         }
@@ -133,17 +133,11 @@ public class FroggerModel {
     }
 
     /**
-     * Updates the positions of all obstacles
+     * Updates the state of all lanes
      */
-    private void moveObstacles(){
-        for (Obstacle obs:getAllObstacles()) {
-            obs.move();
-            if(obs.getX() > windowSizeX + squareDimension && obs.getVelocity() > 0){
-                obs.moveTo(-squareDimension - obs.getWidth());
-            }
-            else if(obs.getX() + obs.getWidth() < -squareDimension && obs.getVelocity() < 0){
-                obs.moveTo(windowSizeX + squareDimension);
-            }
+    private void updateLanes(){
+        for (Lane lane: lanes) {
+            lane.update();
         }
     }
 
