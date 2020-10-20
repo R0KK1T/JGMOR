@@ -85,9 +85,13 @@ public class SpaceInvadersModel {
             }
         }
 
-        //create barriers
+
+        //create barriers (variables only used for centering the barrier and aligning them symmetrically)
+        int barrierWidth = 80;
+        int barrierHeight = 50;
+        int barrierOffset = (windowSizeX - (boundOffset * 2) - (numberOfBarriers * barrierWidth))/(numberOfBarriers+1);
         for (int i = 0; i < numberOfBarriers; i++) {
-            barriers.add(new Barrier(boundOffset + 200 * i, fieldBottom + 50, 50, 50));
+            barriers.add(new Barrier(boundOffset + barrierOffset * (i+1) + barrierWidth*i, fieldBottom + 50, barrierWidth, barrierHeight));
         }
     }
 
@@ -115,17 +119,22 @@ public class SpaceInvadersModel {
         if (alienRowToMove == numberOfAlienRows - 1){
             checkAlienBounds();
         }
-        //move all movable entities
-        moveEntities();
 
-        //All aliens shoot if its time for them to shoot
-        aliensShoot();
+        //if game is not over update game
+        if (!gameOver) {
+            //move all movable entities
+            moveEntities();
 
-        //check all collisions
-        checkCollisions();
+            //All aliens shoot if its time for them to shoot
+            aliensShoot();
 
-        //increase time since last player shoot'
-        timeSinceLastPlayerShot++;
+            //check all collisions
+            checkCollisions();
+
+            //increase time since last player shoot'
+            timeSinceLastPlayerShot++;
+        }
+
     }
 
     /**
@@ -222,7 +231,7 @@ public class SpaceInvadersModel {
         for (int i = 0; i < aliens.size(); i++) {
             if(aliens.get(i).getTimeSinceLastShot() >= aliens.get(i).getTimeBetweenShots()){
                 aliens.get(i).resetTimeScinceLastShot();
-                projectiles.add(new Projectile(aliens.get(i).getX() + aliens.get(i).getWidth()/2 - 5, aliens.get(i).getY(), 1));
+                projectiles.add(new Projectile(aliens.get(i).getX() + aliens.get(i).getWidth()/2 - 5, aliens.get(i).getY(), 1, 2));
             }
             else{
                 aliens.get(i).incTimeScinceLastShot();
@@ -237,7 +246,7 @@ public class SpaceInvadersModel {
     public void playerShoot(){
         //if the timer for player shooting is above time between shots the player will shoot a projectile
         if (timeSinceLastPlayerShot >= timeBetweenPlayerShots){
-            projectiles.add(new Projectile(player.getX() + player.getWidth()/2 - 5, player.getY(), -1));
+            projectiles.add(new Projectile(player.getX() + player.getWidth()/2 - 5, player.getY(), -1, 5));
             timeSinceLastPlayerShot = 0;
         }
     }
@@ -307,6 +316,11 @@ public class SpaceInvadersModel {
         }
     }
 
+    /**
+     * Damages a barrier if it has lives left otherwise destroys it
+     *
+     * @param barrier the barrier ro be damaged or destroyed
+     */
     private void damageBarrier(Barrier barrier){
         //barrier is destroyed if health is at 0 else barrier looses 1 health
         if (barrier.getHealth() <= 0){
@@ -317,6 +331,10 @@ public class SpaceInvadersModel {
         }
     }
 
+    /**
+     * Damages a the player if any lives are left otherwise it tells the game to end
+     *
+     */
     private void damagePlayer(){
         // player looses 1 health if it has above 0 lives else looses the game
         if (lives > 0){
@@ -328,33 +346,68 @@ public class SpaceInvadersModel {
         }
     }
 
+    /**
+     * Sets the players direction which it uses to move
+     *
+     * @param direction an int for players movment direction will be -1, 0 or 1 for (left, still and right)
+     */
     public void setPlayerDirection(int direction){
         //set direction of the player (-1, 0, 1)(left, stay, right)
         player.setDirection(direction);
     }
 
+    /**
+     * Returns the variable representing the horizontal size of the entire game
+     *
+     * @return int for horizontal size of the game
+     */
     public int getWindowSizeX() {
         //return size x of playing field
         return windowSizeX;
     }
 
+    /**
+     * Returns the variable representing the vertical size of the entire game
+     *
+     * @return int for vertical size of the game
+     */
     public int getWindowSizeY() {
         //return size y of playing field
         return windowSizeY;
     }
 
+    /**
+     * Returns the variable representing the player score
+     *
+     * @return int for player score
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * Returns the variable representing the number of lives player have left
+     *
+     * @return int for amount of player lives left
+     */
     public int getLives() {
         return lives;
     }
 
+    /**
+     * Returns the variable representing the game over state if its true the game has ended
+     *
+     * @return boolean representing the game over state
+     */
     public Boolean getGameOver() {
         return gameOver;
     }
 
+    /**
+     * Returns the a list containing all objects on the screen
+     *
+     * @return list of IRepresentables that can be used for example drawing the game
+     */
     public List<IRepresentable> getRepresents(){
         List<IRepresentable> gameObjects = new ArrayList<>();
 
