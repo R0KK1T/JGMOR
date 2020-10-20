@@ -1,8 +1,7 @@
 package edu.chalmers.projecttemplate.controller.breakoutcontroller;
 
-import edu.chalmers.projecttemplate.controller.controllerInterface.IController;
+
 import edu.chalmers.projecttemplate.model.breakoutmodel.*;
-import edu.chalmers.projecttemplate.view.breakoutview.BreakoutGameView;
 import edu.chalmers.projecttemplate.view.breakoutview.BreakoutGameViewManager;
 import edu.chalmers.projecttemplate.view.breakoutview.BreakoutMenuView;
 import javafx.animation.AnimationTimer;
@@ -11,8 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Glow;
@@ -20,9 +17,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -39,9 +34,7 @@ public class BreakoutGameController implements Initializable {
     @FXML public Label scoreLabel;
     @FXML public Label playerName;
     private GameModel gameModel;
-    private BreakoutGameViewManager breakoutGameViewManager;
-    private Canvas canvas;
-    private GraphicsContext gc;
+    private BreakoutGameViewManager viewManager;
     private AnimationTimer timer;
     private boolean pause;
     private boolean inGame;
@@ -51,14 +44,12 @@ public class BreakoutGameController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         gameModel = new GameModel();
-        canvas = new Canvas(gameArea.getPrefWidth(), gameArea.getPrefHeight());
-        gc = canvas.getGraphicsContext2D();
-        gameArea.getChildren().add(canvas);
         try {
-            breakoutGameViewManager = new BreakoutGameViewManager(gc, gameArea.getPrefWidth(), gameArea.getPrefHeight());
+            viewManager = new BreakoutGameViewManager();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        gameArea.getChildren().add(viewManager.getCanvas());
         buttonList = new ArrayList<>();
         addButtonToList();
         initButtonListeners();
@@ -141,23 +132,17 @@ public class BreakoutGameController implements Initializable {
 
         }
     }
+    /*
+     * Drawing paddle, ball & bricks
+     */
     private void callForRedraw() throws FileNotFoundException {
         for (int i=0; i < gameModel.getRepresents().size(); i++) {
-            breakoutGameViewManager.drawPaddle(gameModel.getRepresents().get(i));
+            if (i==0)
+                viewManager.drawPaddle(gameModel.getRepresents().get(i));
+            if (i==1)
+                viewManager.drawBall(gameModel.getRepresents().get(i));
         }
 
-    }
-    /*
-     * Drawing paddle
-     */
-    private void drawPaddle() throws FileNotFoundException {
-        // breakoutGameViewManager.drawPaddle(gameModel.getPaddle());
-    }
-    /*
-     * Drawing ball
-     */
-    private void drawBall() throws FileNotFoundException {
-        //breakoutGameViewManager.drawBall(gameModel.getBall());
     }
     /*
      * Drawing Bricks
@@ -197,7 +182,7 @@ public class BreakoutGameController implements Initializable {
         run();
     }
     //Game initialize
-    public void init() { breakoutGameViewManager.drawGameArea(); }
+    public void init() { viewManager.drawGameArea(); }
     //Game moving stuff
     public void tick() {
         //initializeListeners();
@@ -209,9 +194,6 @@ public class BreakoutGameController implements Initializable {
     }
     //Game drawing stuff
     public void render() throws FileNotFoundException {
-        drawPaddle();
-        drawBall();
-        drawBrick();
         callForRedraw();
     }
     //Game run

@@ -33,7 +33,12 @@ public class GameModel {
     public void tick() {
         paddle.move();
         checkCollisionPaddleWall();
-        //ball.move();
+
+        ball.move();
+        checkCollisionBallWall();
+
+        checkCollisionBallPaddle();
+
     }
     /*
      * Set paddle direction on KeyListeners
@@ -48,7 +53,7 @@ public class GameModel {
         paddle.setVelocity(0);
     }
     /*
-     * Check if the paddle is colliding the wall
+     * Check if the paddle is colliding with the wall
      */
     public void checkCollisionPaddleWall() {
         if (paddle.getX() <= 0)
@@ -57,10 +62,19 @@ public class GameModel {
             paddle.initX(windowSizeX - paddle.getWidth());
     }
     /*
+     * Check if the ball is colliding with the wall
+     */
+    public void checkCollisionBallWall() {
+        if (ball.getX() < 0 || (ball.getX()+ball.getWidth() > windowSizeX))
+            ball.reverseHorizontalMomentum();
+        if (ball.getY() < 0)
+            ball.reverseVerticalMomentum();
+    }
+    /*
      * Checks if the ball is colliding with the paddle.
      */
-    /*public void checkCollisionBallPaddle() {
-        if (ball.intersect(paddle)) {
+    public void checkCollisionBallPaddle() {
+        if (ball.getHitbox().intersect(paddle.getHitbox())) {
             if (ball.getY() < paddle.getY()) {
                 ball.reverseVerticalMomentum();
                 /*
@@ -68,7 +82,7 @@ public class GameModel {
                  * is the middle left part of the paddle, zone three middle right
                  * and lastly the rightmost part of the paddle
                  */
-                /*int zoneWidth = paddle.getWidth() / 4;
+                int zoneWidth = paddle.getWidth() / 4;
                 int zoneOne = paddle.getX() + zoneWidth;
                 int zoneTwo = zoneOne + zoneWidth;
                 int zoneThree = zoneTwo + zoneWidth;
@@ -85,7 +99,7 @@ public class GameModel {
             }
         }
 
-    }*/
+    }
     /*
      * Loops through the array of bricks and checks if any of the bricks
      * collides with the ball.
@@ -154,7 +168,10 @@ public class GameModel {
     }*/
     public List<IPositionableInt> getRepresents() {
         List<IPositionableInt> gameObjects = new ArrayList<>();
+        //add paddle
         gameObjects.add(paddle);
+        //add ball
+        gameObjects.add(ball);
         return gameObjects;
     }
 }

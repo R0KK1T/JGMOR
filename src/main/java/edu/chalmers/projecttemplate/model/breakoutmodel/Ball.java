@@ -14,16 +14,16 @@ public class Ball extends GameMovableObject{
         dy = -1;
         dt = 1;
     }
-
+    /*
+     * The ball bounces off the wall according to low of elastic collision
+     */
     @Override
     protected void move() {
         //update position
         this.setX((dt*dx));
         this.setY((dt*dy));
     }
-    /*
-     * The ball bounces off the wall according to low of elastic collision
-     */
+
     /*public void move() {
         if (this.getX() < 0 || (this.getX()+this.getWidth() > this.getWindowSizeX()))
             dx = -dx;

@@ -4,6 +4,7 @@ import edu.chalmers.projecttemplate.model.breakoutmodel.Ball;
 import edu.chalmers.projecttemplate.model.breakoutmodel.Brick;
 import edu.chalmers.projecttemplate.model.breakoutmodel.Paddle;
 import edu.chalmers.projecttemplate.model.common.IPositionableInt;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -15,6 +16,7 @@ import java.io.FileNotFoundException;
  * BreakoutGameViewManager is responsible for drawing game images and other things that have to do with View.
  */
 public class BreakoutGameViewManager {
+    private Canvas canvas;
     private GraphicsContext gc;
     private double width;
     private double height;
@@ -25,10 +27,11 @@ public class BreakoutGameViewManager {
     private Image greeBrick;
     private Image orangeBrick;
     private Image yellowBrick;
-    public BreakoutGameViewManager(GraphicsContext gc, double width, double height) throws FileNotFoundException {
-        this.gc = gc;
-        this.width = width;
-        this.height = height;
+    public BreakoutGameViewManager() throws FileNotFoundException {
+        this.width = 900;
+        this.height = 550;
+        canvas = new Canvas(width, height);
+        gc = canvas.getGraphicsContext2D();
         initImages();
     }
     /*
@@ -63,7 +66,7 @@ public class BreakoutGameViewManager {
     /*
      * Drawing the ball
      */
-    public void drawBall(Ball ball) throws FileNotFoundException {
+    public void drawBall(IPositionableInt ball) throws FileNotFoundException {
         gc.setFill(Color.WHITE);
         gc.fillOval(ball.getX(), ball.getY() , ball.getHeight(), ball.getHeight());
         gc.drawImage(ballImg, ball.getX(), ball.getY(), ball.getWidth(), ball.getHeight());
@@ -92,5 +95,9 @@ public class BreakoutGameViewManager {
             gc.fillRect(brick.getX(), brick.getY(), brick.getWidth(), brick.getHeight());
             gc.drawImage(yellowBrick, brick.getX(), brick.getY(), brick.getWidth(), brick.getHeight());
         }
+    }
+    //get canvas
+    public Canvas getCanvas() {
+        return canvas;
     }
 }
