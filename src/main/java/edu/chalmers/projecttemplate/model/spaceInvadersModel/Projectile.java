@@ -4,7 +4,9 @@ package edu.chalmers.projecttemplate.model.spaceInvadersModel;
  * Represents a projectile for the old retro game Space Invaders
  *
  */
-class Projectile extends MovableObject {
+class Projectile extends GameObject implements IMovable{
+    private int direction;
+    private int speed;
 
     /**
      * Constructs a projectile with specified position and speed
@@ -15,8 +17,9 @@ class Projectile extends MovableObject {
      * @param speed the speed of the projectile
      */
     protected Projectile(int xPos, int yPos,int direction, int speed) {
-        super(xPos, yPos, 10, 20, speed, "Projectile");
-        setDirection(direction);
+        super(xPos, yPos, 10, 20, "Projectile");
+        this.direction = direction;
+        this.speed = speed;
     }
 
     /**
@@ -25,6 +28,15 @@ class Projectile extends MovableObject {
      */
     public void move() {
         //move in direction according to speed
-        setY(getDirection() * getSpeed());
+        getHitbox().incY(speed * direction);
+    }
+
+    /**
+     * Returns the variable representing direction in which the Projectile is facing
+     *
+     * @return int direction of the Projectile
+     */
+    public int getDirection(){
+        return direction;
     }
 }

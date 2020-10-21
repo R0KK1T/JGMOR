@@ -1,16 +1,11 @@
 package edu.chalmers.projecttemplate.model.spaceInvadersModel;
 
-import edu.chalmers.projecttemplate.model.common.IRepresentable;
-import edu.chalmers.projecttemplate.model.common.Rectangle;
-
 /**
  * Represents a protective barrier for the old retro game Space Invaders
  *
  */
-class Barrier implements IHitable, IRepresentable {
+public class Barrier extends GameObject {
     private int health;
-    private Rectangle hitbox;
-    private String type;
 
     /**
      * Constructs a barrier with specified position and size
@@ -21,63 +16,8 @@ class Barrier implements IHitable, IRepresentable {
      * @param height the height of the barrier
      */
     protected Barrier(int xPos, int yPos, int width, int height) {
+        super(xPos, yPos, width, height, "Barrier");
         health = 10;
-        type = "Barrier";
-        hitbox = new Rectangle(xPos, yPos, width, height);
-    }
-
-    /**
-     * Returns the x position of the barrier
-     *
-     * @return int x position of the barrier
-     */
-    public int getX(){
-        return hitbox.getX();
-    }
-
-    /**
-     * Returns the y position of the barrier
-     *
-     * @return int y position of the barrier
-     */
-    public int getY(){
-        return hitbox.getY();
-    }
-
-    /**
-     * Returns the width of the barrier
-     *
-     * @return int width of the barrier
-     */
-    public int getWidth(){
-        return hitbox.getWidth();
-    }
-
-    /**
-     * Returns the height of the barrier
-     *
-     * @return int height of the barrier
-     */
-    public int getHeight(){
-        return hitbox.getHeight();
-    }
-
-    /**
-     * Returns the string type representing what type of object this is
-     *
-     * @return string type for identifying object
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * Returns the rectangle representing the hitbox of the barrier
-     *
-     * @return rectangle hitbox of the barrier
-     */
-    public Rectangle getHitbox() {
-        return hitbox;
     }
 
     /**
