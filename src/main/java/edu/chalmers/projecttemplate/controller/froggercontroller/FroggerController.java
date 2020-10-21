@@ -1,7 +1,7 @@
 package edu.chalmers.projecttemplate.controller.froggercontroller;
 
 import edu.chalmers.projecttemplate.controller.controllerInterface.IController;
-import edu.chalmers.projecttemplate.model.froggermodel.FroggerModel;
+import edu.chalmers.projecttemplate.model.froggermodel.FroggerFacade;
 import edu.chalmers.projecttemplate.model.common.IRepresentable;
 import edu.chalmers.projecttemplate.view.froggerview.FroggerView;
 import javafx.animation.AnimationTimer;
@@ -11,14 +11,14 @@ import javafx.scene.input.KeyEvent;
 
 public class FroggerController implements IController {
 
-    FroggerModel model;
+    FroggerFacade model;
     FroggerView view;
     AnimationTimer timer;
     private boolean pause = false;
 
     public FroggerController() throws Exception {
         //Create instance of view and model
-        model = new FroggerModel();
+        model = new FroggerFacade();
         view = new FroggerView(model.getWindowSizeX(), model.getWindowSizeY());
 
         //initialize the timer
