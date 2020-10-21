@@ -1,12 +1,12 @@
 package edu.chalmers.projecttemplate.model;
 
-import edu.chalmers.projecttemplate.model.breakoutmodel.Ball;
-import edu.chalmers.projecttemplate.model.breakoutmodel.Brick;
-import edu.chalmers.projecttemplate.model.breakoutmodel.Paddle;
-import edu.chalmers.projecttemplate.model.breakoutmodel.Player;
+import edu.chalmers.projecttemplate.model.breakoutmodel.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.IOException;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -15,6 +15,7 @@ public class BreakoutTest {
     private static Paddle paddle;
     private static Ball ball;
     private static Player player;
+    private static BestScore score;
 
     @Before
     public void before() {
@@ -23,6 +24,7 @@ public class BreakoutTest {
         paddle = new Paddle(20, 20, 40, 20);
         ball = new Ball(50, 50, 25, 25);
         player = new Player("Georges", "Kayembe");
+        score = new BestScore();
     }
     @After
     public void after() {
@@ -30,6 +32,7 @@ public class BreakoutTest {
         paddle = new Paddle(20, 20, 40, 20);
         ball = new Ball(50, 50, 25, 25);
         player = new Player("Georges", "Kayembe");
+        score = new BestScore();
     }
     /*
      * Test class Brick
@@ -132,16 +135,35 @@ public class BreakoutTest {
      */
     @Test
     public void playerTest() {
-        assertTrue("The player's frist name is 'Georges' : ",player.getFirstName().equals("Georges"));
+        assertTrue("Player frist name is 'Georges' : ",player.getFirstName().equals("Georges"));
         player.setFirstName("David");
-        assertTrue("The player's first name is now 'David' : ",player.getFirstName().equals("David"));
-        assertTrue("The play should initial have 0 point : ",player.getMyScore() == 0);
+        assertTrue("Player first name is now 'David' : ",player.getFirstName().equals("David"));
+        assertTrue("Player should initial have 0 point : ",player.getMyScore() == 0);
         player.setMyScore(50);
-        assertTrue("The play should have 50 point : ",player.getMyScore() == 50);
+        assertTrue("Player should have 50 point : ",player.getMyScore() == 50);
     }
     /*
      * Test class score
      */
+    @Test
+    public void savedScoreTest() throws IOException {
+        //Suppose that the first player has received 50 points.
+        player.setMyScore(50);
+        assertTrue("Player should have 50 point : ",player.getMyScore() == 50);
+        //Let's create two more players. Let's give them 70 and 60 points respectively.
+        Player player1 = new Player("David", "Helias");
+        player1.setMyScore(70);
+        assertTrue("Player1 should have 70 point : ",player1.getMyScore() == 70);
+
+        Player player2 = new Player("Elias", "Kampbell");
+        player2.setMyScore(60);
+        assertTrue("Player2 should have 60 point : ",player2.getMyScore() == 60);
+
+        //Now let's save the score
+        score.saveScore(player);
+        score.saveScore(player1);
+        score.saveScore(player2);
+    }
 
 
 }

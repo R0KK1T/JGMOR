@@ -1,5 +1,7 @@
 package edu.chalmers.projecttemplate.model.breakoutmodel;
 
+import java.io.IOException;
+
 /*
  * Breakout model for player. The class contains the player's name and score.
  */
@@ -7,11 +9,9 @@ public class Player implements Comparable<Player> {
     private String firstName;
     private String lastName;
     private int myScore;
-    private Score saveScore;
     public Player(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        saveScore = new Score();
         this.myScore = 0;
     }
     public void setFirstName(String name) {
@@ -40,8 +40,5 @@ public class Player implements Comparable<Player> {
         else if (myScore < o.myScore)
             return -1;
         return 0;
-    }
-    public void saveMyScore() {
-        saveScore.setBestPlayers(this);
     }
 }
