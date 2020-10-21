@@ -1,5 +1,8 @@
 package edu.chalmers.projecttemplate.model;
 
+import edu.chalmers.projecttemplate.model.pongmodel.PongAI;
+import edu.chalmers.projecttemplate.model.pongmodel.PongBall;
+import edu.chalmers.projecttemplate.model.pongmodel.PongModel;
 import edu.chalmers.projecttemplate.model.pongmodel.PongPaddle;
 import org.junit.Assert;
 import org.junit.Test;
@@ -27,6 +30,24 @@ public class PongTest {
         paddle.moveUp(4);
         paddle.updatePosition();
         Assert.assertTrue(paddle.getY() < 10);
-        paddle.moveDown(3);
     }
+    @Test
+    public void BallMoveTest(){
+        PongBall ball = new PongBall(10,10,10,10,1);
+        ball.resetBall();
+        ball.updatePosition();
+        Assert.assertTrue(ball.getX() != 10 || ball.getY() != 10);
+    }
+    @Test
+    public void PongAITest(){
+        PongBall ball = new PongBall(25,10,10,10,10);
+        PongPaddle paddle = new PongPaddle(5,10,10,10,100,0);
+        PongAI AI = new PongAI(paddle,ball);
+        ball.resetBall();
+        ball.updatePosition();
+        AI.movePaddle(10);
+        paddle.updatePosition();
+        Assert.assertTrue(paddle.getY() != 10);
+    }
+   
 }
