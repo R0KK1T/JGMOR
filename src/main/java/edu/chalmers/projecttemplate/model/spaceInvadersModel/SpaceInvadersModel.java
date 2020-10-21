@@ -230,11 +230,11 @@ public class SpaceInvadersModel {
         // else the timer increase and get closer to shooting
         for (int i = 0; i < aliens.size(); i++) {
             if(aliens.get(i).getTimeSinceLastShot() >= aliens.get(i).getTimeBetweenShots()){
-                aliens.get(i).resetTimeScinceLastShot();
+                aliens.get(i).resetTimeSinceLastShot();
                 projectiles.add(new Projectile(aliens.get(i).getX() + aliens.get(i).getWidth()/2 - 5, aliens.get(i).getY(), 1, 2));
             }
             else{
-                aliens.get(i).incTimeScinceLastShot();
+                aliens.get(i).incTimeSinceLastShot();
             }
         }
     }

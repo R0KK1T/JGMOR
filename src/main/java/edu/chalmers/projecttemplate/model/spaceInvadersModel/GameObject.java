@@ -10,8 +10,8 @@ import edu.chalmers.projecttemplate.model.common.Rectangle;
  */
 public abstract class GameObject implements IHitable, IRepresentable {
 
-    private String type;
-    private IRectangle hitbox;
+    private final String type;
+    private final IRectangle hitbox;
 
     /**
      * Constructs a GameObject with specified position, size, speed and type

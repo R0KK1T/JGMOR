@@ -6,7 +6,7 @@ package edu.chalmers.projecttemplate.model.spaceInvadersModel;
  */
 public class Spaceship extends GameObject implements IMovable {
     private int direction;
-    private int speed;
+    private final int speed;
 
     /**
      * Constructs a spaceship with specified position, size and speed

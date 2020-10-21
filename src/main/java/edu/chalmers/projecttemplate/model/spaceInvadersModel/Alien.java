@@ -8,7 +8,7 @@ import java.util.Random;
  */
 class Alien extends GameObject implements IMovable{
     private int direction;
-    private int speed;
+    private final int speed;
 
     private int timeBetweenShots;
     private int timeSinceLastShot = 0;
@@ -87,7 +87,7 @@ class Alien extends GameObject implements IMovable{
      * variable between 500 to 3000 for
      *
      */
-    public void resetTimeScinceLastShot(){
+    public void resetTimeSinceLastShot(){
         timeSinceLastShot = 0;
         timeBetweenShots = rng.nextInt(3000 - 500 + 1) + 500;
     }
@@ -96,7 +96,7 @@ class Alien extends GameObject implements IMovable{
      * Increases the int variable timeSinceLastShot by 1
      *
      */
-    public void incTimeScinceLastShot(){
+    public void incTimeSinceLastShot(){
         timeSinceLastShot++;
     }
 }

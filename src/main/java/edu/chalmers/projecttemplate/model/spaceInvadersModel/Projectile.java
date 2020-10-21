@@ -5,8 +5,8 @@ package edu.chalmers.projecttemplate.model.spaceInvadersModel;
  *
  */
 class Projectile extends GameObject implements IMovable{
-    private int direction;
-    private int speed;
+    private final int direction;
+    private final int speed;
 
     /**
      * Constructs a projectile with specified position and speed
