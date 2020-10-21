@@ -23,4 +23,7 @@ public class BestScore {
         filout.close();
     }
 
+    private void scoreOrderedByPoint() {
+
+    }
 }
