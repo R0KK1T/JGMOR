@@ -5,7 +5,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 import java.io.FileInputStream;
@@ -14,8 +17,8 @@ import java.io.FileNotFoundException;
 public class PongView {
     Image backgroundImg;
     Image playerImg;
-    //Text leftScore;
-    //Text rightScore;
+    Text leftScore;
+    Text rightScore;
 
     private int windowSizeX;
     private int windowSizeY;
@@ -33,7 +36,10 @@ public class PongView {
         initImages();
 
         //place text
-        //initText();
+        leftScore = new Text();
+        initText(leftScore,(windowSizeX/2)-(windowSizeX/10));
+        rightScore = new Text();
+        initText(rightScore,(windowSizeX/2)+(windowSizeX/10));
 
         //setup scene
         initScene();
@@ -49,7 +55,7 @@ public class PongView {
         gameLayer = gameCanvas.getGraphicsContext2D();
 
         //add canvases to the pane
-        Pane pane = new Pane(backgroundCanvas, gameCanvas);
+        Pane pane = new Pane(backgroundCanvas, gameCanvas,leftScore,rightScore);
 
         //draw the background
         backgroundLayer.drawImage(backgroundImg, 0, 0, windowSizeX, windowSizeY);
@@ -65,18 +71,16 @@ public class PongView {
         playerImg = new Image(new FileInputStream("src/main/resources/pongresources/Ball.png"));
     }
 
-    /*private void initText(){
-        leftScore = new Text();
-        rightScore = new Text();
-        leftScore.setFont(new Font(20));
-        rightScore.setFont(new Font(20));
-        leftScore.setText("0");
-        rightScore.setText("0");
-        rightScore.setX(windowSizeX+(windowSizeX/10));
-        leftScore.setX(windowSizeX-(windowSizeX/10));
-        rightScore.setY(windowSizeY/25);
-        leftScore.setY(windowSizeY/25);
-    }*/
+    private void initText(Text text, double x){
+        text.setFont(new Font(20));
+        text.setText("0");
+        text.setX(x);
+        text.setY(windowSizeY/25);
+        text.setScaleX(2);
+        text.setScaleY(2);
+        text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 10));
+        text.setFill(Color.WHITE);
+    }
 
     public Scene getScene() {
         return scene;
@@ -93,13 +97,13 @@ public class PongView {
 
     }
 
-    /*public void setLeftScoreText (String string){
+    public void setLeftScoreText (String string){
         leftScore.setText(string);
     }
 
     public void setRightScoreText (String string){
         rightScore.setText(string);
-    }*/
+    }
 
 
 }
