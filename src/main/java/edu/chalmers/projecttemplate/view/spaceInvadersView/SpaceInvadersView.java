@@ -56,7 +56,7 @@ public class SpaceInvadersView{
      * Initializes all components used by the scene and adds them to the scene
      *
      */
-    public void initScene() {
+    private void initScene() {
         //setup the 2 different layered canvases
         Canvas backgroundCanvas = new Canvas(windowSizeX, windowSizeY);
         backgroundLayer = backgroundCanvas.getGraphicsContext2D();

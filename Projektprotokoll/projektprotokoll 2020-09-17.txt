@@ -2,8 +2,8 @@
 
 Group:JGMOR
 Date:2020-09-17
-Chair: Mhd Jamal Basal
-Participants: Robert Sahlqvist, Jonathan Stigson, Georges Kayembe, Oliver Ljung
+Chair: Jonathan Stigson
+Participants: Robert Sahlqvist, Jonathan Stigson, Georges Kayembe, Oliver Ljung, Mhd Jamal Basal(wrote the protocol)
 
 
 ## Objectives (5 min) 
@@ -13,6 +13,12 @@ Participants: Robert Sahlqvist, Jonathan Stigson, Georges Kayembe, Oliver Ljung
 ## Reports (15 min) from previous meeting
 
  - Git repo for projektet redo för att klona.
+ - Alla har valt sitt spel att jobba på.
+  - Jonathan: Frogger
+  - Oliver: Space Invaders
+  - Robert: Pong
+  - Georges: Breakout
+  - Mhd Jamal: Snake
  
 
 ## Discussion items (35 min)

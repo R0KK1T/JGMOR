@@ -36,12 +36,12 @@ public class ViewNavigator {
         }
     }
 
-    public void addGameController(String gameName, IController controller){
+    private void addGameController(String gameName, IController controller){
         controllers.put(gameName, controller);
     }
 
 
-    public void initGames() throws Exception {
+    private void initGames() throws Exception {
         //init spaceInvadersGame
         IController controller = new SpaceInvadersController();
         addGameController("spaceInvaders", controller);

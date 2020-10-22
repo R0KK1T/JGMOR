@@ -6,19 +6,16 @@ import javafx.stage.Stage;
 
 public class MainApplication extends Application {
 
-	private static Stage stage;
-
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		stage = primaryStage;
-		ViewNavigator.getInstance().setStage(stage);
+		ViewNavigator.getInstance().setStage(primaryStage);
 		ViewNavigator.getInstance().loadMenuView("startMenu");
 
-		stage.setResizable(false);
-		stage.setX(0);
-		stage.setY(0);
-		stage.show();
+		primaryStage.setResizable(false);
+		primaryStage.setX(0);
+		primaryStage.setY(0);
+		primaryStage.show();
 	}
 
 	public static void main(String[] args) {

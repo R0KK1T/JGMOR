@@ -36,10 +36,9 @@ public class SpaceInvadersController implements IController {
         timer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                //if game over then save score and then pause game
+                //if game over then view should draw the game over screen
                 if (model.getGameOver()){
                     view.drawGameOverScreen();
-                    //TODO save score
                 }
                 else{
                     model.update();
@@ -136,7 +135,7 @@ public class SpaceInvadersController implements IController {
                 if (paused){
                     unpauseGame();
                 }
-                else if(!paused && !model.getGameOver()){
+                else if(!model.getGameOver()){
                     pauseGame();
                 }
                 break;

@@ -230,11 +230,11 @@ public class SpaceInvadersModel {
         // else the timer increase and get closer to shooting
         for (int i = 0; i < aliens.size(); i++) {
             if(aliens.get(i).getTimeSinceLastShot() >= aliens.get(i).getTimeBetweenShots()){
-                aliens.get(i).resetTimeScinceLastShot();
+                aliens.get(i).resetTimeSinceLastShot();
                 projectiles.add(new Projectile(aliens.get(i).getX() + aliens.get(i).getWidth()/2 - 5, aliens.get(i).getY(), 1, 2));
             }
             else{
-                aliens.get(i).incTimeScinceLastShot();
+                aliens.get(i).incTimeSinceLastShot();
             }
         }
     }
@@ -409,27 +409,26 @@ public class SpaceInvadersModel {
      * @return list of IRepresentables that can be used for example drawing the game
      */
     public List<IRepresentable> getRepresents(){
-        List<IRepresentable> gameObjects = new ArrayList<>();
+        List<IRepresentable> representables = new ArrayList<>();
 
         //add player
-        gameObjects.add(player);
-        gameObjects.get(0);
+        representables.add(player);
 
         //add aliens
         for (int i = 0; i < aliens.size(); i++) {
-            gameObjects.add(aliens.get(i));
+            representables.add(aliens.get(i));
         }
 
         //add projectiles
         for (int i = 0; i < projectiles.size(); i++) {
-            gameObjects.add(projectiles.get(i));
+            representables.add(projectiles.get(i));
         }
 
         //add barriers
         for (int i = 0; i < barriers.size(); i++) {
-            gameObjects.add(barriers.get(i));
+            representables.add(barriers.get(i));
         }
 
-        return gameObjects;
+        return representables;
     }
 }

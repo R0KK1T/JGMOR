@@ -4,7 +4,9 @@ package edu.chalmers.projecttemplate.model.spaceInvadersModel;
  * Represents a player spaceship for the old retro game Space Invaders
  *
  */
-class Spaceship extends MovableObject{
+public class Spaceship extends GameObject implements IMovable {
+    private int direction;
+    private final int speed;
 
     /**
      * Constructs a spaceship with specified position, size and speed
@@ -15,8 +17,10 @@ class Spaceship extends MovableObject{
      * @param height the height of the spaceship
      * @param speed the speed of the spaceship
      */
-    protected Spaceship(int xPos, int yPos, int width, int height, int speed) {
-        super(xPos, yPos, width, height, speed, "Spaceship");
+    public Spaceship(int xPos, int yPos, int width, int height, int speed) {
+        super(xPos, yPos, width, height, "Spaceship");
+        this.speed = speed;
+        direction = 0;
     }
 
     /**
@@ -25,7 +29,24 @@ class Spaceship extends MovableObject{
      */
     public void move() {
         //move in direction according to speed
-        setX(getDirection() * getSpeed());
+        getHitbox().incX(speed * direction);
+    }
+
+    /**
+     * Returns the variable representing direction in which the Spaceship is facing
+     *
+     * @return int direction of the Spaceship
+     */
+    public int getDirection(){
+        return direction;
+    }
+
+    /**
+     * Sets the direction which the Spaceship is facing
+     *
+     */
+    public void setDirection(int direction) {
+        this.direction = direction;
     }
 
 }

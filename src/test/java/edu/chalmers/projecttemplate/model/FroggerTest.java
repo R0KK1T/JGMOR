@@ -1,6 +1,5 @@
 package edu.chalmers.projecttemplate.model;
 
-import edu.chalmers.projecttemplate.model.common.IRepresentable;
 import edu.chalmers.projecttemplate.model.froggermodel.*;
 import org.junit.Assert;
 import org.junit.Test;

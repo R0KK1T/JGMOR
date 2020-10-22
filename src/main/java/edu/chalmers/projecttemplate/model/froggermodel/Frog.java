@@ -1,7 +1,6 @@
 package edu.chalmers.projecttemplate.model.froggermodel;
 
 import edu.chalmers.projecttemplate.model.common.IRectangle;
-import edu.chalmers.projecttemplate.model.common.IRepresentable;
 import edu.chalmers.projecttemplate.model.common.Rectangle;
 
 /**

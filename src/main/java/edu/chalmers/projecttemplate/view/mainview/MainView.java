@@ -36,9 +36,11 @@ public class MainView {
         scene = new Scene(root);
         addMenuView("selectGame", scene);
         //init snake
+        /*
         root = FXMLLoader.load(getClass().getClassLoader().getResource("snakeresources/views/WelcomeView.fxml"));
         scene = new Scene(root);
         addMenuView("snake", scene);
+        */
     }
 
     public void setScene(Scene scene){
