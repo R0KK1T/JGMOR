@@ -11,9 +11,9 @@ import javafx.scene.input.KeyEvent;
 
 public class FroggerController implements IController {
 
-    FroggerFacade model;
-    FroggerView view;
-    AnimationTimer timer;
+    private FroggerFacade model;
+    private FroggerView view;
+    private AnimationTimer timer;
     private boolean pause = false;
 
     public FroggerController() throws Exception {
