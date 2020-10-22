@@ -1,6 +1,7 @@
 package edu.chalmers.projecttemplate.controller.breakoutcontroller;
 
 import edu.chalmers.projecttemplate.controller.controllerInterface.IController;
+import edu.chalmers.projecttemplate.model.breakoutmodel.BestScore;
 import edu.chalmers.projecttemplate.view.breakoutview.BreakoutGameView;
 import edu.chalmers.projecttemplate.view.breakoutview.BreakoutMenuView;
 import javafx.animation.TranslateTransition;
@@ -11,6 +12,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.effect.*;
 import javafx.scene.input.MouseButton;
@@ -36,16 +38,19 @@ public class BreakoutMenuController implements Initializable, IController {
     @FXML public Button btnStart;
     @FXML public TextArea firstName;
     @FXML public TextArea lastName;
+    @FXML public Label bestPlayer;
     private AnchorPane paneTohide;
     private BreakoutMenuView menuView;
     private boolean isHidden;
     private List<Button> buttonList;
     public static ArrayList<String> userInfo;
+    private BestScore bestScore;
 
     //constructor
     public BreakoutMenuController() {
         isHidden = true;
         userInfo = new ArrayList<>();
+        bestScore = new BestScore();
     }
 
     @Override
@@ -57,6 +62,7 @@ public class BreakoutMenuController implements Initializable, IController {
         buttonList = new ArrayList<>();
         addButtonToList();
         initializeListeners();
+        showBestPlayer();
     }
 
     /*
@@ -166,6 +172,17 @@ public class BreakoutMenuController implements Initializable, IController {
             userInfo.add("Player1");
         else
             userInfo.add(lastName.getText());
+    }
+    /*
+     * Show High score - Breakout best player
+     */
+    private void showBestPlayer() {
+        String s = "";
+        for (int i=0; i<5; i++) {
+            s+= bestScore.getBestPlayers().get(i).getFirstName()+"\t\t "+bestScore.getBestPlayers().get(i).getLastName()+
+                    "\t\t "+bestScore.getBestPlayers().get(i).getMyScore()+"\n\n";
+        }
+        bestPlayer.setText(s);
     }
 
     @Override

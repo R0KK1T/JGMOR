@@ -9,9 +9,4 @@ public class scoreComparator implements Comparator<Player> {
         int score2 = o2.getMyScore();
         return o1.compareTo(o2);
     }
-
-    @Override
-    public Comparator<Player> reversed() {
-        return null;
-    }
 }

@@ -161,10 +161,18 @@ public class BreakoutTest {
         player2.setMyScore(60);
         assertTrue("Player2 should have 60 point : ",player2.getMyScore() == 60);
 
-        //Now let's save the score
+        //Now let's save the score and check the file bestPlayer.txt
+        score.cleanFile();
         score.readAndSaveScore(player);
         score.readAndSaveScore(player1);
         score.readAndSaveScore(player2);
+
+        assertTrue("The highest score should be 'David' : ",score.getBestPlayers().get(0).getFirstName().equals("David"));
+        assertTrue("David has : ",score.getBestPlayers().get(0).getMyScore() == 70);
+
+        assertTrue("The lowest score should be 'Gmiak' : ",score.getBestPlayers().get(2).getFirstName().equals("Gmiak"));
+        assertTrue("Gmiak has : ",score.getBestPlayers().get(2).getMyScore() == 40);
+
     }
 
 
