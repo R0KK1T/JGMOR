@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -147,9 +148,10 @@ public class BreakoutTest {
      */
     @Test
     public void savedScoreTest() throws IOException {
-        //Suppose that the first player has received 50 points.
-        player.setMyScore(50);
-        assertTrue("Player should have 50 point : ",player.getMyScore() == 50);
+        //Suppose that the first player has received 40 points.
+        Player player = new Player("Gmiak", "Master");
+        player.setMyScore(40);
+        assertTrue("Player should have 40 point : ",player.getMyScore() == 40);
         //Let's create two more players. Let's give them 70 and 60 points respectively.
         Player player1 = new Player("David", "Helias");
         player1.setMyScore(70);
@@ -160,9 +162,9 @@ public class BreakoutTest {
         assertTrue("Player2 should have 60 point : ",player2.getMyScore() == 60);
 
         //Now let's save the score
-        score.saveScore(player);
-        score.saveScore(player1);
-        score.saveScore(player2);
+        score.readAndSaveScore(player);
+        score.readAndSaveScore(player1);
+        score.readAndSaveScore(player2);
     }
 
 
