@@ -409,27 +409,26 @@ public class SpaceInvadersModel {
      * @return list of IRepresentables that can be used for example drawing the game
      */
     public List<IRepresentable> getRepresents(){
-        List<IRepresentable> gameObjects = new ArrayList<>();
+        List<IRepresentable> representables = new ArrayList<>();
 
         //add player
-        gameObjects.add(player);
-        gameObjects.get(0);
+        representables.add(player);
 
         //add aliens
         for (int i = 0; i < aliens.size(); i++) {
-            gameObjects.add(aliens.get(i));
+            representables.add(aliens.get(i));
         }
 
         //add projectiles
         for (int i = 0; i < projectiles.size(); i++) {
-            gameObjects.add(projectiles.get(i));
+            representables.add(projectiles.get(i));
         }
 
         //add barriers
         for (int i = 0; i < barriers.size(); i++) {
-            gameObjects.add(barriers.get(i));
+            representables.add(barriers.get(i));
         }
 
-        return gameObjects;
+        return representables;
     }
 }

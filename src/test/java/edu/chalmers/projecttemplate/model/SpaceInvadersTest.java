@@ -76,20 +76,78 @@ public class SpaceInvadersTest {
 
         Assert.assertTrue(foundProjectile);
     }
-    @Test
-    public void AlienShootTest(){
-        SpaceInvadersModel model = new SpaceInvadersModel();
-        boolean foundProjectile = false;
 
-        for (int i = 0; i < 200000; i++) {
+    @Test
+    public void alienShootTest(){
+        SpaceInvadersModel model = new SpaceInvadersModel();
+        Boolean notFound = true;
+
+        while(notFound){
             model.update();
             for (IRepresentable go: model.getRepresents()) {
                 if (go.getType() == "Projectile"){
-                    foundProjectile = true;
+                    Assert.assertTrue(true);
+                    notFound = false;
+                    break;
                 }
             }
         }
+    }
 
-        Assert.assertTrue(foundProjectile);
+    @Test
+    public void gameOverTest(){
+        SpaceInvadersModel model = new SpaceInvadersModel();
+
+        while(true){
+            model.update();
+            if (model.getGameOver()){
+                Assert.assertTrue(true);
+                break;
+            }
+        }
+    }
+
+    @Test
+    public void damagePlayerTest(){
+        SpaceInvadersModel model = new SpaceInvadersModel();
+        int startingLives = model.getLives();
+
+        while(true){
+            model.update();
+            if (model.getLives() < startingLives){
+                Assert.assertTrue(true);
+                break;
+            }
+        }
+    }
+
+    @Test
+    public void killAlienTest(){
+        SpaceInvadersModel model = new SpaceInvadersModel();
+        int numberOfAliensStart = 0;
+        int numberOfAliensCurrent = 0;
+
+        for (IRepresentable go: model.getRepresents()) {
+            if (go.getType() == "Alien"){
+                numberOfAliensStart++;
+            }
+        }
+
+        while(true){
+            numberOfAliensCurrent = 0;
+            for (IRepresentable go: model.getRepresents()) {
+                if (go.getType() == "Alien"){
+                    numberOfAliensCurrent++;
+                }
+            }
+
+            model.update();
+            model.playerShoot();
+
+            if (numberOfAliensCurrent < numberOfAliensStart){
+                Assert.assertTrue(true);
+                break;
+            }
+        }
     }
 }
