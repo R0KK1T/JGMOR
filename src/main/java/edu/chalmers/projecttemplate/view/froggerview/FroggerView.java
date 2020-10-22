@@ -40,7 +40,7 @@ public class FroggerView {
         initScene();
     }
 
-    public void initScene() {
+    private void initScene() {
         //create instance of model
 
         //setup the 2 different layered canvases
