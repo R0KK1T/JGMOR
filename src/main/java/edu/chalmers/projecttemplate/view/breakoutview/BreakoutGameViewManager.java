@@ -21,6 +21,7 @@ public class BreakoutGameViewManager {
     private Image paddleImg;
     private Image ballImg;
     private Image gameOver;
+    private Image gameFinish;
     private Image redBrick;
     private Image greeBrick;
     private Image orangeBrick;
@@ -49,6 +50,7 @@ public class BreakoutGameViewManager {
         paddleImg = new Image(new FileInputStream("src/main/resources/breakoutresources/images/paddle.png"));
         ballImg = new Image(new FileInputStream("src/main/resources/breakoutresources/images/ball.png"));
         gameOver = new Image(new FileInputStream("src/main/resources/breakoutresources/images/gameOver.png"));
+        gameFinish = new Image(new FileInputStream("src/main/resources/breakoutresources/images/gameFinish.png"));
         redBrick = new Image(new FileInputStream("src/main/resources/breakoutresources/images/redbrick.png"));
         orangeBrick = new Image(new FileInputStream("src/main/resources/breakoutresources/images/orangebrick.png"));
         greeBrick = new Image(new FileInputStream("src/main/resources/breakoutresources/images/greenbrick.png"));
@@ -101,8 +103,16 @@ public class BreakoutGameViewManager {
         gc.setFill(Color.BLACK);
         gc.drawImage(gameOver, 200, 200, 500, 200);
     }
+    /*
+     * Drawing game finish
+     */
+    public void drawGameFinish() {
+        gc.setFill(Color.BLACK);
+        gc.drawImage(gameFinish, 200, 200, 500, 200);
+    }
     //get canvas
     public Canvas getCanvas() {
         return canvas;
     }
+
 }

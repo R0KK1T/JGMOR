@@ -148,6 +148,16 @@ public class GameModel {
     public boolean gameIsOver() {
         return ball.getY()>(windowSizeY-26);
     }
+    /*
+     * Check if the player wins the game
+     */
+    public boolean youWin() {
+        for (int i=0; i<brickObstacle.getBrickList().size(); i++){
+            if (brickObstacle.getBrickList().get(i).getBrickStatus())
+                return false;
+        }
+        return true;
+    }
 
     /*
      * Return game movable object

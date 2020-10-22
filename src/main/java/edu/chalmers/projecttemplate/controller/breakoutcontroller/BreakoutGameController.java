@@ -184,6 +184,7 @@ public class BreakoutGameController implements Initializable {
         gameModel.tick();
         showTheScore();
         isGameOver();
+        isGameFinish();
     }
     //Game drawing stuff
     public void render() {
@@ -207,6 +208,17 @@ public class BreakoutGameController implements Initializable {
             timer.stop();
             inGame = false;
             viewManager.drawGameOver();
+            savePlayerScore();
+        }
+    }
+    /*
+     * Check if the player wins the game
+     */
+    private void isGameFinish() {
+        if (gameModel.youWin()) {
+            timer.stop();
+            inGame = false;
+            viewManager.drawGameFinish();
             savePlayerScore();
         }
     }

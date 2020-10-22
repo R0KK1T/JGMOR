@@ -17,7 +17,8 @@ public class BrickObstacle {
         height = 40;
         width = 60;
         brickList = new ArrayList<>();
-        gameModelOne();
+        //gameModelOne();
+        gameModelTwo();
     }
     //1. Game model1: 12 bricks x 4 = 48bricks
     /* 4 4 4 4 4 4 4 4 4 4 4 4
@@ -52,6 +53,12 @@ public class BrickObstacle {
             brickList.add(brick);
             x = x + 65;
         }
+    }
+    private void gameModelTwo() {
+        //Brick brick1 = new Brick(x, y, width, height, 2);
+        Brick brick2 = new Brick(x+67, y, width, height, 1);
+        //brickList.add(brick1);
+        brickList.add(brick2);
     }
     //return brick obstacle
     public List<Brick> getBrickList() {
