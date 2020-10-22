@@ -22,12 +22,8 @@ public class BreakoutMenuView {
     private void initializeStage() throws IOException {
         mainPane = FXMLLoader.load(getClass().getClassLoader().getResource(STARTMENU));
         mainScene = new Scene(mainPane, WIDTH, HEIGHT);
-        mainStage = new Stage();
-        mainStage.setTitle("Breakout Menu");
-        mainStage.setScene(mainScene);
+
     }
-    //return the main stage
-    public Stage getMainStage() {return mainStage;}
     //retunr the main Scene
     public Scene getMainScene() {return mainScene;}
 }

@@ -178,7 +178,12 @@ public class BreakoutMenuController implements Initializable, IController {
      */
     private void showBestPlayer() {
         String s = "";
-        for (int i=0; i<5; i++) {
+        int size=0;
+        if (bestScore.getBestPlayers().size()<=5)
+            size = bestScore.getBestPlayers().size();
+        else
+            size = 5;
+        for (int i=0; i<size; i++) {
             s+= bestScore.getBestPlayers().get(i).getFirstName()+"\t\t "+bestScore.getBestPlayers().get(i).getLastName()+
                     "\t\t "+bestScore.getBestPlayers().get(i).getMyScore()+"\n\n";
         }
