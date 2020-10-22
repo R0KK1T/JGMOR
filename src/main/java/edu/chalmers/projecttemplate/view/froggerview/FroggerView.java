@@ -17,15 +17,15 @@ import java.util.HashMap;
 
 public class FroggerView {
 
-    HashMap<String, Image> imageHashMap = new HashMap<>();
+    private HashMap<String, Image> imageHashMap = new HashMap<>();
 
     private int windowSizeX;
     private int windowSizeY;
 
-    GraphicsContext backgroundLayer;
-    GraphicsContext gameLayer;
+    private GraphicsContext backgroundLayer;
+    private GraphicsContext gameLayer;
 
-    Text scoreAndLevelText;
+    private Text scoreAndLevelText;
 
     private Scene scene;
 
