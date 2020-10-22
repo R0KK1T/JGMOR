@@ -43,8 +43,9 @@ public class BreakoutGameController implements Initializable {
     public BreakoutGameController()  {}
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        gameModel = new GameModel();
+
         try {
+            gameModel = new GameModel();
             viewManager = new BreakoutGameViewManager();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -206,6 +207,13 @@ public class BreakoutGameController implements Initializable {
             timer.stop();
             inGame = false;
             viewManager.drawGameOver();
+            savePlayerScore();
         }
+    }
+    /*
+     * Saving the player's score whe she/he won or lost the game
+     */
+    private void savePlayerScore() {
+        gameModel.getPlayer().saveMyScore();
     }
 }

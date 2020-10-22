@@ -9,11 +9,6 @@ public class BestScore {
     private Scanner filin;
     public BestScore() {
         bestPlayers = new ArrayList<>();
-        try {
-            readScore();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
     private void saveScore(List<Player> players) throws IOException {
@@ -22,7 +17,7 @@ public class BestScore {
             filout.write(players.get(i).getFirstName()+" "+players.get(i).getLastName()+ " "+players.get(i).getMyScore()+"\n");
         filout.close();
     }
-    private void readScore() throws FileNotFoundException {
+    public void loadScore() throws FileNotFoundException {
         filin = new Scanner(new File("src/main/resources/breakoutresources/files/bestPlayer.txt"));
         bestPlayers.clear();
         while (filin.hasNext()) {

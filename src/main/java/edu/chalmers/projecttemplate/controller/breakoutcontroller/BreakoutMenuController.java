@@ -19,6 +19,8 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -62,7 +64,11 @@ public class BreakoutMenuController implements Initializable, IController {
         buttonList = new ArrayList<>();
         addButtonToList();
         initializeListeners();
-        showBestPlayer();
+        try {
+            showBestPlayer();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     /*
@@ -176,7 +182,8 @@ public class BreakoutMenuController implements Initializable, IController {
     /*
      * Show High score - Breakout best player
      */
-    private void showBestPlayer() {
+    private void showBestPlayer() throws FileNotFoundException {
+        bestScore.loadScore();
         String s = "";
         int size=0;
         if (bestScore.getBestPlayers().size()<=5)
