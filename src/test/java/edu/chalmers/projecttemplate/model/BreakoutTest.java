@@ -113,13 +113,13 @@ public class BreakoutTest {
     public void reverseHorizontalMomentumTest() {
         //Suppose the ball moves and collides with the top of wall
         ball.reverseHorizontalMomentum();
-        assertTrue("The ball would now move in the opposite site: ",ball.getDx() == -1);
+        assertTrue("The ball should now move in the opposite site: ",ball.getDx() == -1);
     }
     @Test
     public void reverseVerticalMomentummTest() {
         //Suppose the ball moves and collides with the bottom of wall
         ball.reverseVerticalMomentum();
-        assertTrue("The ball would now move in the opposite site: ",ball.getDx() == 1);
+        assertTrue("The ball should now move in the opposite site: ",ball.getDx() == 1);
     }
     /*
      * Test on collision
@@ -137,12 +137,12 @@ public class BreakoutTest {
      */
     @Test
     public void playerTest() {
-        assertTrue("Player frist name is 'Georges' : ",player.getFirstName().equals("Georges"));
+        assertTrue("player first name is 'Georges' : ",player.getFirstName().equals("Georges"));
         player.setFirstName("David");
-        assertTrue("Player first name is now 'David' : ",player.getFirstName().equals("David"));
-        assertTrue("Player should initial have 0 point : ",player.getMyScore() == 0);
+        assertTrue("player first name is now 'David' : ",player.getFirstName().equals("David"));
+        assertTrue("player should initial have 0 point : ",player.getMyScore() == 0);
         player.setMyScore(50);
-        assertTrue("Player should have 50 point : ",player.getMyScore() == 50);
+        assertTrue("player should now have 50 point : ",player.getMyScore() == 50);
     }
     /*
      * Test class score
@@ -152,15 +152,15 @@ public class BreakoutTest {
         //Suppose that the first player has received 40 points.
         Player player = new Player("Gmiak", "Master");
         player.setMyScore(40);
-        assertTrue("Player should have 40 point : ",player.getMyScore() == 40);
+        assertTrue("player should have 40 point : ",player.getMyScore() == 40);
         //Let's create two more players. Let's give them 70 and 60 points respectively.
         Player player1 = new Player("David", "Helias");
         player1.setMyScore(70);
-        assertTrue("Player1 should have 70 point : ",player1.getMyScore() == 70);
+        assertTrue("player1 should have 70 point : ",player1.getMyScore() == 70);
 
         Player player2 = new Player("Elias", "Kampbell");
         player2.setMyScore(60);
-        assertTrue("Player2 should have 60 point : ",player2.getMyScore() == 60);
+        assertTrue("player2 should have 60 point : ",player2.getMyScore() == 60);
 
         //Now let's save the score and check the file bestPlayer.txt
         score.cleanFile();
@@ -168,10 +168,10 @@ public class BreakoutTest {
         score.readAndSaveScore(player1);
         score.readAndSaveScore(player2);
 
-        assertTrue("The highest score should be 'David' : ",score.getBestPlayers().get(0).getFirstName().equals("David"));
+        assertTrue("The player with the highest score should be 'David' : ",score.getBestPlayers().get(0).getFirstName().equals("David"));
         assertTrue("David has : ",score.getBestPlayers().get(0).getMyScore() == 70);
 
-        assertTrue("The lowest score should be 'Gmiak' : ",score.getBestPlayers().get(2).getFirstName().equals("Gmiak"));
+        assertTrue("The player with lowest score should be 'Gmiak' : ",score.getBestPlayers().get(2).getFirstName().equals("Gmiak"));
         assertTrue("Gmiak has : ",score.getBestPlayers().get(2).getMyScore() == 40);
 
     }

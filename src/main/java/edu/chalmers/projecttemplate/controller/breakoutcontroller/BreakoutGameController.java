@@ -1,6 +1,5 @@
 package edu.chalmers.projecttemplate.controller.breakoutcontroller;
 
-
 import edu.chalmers.projecttemplate.model.breakoutmodel.*;
 import edu.chalmers.projecttemplate.view.breakoutview.BreakoutGameViewManager;
 import edu.chalmers.projecttemplate.view.breakoutview.BreakoutMenuView;
@@ -223,7 +222,7 @@ public class BreakoutGameController implements Initializable {
         }
     }
     /*
-     * Saving the player's score whe she/he won or lost the game
+     * Saving the player's score when she/he won or lost the game
      */
     private void savePlayerScore() {
         gameModel.getPlayer().saveMyScore();

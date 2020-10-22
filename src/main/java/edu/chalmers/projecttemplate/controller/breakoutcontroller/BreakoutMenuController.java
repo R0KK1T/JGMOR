@@ -180,7 +180,7 @@ public class BreakoutMenuController implements Initializable, IController {
             userInfo.add(lastName.getText());
     }
     /*
-     * Show High score - Breakout best player
+     * Show High score - Breakout 5 best players.
      */
     private void showBestPlayer() throws FileNotFoundException {
         bestScore.loadScore();

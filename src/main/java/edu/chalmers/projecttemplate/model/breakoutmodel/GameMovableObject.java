@@ -3,7 +3,7 @@ import edu.chalmers.projecttemplate.model.common.IPositionableInt;
 import edu.chalmers.projecttemplate.model.common.IRectangle;
 import edu.chalmers.projecttemplate.model.common.Rectangle;
 /*
- * GameMovableObject is a super class for all movable object.
+ * GameMovableObject is a super class for all movable object in Breakout Game.
  */
 public abstract class GameMovableObject implements IPositionableInt {
     private IRectangle hitbox;

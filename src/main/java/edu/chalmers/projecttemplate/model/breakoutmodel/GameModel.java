@@ -1,8 +1,6 @@
 package edu.chalmers.projecttemplate.model.breakoutmodel;
 
 import edu.chalmers.projecttemplate.model.common.IPositionableInt;
-
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 /*
@@ -143,7 +141,7 @@ public class GameModel {
         }
     }
     /*
-     * Check for game over
+     * Check if the game is over
      */
     public boolean gameIsOver() {
         return ball.getY()>(windowSizeY-26);

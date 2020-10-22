@@ -1,10 +1,9 @@
 package edu.chalmers.projecttemplate.model.breakoutmodel;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /*
- * Breakout model for player. The class contains the player's name and score.
+ * Breakout model for the player. The class contains the player's name and score.
  */
 public class Player implements Comparable<Player> {
     private String firstName;
@@ -35,7 +34,10 @@ public class Player implements Comparable<Player> {
     public int getMyScore() {
         return myScore;
     }
-
+    /*
+     * The class implements comparable interface for the purpose
+     * of arranging players in a list based on their scores
+     */
     @Override
     public int compareTo(Player o) {
         if (myScore > o.myScore)
