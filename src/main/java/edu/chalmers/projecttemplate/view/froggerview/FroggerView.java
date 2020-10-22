@@ -15,6 +15,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 
+/**
+ * Represents the view of the model representing the game Frogger
+ */
 public class FroggerView {
 
     private HashMap<String, Image> imageHashMap = new HashMap<>();
@@ -29,6 +32,9 @@ public class FroggerView {
 
     private Scene scene;
 
+    /**
+     * Constructs the view and initializes the scene and all necessary images
+     */
     public FroggerView(int windowSizeX, int windowSizeY) throws Exception{
         this.windowSizeX = windowSizeX;
         this.windowSizeY = windowSizeY;
@@ -40,6 +46,9 @@ public class FroggerView {
         initScene();
     }
 
+    /**
+     * Initializes all components used by the scene and adds them to the scene
+     */
     private void initScene() {
         //create instance of model
 
@@ -53,8 +62,6 @@ public class FroggerView {
         scoreAndLevelText = new Text();
         scoreAndLevelText.setX(75);
         scoreAndLevelText.setY(11);
-        //scoreAndLevelText.setScaleX(3);
-        //scoreAndLevelText.setScaleY(3);
         scoreAndLevelText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 10));
         scoreAndLevelText.setFill(Color.WHITESMOKE);
 
@@ -67,6 +74,10 @@ public class FroggerView {
         scene = new Scene(pane);
     }
 
+    /**
+     * Initializes all images used in the game as sprites which are located in the recourse folder
+     * and adds them to the hashmap imageHashMap
+     */
     private void initImages() throws FileNotFoundException {
         imageHashMap.put("Background", new Image(new FileInputStream("src/main/resources/froggerresources/froggerBackground.png")));
         imageHashMap.put("Frog", new Image(new FileInputStream("src/main/resources/froggerresources/frog.png")));
@@ -76,14 +87,32 @@ public class FroggerView {
         imageHashMap.put("FinishedFrog", new Image(new FileInputStream("src/main/resources/froggerresources/frogOnFinishLine.png")));
     }
 
+    /**
+     * Returns the scene that view is responsible for
+     *
+     * @return scene used for drawing the game
+     */
     public Scene getScene() {
         return scene;
     }
 
+    /**
+     * Clears gameLayer so that the canvas becomes empty meaning that images can be redrawn
+     */
     public void clearDrawingArea(){
         //clear gameLayer
         gameLayer.clearRect(0, 0, windowSizeX, windowSizeY);
     }
+
+    /**
+     * Draws an object at specified coordinates, with specified  dimensions using image depending on type
+     *
+     * @param posX x position of the object being drawn
+     * @param posY y position of the object being drawn
+     * @param width width of the object being drawn
+     * @param height height of the object being drawn
+     * @param type type of the object being drawn used to determine which image to draw
+     */
     public void draw(int posX, int posY, int width, int height, String type){
         switch(type){
             case "FROG":
@@ -110,10 +139,21 @@ public class FroggerView {
                 break;
         }
     }
+
+    /**
+     * Changes the Text object used for displaying score depending on input parameters score and level
+     *
+     * @param score int for current score.
+     * @param level int for current level
+     */
     public void displayScore(int score, int level){
         scoreAndLevelText.setText("Level: " + level + " Score: " + score);
     }
 
+    /**
+     * Draws miniaturized versions of the Frog texture depending on parameter currentLifeCount
+     * @param currentLifeCount the amount of pictures to draw
+     */
     public void drawLives(int currentLifeCount) {
         int width = 20;
         for (int i = 0; i < currentLifeCount; i++) {

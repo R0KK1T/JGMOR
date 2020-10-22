@@ -9,6 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+/**
+ * Represents the controller used for controlling the game of Frogger
+ */
 public class FroggerController implements IController {
 
     private FroggerFacade model;
@@ -16,6 +19,9 @@ public class FroggerController implements IController {
     private AnimationTimer timer;
     private boolean pause = false;
 
+    /**
+     * Constructs the controller and initializes model, view and timer
+     */
     public FroggerController() throws Exception {
         //Create instance of view and model
         model = new FroggerFacade();
@@ -33,6 +39,9 @@ public class FroggerController implements IController {
         };
     }
 
+    /**
+     * Used for redrawing the entire field in the view based on the state of model
+     */
     private void callForRedraw(){
         //clear
         view.clearDrawingArea();
@@ -47,6 +56,9 @@ public class FroggerController implements IController {
         view.displayScore(model.getPoints(), model.getLevel());
     }
 
+    /**
+     * Starts the game by starting the timer and also initializes and connects keypresses to the scene of view
+     */
     public void startGame(){
         //start updating the game
         timer.start();
@@ -54,11 +66,21 @@ public class FroggerController implements IController {
         view.getScene().setOnKeyReleased(this::keyReleased);
     }
 
+    /**
+     * Returns the scene that view is responsible for
+     *
+     * @return scene from view
+     */
     public Scene getScene(){
         //returns the scene from FroggerView
         return view.getScene();
     }
 
+    /**
+     * Checks for certain keys being pressed down and performing appropriate action if true
+     *
+     * @param event KeyEvent for key being pressed
+     */
     private void keyPressed(KeyEvent event) {
         KeyCode kc = event.getCode();
         if(!pause){
@@ -80,6 +102,11 @@ public class FroggerController implements IController {
         }
     }
 
+    /**
+     * Checks for certain keys being released and performing appropriate action if true
+     *
+     * @param event KeyEvent for key being released
+     */
     private void keyReleased(KeyEvent event) {
         KeyCode kc = event.getCode();
         switch (kc) {
