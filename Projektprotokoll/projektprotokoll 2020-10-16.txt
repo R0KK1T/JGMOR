@@ -15,11 +15,13 @@ Finish the applicatin by integrating the games into a main application.
 
 ## Discussion items (35 min)
 Update RAD and SDD for completion purposes
-
+Worked on ViewNavigator which connects the MainApplication controllers.
+Only Pong, Frogger and Space Invaders were implemented into the ViewNavigator as the other 2 games (Snake and Breakout) was not compatible because of different impementation of controller and view.
 
 
 ## Outcomes and assignments (5 min)
 All individual games should be finished by 2020-10-19 (before next meeting).
+Georges and Mhd Jamal need to refactor their controllers to fit the rest of the group's, otherwise their games can't be implemented into the ViewNavigator.
 
 
 
