@@ -22,7 +22,7 @@ public class Ball extends GameMovableObject{
         this.setY((getDy()*dt));
     }
     /**
-     * Reverse horizontal movement. If ball was moving left change it to move
+     * Reverse horizontal movement. If the ball was moving left change it to move
      * right and vice versa
      */
     public void reverseHorizontalMomentum() {
@@ -30,7 +30,7 @@ public class Ball extends GameMovableObject{
     }
 
     /**
-     * Reverse vertical movement. If ball was moving upwards change it to move
+     * Reverse vertical movement. If the ball was moving upwards change it to move
      * downwards and vice versa
      */
     public void reverseVerticalMomentum() {

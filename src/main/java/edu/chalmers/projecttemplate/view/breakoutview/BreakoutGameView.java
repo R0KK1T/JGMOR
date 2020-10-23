@@ -15,9 +15,9 @@ public class BreakoutGameView {
     private final String GAMEVIEW = "breakoutresources/fxml/breakoutGameView.fxml";
     //constructor
     public BreakoutGameView() throws IOException {
-        initializeStage();
+        initializeScene();
     }
-    private void initializeStage() throws IOException {
+    private void initializeScene() throws IOException {
         gamePane = FXMLLoader.load(getClass().getClassLoader().getResource(GAMEVIEW));
         gameScene = new Scene(gamePane, GAME_WIDTH, GAME_HEIGHT);
 

@@ -42,7 +42,6 @@ public class BreakoutGameController implements Initializable {
     public BreakoutGameController()  {}
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         try {
             gameModel = new GameModel();
             viewManager = new BreakoutGameViewManager();
@@ -58,7 +57,6 @@ public class BreakoutGameController implements Initializable {
         inGame = true;
         start();
     }
-
     /*
      * Button Exit
      */
@@ -175,18 +173,18 @@ public class BreakoutGameController implements Initializable {
      * Creating and processing the game
      */
     //Game start
-    public void start() { run(); }
+    private void start() { run(); }
     //Game initialize
-    public void init() { viewManager.drawGameArea(); }
+    private void init() { viewManager.drawGameArea(); }
     //Game moving stuff
-    public void tick() {
+    private void tick() {
         gameModel.tick();
         showTheScore();
         isGameOver();
         isGameFinish();
     }
     //Game drawing stuff
-    public void render() {
+    private void render() {
         callForRedraw();
     }
     //Game run

@@ -57,7 +57,7 @@ public class GameModel {
     /*
      * Check if the paddle is colliding with the wall
      */
-    public void checkCollisionPaddleWall() {
+    private void checkCollisionPaddleWall() {
         if (paddle.getX() <= 0)
             paddle.initX(0);
         if (paddle.getX() >= windowSizeX - paddle.getWidth())
@@ -66,7 +66,7 @@ public class GameModel {
     /*
      * Check if the ball is colliding with the wall
      */
-    public void checkCollisionBallWall() {
+    private void checkCollisionBallWall() {
         if (ball.getX() < 0 || (ball.getX()+ball.getWidth() > windowSizeX))
             ball.reverseHorizontalMomentum();
         if (ball.getY() < 0)
@@ -75,7 +75,7 @@ public class GameModel {
     /*
      * Checks if the ball is colliding with the paddle.
      */
-    public void checkCollisionBallPaddle() {
+    private void checkCollisionBallPaddle() {
         if (ball.getHitbox().intersect(paddle.getHitbox())) {
             if (ball.getY() < paddle.getY()) {
                 ball.reverseVerticalMomentum();
@@ -106,7 +106,7 @@ public class GameModel {
      * Loops through the array of bricks and checks if any of the bricks
      * collides with the ball.
      */
-    public void checkCollisionBallBrick() {
+    private void checkCollisionBallBrick() {
         for (int i=0; i<brickObstacle.getBrickList().size(); i++) {
             checkCollisionBallBrick(brickObstacle.getBrickList().get(i));
         }
