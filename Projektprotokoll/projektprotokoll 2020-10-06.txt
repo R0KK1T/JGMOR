@@ -15,8 +15,14 @@ Participants: Robert Sahlqvist, Jonathan Stigson, Georges Kayembe, Oliver Ljung,
 
 ## Reports (15 min) from previous meeting
 
-- Alla har jobbat med sina game.
- - MVC
+- Alla har jobbat med sina respektive spel.
+  - Jonathan: Frogger.
+  - Oliver: Space Invaders.
+  - Robert: Pong.
+  - Georges: Breakout.
+  - Mhd Jamal: Snake.
+
+- MVC
  
 
 ## Discussion items (35 min)
