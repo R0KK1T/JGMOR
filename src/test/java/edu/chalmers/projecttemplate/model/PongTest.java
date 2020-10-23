@@ -42,9 +42,11 @@ public class PongTest {
         PongPaddle paddle = new PongPaddle(5,10,10,10,100,0);
         PongAI AI = new PongAI(paddle,ball);
         ball.resetBall();
-        ball.updatePosition();
-        AI.movePaddle(10);
-        paddle.updatePosition();
+        while(paddle.getY() == 10) {
+            ball.updatePosition();
+            AI.movePaddle(10);
+            paddle.updatePosition();
+        }
         Assert.assertTrue(paddle.getY() != 10);
     }
    
