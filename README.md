@@ -14,5 +14,8 @@ Robert: pongmodel, pongcontroller, pongview.
 Mhd Jamal: snakemodel, snake22model, snakecontroller, snake22controller, snakeview, snake22view.
 
 
+In order to run the application execute the following command on the highest level of the repository: "mvn javafx:run"
+
+
 RAD: https://docs.google.com/document/d/1PYDgCiyDum7-vzJWJG6xc8r8De_BqehTzqE3AcO-zL8/edit?usp=sharing
 SDD: https://docs.google.com/document/d/13KIP5feLihYOsr1zh-CwvEdo4bpjNmQeCUyvL-rhKAY/edit?usp=sharing
