@@ -158,7 +158,7 @@ public class BreakoutTest {
         player1.setMyScore(70);
         assertTrue("player1 should have 70 point : ",player1.getMyScore() == 70);
 
-        Player player2 = new Player("Elias", "Kampbell");
+        Player player2 = new Player("Elias", "Kamp");
         player2.setMyScore(60);
         assertTrue("player2 should have 60 point : ",player2.getMyScore() == 60);
 
