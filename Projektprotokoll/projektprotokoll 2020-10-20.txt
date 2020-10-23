@@ -1,0 +1,36 @@
+# Meeting Agenda
+
+Group: JGMOR
+Date: 2020-10-20
+Chair: Oliver Ljung
+Participants: Jonathan Stigson, Mhd Jamal Basal, Robert Sahlqvist, Oliver Ljung, Georges Kayembe
+
+
+## Objectives (5 min) 
+Follow up on refactoring common code and alike.
+Go through all documents (RAD, SDD, Design model, Domain model) to see what needs to be done.
+
+## Reports (15 min) from previous meeting
+Georges: reconfigured breakoutmodel.
+Robert: Added PongAI.
+Jamal: Added some tests.
+Jonathan: Added levelcount and text to see relevant info in Frogger. Added function comments for model (Frogger)
+Oliver: Added function comments to controller and view (SpaceInvaders). Went through Snake code and gave Jamal feedback on exaclty what needs to be refactored in snake model
+in order to get rid of JavaFX dependencies and bad MVC-structure (model had view functionality).
+
+## Discussion items (35 min)
+Follow up on refactoring common code and alike.
+Go through all documents (RAD, SDD, Design model, Domain model) to see what needs to be done.
+
+Snake needs to be refactored almost completely to remove JavaFX dependencies. Jonathan gave Jamal a rough outline of classes needed to make a basic snake game and
+some rough estimations of what functions and their implementation would be.
+
+## Outcomes and assignments (5 min)
+
+All members should work on all documents (RAD, SDD, Design model, Domain model) and final report before next supervisor meeting and hand-in.
+
+Jamal has to remove all JavaFX dependencies from snakemodel and refactor according to MVC-pattern.
+
+## Wrap up
+Nästa möte: 2020-10-20
+Nästa handledarmöte: 2020-10-23
