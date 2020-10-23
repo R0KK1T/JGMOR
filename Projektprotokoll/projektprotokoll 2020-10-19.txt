@@ -1,0 +1,39 @@
+# Meeting Agenda
+
+Group: JGMOR
+Date: 2020-10-19
+Chair: Oliver Ljung
+Participants: Jonathan Stigson, Mhd Jamal Basal, Robert Sahlqvist, Oliver Ljung, Georges Kayembe
+
+
+## Objectives (5 min) 
+Review the entire repository and go through comments and response from Johannes Mattsson recieved via Slack.
+
+## Reports (15 min) from previous meeting
+Georges: refactored so that his view and controller now fits ViewNavigator. Added collision and tests.
+Jamal: Added SnakeGame as a menu rather than a game to ViewNavigator. Game crashes when trying to start Snake because snakemodel depends on javafx from java 8. Added tests.
+Jonathan: Added interface, IRepresentable and IPositionable to help with visual representation. Added enum ObstacleType to replace need for inheritance.
+          Added ability to pause Frogger and added textures.
+Oliver: Added winning and losing to Space Invaders, added function comments to entire spaceInvadersModel.
+Robert: Added groundwork for displaying score in Pong. Added comments to the model of Pong.
+
+## Discussion items (35 min)
+
+Went through comments from Johannes regarding ViewNavigator and Application.
+Went thorugh each member's code looking for irregularities.
+
+
+## Outcomes and assignments (5 min)
+
+Jonathan and Oliver figured out how to removed circular dependencies in ViewNavigator and MainApplication,
+and also split ViewNavigator into ViewNavigator and MainView.
+Removed redundant JavaFX dependencies from FXMLControllers.
+Refactored common code (package common in model) to avoid/remove code duplication across games.
+
+Jamal has to remove all JavaFX dependencies from snakemodel and refactor according to MVC-pattern.
+Georges will look over his code to see if a change from (inheritance) isA- to hasA-dependency is possible.
+
+
+## Wrap up
+Nästa möte: 2020-10-20
+Nästa handledarmöte: 2020-10-23

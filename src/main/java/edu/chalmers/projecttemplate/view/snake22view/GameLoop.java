@@ -1,9 +1,9 @@
-package edu.chalmers.projecttemplate.model.snake22model;
+package edu.chalmers.projecttemplate.view.snake22view;
 
-import edu.chalmers.projecttemplate.controller.snake22controller.GameConfiguration;
+import edu.chalmers.projecttemplate.model.snake22model.GameConfiguration;
+import edu.chalmers.projecttemplate.controller.snake22controller.GameStateUpdater;
 import edu.chalmers.projecttemplate.controller.snake22controller.InputListener;
-import edu.chalmers.projecttemplate.view.snake22view.DrawModule;
-import edu.chalmers.projecttemplate.view.snake22view.Snake22View;
+import edu.chalmers.projecttemplate.model.snake22model.*;
 import javafx.application.Platform;
 
 public class GameLoop implements Runnable {

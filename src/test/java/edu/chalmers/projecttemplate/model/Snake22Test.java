@@ -1,6 +1,6 @@
 package edu.chalmers.projecttemplate.model;
 
-import edu.chalmers.projecttemplate.controller.snake22controller.GameConfiguration;
+import edu.chalmers.projecttemplate.model.snake22model.GameConfiguration;
 import edu.chalmers.projecttemplate.model.snake22model.*;
 import org.junit.Assert;
 import org.junit.Before;

@@ -1,0 +1,28 @@
+# Meeting Agenda
+
+Group: JGMOR
+Date: 2020-10-15
+Chair: Johannes Mattsson
+Participants: Jonathan Stigson, Mhd Jamal Basal, Robert Sahlqvist, Oliver Ljung, Georges Kayembe
+
+
+## Objectives (5 min) 
+Last supervisor meeting with regards to the code. Next meeting only report and presentation.
+
+
+## Reports (15 min) from previous meeting
+
+
+## Discussion items (35 min)
+Peer review response.
+
+
+
+## Outcomes and assignments (5 min)
+
+
+
+
+## Wrap up
+Nästa möte: 2020-10-16
+Nästa handledarmöte: 2020-10-23

@@ -10,8 +10,8 @@ Participants: Jonathan Stigson, Mhd Jamal Basal, Robert Sahlqvist, Oliver Ljung,
 
 
 ## Reports (15 min) from previous meeting
-Jonathan: LaneFactory and Lane.
-Oliver: Movement with keypresses, shooting for aliens and player, barrier.
+Jonathan: LaneFactory and Lane. Implemented Factory Pattern.
+Oliver: Movement with keypresses, shooting for aliens and player.Also added class Barrier.
 Jamal: Code for controller and view.
 Robert: Made ball bounce on walls and paddles. Restricted paddles within the window.
 Geroges: Tests for breakout.

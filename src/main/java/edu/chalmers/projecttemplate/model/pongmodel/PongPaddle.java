@@ -31,14 +31,6 @@ public class PongPaddle extends GameObject implements IMovable {
         setVelocity(0);
     }
 
-    public void setMaxY(double maxY) {
-        this.maxY = maxY;
-    }
-
-    public void setMinY(double minY) {
-        this.minY = minY;
-    }
-
     public double getMaxY() {
         return maxY;
     }

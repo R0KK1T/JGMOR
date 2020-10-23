@@ -12,10 +12,10 @@ Participants: Jonathan Stigson, Mhd Jamal Basal, Robert Sahlqvist, Oliver Ljung,
 
 ## Reports (15 min) from previous meeting
 Georges: Flyttat view och controller grejer från model. Rörelse för breakout
-Oliver: Klar med Space Invaders till stort sett.
+Oliver: Klar med Space Invaders Model till stort sett. View saknar sprites.
 Robert: I princip klar, inget poängsystem (visuellt), inga controls för player 2.
 Jamal: I princip klar, inga tester och några småsaker kvar.
-Jonathan: All funktionalitet förutom ny level med ökad svårighetsgrad. Inget visuellt men skrivit tester för allt.
+Jonathan: All funktionalitet förutom ny level med ökad svårighetsgrad är nu implementerat i Frogger. Inget visuellt men skrivit tester för allt.
 
 ## Discussion items (35 min)
 
@@ -26,7 +26,7 @@ Gemensam kod.
 
 ## Outcomes and assignments (5 min)
 
-En körbar view kopplad med controller och model för ens spel.
+En hjälpcontroller för att starta ett spel separat kopplad med controller och model för ens spel.
 Nästa möte ska vi sätta ihop så att spelen kan startas från mainapplikationen.
 
 SKRIVA TESTER.

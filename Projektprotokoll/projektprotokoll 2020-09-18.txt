@@ -1,9 +1,9 @@
 # Meeting Agenda
 
 Group:JGMOR
-Date:2020-09-18
-Chair: Mhd Jamal Basal
-Participants: Robert Sahlqvist, Jonathan Stigson, Oliver Ljung
+Date: 2020-09-18
+Chair: Jonathan Stigson
+Participants: Robert Sahlqvist, Jonathan Stigson, Oliver Ljung, Mhd Jamal Basal
 
 
 ## Objectives (5 min) 
@@ -13,7 +13,7 @@ Participants: Robert Sahlqvist, Jonathan Stigson, Oliver Ljung
 
 ## Reports (15 min) from previous meeting
 
- - Git repo for projektet redo för att klona.
+ - Git repo for projektet redo för att klona. (Jonathan)
  
 
 ## Discussion items (35 min)

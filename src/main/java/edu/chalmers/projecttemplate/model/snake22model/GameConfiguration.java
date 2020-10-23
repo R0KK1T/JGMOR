@@ -1,6 +1,4 @@
-package edu.chalmers.projecttemplate.controller.snake22controller;
-
-import edu.chalmers.projecttemplate.model.snake22model.Direction;
+package edu.chalmers.projecttemplate.model.snake22model;
 
 public class GameConfiguration {
     private int snakePartSize = 10;

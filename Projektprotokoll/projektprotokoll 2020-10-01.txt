@@ -12,7 +12,7 @@ Participants: Jonathan Stigson, Mhd Jamal Basal, Robert Sahlqvist, Oliver Ljung,
 ## Reports (15 min) from previous meeting
 
 RAD: User Stories updaterade.
-Jonathan: Skrivit interaktionslogik för intersect i Frogger.
+Jonathan: Skrivit interaktionslogik för intersect i Rectangle i Frogger.
 Oliver: Löst update-metod och scenbyte.
 Jamal: Initial kod för Snake.
 Georges: Formaterat RAD och SDD. Initial kod för Breakout, knappar osv.
