@@ -2,7 +2,7 @@
 
 Group: JGMOR
 Date: 2020-10-16
-Chair: Johannes Mattsson
+Chair: Jonathan Stigson
 Participants: Jonathan Stigson, Mhd Jamal Basal, Robert Sahlqvist, Oliver Ljung, Georges Kayembe
 
 
@@ -19,10 +19,10 @@ Update RAD and SDD for completion purposes
 
 
 ## Outcomes and assignments (5 min)
-All individual games should be finished.
+All individual games should be finished by 2020-10-19 (before next meeting).
 
 
 
 ## Wrap up
-Nästa möte: 2020-10-20
+Nästa möte: 2020-10-19
 Nästa handledarmöte: 2020-10-23
