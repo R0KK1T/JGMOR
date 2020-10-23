@@ -2,12 +2,10 @@ package edu.chalmers.projecttemplate.model;
 
 import edu.chalmers.projecttemplate.model.pongmodel.PongAI;
 import edu.chalmers.projecttemplate.model.pongmodel.PongBall;
-import edu.chalmers.projecttemplate.model.pongmodel.PongModel;
 import edu.chalmers.projecttemplate.model.pongmodel.PongPaddle;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.security.PublicKey;
 
 public class PongTest {
     @Test

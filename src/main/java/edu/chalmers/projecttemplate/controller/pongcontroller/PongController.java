@@ -36,15 +36,6 @@ public class PongController implements IController {
             view.draw(model.getGameObjects().get(i).getX(), model.getGameObjects().get(i).getY(), model.getGameObjects().get(i).getWidth(), model.getGameObjects().get(i).getHeight());
         }
 
-        /*//draw Ball
-        view.draw(model.getPongBall().getX(), model.getPongBall().getY(), model.getPongBall().getWidth(), model.getPongBall().getHeight());
-
-        //draw Right Paddle
-        view.draw(model.getPongRightPaddle().getX(), model.getPongRightPaddle().getY(), model.getPongRightPaddle().getWidth(), model.getPongRightPaddle().getHeight());
-
-        //draw Left Paddle
-        view.draw(model.getPongLeftPaddle().getX(), model.getPongLeftPaddle().getY(), model.getPongLeftPaddle().getWidth(), model.getPongLeftPaddle().getHeight());
-        */
     }
 
     public void startGame(){
