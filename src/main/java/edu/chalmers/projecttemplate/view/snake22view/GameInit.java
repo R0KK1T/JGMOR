@@ -1,5 +1,6 @@
 package edu.chalmers.projecttemplate.view.snake22view;
 
+import edu.chalmers.projecttemplate.controller.snake22controller.GameStateUpdater;
 import edu.chalmers.projecttemplate.controller.snake22controller.InputListener;
 import edu.chalmers.projecttemplate.model.snake22model.*;
 import javafx.scene.Scene;

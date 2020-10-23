@@ -1,6 +1,6 @@
 package edu.chalmers.projecttemplate.view.snake22view;
 
-import edu.chalmers.projecttemplate.controller.snake22controller.GameConfiguration;
+import edu.chalmers.projecttemplate.model.snake22model.GameConfiguration;
 import edu.chalmers.projecttemplate.model.snake22model.Score;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;

@@ -1,7 +1,5 @@
 package edu.chalmers.projecttemplate.model.snake22model;
 
-import edu.chalmers.projecttemplate.controller.snake22controller.GameConfiguration;
-
 import java.util.ArrayList;
 import java.util.List;
 
