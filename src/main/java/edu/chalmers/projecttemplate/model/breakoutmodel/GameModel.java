@@ -118,28 +118,61 @@ public class GameModel {
         if (!brick.getBrickStatus()) {
             return;
         }
+
+        int zoneWidth = brick.getWidth() / 2;
+        int zoneOne = (brick.getY() + brick.getHeight())  + zoneWidth;
+        int zoneTwo = brick.getX() + zoneWidth;
+
+        int zoneHeight = brick.getHeight() / 2;
+        int zoneThree = brick.getY() + zoneHeight;
+        int zoneFour = (brick.getX() + zoneWidth) + zoneHeight;
+
         if (ball.getHitbox().intersect(brick.getHitbox())) {
-            //Hit was from below the brick
-            if (ball.getY() <= brick.getY() - ((brick.getHeight())/2)) {
-                ball.reverseVerticalMomentum();
-            }
-            //Hit was from above the brick
+            //Hit was from bottom the brick
             if (ball.getY() >= brick.getY() - ((brick.getHeight())/2)) {
                 ball.reverseVerticalMomentum();
+                if (ball.getX() < zoneOne)
+                    ball.setDx(1);
+                else
+                    ball.setDx(-1);
+            }
+            //Hit was from above the brick
+            if (ball.getY() <= brick.getY() - ((brick.getHeight())/2)) {
+                ball.reverseVerticalMomentum();
+                if (ball.getX() < zoneTwo) {
+                    ball.setDx(-1);
+                }
+                else {
+                    ball.setDx(1);
+                }
             }
             //Hit was on left
             if (ball.getX() < brick.getX()) {
                 ball.reverseHorizontalMomentum();
+                if (ball.getY() >= zoneThree)
+                    ball.setDy(1);
+                else
+                    ball.setDy(-1);
             }
             //Hit was on right
             if (ball.getX() > brick.getX()) {
                 ball.reverseHorizontalMomentum();
+                if (ball.getY() >= zoneFour)
+                    ball.setDy(-1);
+                else
+                    ball.setDy(1);
             }
+
             brick.setBrickHit();
             brick.setBrickStatus();
             player.setMyScore(1);
         }
     }
+    /*
+     * We divide the length where the ball hits the piece into two parts so that
+     * we specifically know in which direction the ball should then be moved to.
+     */
+
     /*
      * Check if the game is over
      */
