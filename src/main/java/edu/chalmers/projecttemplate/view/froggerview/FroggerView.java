@@ -80,11 +80,11 @@ public class FroggerView {
      */
     private void initImages() throws FileNotFoundException {
         imageHashMap.put("Background", new Image(new FileInputStream("src/main/resources/froggerresources/froggerBackground.png")));
-        imageHashMap.put("Frog", new Image(new FileInputStream("src/main/resources/froggerresources/frog.png")));
-        imageHashMap.put("Car", new Image(new FileInputStream("src/main/resources/froggerresources/car.png")));
-        imageHashMap.put("Log", new Image(new FileInputStream("src/main/resources/froggerresources/log.png")));
-        imageHashMap.put("Grass", new Image(new FileInputStream("src/main/resources/froggerresources/grass.png")));
-        imageHashMap.put("FinishedFrog", new Image(new FileInputStream("src/main/resources/froggerresources/frogOnFinishLine.png")));
+        imageHashMap.put("FROG", new Image(new FileInputStream("src/main/resources/froggerresources/frog.png")));
+        imageHashMap.put("CAR", new Image(new FileInputStream("src/main/resources/froggerresources/car.png")));
+        imageHashMap.put("LOG", new Image(new FileInputStream("src/main/resources/froggerresources/log.png")));
+        imageHashMap.put("GRASS", new Image(new FileInputStream("src/main/resources/froggerresources/grass.png")));
+        imageHashMap.put("FINISHLINEFROG", new Image(new FileInputStream("src/main/resources/froggerresources/frogOnFinishLine.png")));
     }
 
     /**
@@ -114,30 +114,7 @@ public class FroggerView {
      * @param type type of the object being drawn used to determine which image to draw
      */
     public void draw(int posX, int posY, int width, int height, String type){
-        switch(type){
-            case "FROG":
-                //draw object
-                gameLayer.drawImage(imageHashMap.get("Frog"), posX, posY, width, height);
-                break;
-            case "CAR":
-                //draw object
-                gameLayer.drawImage(imageHashMap.get("Car"), posX, posY, width, height);
-                break;
-            case "LOG":
-                //draw object
-                gameLayer.drawImage(imageHashMap.get("Log"), posX, posY, width, height);
-                break;
-            case "GRASS":
-                //draw object
-                gameLayer.drawImage(imageHashMap.get("Grass"), posX, posY, width, height);
-                break;
-            case "FINISHLINEFROG":
-                //draw object
-                gameLayer.drawImage(imageHashMap.get("FinishedFrog"), posX, posY, width, height);
-                break;
-            default:
-                break;
-        }
+        gameLayer.drawImage(imageHashMap.get(type), posX, posY, width, height);
     }
 
     /**
