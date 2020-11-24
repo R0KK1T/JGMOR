@@ -2,6 +2,9 @@ package edu.chalmers.projecttemplate.model.pongmodel;
 
 import java.util.ArrayList;
 
+/**
+ * The class responsible for the game logic for the game Pong
+ */
 public class PongModel {
     PongBall pongBall;
     PongPaddle pongLeftPaddle,pongRightPaddle;
@@ -16,6 +19,9 @@ public class PongModel {
     private boolean AIEnabled;
     private ArrayList<GameObject> gameObjects;
 
+    /**
+     * Constructs an instance of PongModel
+     */
     public PongModel (){
         gameObjects = new ArrayList<>();
         pongBall = new PongBall(windowSizeX/2, windowSizeY/2, 40, 40,ballVelocity);
@@ -30,8 +36,14 @@ public class PongModel {
         AIEnabled = false;
     }
 
+    /**
+     * Calls all the update methods of owned GameObjects and following
+     * own methods:
+     * ballHorizontalBounce
+     * ballVerticalBounce
+     * ballRespawn
+     */
     public void update (){
-        //calls the ball behaviour functions and the update functions in the game objects
         if (isPaused == false){
             ballHorizontalBounce();
             ballVerticalBounce();
@@ -45,7 +57,10 @@ public class PongModel {
         }
     }
 
-
+    /**
+     * Checks if the ball intersects with any of the paddles
+     * @return returns true if the ball intersects
+     */
     private boolean ballIntersectCheck(){
         //Checks if the ball touches either of the paddles
         if (pongBall.intersects(pongLeftPaddle) || pongBall.intersects(pongRightPaddle)){
@@ -54,23 +69,30 @@ public class PongModel {
         return false;
     }
 
+    /**
+     * Switches the horizontal direction of the ball if it touches any of the paddles
+     */
     private void ballHorizontalBounce(){
-        //Switches the horizontal direction of the ball if it touches any of the paddles
         if (ballIntersectCheck()){
             pongBall.xDirection = -pongBall.xDirection;
         }
     }
 
+    /**
+     * Switches the vertical direction of the ball if it touches either the top or the bottom of the game screen
+     */
     private void ballVerticalBounce(){
-        //Switches the vertical direction of the ball if it touches either the top or the bottom of the game screen
+
         if ((pongBall.getY()) < 0 || ((pongBall.getY() + pongBall.getHeight()) > windowSizeY)){
             pongBall.yDirection = -pongBall.yDirection;
         }
     }
 
+    /**
+     * Triggers the resetBall method which respawns the ball if it passes either of the paddles
+     * and increases the score for the opposite player
+     */
     private void ballRespawn(){
-        //Triggers the resetBall method which respawns the ball if it passes either of the paddles
-        //and increases the score for the opposite player
         if(pongBall.getX() + pongBall.getWidth() < 0){
             leftPlayerScore++;
             pongBall.resetBall();
@@ -81,26 +103,44 @@ public class PongModel {
         }
     }
 
+    /**
+     * Calls the moveUp method of the right paddle using the paddleVelocity variable
+     */
     public void movePongRightPaddleUp(){
         pongRightPaddle.moveUp(paddleVelocity);
     }
 
+    /**
+     * Calls the moveDown method of the right paddle using the paddleVelocity variable
+     */
     public void movePongRightPaddleDown(){
         pongRightPaddle.moveDown(paddleVelocity);
     }
 
+    /**
+     * Calls the stopMoving method of the right paddle
+     */
     public void stopPongRightPaddle(){
         pongRightPaddle.stopMoving();
     }
 
+    /**
+     * Calls the moveUp method of the left paddle using the paddleVelocity variable
+     */
     public void movePongLeftPaddleUp(){
         pongLeftPaddle.moveUp(paddleVelocity);
     }
 
+    /**
+     * Calls the moveDown method of the left paddle using the paddleVelocity variable
+     */
     public void movePongLeftPaddleDown(){
         pongLeftPaddle.moveDown(paddleVelocity);
     }
 
+    /**
+     * Calls the stopMoving method of the  paddle
+     */
     public void stopPongLeftPaddle(){
         pongLeftPaddle.stopMoving();
     }

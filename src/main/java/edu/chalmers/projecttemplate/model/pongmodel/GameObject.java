@@ -58,6 +58,12 @@ public abstract class GameObject implements IPositionableDouble {
     public double getWidth() {
         return width;
     }
+
+    /**
+     * Checks if another gameObject intersects with this GameObject
+     * @param other the other gameObject this GameObject uses to compare
+     * @return returns true if the GameObjects intersect
+     */
     public boolean intersects (GameObject other){
         //Checks if another GameObject intersects with this one
         if (other.x >= x - other.getWidth() && other.x <= x + this.getWidth() && other.y >= y - other.getHeight() && other.y <= y + this.getWidth()){
