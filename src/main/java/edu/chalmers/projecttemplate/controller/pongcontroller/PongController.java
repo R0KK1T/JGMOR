@@ -87,12 +87,12 @@ public class PongController implements IController {
                 model.stopPongLeftPaddle();
                 break;
             case UP:
-                if (model.isAIEnabled()) {
+                if (model.isAIEnabled() == false) {
                     model.stopPongRightPaddle();
                 }
                 break;
             case DOWN:
-                if (model.isAIEnabled()) {
+                if (model.isAIEnabled() == false) {
                     model.stopPongRightPaddle();
                 }
                 break;
