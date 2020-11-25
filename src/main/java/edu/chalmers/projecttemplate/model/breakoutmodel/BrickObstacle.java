@@ -133,7 +133,7 @@ public class BrickObstacle {
     }
     //Generate random brick obstacle
     private void randomModel() {
-        int min = 1, max = 2;
+        int min = 1, max = 3;
         Random random = new Random();
         int model = random.nextInt((max - min) + 1) +min;
         switch (model) {
@@ -147,7 +147,7 @@ public class BrickObstacle {
                 gameModelThree();
                 break;
             default:
-                gameModelOne();
+                gameModelThree();
         }
     }
     //return brick obstacle
