@@ -19,6 +19,9 @@ public class Snake {
 
     }
 
+    /**
+     * Adds part to the snake's tail
+     */
     public void addSnakePartToTail(){
         int lastSnakePartIndex = snakeParts.size()-1;
         int lastSnakePartPosX = snakeParts.get(lastSnakePartIndex).getSnakePartPositionX();

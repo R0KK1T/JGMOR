@@ -7,33 +7,32 @@ import edu.chalmers.projecttemplate.model.snake22model.*;
 import javafx.application.Platform;
 
 public class GameLoop implements Runnable {
-    private Thread currentThread;
+
     private boolean isRunning = true;
     private boolean isPaused = false;
 
-    private DrawModule drawModule;
-    private InputListener inputListener;
-    private GameStateUpdater gameStateUpdater;
-    private Snake snake;
-    private Food food;
-    private GameConfiguration gameConfiguration;
-    private CollisionDetectionModule collisionDetectionModule;
-    private Score gameScore;
+    private final DrawModule drawModule;
+    private final InputListener inputListener;
+    private final GameStateUpdater gameStateUpdater;
+    private final Snake snake;
+    private final Food food;
+    private final GameConfiguration gameConfiguration;
+    private final CollisionDetectionModule collisionDetectionModule;
+    private final Score gameScore;
 
-    public GameLoop(DrawModule drawModule, InputListener inputListener, GameStateUpdater gameStateUpdater, Snake snake, Food food, GameConfiguration gameConfiguration, CollisionDetectionModule collisionDetectionModule, Score gameScore) {
+    public GameLoop(DrawModule drawModule, InputListener inputListener) {
         this.drawModule = drawModule;
         this.inputListener = inputListener;
-        this.gameStateUpdater = gameStateUpdater;
-        this.snake = snake;
-        this.food = food;
-        this.gameConfiguration = gameConfiguration;
-        this.collisionDetectionModule = collisionDetectionModule;
-        this.gameScore = gameScore;
+        this.snake = new Snake(Snake22View.gameConfiguration);
+        this.food = new Food(Snake22View.gameConfiguration, snake.getSnakeParts());
+        this.gameStateUpdater = new GameStateUpdater(inputListener, snake, Snake22View.gameConfiguration);
+        this.gameConfiguration = Snake22View.gameConfiguration;
+        this.collisionDetectionModule = new CollisionDetectionModule(Snake22View.gameConfiguration);
+        this.gameScore = new Score();
     }
 
     @Override
     public void run() {
-        this.currentThread = Thread.currentThread();
 
         // main game loop
         while (isRunning) {
@@ -42,30 +41,26 @@ public class GameLoop implements Runnable {
             gameStateUpdater.updateState();
 
             //collision detection
-            if (collisionDetectionModule.detectWallCollision()) {
+            if (collisionDetectionModule.detectWallCollision(snake)) {
 
                 if (gameConfiguration.getGameOverOnWallCollision()) {
                     isRunning = false;
                     Platform.runLater(() -> Snake22View.gameOverMenu()); // normally can't open javaFX gui from new custom user thread. Need Platform.runLater method to do that
                 } else {
-                    collisionDetectionModule.goFromOtherSideOnWallCollision();
+                    collisionDetectionModule.goFromOtherSideOnWallCollision(snake);
                 }
             }
 
-            if (collisionDetectionModule.detectOwnCollision()) {
+            if (collisionDetectionModule.detectOwnCollision(snake)) {
                 isRunning = false;
                 Platform.runLater(() -> Snake22View.gameOverMenu());     // normally can't open javaFX gui from new custom user thread. Need Platform.runLater method to do that
             }
 
-            if (collisionDetectionModule.detectFoodCollision()) {
-                snake.addSnakePartToTail();
-                gameScore.increaseScore();
-                food.generatePosition();
-            }
+            collisionDetectionModule.detectFoodCollision(snake, gameScore, food);
 
             // draw/clear background
             drawModule.drawBackGround();
-            drawModule.drawScore();
+            drawModule.drawScore(gameScore);
 
             //draw snake based on updated state
             for (SnakePart snakePart : snake.getSnakeParts()) {
@@ -75,7 +70,7 @@ public class GameLoop implements Runnable {
             //draw food
             drawModule.drawFood(food.getFoodPositionX(), food.getFoodPositionY());
 
-            if (inputListener.getWasEscPressed() == true) {
+            if (inputListener.getWasEscPressed()) {
                 isPaused = true;
                 inputListener.setWasEscPressed(false);
 

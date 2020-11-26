@@ -12,7 +12,9 @@ public class Score {
         this.gc = gc;
     }
 
-
+    /**
+     * Increases game score
+     */
     public void increaseScore() {
 
         gameScore+=10;

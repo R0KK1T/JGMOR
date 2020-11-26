@@ -1,6 +1,7 @@
 package edu.chalmers.projecttemplate.model.snake22model;
 
 public class GameConfiguration {
+
     private int snakePartSize = 10;
     private int boardWidth = 640;
     private int boardHeight = 640;

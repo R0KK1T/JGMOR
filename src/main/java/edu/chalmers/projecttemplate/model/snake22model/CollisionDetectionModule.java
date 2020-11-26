@@ -1,18 +1,22 @@
 package edu.chalmers.projecttemplate.model.snake22model;
 
+/**
+ * Collision detection.
+ */
 public class CollisionDetectionModule {
 
-    private Snake snake;
-    private Food food;
-    private GameConfiguration gc;
+    private final GameConfiguration gc;
 
-    public CollisionDetectionModule(Snake snake, Food food, GameConfiguration gameConfiguration) {
-        this.snake = snake;
-        this.food = food;
+    public CollisionDetectionModule(GameConfiguration gameConfiguration) {
         this.gc = gameConfiguration;
     }
 
-    public boolean detectWallCollision(){
+    /**
+     * Detects wall collision
+     * @return is collided with a wall
+     * @param snake snake
+     */
+    public boolean detectWallCollision(Snake snake){
         if (snake.getSnakeHead().getSnakePartPositionX() < 0 || snake.getSnakeHead().getSnakePartPositionX() >= gc.getBoardWidth() ||
                 snake.getSnakeHead().getSnakePartPositionY() < 0 || snake.getSnakeHead().getSnakePartPositionY() >= gc.getBoardHeight()){
             System.out.println("Wall collision!!!");
@@ -21,10 +25,15 @@ public class CollisionDetectionModule {
         return false;
     }
 
-    // snake biting itself
-    public boolean detectOwnCollision(){
+    /**
+     * Detects own snake collision
+     * @return is snake bit itself
+     * @param snake snake
+     */
+    public boolean detectOwnCollision(Snake snake){
         for (int i = 1; i < snake.getSnakeParts().size(); i++) {
-            if (snake.getSnakeParts().get(i).getSnakePartPositionX() == snake.getSnakeHead().getSnakePartPositionX() && snake.getSnakeParts().get(i).getSnakePartPositionY() == snake.getSnakeHead().getSnakePartPositionY()){
+            if (snake.getSnakeParts().get(i).getSnakePartPositionX() == snake.getSnakeHead().getSnakePartPositionX()
+                    && snake.getSnakeParts().get(i).getSnakePartPositionY() == snake.getSnakeHead().getSnakePartPositionY()){
                 System.out.println("DAMN!! I've bit my tail!");
                 return true;
             }
@@ -32,17 +41,29 @@ public class CollisionDetectionModule {
         return false;
     }
 
-    // om nom nom
-    public boolean detectFoodCollision(){
-        if (snake.getSnakeHead().getSnakePartPositionX() == food.getFoodPositionX() && snake.getSnakeHead().getSnakePartPositionY() == food.getFoodPositionY()){
+    /**
+     * Detects food collision. In case of detection adds snake part,
+     * generates new food position and increases game score.
+     *
+     * @param snake snake
+     * @param gameScore - current game score
+     * @param food - food element
+     */
+    public void detectFoodCollision(Snake snake, Score gameScore, Food food){
+        if (snake.getSnakeHead().getSnakePartPositionX() == food.getFoodPositionX()
+                && snake.getSnakeHead().getSnakePartPositionY() == food.getFoodPositionY()){
             System.out.println("Om nom nom!");
-            return true;
+            snake.addSnakePartToTail();
+            gameScore.increaseScore();
+            food.generatePosition();
         }
-        return false;
     }
 
-    //goFromOtherSideOnWallCollision
-    public  void goFromOtherSideOnWallCollision(){
+    /**
+     * Go from other side of wall collision
+     * @param snake snake
+     */
+    public  void goFromOtherSideOnWallCollision(Snake snake){
         if (snake.getSnakeHead().getSnakePartPositionX() < 0){
             snake.getSnakeHead().setSnakePartPositionX(gc.getBoardWidth()-10);
         }
