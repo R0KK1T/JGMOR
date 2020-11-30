@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="anchorBack" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.chalmers.projecttemplate.controller.FXMLControllers.StartMenuController">
+   <children>
+      <ImageView fx:id="backgroundIMG" fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../menuresources/arcade1.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="quitBtn" layoutX="100.0" layoutY="349.0" mnemonicParsing="false" onMousePressed="#quitGame" prefHeight="50.0" prefWidth="200.0" text="Quit" />
+      <Button fx:id="selectGameBtn" layoutX="100.0" layoutY="224.0" mnemonicParsing="false" onMousePressed="#selectGame" prefHeight="50.0" prefWidth="200.0" text="Select Game" />
+      <Label fx:id="title" alignment="CENTER" layoutX="263.0" layoutY="52.0" prefHeight="61.0" prefWidth="274.0" text="Virtual Arcade" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <font>
+            <Font name="Corbel Light" size="48.0" />
+         </font></Label>
+   </children>
+</AnchorPane>

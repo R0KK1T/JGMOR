@@ -26,7 +26,7 @@ public class BreakoutTest {
         paddle = new Paddle(20, 20, 40, 20);
         ball = new Ball(50, 50, 25, 25);
         player = new Player("Georges", "Kayembe");
-        score = new BestScore();
+        score = BestScore.getInstance();
     }
     @After
     public void after() {
@@ -162,11 +162,10 @@ public class BreakoutTest {
         player2.setMyScore(60);
         assertTrue("player2 should have 60 point : ",player2.getMyScore() == 60);
 
-        //Now let's save the score and check the file bestPlayer.txt
-        score.cleanFile();
-        score.readAndSaveScore(player);
-        score.readAndSaveScore(player1);
-        score.readAndSaveScore(player2);
+        //Now let's save the score and check the list
+        score.saveScore(player);
+        score.saveScore(player1);
+        score.saveScore(player2);
 
         assertTrue("The player with the highest score should be 'David' : ",score.getBestPlayers().get(0).getFirstName().equals("David"));
         assertTrue("David has : ",score.getBestPlayers().get(0).getMyScore() == 70);
