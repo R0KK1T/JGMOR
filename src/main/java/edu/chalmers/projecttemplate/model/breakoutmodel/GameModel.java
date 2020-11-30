@@ -118,7 +118,10 @@ public class GameModel {
         if (!brick.getBrickStatus()) {
             return;
         }
-
+        /*
+         * We divide the length where the ball hits the piece into two parts so that
+         * we specifically know in which direction the ball should then be moved to.
+         */
         int zoneWidth = brick.getWidth() / 2;
         int zoneOne = (brick.getY() + brick.getHeight())  + zoneWidth;
         int zoneTwo = brick.getX() + zoneWidth;
@@ -169,11 +172,6 @@ public class GameModel {
         }
     }
     /*
-     * We divide the length where the ball hits the piece into two parts so that
-     * we specifically know in which direction the ball should then be moved to.
-     */
-
-    /*
      * Check if the game is over
      */
     public boolean gameIsOver() {
@@ -191,7 +189,7 @@ public class GameModel {
     }
 
     /*
-     * Return game movable object
+     * Returns game movable object
      */
     public List<IPositionableInt> getMovableObject() {
         List<IPositionableInt> gameObjects = new ArrayList<>();
@@ -202,7 +200,7 @@ public class GameModel {
         return gameObjects;
     }
     /*
-     * Return game static object
+     * Returns game static object
      */
     public List<Brick> getStaticObject() {
         List<Brick> gameObjects = new ArrayList<>();
@@ -212,7 +210,7 @@ public class GameModel {
         return gameObjects;
     }
     /*
-     * Get player
+     * returns player
      */
     public Player getPlayer() {
         return player;

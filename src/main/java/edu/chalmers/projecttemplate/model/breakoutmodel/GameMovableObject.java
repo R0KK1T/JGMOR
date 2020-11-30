@@ -9,6 +9,14 @@ public abstract class GameMovableObject implements IPositionableInt {
     private IRectangle hitbox;
     private int dx;
     private int dy;
+    /**
+     * Constructs game's movable object with specified position, size and speed
+     *
+     * @param x the start x position of the object
+     * @param y the start y position of the object
+     * @param height the height of the object
+     * @param width the width of the object
+     */
     public GameMovableObject(int x, int y, int width, int height) {
        hitbox = new Rectangle(x, y, width, height);
        dx = 0;

@@ -46,13 +46,13 @@ public class BreakoutMenuController implements Initializable, IController {
     private boolean isHidden;
     private List<Button> buttonList;
     public static ArrayList<String> userInfo;
-    private BestScore bestScore;
+    public static BestScore bestScore;
 
     //constructor
     public BreakoutMenuController() {
         isHidden = true;
         userInfo = new ArrayList<>();
-        bestScore = new BestScore();
+        bestScore = BestScore.getInstance();
     }
 
     @Override
@@ -183,7 +183,6 @@ public class BreakoutMenuController implements Initializable, IController {
      * Show High score - Breakout 5 best players.
      */
     private void showBestPlayer() throws FileNotFoundException {
-        bestScore.loadScore();
         String s = "";
         int size=0;
         if (bestScore.getBestPlayers().size()<=5)

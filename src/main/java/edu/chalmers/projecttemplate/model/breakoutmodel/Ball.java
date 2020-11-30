@@ -8,6 +8,14 @@ public class Ball extends GameMovableObject{
     private int dt;
     private double radius;
 
+    /**
+     * Constructs a ball with specified position, size and speed
+     *
+     * @param x the start x position of the ball
+     * @param y the start y position of the ball
+     * @param height the height of the ball
+     * @param width the width of the ball
+     */
     public Ball(int x, int y, int width, int height) {
         super(x, y, width, height);
         this.setDx(1);
@@ -39,7 +47,8 @@ public class Ball extends GameMovableObject{
         setDy(-getDy());
     }
     /**
-     * return the ball's radius
+     * returns the ball's radius
+     * @return double radius of the ball
      */
     public double getRadius() {
         double d = Math.sqrt( (this.getWidth()*this.getWidth()) + (this.getHeight()*this.getHeight()) );

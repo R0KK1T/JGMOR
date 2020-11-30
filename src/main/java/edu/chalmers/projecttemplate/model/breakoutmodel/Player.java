@@ -10,11 +10,17 @@ public class Player implements Comparable<Player> {
     private String lastName;
     private int myScore;
     private BestScore bestScore;
+    /**
+     * Constructs a player with specified first and last name
+     *
+     * @param firstName the player's first name
+     * @param lastName the player's last name
+     */
     public Player(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.myScore = 0;
-        bestScore = new BestScore();
+        bestScore = BestScore.getInstance();
     }
     public void setFirstName(String name) {
         firstName = name;
@@ -50,10 +56,6 @@ public class Player implements Comparable<Player> {
      * Saving player's score after he/she won or lost the game
      */
     public void saveMyScore()  {
-        try {
-            bestScore.readAndSaveScore(this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        bestScore.saveScore(this);
     }
 }

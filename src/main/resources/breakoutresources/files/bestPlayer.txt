@@ -2,6 +2,9 @@ Georges Kayembe 1
 Player1 Player1 1
 Player1 Player1 1
 Player1 Player1 2
+Kalle Mars 25
+Player1 Player1 29
 Gmiak Master 40
 David Masta 60
 David Helias 70
+Kays Gka 100
