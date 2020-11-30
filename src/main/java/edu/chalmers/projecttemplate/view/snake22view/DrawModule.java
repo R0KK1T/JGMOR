@@ -13,17 +13,10 @@ public class DrawModule {
 
     private GraphicsContext graphicsContext;
     private GameConfiguration gc;
-    private Score gameScore;
 
     public DrawModule(GraphicsContext graphicsContext, GameConfiguration gameConfiguration) {
         this.graphicsContext = graphicsContext;
         this.gc = gameConfiguration;
-    }
-
-    public DrawModule(GraphicsContext graphicsContext, GameConfiguration gc, Score score) {
-        this.graphicsContext = graphicsContext;
-        this.gc = gc;
-        this.gameScore = score;
     }
 
     public void drawBackGround(){
@@ -41,7 +34,7 @@ public class DrawModule {
         graphicsContext.fillRect(foodPosX, foodPosY, gc.getSnakePartSize(), gc.getSnakePartSize());
     }
 
-    public void drawScore(){
+    public void drawScore(Score gameScore){
         graphicsContext.setFill(SCORE_COLOR);
         graphicsContext.fillText("score: " + gameScore.getGameScore(), 20,20);
     }

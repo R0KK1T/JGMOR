@@ -2,6 +2,7 @@ package edu.chalmers.projecttemplate.model;
 
 import edu.chalmers.projecttemplate.model.pongmodel.PongAI;
 import edu.chalmers.projecttemplate.model.pongmodel.PongBall;
+import edu.chalmers.projecttemplate.model.pongmodel.PongModel;
 import edu.chalmers.projecttemplate.model.pongmodel.PongPaddle;
 import org.junit.Assert;
 import org.junit.Test;
@@ -48,6 +49,47 @@ public class PongTest {
             paddle.updatePosition();
         }
         Assert.assertTrue(paddle.getY() != 10);
+    }
+    @Test
+    public void PongModelTest(){
+        PongModel pongModel = new PongModel();
+        int x = 0;
+        while ((pongModel.getGameObjects().get(0).getX() < pongModel.getSizeX() || pongModel.getGameObjects().get(0).getX() > 0) && x < pongModel.getSizeX()*5){
+            pongModel.update();
+            x++;
+        }
+        if (x < pongModel.getSizeX()*5) {
+            Assert.assertTrue(pongModel.getGameObjects().get(0).getX() == (pongModel.getSizeX() / 2));
+        }
+        else {
+            Assert.assertTrue(pongModel.getGameObjects().get(0).getX() < pongModel.getSizeX() || pongModel.getGameObjects().get(0).getX() > 0);
+        }
+        x = 0;
+        int y = 0;
+        double y1 = pongModel.getGameObjects().get(0).getY();
+        pongModel.update();
+        double y2 = pongModel.getGameObjects().get(0).getY();
+        double deltaY1 = y2 - y1;
+        double deltaY2 = 0;
+        while ((y < 1) && x < pongModel.getSizeX()*5){
+            double y3 = pongModel.getGameObjects().get(0).getY();
+            pongModel.update();
+            double y4 = pongModel.getGameObjects().get(0).getY();
+            deltaY2 = y4 - y3;
+            if (deltaY1 != deltaY2){
+                if (deltaY2 != -deltaY1){
+                    y = 1;
+                }
+            }
+            x++;
+        }
+        if (x < pongModel.getSizeX()*5) {
+            Assert.assertTrue(deltaY2 != deltaY1);
+        }
+        else {
+            Assert.assertTrue(pongModel.getGameObjects().get(0).getX() < pongModel.getSizeX() || pongModel.getGameObjects().get(0).getX() > 0);
+        }
+
     }
    
 }

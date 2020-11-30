@@ -18,6 +18,9 @@ public class Food {
         generatePosition();
     }
 
+    /**
+     * Generates position of food on the board
+     */
     public void generatePosition(){
         boolean foodGeneratedOnSnake;
 
