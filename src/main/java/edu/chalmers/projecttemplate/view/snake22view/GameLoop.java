@@ -1,10 +1,8 @@
 package edu.chalmers.projecttemplate.view.snake22view;
 
-import edu.chalmers.projecttemplate.model.snake22model.GameConfiguration;
 import edu.chalmers.projecttemplate.controller.snake22controller.GameStateUpdater;
 import edu.chalmers.projecttemplate.controller.snake22controller.InputListener;
 import edu.chalmers.projecttemplate.model.snake22model.*;
-import javafx.application.Platform;
 
 public class GameLoop implements Runnable {
 
@@ -17,7 +15,6 @@ public class GameLoop implements Runnable {
     private final Snake snake;
     private final Food food;
     private final GameConfiguration gameConfiguration;
-    private final CollisionDetectionModule collisionDetectionModule;
     private final Score gameScore;
 
     public GameLoop(DrawModule drawModule, InputListener inputListener) {
@@ -27,7 +24,6 @@ public class GameLoop implements Runnable {
         this.food = new Food(Snake22View.gameConfiguration, snake.getSnakeParts());
         this.gameStateUpdater = new GameStateUpdater(inputListener, snake, Snake22View.gameConfiguration);
         this.gameConfiguration = Snake22View.gameConfiguration;
-        this.collisionDetectionModule = new CollisionDetectionModule(Snake22View.gameConfiguration);
         this.gameScore = new Score();
     }
 
@@ -37,26 +33,8 @@ public class GameLoop implements Runnable {
         // main game loop
         while (isRunning) {
 
-            //read user input, update snake position etc.
-            gameStateUpdater.updateState();
-
-            //collision detection
-            if (collisionDetectionModule.detectWallCollision(snake)) {
-
-                if (gameConfiguration.getGameOverOnWallCollision()) {
-                    isRunning = false;
-                    Platform.runLater(() -> Snake22View.gameOverMenu()); // normally can't open javaFX gui from new custom user thread. Need Platform.runLater method to do that
-                } else {
-                    collisionDetectionModule.goFromOtherSideOnWallCollision(snake);
-                }
-            }
-
-            if (collisionDetectionModule.detectOwnCollision(snake)) {
-                isRunning = false;
-                Platform.runLater(() -> Snake22View.gameOverMenu());     // normally can't open javaFX gui from new custom user thread. Need Platform.runLater method to do that
-            }
-
-            collisionDetectionModule.detectFoodCollision(snake, gameScore, food);
+            //read user input, update snake position, process collisions etc.
+            isRunning = gameStateUpdater.updateState(gameConfiguration, gameScore, food);
 
             // draw/clear background
             drawModule.drawBackGround();

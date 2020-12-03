@@ -1,22 +1,48 @@
 package edu.chalmers.projecttemplate.controller.snake22controller;
 
-import edu.chalmers.projecttemplate.model.snake22model.GameConfiguration;
-import edu.chalmers.projecttemplate.model.snake22model.Snake;
+import edu.chalmers.projecttemplate.model.snake22model.*;
+import edu.chalmers.projecttemplate.view.snake22view.Snake22View;
+import javafx.application.Platform;
 
 public class GameStateUpdater {
     private InputListener inputListener;
     private Snake snake;
     private GameConfiguration gc;
+    private CollisionDetectionModule collisionDetectionModule;
 
     public GameStateUpdater(InputListener inputListener, Snake snake, GameConfiguration gameConfiguration) {
         this.inputListener = inputListener;
         this.snake = snake;
         this.gc = gameConfiguration;
+        this.collisionDetectionModule = new CollisionDetectionModule(Snake22View.gameConfiguration);
     }
 
-    public void updateState() {
+    public boolean updateState(GameConfiguration gameConfiguration, Score gameScore, Food food) {
         updateSnakePartPosition();
+        return updateCollisions(gameConfiguration, gameScore, food);
+    }
 
+    private boolean updateCollisions(GameConfiguration gameConfiguration, Score gameScore, Food food) {
+        boolean isRunning = true;
+
+        //collision detection
+        if (collisionDetectionModule.detectWallCollision(snake)) {
+
+            if (gameConfiguration.getGameOverOnWallCollision()) {
+                isRunning = false;
+                Platform.runLater(Snake22View::gameOverMenu); // normally can't open javaFX gui from new custom user thread. Need Platform.runLater method to do that
+            } else {
+                collisionDetectionModule.goFromOtherSideOnWallCollision(snake);
+            }
+        }
+
+        if (collisionDetectionModule.detectOwnCollision(snake)) {
+            isRunning = false;
+            Platform.runLater(Snake22View::gameOverMenu);     // normally can't open javaFX gui from new custom user thread. Need Platform.runLater method to do that
+        }
+
+        collisionDetectionModule.detectFoodCollision(snake, gameScore, food);
+        return isRunning;
     }
 
     public void updateSnakePartPosition() {
